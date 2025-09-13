@@ -1,0 +1,22 @@
+{
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "data/moves/*.json"
+      ],
+      "url": "./schemas/moves.schema.json"
+    },
+    {
+      "fileMatch": [
+        "data/stats.json"
+      ],
+      "url": "./schemas/stats.schema.json"
+    },
+    {
+      "fileMatch": [
+        "data/availability.json"
+      ],
+      "url": "./schemas/availability.schema.json"
+    }
+  ]
+}
