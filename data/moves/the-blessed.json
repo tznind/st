@@ -1,5 +1,11 @@
 [
   {
+    "id": "bl000",
+    "title": "Stock",
+    "description": "Track your stock here",
+    "multiple": 10
+  },
+  {
     "id": "bl001",
     "title": "Vessel",
     "description": "You feel the mystic power in plants, stones and soil.  And you've felt the growing wrath of the Earth Mother as foul things begin to move about.",
