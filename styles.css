@@ -278,6 +278,23 @@ button:focus {
   cursor: pointer;
 }
 
+/* === MOVE DESCRIPTIONS === */
+.move-description {
+  background: #f8f9fa;
+  border-left: 3px solid #6c757d;
+  padding: 12px 15px;
+  margin: 15px 0;
+  border-radius: 0 4px 4px 0;
+  font-style: italic;
+}
+
+.move-description p {
+  margin: 0;
+  color: #495057;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
 /* === OUTCOMES === */
 .outcome {
   background: white;

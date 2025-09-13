@@ -77,6 +77,24 @@ window.MovesCore = (function() {
     }
 
     /**
+     * Create description display
+     */
+    function createDescription(move) {
+        if (!move.description || move.description.trim() === "") {
+            return null;
+        }
+        
+        const descriptionDiv = document.createElement("div");
+        descriptionDiv.className = "move-description";
+        
+        const p = document.createElement("p");
+        p.textContent = move.description;
+        descriptionDiv.appendChild(p);
+        
+        return descriptionDiv;
+    }
+
+    /**
      * Create outcome display
      */
     function createOutcome(outcome) {
@@ -154,6 +172,12 @@ window.MovesCore = (function() {
         const titleContainer = createMoveTitle(move, checkboxes);
         moveDiv.appendChild(titleContainer);
         
+        // Add description if it exists
+        const descriptionElement = createDescription(move);
+        if (descriptionElement) {
+            moveDiv.appendChild(descriptionElement);
+        }
+        
         // Add outcomes if they exist
         if (move.outcomes && Array.isArray(move.outcomes) && move.outcomes.length > 0) {
             move.outcomes.forEach(outcome => {
@@ -210,6 +234,7 @@ window.MovesCore = (function() {
     return {
         createMoveCheckboxes,
         createMoveTitle,
+        createDescription,
         createOutcome,
         createPickOptions,
         renderMove,

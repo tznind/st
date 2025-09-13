@@ -4,34 +4,25 @@
 
 // Hex stats template
 window.hexStats = [
-  { id: "mettle", title: "METTLE" },
-  { id: "physique", title: "PHYSIQUE" },
-  { id: "influence", title: "INFLUENCE" },
-  { id: "expertise", title: "EXPERTISE" },
-  { id: "conviction", title: "CONVICTION" }
+  { id: "strength", title: "STRENGTH" },
+  { id: "dexterity", title: "DEXTERITY" },
+  { id: "intelligence", title: "INTELLIGENCE" },
+  { id: "wisdom", title: "WISDOM" },
+  { id: "constitution", title: "CONSTITUTION" },
+  { id: "charisma", title: "CHARISMA" }
 ];
 
 // Map roles → move IDs → initial checked state
 window.availableMap = {
-    "Navigator": {
-        "a1b2c3": true,
+    "Fox": {
+        "l1a2b3": false,
         "d4e5f6": false,
-        "g7h8i9": true,
+        "g7h8i9": false,
         "1587dd": false,
         "nav001": false
     },
-    "Mech Adept": {
-        "m1a2b3": false,
-        "m4c5d6": false,
-        "m7e8f9": false,
-        "85757e": false
-    },
-    "Lord Commander": {
-        "l1a2b3": false,
-        "l4c5d6": false,
-        "l7e8f9": false,
-        "lc001": true,
-        "adapt1": false
+    "Marshal":{
+        "j1k2l3": false,
     }
 };
 
@@ -58,24 +49,19 @@ window.initializeMovesData = async function() {
     try {
         // Load all role move files
         await Promise.all([
-            loadScript('data/navigator.js'),
-            loadScript('data/mech-adept.js'),
-            loadScript('data/lord-commander.js')
+            loadScript('data/fox.js'),
+            loadScript('data/marshal.js')
         ]);
         
         // Combine moves from all roles
         window.moves = [];
         
-        if (window.NavigatorMoves) {
-            window.moves = window.moves.concat(window.NavigatorMoves);
+        if (window.FoxMoves) {
+            window.moves = window.moves.concat(window.FoxMoves);
         }
-        
-        if (window.MechAdeptMoves) {
-            window.moves = window.moves.concat(window.MechAdeptMoves);
-        }
-        
-        if (window.LordCommanderMoves) {
-            window.moves = window.moves.concat(window.LordCommanderMoves);
+
+        if (window.WardenMoves) {
+            window.moves = window.moves.concat(window.MarshalMoves);
         }
         
         console.log('Moves data initialized:', window.moves.length, 'moves loaded');
