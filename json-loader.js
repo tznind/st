@@ -70,7 +70,7 @@ window.JsonLoader = (function() {
         // Fallback: try to load common filename patterns
         const commonPatterns = [
             // Stonetop roles
-            'fox.json', 'marshal.json', 'the-blessed.json',
+            'fox.json', 'marshal.json', 'the-blessed.json', 'the-ranger.json',
             // Rogue Trader roles  
             'navigator.json', 'mech-adept.json', 'lord-commander.json',
             'rogue-trader.json', 'seneschal.json', 'explorator.json',

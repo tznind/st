@@ -20,6 +20,32 @@
     "bl003": false,
     "bl004": false,
     "bl005": false,
-    "bl006": false
+    "bl006": false,
+    "bl007": false,
+    "bl008": false,
+    "bl009": false,
+    "bl010": false,
+    "bl011": false,
+    "bl012": false,
+    "bl013": false,
+    "bl014": false,
+    "bl015": false
+  },
+  "The Ranger": {
+    "rg001": true,
+    "rg002": false,
+    "rg003": false,
+    "rg004": false,
+    "rg005": false,
+    "rg006": false,
+    "rg007": false,
+    "rg008": false,
+    "rg009": false,
+    "rg010": false,
+    "rg011": false,
+    "rg012": false,
+    "rg013": false,
+    "rg014": false,
+    "rg015": false
   }
 }

@@ -65,6 +65,73 @@
   },
   {
     "id": "bl006",
+    "title": "Trackless Step",
+    "outcomes": [
+      {
+        "text": "When you move through nature with care and patience, you make no sound, leave no trace and can ignore any hindering or treacherous terrain (briars, mire, scree, etc.)."
+      },
+      {
+        "text": "When you spend 1 Stock and mark others, they each gain this benefit so long as the mark remains. 1 Stock can mark a number of individuals up to your level +Intelligence."
+      }
+    ]
+  },
+  {
+    "id": "bl007",
+    "title": "Lightning Rod",
+    "description": "When you Defend while touching the ground, you can spend 1 Readiness to intercept a nearby magical attack and redirect it harmlessly into the ground"
+  },
+  {
+    "id": "bl008",
+    "title": "Suck the Poison Out (Requires level 6+ and Healer’s Arts)",
+    "description": "When you draw a malady from a patient’s body, mind, or soul, spend 1 Stock and roll +Wisdom",
+      "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "You remove the malady and can safely discard it or store it in your sacred pouch (taking the space of 1 Stock) to study or inflict on another"
+      },
+      {
+        "range": "7–9",
+        "text": "You remove it, but choose 1",
+        "bullets": [
+          "Your patient suffers lingering harm or trauma",
+          "You suffer some of the malady's effects",
+          "It will be harmful and dangerous to discard"
+        ]
+      }
+  ]
+  },
+  {
+    "id": "bl009",
+    "title": "Healer's Arts",
+    "description": "When someone Recovers under your care, they recover (extra) HP equal to your Wisdom. If you also spend 1 Stock, they heal an extra 5 HP and their wounds/injuries are stabilized. "
+  },
+  {
+    "id": "bl010",
+    "title": "Nature's Wrath (Requires level 6+ and Danu's Grasp)",
+    "description": "Danu's Grasp gains the area tag and can affect any creature. A mortal reduced to 0 HP is subdued or killed (your choice) rather than bound in stone."
+  },
+  {
+    "id": "bl011",
+    "title": "Placeholder",
+    "description": "Placeholder"
+  },
+  {
+    "id": "bl012",
+    "title": "Placeholder",
+    "description": "Placeholder"
+  },
+  {
+    "id": "bl013",
+    "title": "Placeholder",
+    "description": "Placeholder"
+  },
+  {
+    "id": "bl014",
+    "title": "Placeholder",
+    "description": "Placeholder"
+  },
+  {
+    "id": "bl015",
     "title": "Placeholder",
     "description": "Placeholder"
   }
