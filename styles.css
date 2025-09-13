@@ -1,0 +1,493 @@
+/* === GLOBAL STYLES === */
+body {
+  background: #f8f9fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+/* === FORM LAYOUT === */
+form {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* === FORM ELEMENTS === */
+label {
+  font-weight: 600;
+  color: #555;
+  margin-right: 10px;
+}
+
+/* Form field containers */
+.form-field {
+  margin-bottom: 10px;
+}
+
+.form-controls {
+  margin-bottom: 15px;
+}
+
+.form-controls input[type="text"] {
+  margin-right: 15px;
+}
+
+.form-controls button {
+  margin-left: 5px;
+}
+
+input[type="text"], select {
+  padding: 8px 12px;
+  border: 2px solid #e1e5e9;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+input[type="text"]:focus, select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+button {
+  padding: 8px 16px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
+}
+
+/* === COPY BUTTON STATES === */
+#copy-url-button {
+  position: relative;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+#copy-url-button.success {
+  background: #28a745;
+  color: white;
+}
+
+#copy-url-button.success:hover {
+  background: #218838;
+}
+
+#copy-url-button .button-text {
+  transition: opacity 0.2s ease;
+}
+
+#copy-url-button .success-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  pointer-events: none;
+}
+
+#copy-url-button.success .button-text {
+  opacity: 0;
+}
+
+#copy-url-button.success .success-text {
+  opacity: 1;
+}
+
+/* Checkmark icon using CSS */
+.checkmark {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.checkmark::after {
+  content: '';
+  width: 4px;
+  height: 8px;
+  border: 2px solid #28a745;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  margin-top: -2px;
+}
+
+/* === HEX STATS SECTION === */
+.hex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.hex-input-wrapper {
+  width: 120px;
+  aspect-ratio: 1;
+  /* Default: black outline when not focused */
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,1 95,25 95,75 50,99 5,75 5,25" stroke="%23000000" stroke-width="2" fill="white"/></svg>') no-repeat center/contain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  box-sizing: border-box;
+  transition: background 0.3s ease;
+}
+
+/* Blue outline when input is focused */
+.hex-input-wrapper:focus-within {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,1 95,25 95,75 50,99 5,75 5,25" stroke="%23007bff" stroke-width="2" fill="white"/></svg>') no-repeat center/contain;
+}
+
+.hex-input-wrapper input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  background: transparent;
+  color: #333;
+}
+
+/* Placeholder text styling to fit in hexagon */
+.hex-input-wrapper input::placeholder {
+  color: #999;
+  font-size: clamp(7px, 1.2vw, 9px); /* Smaller to fit CONVICTION */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2px; /* Even tighter spacing */
+  opacity: 0.7;
+  line-height: 1.1;
+  max-width: 80px; /* Constrain to hex width */
+  word-wrap: break-word;
+}
+
+/* Remove focus outline specifically for hex inputs */
+.hex-input-wrapper input:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+.hex-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 12px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.hex-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+/* === MOVES SECTION === */
+#moves-container {
+  margin-top: 30px;
+}
+
+.move {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: box-shadow 0.2s;
+}
+
+.move:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.move-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.move-title label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.move-title input[type="checkbox"] {
+  transform: scale(1.2);
+  margin: 0;
+  flex-shrink: 0;
+}
+
+/* Multiple checkboxes styling */
+.move-title-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.move-checkboxes {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.move-checkboxes input[type="checkbox"] {
+  margin: 0;
+  padding: 0;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+/* === OUTCOMES === */
+.outcome {
+  background: white;
+  border-left: 4px solid #17a2b8;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.outcome p {
+  margin: 0 0 10px 0;
+  color: #2c3e50;
+}
+
+.outcome strong {
+  color: #17a2b8;
+  font-weight: 600;
+}
+
+.outcome ul {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.outcome li {
+  margin-bottom: 5px;
+  color: #495057;
+}
+
+/* === PICK OPTIONS === */
+.pick-options {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 4px;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+.pick-options label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.pick-options label:hover {
+  color: #007bff;
+}
+
+.pick-options input[type="checkbox"] {
+  margin-right: 10px;
+  transform: scale(1.1);
+}
+
+/* === TAKEFROM OPTIONS === */
+.takefrom-options {
+  background: #e3f2fd;
+  border: 1px solid #bbdefb;
+  border-radius: 4px;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+.takefrom-controls {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.takefrom-controls label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #1976d2;
+}
+
+.takefrom-controls select {
+  min-width: 150px;
+  padding: 6px 10px;
+  border: 2px solid #90caf9;
+  border-radius: 4px;
+  background: white;
+  font-size: 14px;
+}
+
+.takefrom-controls select:focus {
+  border-color: #1976d2;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+}
+
+.takefrom-controls select:disabled {
+  background: #f5f5f5;
+  color: #999;
+  cursor: not-allowed;
+}
+
+/* === LEARNED MOVE DISPLAY === */
+.learned-move-container {
+  margin-top: 15px;
+}
+
+.learned-move {
+  background: #f0f8ff;
+  border: 2px solid #1976d2;
+  border-radius: 6px;
+  padding: 15px;
+  position: relative;
+}
+
+.learned-move::before {
+  content: "Learned Move:";
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  background: #f0f8ff;
+  padding: 0 8px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #1976d2;
+}
+
+.learned-move .move-title {
+  margin-bottom: 10px;
+}
+
+.learned-move .outcome {
+  background: #ffffff;
+  border-left: 4px solid #1976d2;
+  margin: 8px 0;
+}
+
+.learned-move .pick-options {
+  background: #e3f2fd;
+  border: 1px solid #1976d2;
+}
+
+/* === SECTION STYLING === */
+h3 {
+  color: #2c3e50;
+  font-size: 1.2em;
+  margin: 20px 0 15px 0;
+  font-weight: 600;
+}
+
+/* === DIVIDERS === */
+hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #dee2e6, transparent);
+  margin: 30px 0;
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+  form {
+    padding: 20px;
+    margin: 10px;
+  }
+  
+  .hex-row {
+    gap: 20px;
+  }
+  
+  .hex-input-wrapper {
+    width: 100px;
+  }
+  
+  .move {
+    padding: 15px;
+  }
+  
+  .move-checkboxes {
+    gap: 1px;
+  }
+  
+  .move-checkboxes input[type="checkbox"] {
+    transform: scale(1.0);
+  }
+  
+  .takefrom-controls {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+  
+  .takefrom-controls label {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  
+  .takefrom-controls select {
+    min-width: 100%;
+  }
+}
+
+/* === ACCESSIBILITY === */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+/* Focus indicators - exclude hex inputs */
+*:focus:not(.hex-input-wrapper input) {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
