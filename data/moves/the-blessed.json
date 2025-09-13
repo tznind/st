@@ -109,30 +109,5 @@
     "id": "bl010",
     "title": "Nature's Wrath (Requires level 6+ and Danu's Grasp)",
     "description": "Danu's Grasp gains the area tag and can affect any creature. A mortal reduced to 0 HP is subdued or killed (your choice) rather than bound in stone."
-  },
-  {
-    "id": "bl011",
-    "title": "Placeholder",
-    "description": "Placeholder"
-  },
-  {
-    "id": "bl012",
-    "title": "Placeholder",
-    "description": "Placeholder"
-  },
-  {
-    "id": "bl013",
-    "title": "Placeholder",
-    "description": "Placeholder"
-  },
-  {
-    "id": "bl014",
-    "title": "Placeholder",
-    "description": "Placeholder"
-  },
-  {
-    "id": "bl015",
-    "title": "Placeholder",
-    "description": "Placeholder"
   }
 ]
