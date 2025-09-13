@@ -40,22 +40,32 @@
   },
   {
     "id": "bl003",
-    "title": "Blessed Sight",
-    "description": "Placeholder move for The Blessed."
+    "title": "Spirit Tongue",
+    "description": "You can speak with natural beasts and spirits of the wild. You can always ask the GM \"what spirits are active here?\" and get an honest answer."
   },
   {
     "id": "bl004",
-    "title": "Holy Word",
-    "description": "Placeholder move for The Blessed."
+    "title": "Call the Spirits",
+    "description": "When you perform a short ritual and invoke the spirit(s) of a place or object, spend 1 Stock. The spirit(s) manifest before you and will hear what you have to say. What they do next is up to them."
   },
   {
     "id": "bl005",
-    "title": "Consecrate",
-    "description": "Placeholder move for The Blessed."
+    "title": "Borrow Power (Requires Spirit Tongue)",
+    "description": "When a spirit or beast loans you power, ask the GM for one of its tags or moves. Store it in your pouch in place of 1 Stock. When you use the borrowed tag or move, roll +Wisdom",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "You do it and can use the power again"
+      },
+      {
+        "range": "7–9",
+        "text": "You do it, but lose the power"
+      }
+    ]
   },
   {
     "id": "bl006",
-    "title": "Martyrdom",
-    "description": "Placeholder move for The Blessed."
+    "title": "Call the Spirits (Requires Spirit Tongue)",
+    "description": "When you perform a short ritual and invoke the spirit(s) of a place or object, spend 1 Stock. The spirit(s) manifest before you and will hear what you have to say. What they do next is up to them"
   }
 ]
