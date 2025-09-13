@@ -13,5 +13,13 @@
   },
   "Marshal": {
     "j1k2l3": true
+  },
+  "The Blessed": {
+    "bl001": true,
+    "bl002": false,
+    "bl003": false,
+    "bl004": false,
+    "bl005": false,
+    "bl006": false
   }
 }
