@@ -119,5 +119,15 @@ window.FoxMoves = [
                 ]
             }
         ]
-    }
+    },
+    {
+        id: "ae0122",
+        title: "Superior Stat (Requires level 6+)",
+        description: "Increase one of your stats by +1 (to a max of +3)",
+    },
+    {
+        id: "de0122",
+        title: "Pants on Fire (Requires level 6+)",
+        description: "When you Defy Danger, Persuade or Interfere by being deceitful, you have advantage.  When another move (like Seek Insight) allows a player ot ask you a question, you can opt not to answer.",
+    },
 ]

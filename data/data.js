@@ -22,7 +22,9 @@ window.availableMap = {
         "a01221": false,
         "b01221": false,
         "ff0011": false,
+        "ae0122": false,
         "fa0122": false,
+        "de0122": false
     },
     "Marshal":{
         "j1k2l3": false,
