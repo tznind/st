@@ -33,7 +33,7 @@ To make your own rule set with custom moves and roles:
 
    <img width="264" height="163" alt="GitHub template button" src="https://github.com/user-attachments/assets/6c97f925-6db8-4687-ba26-101705bf736e" />
 
-2. Update [`data.js`](./data/data.js) with your content.  
+2. Update the JSON files in the `data/` folder with your content.  
 3. Enable **GitHub Pages** in your repository settings (Settings=>Pages).  
 4. Visit your sheet at:  
 
@@ -44,3 +44,35 @@ https://your_name.github.io/your_repository_name/cs.html
 You can read more about Powered by the Apocalypse, including their permissive license terms, here:
 
 https://lumpley.games/2023/11/22/what-is-pbta/
+
+## Sync changes
+
+If after using the template, if find new features have been added that you want to sync into your repository run the following to sync changes:
+
+```
+git remote add upstream https://github.com/tznind/lc
+git fetch upstream
+
+git checkout main
+git merge upstream/main --allow-unrelated-histories
+```
+
+(for merge conflicts e.g. in data folder - always keep your own changes and discard incoming)
+
+## Running Locally
+
+To run the page locally (i.e. not in GitHub Pages) you can use any of:
+
+```powershell
+# Python
+python -m http.server 8000
+
+# Node.js
+npx serve .
+
+# PHP  
+php -S localhost:8000
+```
+
+Then visit `http://localhost:8000/cs.html`
+

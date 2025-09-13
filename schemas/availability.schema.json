@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://roguetrader.local/schemas/availability.schema.json",
+  "title": "Rogue Trader Availability Map",
+  "description": "Schema for mapping roles to move IDs and their initial checked state",
+  "type": "object",
+  "patternProperties": {
+    "^[A-Za-z ]+$": {
+      "type": "object",
+      "description": "A role name mapping to move availability",
+      "patternProperties": {
+        "^[a-zA-Z0-9]+$": {
+          "type": "boolean",
+          "description": "Move ID mapped to its initial checked state (true = initially checked, false = initially unchecked)"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "Navigator": {
+        "a1b2c3": true,
+        "d4e5f6": false,
+        "g7h8i9": true
+      },
+      "Mech Adept": {
+        "m1a2b3": false,
+        "m4c5d6": true
+      }
+    }
+  ]
+}

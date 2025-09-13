@@ -1,0 +1,26 @@
+[
+  {
+    "id": "strength",
+    "title": "STRENGTH"
+  },
+  {
+    "id": "dexterity",
+    "title": "DEXTERITY"
+  },
+  {
+    "id": "intelligence",
+    "title": "INTELLIGENCE"
+  },
+  {
+    "id": "wisdom",
+    "title": "WISDOM"
+  },
+  {
+    "id": "constitution",
+    "title": "CONSTITUTION"
+  },
+  {
+    "id": "charisma",
+    "title": "CHARISMA"
+  }
+]

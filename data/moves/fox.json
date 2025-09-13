@@ -1,0 +1,136 @@
+[
+  {
+    "id": "l1a2b3",
+    "title": "The prodigal returned (+Charisma)",
+    "description": "When you declare that you know someone outside of Stonetop, someone who can help, name them and roll.",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "Yeah they can help (tell us why they're willing).",
+        "bullets": []
+      },
+      {
+        "range": "7–9",
+        "text": "They can help but pick 1 from the list below:",
+        "bullets": [
+          "They still hold a grudge",
+          "They're going to need something from you first",
+          "They swore off this sort of thing a long time ago",
+          "You can't exactly, y'know, trust them"
+        ]
+      },
+      {
+        "range": "≤ 6",
+        "text": "The GM chooses 1 and then some"
+      }
+    ]
+  },
+  {
+    "id": "d4e5f6",
+    "title": "Dabbler - (Requires level 2+ and the Fox)",
+    "description": "Each time you take this move, learn a new skill from Heavy, Marshal, Ranger, or Seeker",
+    "takefrom": ["Marshal"]
+  },
+  {
+    "id": "g7h8i9",
+    "title": "Danger Sense (+Intelligence)",
+    "description": "You can always ask the GM, \"Is there an ambush or trap here?\" If they say \"yes\", roll +Intelligence.",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "Ask the GM both of the questions below",
+        "bullets": [
+          "What will trigger the ambush or trap?",
+          "What will happen once its triggered?"
+        ]
+      },
+      {
+        "range": "7–9",
+        "text": "Ask 1",
+        "bullets": [
+          "They still hold a grudge",
+          "They're going to need something from you first",
+          "They swore off this sort of thing a long time ago",
+          "You can't exactly, y'know, trust them"
+        ]
+      },
+      {
+        "range": "≤ 6",
+        "text": "Don't mark XP; you know there's a trap or ambush, but nothing bad happens just yet."
+      }
+    ]
+  },
+  {
+    "id": "1587dd",
+    "title": "Skill at Arms",
+    "description": "When you wield a weapon with speed and grace, roll +Dexterity to Clash (instead of +Strength)."
+  },
+  {
+    "id": "ff0011",
+    "title": "Silver Tongued (+Charisma)",
+    "description": "When you use words to avoid suspicion or trouble, roll +Charisma.",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "Hold 3 Nerve, spend to:",
+        "bullets": [
+          "Move about or maneuver unchallenged",
+          "Withstand direct scrutiny or questioning",
+          "Direct suspicion or attention elsewhere"
+        ]
+      },
+      {
+        "range": "7–9",
+        "text": "Hold 1 Nerve",
+        "bullets": []
+      }
+    ]
+  },
+  {
+    "id": "b01221",
+    "title": "Laugh at Danger",
+    "description": "When you are about to roll +Constitution and you make a joke about the adversity you face, you can roll +Charisma instead."
+  },
+  {
+    "id": "a01221",
+    "title": "Rapier Wit",
+    "description": "When you pierce an NPC's pride with a well-placed quip, they must do 1 (their choice):",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "",
+        "bullets": [
+          "Attack, doing +1d4 damage if they hit but giving you advantage on your next roll against them",
+          "Stoop to your level and respond in kind",
+          "Spend a few moments fuming, sputtering or controlling their temper"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "fa0122",
+    "title": "Under Your Skin",
+    "description": "When you engage an NPC in conversation, you can ask the GM 1 of these and get an honest answer:",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "",
+        "bullets": [
+          "What are they expecting me to do?",
+          "What, in general, are they trying to hide?",
+          "What do they want to happen?"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ae0122",
+    "title": "Superior Stat (Requires level 6+)",
+    "description": "Increase one of your stats by +1 (to a max of +3)"
+  },
+  {
+    "id": "de0122",
+    "title": "Pants on Fire (Requires level 6+)",
+    "description": "When you Defy Danger, Persuade or Interfere by being deceitful, you have advantage.  When another move (like Seek Insight) allows a player ot ask you a question, you can opt not to answer."
+  }
+]

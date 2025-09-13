@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://roguetrader.local/schemas/stats.schema.json",
+  "title": "Rogue Trader Stats",
+  "description": "Schema for Rogue Trader character stats configuration",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the stat",
+        "pattern": "^[a-z]+$"
+      },
+      "title": {
+        "type": "string",
+        "description": "Display title of the stat (usually uppercase)"
+      },
+      "max": {
+        "type": "integer",
+        "description": "Maximum value for this stat",
+        "minimum": 1,
+        "maximum": 10,
+        "default": 5
+      },
+      "min": {
+        "type": "integer",
+        "description": "Minimum value for this stat",
+        "minimum": -3,
+        "maximum": 0,
+        "default": -2
+      }
+    },
+    "required": ["id", "title"],
+    "additionalProperties": false
+  }
+}
