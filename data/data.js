@@ -19,7 +19,7 @@ window.availableMap = {
         "d4e5f6": false,
         "g7h8i9": false,
         "1587dd": false,
-        "nav001": false
+        "ff0011": false
     },
     "Marshal":{
         "j1k2l3": false,
@@ -60,7 +60,7 @@ window.initializeMovesData = async function() {
             window.moves = window.moves.concat(window.FoxMoves);
         }
 
-        if (window.WardenMoves) {
+        if (window.MarshalMoves) {
             window.moves = window.moves.concat(window.MarshalMoves);
         }
         
