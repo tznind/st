@@ -1,13 +1,42 @@
 [
   {
     "id": "bl001",
-    "title": "Divine Grace",
-    "description": "Placeholder move for The Blessed."
+    "title": "Vessel",
+    "description": "You feel the mystic power in plants, stones and soil.  And you've felt the growing wrath of the Earth Mother as foul things begin to move about.",
+
+    "outcomes": [
+      {
+        "text": "When you would spend 1 Stock from your sacred pouch, you may choose instead to",
+        "bullets": [
+          "Lose 2d4 HP"
+        ]
+      }
+    ]
   },
   {
     "id": "bl002",
-    "title": "Sacred Touch",
-    "description": "Placeholder move for The Blessed."
+    "title": "Danu's Grasp (+Wisdom)",
+    "description": "When you call on the world itself to bind a spirit or a perversion of nature, spend 1 stock and roll +Wisdom.",
+     "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "Choose 2 from:",
+        "bullets": [
+          "You avoid or prevent their counterattack",
+          "Roots, vines, and earth restrain them",
+          "They take 2d4 damage (ignores armor)"
+        ]
+      },
+      {
+        "range": "7–9",
+        "text": "Choose 1",
+        "bullets": []
+      },
+      {
+        "range": "",
+        "text": "If this brings them to 0 HP, they are pulled into the earth and bound in rune-etched stone."
+      }
+    ]
   },
   {
     "id": "bl003",
