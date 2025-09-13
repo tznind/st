@@ -19,7 +19,10 @@ window.availableMap = {
         "d4e5f6": false,
         "g7h8i9": false,
         "1587dd": false,
-        "ff0011": false
+        "a01221": false,
+        "b01221": false,
+        "ff0011": false,
+        "fa0122": false,
     },
     "Marshal":{
         "j1k2l3": false,

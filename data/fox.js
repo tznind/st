@@ -84,5 +84,40 @@ window.FoxMoves = [
                 ]
             }
         ]
+    },
+    {
+        id: "b01221",
+        title: "Laugh at Danger",
+        description: "When you are about to roll +Constitution and you make a joke about the adversity you face, you can roll +Charisma instead.",
+    },
+    {
+        id: "a01221",
+        title: "Rapier Wit",
+        description: "When you pierce an NPC's pride with a well-placed quip, they must do 1 (their choice):",
+        outcomes: [{
+                range: "",
+                text: "",
+                bullets: [
+                    "Attack, doing +1d4 damage if they hit but giving you advantage on your next roll against them",
+                    "Stoop to your level and respond in kind",
+                    "Spend a few moments fuming, sputtering or controlling their temper"
+                ]
+            }
+        ]
+    },
+    {
+        id: "fa0122",
+        title: "Under Your Skin",
+        description: "When you engage an NPC in conversation, you can ask the GM 1 of these and get an honest answer:",
+        outcomes: [{
+                range: "",
+                text: "",
+                bullets: [
+                    "What are they expecting me to do?",
+                    "What, in general, are they trying to hide?",
+                    "What do they want to happen?"
+                ]
+            }
+        ]
     }
 ]
