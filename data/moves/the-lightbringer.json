@@ -26,38 +26,83 @@
   },
   {
     "id": "lb002",
-    "title": "Placeholder",
-    "description": "Placeholder"
+    "title": "A Candle Against the Dark",
+    "description": "When you wield a holy light but go otherwise un-armed, you have 2 Armor."
   },
   {
     "id": "lb003",
-    "title": "Placeholder",
-    "description": "Placeholder"
+    "title": "Consecrated Flame",
+    "description": "When you whisper words of consecration to a flame, the flame casts a holy light. Holy light is",
+         "outcomes": [
+      {
+        "range": "",
+        "text": "Uncomfortable to creatures of darkness to look upon, but does no true harm."
+      },
+      {
+        "range": "",
+        "text": "Lasts until the flame goes out or until you consecrate another flame.",
+        "bullets": []
+      }
+    ]
   },
   {
     "id": "lb004",
-    "title": "Placeholder",
-    "description": "Placeholder"
+    "title": "Invoke the Sun God (+Wisdom)",
+    "description": "When you imbue a holy light with Helior's power, choose an Invocation you know and roll +Wisdom",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "It works as described but you must choose 1 consequence from the list below:",
+        "bullets": [
+          "The Invocation has its reduced effect",
+          "The effort taxes you; mark a debility",
+          "The light is snuffed out when the Invocation is complete, its fuel consumed",
+          "You must bask in sunlight for an hour or so before using that Invocation again"
+        ]
+      },
+      {
+        "range": "7–9",
+        "text": "It works as described, but you and the GM each choose 1",
+        "bullets": []
+      }
+    ]
   },
   {
     "id": "lb005",
-    "title": "Placeholder",
-    "description": "Placeholder"
+    "title": "Purifying Flames (+Wisdom",
+    "description": "When you wield a holy light against a creature of darkness, it counts as a weapon (d10 damage, ignores armor, range equal to your light source) and you can use Wisdom to Clash or Let Fly."
   },
   {
     "id": "lb006",
-    "title": "Placeholder",
-    "description": "Placeholder"
+    "title": "Fire Within",
+    "description": "When you are in darkness, you are able to see by the light of your inner fire.  When you take damage from cold or fire, reduce that damage by 2."
   },
   {
     "id": "lb007",
-    "title": "Placeholder",
-    "description": "Placeholder"
+    "title": "Lamplighter",
+    "description": "When you whisper to a flammable object (torch, wick, kindling, etc.), it ignites in moments."
   },
   {
     "id": "lb008",
-    "title": "Placeholder",
-    "description": "Placeholder"
+    "title": "Spring's First Thaw (+Charisma)",
+    "description": "When you spend time (an hour at least, maybe more) seeking to stir hope, kindness or mercy in an NPC, Roll +Charisma",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "You light a fire deep within them and affect a lasting change"
+      },
+      {
+        "range": "7–9",
+        "text": "You kindle goodness in their heart for now, but they will eventually return to their old ways",
+        "bullets": []
+      },
+      {
+        "range": "≤6",
+        "text": "Their heart hardens and whatever else the GM says, you can't use this move on them again.",
+        "bullets": []
+      }
+    ]
+
   },
   {
     "id": "lb009",
