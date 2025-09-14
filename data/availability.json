@@ -48,8 +48,8 @@
     "rg014": false,
     "rg015": false
   },
-  "The Lightbringer": {
-    "_movesFile": "data/moves/the-lightbringer.json",
+  "The Lightbearer": {
+    "_movesFile": "data/moves/the-lightbearer.json",
     "lb001": false,
     "lb002": false,
     "lb003": true,
