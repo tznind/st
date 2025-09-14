@@ -112,5 +112,22 @@
     "id": "lb010",
     "title": "Light, More Light (Requires level 6+ and Consecrated Flame)",
     "description": "When you consecrate a flame, it burns brighter than normal. A rushlight or candle illuminates to reachrange, an oil lamp, lantern, or torch out to nearrange, and a bullseye lantern out to far range."
+   },
+  {
+    "id": "iv001",
+    "category": "Invocations",
+    "title": "Cleansing Light",
+    "description": "Your light flares, dispelling magic within range.Potent, lasting magics are merely suppressed, and slowly return to power once removed from your light.",
+     "outcomes": [
+      {
+        "range": "Reduced",
+        "text": "Potent, lasting magics are unaffected; other magic is merely suppressed."
+      },
+      {
+        "range": "Empowered",
+        "text": "The invocation is ongoing; while it lasts, any magic brought into range is dispelled/suppressed",
+        "bullets": []
+      }
+    ]
    }
 ]
