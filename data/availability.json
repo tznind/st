@@ -66,5 +66,25 @@
     "iv003": false,
     "iv004": false,
     "iv005": false
+  },
+  "The Seeker": {
+    "_movesFile": "data/moves/the-seeker.json",
+    "sk001": true,
+    "sk002": false,
+    "sk003": false,
+    "sk004": false,
+    "sk005": true,
+    "sk006": true,
+    "sk007": false,
+    "sk008": false,
+    "sk009": false,
+    "sk010": false,
+    "sk011": false,
+    "sk012": false,
+    "sk013": false,
+    "sk014": false,
+    "sk015": false,
+    "ae0122":false,
+    "ae0121":false
   }
 }

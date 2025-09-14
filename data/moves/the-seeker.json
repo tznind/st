@@ -1,0 +1,119 @@
+[
+  {
+    "id": "sk001",
+    "title": "Patriot",
+    "description": "You start with the Let's Make a Deal move and are Well Versed in the Things Below (go mark them now). You've also acquired 1 major arcanum:",
+    "pick": [
+      "The Hee'Tumel Codex",
+      "The Red Scepter",
+      "The Staff of the Lidless Orb"
+    ]
+  },
+  {
+    "id": "sk002",
+    "title": "Attuned",
+    "description": "When you Seek Insight, you can always ask, “What here is infused with magic?” for free, even on a ≤6"
+  },
+  {
+    "id": "sk003",
+    "title": "Conduit of Power",
+    "description": "When you would mark a Consequence from a major arcanum, you can mark 1 box here instead, with no negative effect. (These marks never clear.)",
+    "pick": [
+      "First Use",
+      "Second Use",
+      "Third Use"
+    ]
+  },
+  {
+    "id": "sk004",
+    "title": "Let's Make a Deal",
+    "description": "When you Seek Insight, add \"What do they really want or need?\" to the list of questions. When you Persuade by offering them something that you know they want or need, treat a 7-9 as a 10+"
+  },
+  {
+    "id": "sk005",
+    "title": "Well Versed",
+    "multiple": 3,
+    "description": "Mark 1 topic, in addition to the one noted in your Background.  Each time you take this move, mark 2 more topics.",
+    "pick": [
+      "The Last Door, death, and the undead",
+      "The civilizations of humanity",
+      "The fae and their strange ways",
+      "The Makers and their arts",
+      "The primordial powers",
+      "The Things Below",
+      "The wild world and its spirits"
+    ],
+    "outcomes": [
+      {
+        "range": "",
+        "text": "When you Know Things about one of your topics, you can ask the GM a follow-up question of your choice (even on a 6-)"
+      }
+    ]
+
+  },
+  {
+    "id": "sk006",
+    "title": "Work with what you've got (+Intelligence)",
+    "description": "When you cleverly use your environment to harm or impede your foe(s), roll +Intelligence",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "Pick 2:",
+        "bullets": [
+          "Interrupt or thwart their action(s)",
+          "Create an opportunity that grants you or an ally advantage on the next roll to exploit it",
+          "Deal damage appropriate to the source (d4 for bruises/scrapes, d6 for bloodshed, d8 if it'd break bones, d10 if it'd kill a common person"
+        ]
+      },
+      {
+        "range": "7–9",
+        "text": "Pick 1"
+      }
+    ]
+  },
+  {
+    "id": "sk007",
+    "title": "Quick Study",
+    "description": "When you study something magical that should take months to understand, it instead takes mere weeks. If it should take weeks, it takes days. If it should take days, it takes only a few hours."
+  },
+  {
+    "id": "sk008",
+    "title": "Placeholder",
+    "description": "Placeholder"
+  },
+  {
+    "id": "sk009",
+    "title": "Placeholder",
+    "description": "Placeholder"
+  },
+  {
+    "id": "sk010",
+    "title": "Placeholder",
+    "description": "Placeholder"
+  },
+  {
+    "id": "sk011",
+    "title": "Placeholder",
+    "description": "Placeholder"
+  },
+  {
+    "id": "sk012",
+    "title": "Placeholder",
+    "description": "Placeholder"
+  },
+  {
+    "id": "sk013",
+    "title": "Placeholder",
+    "description": "Placeholder"
+  },
+  {
+    "id": "sk014",
+    "title": "Placeholder",
+    "description": "Placeholder"
+  },
+  {
+    "id": "sk015",
+    "title": "Placeholder",
+    "description": "Placeholder"
+  }
+]
