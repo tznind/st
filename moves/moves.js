@@ -17,6 +17,9 @@ window.Moves = (function() {
         
         // Listen for availableMap updates
         setupAvailableMapUpdateListener();
+        
+        // Set up hide untaken moves toggle
+        setupHideUntakenMovesToggle();
     }
 
     /**
@@ -125,6 +128,7 @@ window.Moves = (function() {
             }
         });
     }
+
 
     // Public API
     return {

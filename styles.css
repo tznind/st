@@ -436,6 +436,7 @@ button:focus {
   border: 1px solid #1976d2;
 }
 
+
 /* === SECTION STYLING === */
 h3 {
   color: #2c3e50;
@@ -443,6 +444,7 @@ h3 {
   margin: 20px 0 15px 0;
   font-weight: 600;
 }
+
 
 /* === DIVIDERS === */
 hr {

@@ -53,11 +53,17 @@
       </button>
       <button type="button" id="clear-button">Clear</button>
     </div>
+    
+    <div class="form-controls">
+      <label>
+        <input type="checkbox" id="hide_untaken" name="hide_untaken">
+        Hide untaken moves
+      </label>
+    </div>
     <hr>
     <div id="stats-container"></div>
     <hr>
-    
-    <h3>Moves:</h3>
+  
     <div id="moves"></div>
   </form>
 
@@ -140,6 +146,19 @@
         console.error('Failed to copy URL:', err);
         alert('Failed to copy URL to clipboard');
       });
+  });
+  
+  // Listen for hide untaken moves checkbox changes
+  document.getElementById('hide_untaken').addEventListener('change', () => {
+    const currentRole = roleSelect.value;
+    if (currentRole && window.Moves) {
+      window.Moves.renderMovesForRole(currentRole);
+      
+      // Refresh persistence after re-render
+      setTimeout(() => {
+        window.Persistence.refreshPersistence(form);
+      }, 50);
+    }
   });
 </script>
 

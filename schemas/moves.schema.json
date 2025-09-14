@@ -65,6 +65,10 @@
         "description": "Number of checkboxes to show (for moves that can be taken multiple times)",
         "minimum": 2,
         "maximum": 10
+      },
+      "category": {
+        "type": "string",
+        "description": "Optional category for grouping moves (moves without a category appear first under 'Moves')"
       }
     },
     "required": ["id", "title"],
