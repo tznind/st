@@ -32,7 +32,7 @@
   },
   "The Ranger": {
     "_movesFile": "data/moves/the-ranger.json",
-    "rg001": false,
+    "rg001": true,
     "rg002": false,
     "rg003": false,
     "rg004": false,
@@ -47,5 +47,23 @@
     "rg013": false,
     "rg014": false,
     "rg015": false
+  },
+  "The Lightbringer": {
+    "_movesFile": "data/moves/the-lightbringer.json",
+    "lb001": false,
+    "lb002": false,
+    "lb003": false,
+    "lb004": false,
+    "lb005": false,
+    "lb006": false,
+    "lb007": false,
+    "lb008": false,
+    "lb009": false,
+    "lb010": false,
+    "lb011": false,
+    "lb012": false,
+    "lb013": false,
+    "lb014": false,
+    "lb015": false
   }
 }
