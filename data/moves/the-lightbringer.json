@@ -129,5 +129,73 @@
         "bullets": []
       }
     ]
-   }
+   },
+  {
+    "id": "iv002",
+    "category": "Invocations",
+    "title": "Terrible as the Dawn (ongoing)",
+    "description": "Name an individual or type of mortal creature. Your light fills them with dread, causing them to recoil and back away. The cowardly flee outright.",
+     "outcomes": [
+      {
+        "range": "Reduced",
+        "text": "All mortal creatures but you are affected, including your allies."
+      },
+      {
+        "range": "Empowered",
+        "text": "Even the brave must cower or flee.",
+        "bullets": []
+      }
+    ]
+   },
+   {
+    "id": "iv003",
+    "category": "Invocations",
+    "title": "Cold Light of Day (ongoing)",
+    "description": "All in your light appears as it really is, without the benefit of illusion, shapeshifting, or disguise.",
+     "outcomes": [
+      {
+        "range": "Reduced",
+        "text": "It lasts only a few moments, just long enough to glimpse the truth."
+      },
+      {
+        "range": "Empowered",
+        "text": "Illusions in the light are dispelled and shapeshifters in the light are momentarily stunned. ",
+        "bullets": []
+      }
+    ]
+   },
+   {
+    "id": "iv004",
+    "category": "Invocations",
+    "title": "Warmpth of the Sun (ongoing)",
+    "description": "While in your light, you and your allies are free of fear and doubt, and unharmed by extreme cold.",
+     "outcomes": [
+      {
+        "range": "Reduced",
+        "text": "Only one person in the light is protected."
+      },
+      {
+        "range": "Empowered",
+        "text": "The light also protects from necromantic and life-draining effects.",
+        "bullets": []
+      }
+    ]
+  },
+   {
+    "id": "iv005",
+    "category": "Invocations",
+    "title": "Hold Back the Darkness (ongoing)",
+    "description": "Spirits and creatures of darkness are repelled by your light and cannot approach. The cowardly or mindless flee outright. Those forced into range of your light deal damage with disadvantage.",
+     "outcomes": [
+      {
+        "range": "Reduced",
+        "text": "You must maintain an unbroken litany of prayers in order to maintain the effect."
+      },
+      {
+        "range": "Empowered",
+        "text": "Affected entities that are forced into range of your light are vulnerable to mundane weapons, their supernatural defenses suppressed.",
+        "bullets": []
+      }
+    ]
+  }
 ]
