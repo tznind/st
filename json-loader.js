@@ -1,6 +1,6 @@
 /**
- * JSON Data Loader - Loads JSON files and populates window variables
- * Compatible with file:// URLs
+ * JSON Data Loader - Loads JSON files using paths from availability map
+ * Compatible with file:// URLs  
  */
 
 window.JsonLoader = (function() {
@@ -8,7 +8,6 @@ window.JsonLoader = (function() {
 
     /**
      * Load a JSON file and assign it to a window variable
-     * For file:// URLs, we need to load the data via script tags instead of fetch
      * @param {string} filePath - Path to the JSON file
      * @param {string} variableName - Name of the window variable to assign to
      * @returns {Promise} Promise that resolves when the JSON is loaded
@@ -49,71 +48,38 @@ window.JsonLoader = (function() {
     }
 
     /**
-     * Discover JSON files in the data/moves directory
-     * @returns {Promise<Array>} Promise that resolves to array of filenames
-     */
-    async function discoverMoveFiles() {
-        try {
-            // Try to fetch the directory listing (this works with some servers)
-            // As fallback, we'll try common patterns
-            const response = await fetch('data/moves/');
-            if (response.ok) {
-                const html = await response.text();
-                // Extract .json filenames from directory listing HTML
-                const matches = html.match(/href="([^"]+\.json)"/g) || [];
-                return matches.map(match => match.match(/"([^"]+)"/)[1]);
-            }
-        } catch (error) {
-            console.warn('Could not auto-discover move files, trying known patterns:', error);
-        }
-        
-        // Fallback: try to load common filename patterns
-        const commonPatterns = [
-            // Stonetop roles
-            'fox.json', 'marshal.json', 'the-blessed.json', 'the-ranger.json',
-            // Rogue Trader roles  
-            'navigator.json', 'mech-adept.json', 'lord-commander.json',
-            'rogue-trader.json', 'seneschal.json', 'explorator.json',
-            'missionary.json', 'arch-militant.json', 'void-master.json'
-        ];
-        
-        const existingFiles = [];
-        for (const filename of commonPatterns) {
-            try {
-                const response = await fetch(`data/moves/${filename}`, { method: 'HEAD' });
-                if (response.ok) {
-                    existingFiles.push(filename);
-                }
-            } catch (error) {
-                // File doesn't exist, continue
-            }
-        }
-        
-        return existingFiles;
-    }
-
-    /**
-     * Load all role move files by discovering JSON files in data/moves/
+     * Load all role move files using paths from availability map
      * @returns {Promise} Promise that resolves when all role moves are loaded
      */
     async function loadAllRoleMoves() {
-        // Get list of JSON files in the moves directory
-        const moveFiles = await discoverMoveFiles();
+        if (!window.availableMap) {
+            throw new Error('availableMap not loaded - cannot determine move file paths');
+        }
         
-        const roleConfigs = moveFiles.map(fileName => {
-            // Convert filename to variable name (e.g., "navigator.json" -> "NavigatorMoves")
-            const baseName = fileName.replace('.json', '');
-            const variableName = baseName
-                .split('-')
-                .map(part => part.charAt(0).toUpperCase() + part.slice(1))
-                .join('') + 'Moves';
-            
-            return {
-                filePath: `data/moves/${fileName}`,
-                variableName: variableName
-            };
-        });
-
+        const roleConfigs = [];
+        
+        for (const [roleName, roleData] of Object.entries(window.availableMap)) {
+            if (roleData._movesFile) {
+                // Convert role name to variable name (e.g., "Mech Adept" -> "MechAdeptMoves")
+                const variableName = roleName
+                    .split(' ')
+                    .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+                    .join('') + 'Moves';
+                
+                roleConfigs.push({
+                    filePath: roleData._movesFile,
+                    variableName: variableName,
+                    roleName: roleName
+                });
+            }
+        }
+        
+        if (roleConfigs.length === 0) {
+            console.warn('No move files specified in availability map');
+            return;
+        }
+        
+        console.log(`Loading ${roleConfigs.length} move files from availability map`);
         return loadMultipleJsonData(roleConfigs);
     }
 
@@ -145,7 +111,7 @@ window.JsonLoader = (function() {
                 loadAvailabilityMap()
             ]);
 
-            // Then load all role moves
+            // Then load all role moves (needs availableMap to be loaded first)
             await loadAllRoleMoves();
 
             console.log('All game data loaded successfully');

@@ -36,6 +36,13 @@ window.MovesCore = (function() {
                 checkbox.checked = (i === 0 && available[move.id]) || false;
             }
             
+            // Disable the first checkbox if the move is always available (true in availability map)
+            if (i === 0 && available[move.id] === true) {
+                checkbox.disabled = true;
+                checkbox.checked = true; // Always ensure disabled checkboxes are checked
+                checkbox.setAttribute('title', 'This move is always available for this role');
+            }
+            
             checkboxes.push(checkbox);
         }
         

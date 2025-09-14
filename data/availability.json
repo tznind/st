@@ -1,6 +1,7 @@
 {
   "Fox": {
-    "l1a2b3": true,
+    "_movesFile": "data/moves/fox.json",
+    "l1a2b3": false,
     "d4e5f6": false,
     "g7h8i9": false,
     "1587dd": false,
@@ -12,11 +13,13 @@
     "de0122": false
   },
   "Marshal": {
-    "j1k2l3": true
+    "_movesFile": "data/moves/marshal.json",
+    "j1k2l3": false
   },
   "The Blessed": {
-    "bl000": true,
-    "bl001": true,
+    "_movesFile": "data/moves/the-blessed.json",
+    "bl000": false,
+    "bl001": false,
     "bl002": false,
     "bl003": false,
     "bl004": false,
@@ -28,7 +31,8 @@
     "bl010": false
   },
   "The Ranger": {
-    "rg001": true,
+    "_movesFile": "data/moves/the-ranger.json",
+    "rg001": false,
     "rg002": false,
     "rg003": false,
     "rg004": false,

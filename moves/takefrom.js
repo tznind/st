@@ -197,7 +197,7 @@ window.TakeFrom = (function() {
         
         // Create the move with checkbox(es) - reuse existing functions
         if (window.MovesCore) {
-            const checkboxes = window.MovesCore.createMoveCheckboxes(selectedMoveData, {[selectedMoveId]: false}, urlParams);
+            const checkboxes = window.MovesCore.createMoveCheckboxes(selectedMoveData, {[selectedMoveId]: true}, urlParams);
             const titleContainer = window.MovesCore.createMoveTitle(selectedMoveData, checkboxes);
             learnedMoveDiv.appendChild(titleContainer);
             

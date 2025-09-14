@@ -8,12 +8,20 @@
     "^[A-Za-z ]+$": {
       "type": "object",
       "description": "A role name mapping to move availability",
+      "properties": {
+        "_movesFile": {
+          "type": "string",
+          "description": "Path to the JSON file containing moves for this role",
+          "pattern": "^data/moves/.+\\.json$"
+        }
+      },
       "patternProperties": {
         "^[a-zA-Z0-9]+$": {
           "type": "boolean",
           "description": "Move ID mapped to its initial checked state (true = initially checked, false = initially unchecked)"
         }
       },
+      "required": ["_movesFile"],
       "additionalProperties": false
     }
   },
