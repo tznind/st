@@ -107,5 +107,10 @@
     "id": "lb009",
     "title": "Burn Twice as Bright (Requires level 6+ and Invoke the Sun God)",
     "description": "When you Invoke the Sun God, you may mark a debility to use 2 Invocations at once. Roll once, and apply any consequences to both Invocations."
+   },
+   {
+    "id": "lb010",
+    "title": "Light, More Light (Requires level 6+ and Consecrated Flame)",
+    "description": "When you consecrate a flame, it burns brighter than normal. A rushlight or candle illuminates to reachrange, an oil lamp, lantern, or torch out to nearrange, and a bullseye lantern out to far range."
    }
 ]
