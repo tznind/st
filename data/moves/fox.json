@@ -126,7 +126,8 @@
   {
     "id": "ae0122",
     "title": "Superior Stat (Requires level 6+)",
-    "description": "Increase one of your stats by +1 (to a max of +3)"
+    "description": "Increase one of your stats by +1 (to a max of +3)",
+    "pick": ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]
   },
   {
     "id": "de0122",
