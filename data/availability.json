@@ -87,5 +87,25 @@
     "sk015": false,
     "ae0122":false,
     "ae0121":false
+  },
+  "The Heavy": {
+    "_movesFile": "data/moves/the-heavy.json",
+    "hv00a": false,
+    "hv00b": false,
+    "hv001": false,
+    "hv002": false,
+    "hv003": true,
+    "hv004": true,
+    "hv005": false,
+    "hv006": false,
+    "hv007": false,
+    "hv008": false,
+    "hv009": false,
+    "hv010": false,
+    "hv011": false,
+    "hv012": false,
+    "hv013": false,
+    "hv014": false,
+    "hv015": false
   }
 }

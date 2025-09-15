@@ -1,0 +1,84 @@
+[
+  {
+    "id": "hv001",
+    "title": "Armored",
+    "description": "When you carry a shield, mark only ◇ (instead of ◇◇). Also, you can ignore the cumbersome tag on any armor you wear."
+  },
+  {
+    "id": "hv00a",
+    "title": "Seasoned Warrior (Requires level 2+ and the Heavy)",
+    "description": "Take a move from the Fix, Marshal, Ranger or Seeker playbooks",
+    "takefrom": ["Fox", "Marshal","The Ranger","The Seeker"]
+  },
+    {
+    "id": "hv00b",
+    "title": "Seasoned Warrior (Requires level 2+ and the Heavy)",
+    "description": "Take a move from the Fix, Marshal, Ranger or Seeker playbooks",
+    "takefrom": ["Fox", "Marshal","The Ranger","The Seeker"]
+  },
+  {
+    "id": "hv003",
+    "title": "Dangerous (Requires the Heavy)",
+    "description": "When you deal your damage, you have advantage."
+  },
+  {
+    "id": "hv004",
+    "title": "Hard to Kill (+Constitution)",
+    "description": "When you are at Death's Door, you can roll +Constitution or +nothing (your choice). On a 7-9, you can mark a debility of your choice to regain 1 HP"
+  },
+  {
+    "id": "hv005",
+    "title": "Unfettered",
+    "description": "When you are subject to physical or mental restraint, you may mark a debility to immediately break free of that restraint."
+  },
+  {
+    "id": "hv006",
+    "title": "Musclebound (Requires +2 Strength)",
+    "description": "When you make a hand-to-hand or thrown attack, it's forceful and messy. If it would already be forcefuland/or messy, it's even more so"
+  },
+  {
+    "id": "hv007",
+    "title": "Placeholder",
+    "description": "Placeholder"
+  },
+  {
+    "id": "hv008",
+    "title": "Placeholder",
+    "description": "Placeholder"
+  },
+  {
+    "id": "hv009",
+    "title": "Placeholder",
+    "description": "Placeholder"
+  },
+  {
+    "id": "hv010",
+    "title": "Placeholder",
+    "description": "Placeholder"
+  },
+  {
+    "id": "hv011",
+    "title": "Placeholder",
+    "description": "Placeholder"
+  },
+  {
+    "id": "hv012",
+    "title": "Placeholder",
+    "description": "Placeholder"
+  },
+  {
+    "id": "hv013",
+    "title": "Placeholder",
+    "description": "Placeholder"
+  },
+  {
+    "id": "hv014",
+    "title": "Placeholder",
+    "description": "Placeholder"
+  },
+  {
+    "id": "hv015",
+    "title": "Placeholder",
+    "description": "Placeholder"
+  }
+]
