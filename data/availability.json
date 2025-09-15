@@ -90,6 +90,8 @@
   },
   "The Heavy": {
     "_movesFile": "data/moves/the-heavy.json",
+    "ae0121": false,
+    "ae0122": false,
     "hv00a": false,
     "hv00b": false,
     "hv001": false,
