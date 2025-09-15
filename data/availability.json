@@ -14,7 +14,8 @@
   },
   "Marshal": {
     "_movesFile": "data/moves/marshal.json",
-    "j1k2l3": false
+    "j1k2l3": false,
+    "ms001":false
   },
   "The Blessed": {
     "_movesFile": "data/moves/the-blessed.json",

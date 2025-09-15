@@ -17,9 +17,6 @@ window.Moves = (function() {
         
         // Listen for availableMap updates
         setupAvailableMapUpdateListener();
-        
-        // Set up hide untaken moves toggle
-        setupHideUntakenMovesToggle();
     }
 
     /**

@@ -23,5 +23,19 @@
         "text": "Each ally holds 1 Inspiration, but you have disadvantage on all rolls until you share your nagging doubts with someone else."
       }
     ]
+  },
+  {
+    "id": "ms001",
+    "title": "Stenorian",
+    "description": "When you raise your voice, it carries far and cuts through even the din of battle",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "When you go into battle, hold 2 Commandm, spend to:",
+        "bullets": [
+          "shout an order or warning to an ally; they gain advantage on their next roll to do as you say"
+        ]
+      }
+    ]
   }
 ]
