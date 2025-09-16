@@ -100,13 +100,11 @@ window.JsonLoader = (function() {
     }
 
     /**
-     * Load cards data - disabled for this project
-     * @returns {Promise} Promise that resolves immediately
+     * Load cards data
+     * @returns {Promise} Promise that resolves when cards data is loaded
      */
     async function loadCardsData() {
-        // No cards data for this project
-        window.cardsData = {};
-        return Promise.resolve();
+        return loadJsonData('data/cards.json', 'cardsData');
     }
 
     /**
