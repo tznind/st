@@ -99,7 +99,6 @@ window.JsonLoader = (function() {
         return loadJsonData('data/availability.json', 'availableMap');
     }
 
-
     /**
      * Load all game data (stats, availability map, and moves)
      * @returns {Promise} Promise that resolves when all data is loaded
