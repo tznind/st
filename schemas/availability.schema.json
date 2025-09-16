@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://roguetrader.local/schemas/availability.schema.json",
-  "title": "Commander Availability Map",
+  "$id": "https://stonetop.local/schemas/availability.schema.json",
+  "title": "Stonetop Availability Map",
   "description": "Schema for mapping roles to move IDs and their initial checked state",
   "type": "object",
   "patternProperties": {
@@ -14,6 +14,16 @@
           "description": "Path to the JSON file containing moves for this role",
           "pattern": "^data/moves/.+\\.json$"
         },
+        "cards": {
+          "type": "array",
+          "description": "Array of card IDs automatically assigned to this role (not granted by moves)",
+          "items": {
+            "type": "string",
+            "description": "Card ID that corresponds to a folder name in data/cards/",
+            "pattern": "^[a-zA-Z0-9-]+$"
+          },
+          "default": []
+        }
       },
       "patternProperties": {
         "^[a-zA-Z0-9]+$": {
@@ -21,21 +31,30 @@
           "description": "Move ID mapped to its initial checked state (true = initially checked, false = initially unchecked)"
         }
       },
-      "required": ["_movesFile"],
+      "required": ["_movesFile", "cards"],
       "additionalProperties": false
     }
   },
   "additionalProperties": false,
   "examples": [
     {
-      "Navigator": {
-        "a1b2c3": true,
-        "d4e5f6": false,
-        "g7h8i9": true
+      "Fox": {
+        "_movesFile": "data/moves/fox.json",
+        "cards": [],
+        "l1a2b3": false,
+        "d4e5f6": false
       },
-      "Mech Adept": {
-        "m1a2b3": false,
-        "m4c5d6": true
+      "The Ranger": {
+        "_movesFile": "data/moves/the-ranger.json",
+        "cards": [],
+        "rg001": true,
+        "rg002": false
+      },
+      "The Heavy": {
+        "_movesFile": "data/moves/the-heavy.json",
+        "cards": [],
+        "hv001": false,
+        "hv003": true
       }
     }
   ]

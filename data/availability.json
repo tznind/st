@@ -1,6 +1,7 @@
 {
   "Fox": {
     "_movesFile": "data/moves/fox.json",
+    "cards": [],
     "l1a2b3": false,
     "d4e5f6": false,
     "g7h8i9": false,
@@ -14,11 +15,13 @@
   },
   "Marshal": {
     "_movesFile": "data/moves/marshal.json",
+    "cards": [],
     "j1k2l3": false,
     "ms001":false
   },
   "The Blessed": {
     "_movesFile": "data/moves/the-blessed.json",
+    "cards": [],
     "bl000": false,
     "bl001": false,
     "bl002": false,
@@ -33,6 +36,7 @@
   },
   "The Ranger": {
     "_movesFile": "data/moves/the-ranger.json",
+    "cards": [],
     "rg001": true,
     "rg002": false,
     "rg003": false,
@@ -51,6 +55,7 @@
   },
   "The Lightbearer": {
     "_movesFile": "data/moves/the-lightbearer.json",
+    "cards": [],
     "lb001": false,
     "lb002": false,
     "lb003": true,
@@ -70,6 +75,7 @@
   },
   "The Seeker": {
     "_movesFile": "data/moves/the-seeker.json",
+    "cards": [],
     "sk001": true,
     "sk002": false,
     "sk003": false,
@@ -90,6 +96,7 @@
   },
   "The Heavy": {
     "_movesFile": "data/moves/the-heavy.json",
+    "cards": [],
     "ae0121": false,
     "ae0122": false,
     "hv00a": false,

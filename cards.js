@@ -169,16 +169,20 @@ window.Cards = (function() {
     }
 
     /**
-     * Get list of card definitions for a role from cards data
+     * Get list of card definitions for a role from availability map
      * @param {string} role - The role to get cards for
      * @returns {Array} Array of card objects with id and path
      */
     function getCardsForRole(role) {
-        if (!window.cardsData || !window.cardsData[role]) {
+        if (!window.availableMap || !window.availableMap[role] || !window.availableMap[role].cards) {
             return [];
         }
 
-        return window.cardsData[role] || [];
+        // Convert card names to card objects with id and path
+        return window.availableMap[role].cards.map(cardName => ({
+            id: cardName,
+            path: `data/cards/${cardName}`
+        }));
     }
 
 
