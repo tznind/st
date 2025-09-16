@@ -33,21 +33,7 @@
   },
   "The Ranger": {
     "_movesFile": "data/moves/the-ranger.json",
-    "rg001": true,
-    "rg002": false,
-    "rg003": false,
-    "rg004": false,
-    "rg005": false,
-    "rg006": false,
-    "rg007": false,
-    "rg008": false,
-    "rg009": false,
-    "rg010": false,
-    "rg011": false,
-    "rg012": false,
-    "rg013": false,
-    "rg014": false,
-    "rg015": false
+    "rg002": false
   },
   "The Lightbearer": {
     "_movesFile": "data/moves/the-lightbearer.json",
@@ -99,15 +85,6 @@
     "hv003": true,
     "hv004": true,
     "hv005": false,
-    "hv006": false,
-    "hv007": false,
-    "hv008": false,
-    "hv009": false,
-    "hv010": false,
-    "hv011": false,
-    "hv012": false,
-    "hv013": false,
-    "hv014": false,
-    "hv015": false
+    "hv006": false
   }
 }

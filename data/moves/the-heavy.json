@@ -12,7 +12,7 @@
   },
     {
     "id": "hv00b",
-    "title": "Seasoned Warrior (Requires level 2+ and the Heavy)",
+    "title": "Seasoned Warrior 2 (Requires level 2+ and the Heavy)",
     "description": "Take a move from the Fix, Marshal, Ranger or Seeker playbooks",
     "takefrom": ["Fox", "Marshal","The Ranger","The Seeker"]
   },
@@ -35,50 +35,5 @@
     "id": "hv006",
     "title": "Musclebound (Requires +2 Strength)",
     "description": "When you make a hand-to-hand or thrown attack, it's forceful and messy. If it would already be forcefuland/or messy, it's even more so"
-  },
-  {
-    "id": "hv007",
-    "title": "Placeholder",
-    "description": "Placeholder"
-  },
-  {
-    "id": "hv008",
-    "title": "Placeholder",
-    "description": "Placeholder"
-  },
-  {
-    "id": "hv009",
-    "title": "Placeholder",
-    "description": "Placeholder"
-  },
-  {
-    "id": "hv010",
-    "title": "Placeholder",
-    "description": "Placeholder"
-  },
-  {
-    "id": "hv011",
-    "title": "Placeholder",
-    "description": "Placeholder"
-  },
-  {
-    "id": "hv012",
-    "title": "Placeholder",
-    "description": "Placeholder"
-  },
-  {
-    "id": "hv013",
-    "title": "Placeholder",
-    "description": "Placeholder"
-  },
-  {
-    "id": "hv014",
-    "title": "Placeholder",
-    "description": "Placeholder"
-  },
-  {
-    "id": "hv015",
-    "title": "Placeholder",
-    "description": "Placeholder"
   }
 ]

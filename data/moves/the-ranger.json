@@ -1,78 +1,8 @@
 [
   {
-    "id": "rg001",
-    "title": "Placeholder",
-    "description": "Placeholder"
-  },
-  {
     "id": "rg002",
     "title": "Animal Companion",
     "description": "You have formed a bond with a wild animal. It will accompany you and aid you, but it has its own needs and instincts.",
     "grantsCard": "animal-companion"
-  },
-  {
-    "id": "rg003",
-    "title": "Placeholder",
-    "description": "Placeholder"
-  },
-  {
-    "id": "rg004",
-    "title": "Placeholder",
-    "description": "Placeholder"
-  },
-  {
-    "id": "rg005",
-    "title": "Placeholder",
-    "description": "Placeholder"
-  },
-  {
-    "id": "rg006",
-    "title": "Placeholder",
-    "description": "Placeholder"
-  },
-  {
-    "id": "rg007",
-    "title": "Placeholder",
-    "description": "Placeholder"
-  },
-  {
-    "id": "rg008",
-    "title": "Placeholder",
-    "description": "Placeholder"
-  },
-  {
-    "id": "rg009",
-    "title": "Placeholder",
-    "description": "Placeholder"
-  },
-  {
-    "id": "rg010",
-    "title": "Placeholder",
-    "description": "Placeholder"
-  },
-  {
-    "id": "rg011",
-    "title": "Placeholder",
-    "description": "Placeholder"
-  },
-  {
-    "id": "rg012",
-    "title": "Placeholder",
-    "description": "Placeholder"
-  },
-  {
-    "id": "rg013",
-    "title": "Placeholder",
-    "description": "Placeholder"
-  },
-  {
-    "id": "rg014",
-    "title": "Placeholder",
-    "description": "Placeholder"
-  },
-  {
-    "id": "rg015",
-    "title": "Placeholder",
-    "description": "Placeholder"
   }
 ]
