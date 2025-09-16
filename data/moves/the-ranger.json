@@ -6,8 +6,9 @@
   },
   {
     "id": "rg002",
-    "title": "Placeholder",
-    "description": "Placeholder"
+    "title": "Animal Companion",
+    "description": "You have formed a bond with a wild animal. It will accompany you and aid you, but it has its own needs and instincts.",
+    "grantsCard": "animal-companion"
   },
   {
     "id": "rg003",

@@ -1,0 +1,100 @@
+<!-- Animal Companion Card for Stonetop Rangers -->
+<div class="card animal-companion-card">
+  <div class="card-header">
+    <h3 class="card-title">🐺 Animal Companion</h3>
+    <div class="loyalty-section">
+      <strong>Loyalty:</strong>
+      <input type="checkbox" id="ac_l1">
+      <input type="checkbox" id="ac_l2">
+      <input type="checkbox" id="ac_l3">
+    </div>
+  </div>
+  
+  <!-- Basic Info -->
+  <div class="form-field">
+    <label for="ac_nm">Name:</label>
+    <input type="text" id="ac_nm" placeholder="Your companion's name">
+  </div>
+  
+  <div class="form-field">
+    <label for="ac_dt">Damage Tags:</label>
+    <input type="text" id="ac_dt" placeholder="e.g., messy, forceful">
+  </div>
+  
+  <div class="form-field">
+    <label for="ac_tp">Type:</label>
+    <select id="ac_tp">
+      <option value="">Select type...</option>
+      <option value="bird">Bird</option>
+      <option value="critter">Critter</option>
+      <option value="brute">Brute</option>
+      <option value="predator">Predator</option>
+      <option value="steed">Steed</option>
+    </select>
+  </div>
+  
+  <div class="form-field">
+    <label for="ac_tg">Tags:</label>
+    <input type="text" id="ac_tg" placeholder="e.g., fast, stealthy, fierce">
+  </div>
+  
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="form-field">
+      <label for="ac_hp">HP:</label>
+      <input type="text" id="ac_hp" placeholder="e.g., 6">
+    </div>
+    
+    <div class="form-field">
+      <label for="ac_ar">Armor:</label>
+      <input type="number" id="ac_ar" min="0" max="5" placeholder="0-5">
+    </div>
+    
+    <div class="form-field">
+      <label for="ac_dm">Damage:</label>
+      <input type="text" id="ac_dm" placeholder="e.g., d6+2">
+    </div>
+  </div>
+  
+  <!-- Instinct (radio buttons) -->
+  <div class="form-field">
+    <strong>Instinct:</strong>
+    <div class="instinct-grid">
+      <div class="instinct-column">
+        <label><input type="radio" name="ac_in" id="ac_i1" value="bully"> To bully and threaten</label>
+        <label><input type="radio" name="ac_in" id="ac_i2" value="mischief"> To make mischief</label>
+        <label><input type="radio" name="ac_in" id="ac_i3" value="belly"> To fill its belly</label>
+        <label><input type="radio" name="ac_in" id="ac_i4" value="startle"> To startle and panic</label>
+      </div>
+      <div class="instinct-column">
+        <label><input type="radio" name="ac_in" id="ac_i5" value="distracted"> To get distracted</label>
+        <label><input type="radio" name="ac_in" id="ac_i6" value="rampant"> To run rampant</label>
+        <label><input type="radio" name="ac_in" id="ac_i7" value="chase"> To give chase</label>
+      </div>
+    </div>
+    <div class="instinct-other">
+      <label><input type="radio" name="ac_in" id="ac_i8" value="other"> Other:</label>
+      <input type="text" id="ac_io" placeholder="Custom instinct..." style="margin-left: 5px;">
+    </div>
+  </div>
+  
+  <!-- Cost (radio buttons) -->
+  <div class="form-field">
+    <strong>Cost:</strong><br>
+    <label><input type="radio" name="ac_co" id="ac_c1" value="play"> Play, grooming, training, affection</label><br>
+    <label><input type="radio" name="ac_co" id="ac_c2" value="freedom"> Time off on its own, free to roam</label><br>
+    <label><input type="radio" name="ac_co" id="ac_c3" value="comfort"> Cozy quarters, comfort, ample food</label><br>
+    <label><input type="radio" name="ac_co" id="ac_c4" value="other"> Other:</label>
+    <input type="text" id="ac_co_o" placeholder="Custom cost..." style="margin-left: 5px;">
+  </div>
+  
+  <!-- HR Separator -->
+  <hr style="margin: 1rem 0;">
+  
+  <!-- Beast of Legend -->
+  <div class="form-field">
+    <strong>Beast of Legend:</strong><br>
+    <label><input type="checkbox" id="ac_ex"> They are exceptional</label><br>
+    <label><input type="checkbox" id="ac_bo"> They get +4 HP and +1 armor</label>
+  </div>
+</div>
