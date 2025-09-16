@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hexagon Inputs with Titles</title>
+<title>Stonetop Character Sheet</title>
 <link rel="stylesheet" href="styles.css">
 
 </head>
@@ -63,104 +63,30 @@
     <hr>
     <div id="stats-container"></div>
     <hr>
-  
+    
+    <div id="cards-container"></div>
+    
     <div id="moves"></div>
   </form>
 
+<!-- Core dependencies -->
 <script src="utils.js"></script>
 <script src="json-loader.js"></script>
 <script src="data-loader.js"></script>
 <script src="persistence.js"></script>
 <script src="stats.js"></script>
+
+<!-- Cards and moves modules -->
+<script src="card-helpers.js"></script>
+<script src="cards.js"></script>
 <script src="moves/moves-core.js"></script>
+<script src="moves/inline-cards.js"></script>
 <script src="moves/takefrom.js"></script>
+<script src="moves/grantcard.js"></script>
 <script src="moves/moves.js"></script>
 
-<script>
-  const form = document.querySelector('form');
-  const roleSelect = document.getElementById('role');
-  
-  // Initialize the application after moves data is loaded
-  async function initializeApp() {
-    // Initialize moves data from separate role files
-    await window.initializeMovesData();
-    
-    // Render stats
-    window.renderStats('#stats-container', window.hexStats);
-    
-    // Populate role options
-    Object.keys(window.availableMap).forEach(role => {
-      const option = document.createElement('option');
-      option.value = role;
-      option.textContent = role;
-      roleSelect.appendChild(option);
-    });
-    
-    // Initialize persistence first
-    window.Persistence.setupAutoPersistence(form);
-    
-    // Load initial state from URL
-    window.Persistence.loadFromURL(form);
-    
-    // Render initial moves based on selected role
-    const initialRole = roleSelect.value;
-    if (initialRole && window.Moves) {
-      window.Moves.renderMovesForRole(initialRole);
-      
-      // Refresh persistence after moves are rendered to capture new checkboxes
-      setTimeout(() => {
-        window.Persistence.refreshPersistence(form);
-      }, 100);
-    }
-  }
-  
-  // Start the app
-  initializeApp().catch(error => {
-    console.error('Failed to initialize app:', error);
-  });
-  
-  // Button event listeners
-  document.getElementById('clear-button').addEventListener('click', () => {
-    window.Persistence.clearState(form);
-    // Clear moves display
-    const movesContainer = document.getElementById('moves');
-    if (movesContainer) {
-      movesContainer.innerHTML = '';
-    }
-  });
-  
-  document.getElementById('copy-url-button').addEventListener('click', () => {
-    const button = document.getElementById('copy-url-button');
-    
-    window.Persistence.copyURLToClipboard()
-      .then(() => {
-        // Show success state
-        button.classList.add('success');
-        
-        // Reset after 2 seconds
-        setTimeout(() => {
-          button.classList.remove('success');
-        }, 2000);
-      })
-      .catch(err => {
-        console.error('Failed to copy URL:', err);
-        alert('Failed to copy URL to clipboard');
-      });
-  });
-  
-  // Listen for hide untaken moves checkbox changes
-  document.getElementById('hide_untaken').addEventListener('change', () => {
-    const currentRole = roleSelect.value;
-    if (currentRole && window.Moves) {
-      window.Moves.renderMovesForRole(currentRole);
-      
-      // Refresh persistence after re-render
-      setTimeout(() => {
-        window.Persistence.refreshPersistence(form);
-      }, 50);
-    }
-  });
-</script>
+<!-- Main application -->
+<script src="main.js"></script>
 
 </body>
 </html>

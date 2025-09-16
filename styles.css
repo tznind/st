@@ -396,6 +396,49 @@ button:focus {
   cursor: not-allowed;
 }
 
+/* === GRANTED CARD DISPLAY === */
+.granted-card-options {
+  background: #e0f2fe;
+  border: 1px solid #0369a1;
+  border-radius: 4px;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+.granted-card-container {
+  margin-top: 15px;
+}
+
+.granted-card {
+  background: #f8fafc;
+  border: 2px solid #0369a1;
+  border-radius: 6px;
+  padding: 15px;
+  position: relative;
+}
+
+.granted-card::before {
+  content: "Granted:";
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  background: #e0f2fe;
+  padding: 0 8px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #0369a1;
+}
+
+.granted-card .card {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  margin: 0;
+}
+
+.granted-card .card-title {
+  margin-bottom: 10px;
+}
+
 /* === LEARNED MOVE DISPLAY === */
 .learned-move-container {
   margin-top: 15px;
@@ -436,6 +479,111 @@ button:focus {
   border: 1px solid #1976d2;
 }
 
+
+/* === CARDS SECTION === */
+#cards-container {
+  margin: 30px 0;
+}
+
+.card-wrapper {
+  margin-bottom: 25px;
+}
+
+.card {
+  background: #ffffff;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s;
+}
+
+.card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  color: #2c3e50;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  border-bottom: 2px solid #e1e5e9;
+  padding-bottom: 10px;
+}
+
+.card-section {
+  margin-bottom: 20px;
+}
+
+.card-section:last-child {
+  margin-bottom: 0;
+}
+
+.card-section h4 {
+  color: #495057;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 15px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card .form-field {
+  margin-bottom: 15px;
+}
+
+.card .form-field label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #555;
+}
+
+.card input[type="text"],
+.card input[type="number"],
+.card select,
+.card textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #e1e5e9;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.card input[type="text"]:focus,
+.card input[type="number"]:focus,
+.card select:focus,
+.card textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.card textarea {
+  resize: vertical;
+  min-height: 80px;
+  font-family: inherit;
+}
+
+
+/* Error state */
+.card-error {
+  background: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+.card-error h3 {
+  color: #721c24;
+  margin: 0 0 10px 0;
+}
+
+.card-error p {
+  margin: 0;
+  font-weight: normal;
+}
 
 /* === SECTION STYLING === */
 h3 {
@@ -496,6 +644,12 @@ hr {
   .takefrom-controls select {
     min-width: 100%;
   }
+  
+  /* Card responsive styles */
+  .card {
+    padding: 15px;
+  }
+  
 }
 
 /* === ACCESSIBILITY === */

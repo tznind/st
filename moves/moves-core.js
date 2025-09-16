@@ -130,6 +130,55 @@ window.MovesCore = (function() {
     }
 
     /**
+     * Create granted card section
+     */
+    function createGrantedCardSection(move, urlParams) {
+        if (!move.grantsCard || !window.InlineCards) {
+            return null;
+        }
+        
+        const containerId = `granted_card_${move.id}`;
+        const cardSection = window.InlineCards.createCardContainer(containerId, "Grants:");
+        
+        // Check if move is initially selected
+        const urlGranted = urlParams.get(`move_${move.id}`) === '1';
+        // Check multiple checkboxes if this is a multi-checkbox move
+        let anyUrlGranted = urlGranted;
+        if (!anyUrlGranted) {
+            let index = 1;
+            while (urlParams.has(`move_${move.id}_${index}`)) {
+                if (urlParams.get(`move_${move.id}_${index}`) === '1') {
+                    anyUrlGranted = true;
+                    break;
+                }
+                index++;
+            }
+        }
+        
+        // Hide the container initially if move is not selected
+        if (!anyUrlGranted) {
+            cardSection.style.display = 'none';
+        }
+        
+        // Show granted card if move is selected (delay to ensure checkboxes are set up)
+        setTimeout(() => {
+            if (window.InlineCards) {
+                const domGranted = window.InlineCards.isAnyMoveCheckboxChecked(move.id);
+                const isGranted = anyUrlGranted || domGranted;
+                
+                if (isGranted) {
+                    window.InlineCards.displayCard(containerId, move.grantsCard);
+                } else {
+                    // Make sure it's hidden if not granted
+                    cardSection.style.display = 'none';
+                }
+            }
+        }, 300);
+        
+        return cardSection;
+    }
+
+    /**
      * Create pick options section
      */
     function createPickOptions(move, urlParams) {
@@ -206,6 +255,14 @@ window.MovesCore = (function() {
             if (window.TakeFrom) {
                 const takeFromSection = window.TakeFrom.createTakeFromSection(move, urlParams);
                 moveDiv.appendChild(takeFromSection);
+            }
+        }
+        
+        // Add granted card section if move grants a card
+        if (move.grantsCard) {
+            const grantedCardSection = createGrantedCardSection(move, urlParams);
+            if (grantedCardSection) {
+                moveDiv.appendChild(grantedCardSection);
             }
         }
         

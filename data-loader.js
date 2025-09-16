@@ -1,5 +1,5 @@
 /**
- * Data Loader - Loads JSON data files for Rogue Trader character sheets
+ * Data Loader - Loads JSON data files for Commander character sheets
  */
 
 /**

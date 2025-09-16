@@ -1,5 +1,5 @@
 /**
- * Utility Functions - Common helpers for the Rogue Trader character sheet
+ * Utility Functions - Common helpers for the Commander character sheet
  */
 
 window.Utils = (function() {

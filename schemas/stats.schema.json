@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://roguetrader.local/schemas/stats.schema.json",
-  "title": "Rogue Trader Stats",
-  "description": "Schema for Rogue Trader character stats configuration",
+  "title": "Commander Stats",
+  "description": "Schema for Commander character stats configuration",
   "type": "array",
   "items": {
     "type": "object",

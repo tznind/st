@@ -12,8 +12,7 @@ window.Moves = (function() {
         // Set up event listeners for takefrom checkboxes (let persistence handle regular checkboxes)
         setupMoveEventListeners();
         
-        // Listen for role changes to re-render moves
-        setupRoleChangeListener();
+        // Role changes are now handled centrally by main.js
         
         // Listen for availableMap updates
         setupAvailableMapUpdateListener();
@@ -34,7 +33,7 @@ window.Moves = (function() {
     }
 
     /**
-     * Handle takefrom move checkbox changes (only if the move has takefrom)
+     * Handle special move checkbox changes (takefrom, card granting, etc.)
      */
     function handleTakeFromMoveIfNeeded(checkbox) {
         const moveId = extractMoveId(checkbox.id);
@@ -44,6 +43,12 @@ window.Moves = (function() {
         if (move && move.takefrom && window.TakeFrom) {
             window.TakeFrom.handleTakeFromMoveToggle(moveId, checkbox.checked);
         }
+        
+        // Check if this move grants a card
+        if (move && move.grantsCard && window.GrantCard) {
+            window.GrantCard.handleCardGrantingMoveToggle(moveId, checkbox.checked);
+        }
+        
     }
 
     /**
@@ -55,19 +60,12 @@ window.Moves = (function() {
     }
 
     /**
-     * Set up listener for role changes
+     * Set up listener for role changes (now handled by main.js)
+     * This is kept for backward compatibility but delegates to main system
      */
     function setupRoleChangeListener() {
-        const roleSelect = document.getElementById('role');
-        if (roleSelect) {
-            roleSelect.addEventListener('change', (event) => {
-                const selectedRole = event.target.value;
-                renderMovesForRole(selectedRole);
-                
-                // Restore any learned moves from the URL
-                restoreLearnedMoves(selectedRole);
-            });
-        }
+        // Role change handling is now centralized in main.js
+        // This function is kept for compatibility but does nothing
     }
 
     /**
@@ -84,13 +82,15 @@ window.Moves = (function() {
 
     /**
      * Render moves for a specific role
+     * @param {string} role - The role to render moves for
+     * @param {boolean} refreshPersistence - Whether to refresh persistence after rendering (default: true)
      */
-    function renderMovesForRole(role) {
+    function renderMovesForRole(role, refreshPersistence = true) {
         if (window.MovesCore) {
             window.MovesCore.renderMovesForRole(role);
             
             // After rendering moves, refresh persistence to handle new checkboxes
-            if (window.Persistence) {
+            if (refreshPersistence && window.Persistence) {
                 const form = document.querySelector('form');
                 if (form) {
                     // Add a small delay to ensure DOM is fully updated
@@ -102,29 +102,6 @@ window.Moves = (function() {
         }
     }
 
-    /**
-     * Restore learned moves from URL parameters when role changes
-     */
-    function restoreLearnedMoves(role) {
-        if (!role || !window.availableMap || !window.availableMap[role]) return;
-        
-        const urlParams = new URLSearchParams(location.search);
-        const learnedMoves = new Set();
-        
-        // Find all takefrom move selections in the URL
-        for (const [key, value] of urlParams) {
-            if (key.includes('takefrom_') && key.includes('_move') && value) {
-                learnedMoves.add(value);
-            }
-        }
-        
-        // Add learned moves to the availableMap
-        learnedMoves.forEach(moveId => {
-            if (window.TakeFrom) {
-                window.TakeFrom.addLearnedMoveQuiet(role, moveId);
-            }
-        });
-    }
 
 
     // Public API
