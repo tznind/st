@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://roguetrader.local/schemas/moves.schema.json",
-  "title": "Rogue Trader Moves",
-  "description": "Schema for Rogue Trader character moves data",
+  "title": "Commander Moves",
+  "description": "Schema for Commander character moves data",
   "type": "array",
   "items": {
     "type": "object",
@@ -69,6 +69,10 @@
       "category": {
         "type": "string",
         "description": "Optional category for grouping moves (moves without a category appear first under 'Moves')"
+      },
+      "grantsCard": {
+        "type": "string",
+        "description": "Card name to grant when this move is selected"
       }
     },
     "required": ["id", "title"],

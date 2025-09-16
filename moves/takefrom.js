@@ -216,11 +216,38 @@ window.TakeFrom = (function() {
                 const pickElement = window.MovesCore.createPickOptions(selectedMoveData, urlParams);
                 learnedMoveDiv.appendChild(pickElement);
             }
+            
+            // Add granted card section if the learned move grants a card
+            if (selectedMoveData.grantsCard) {
+                const grantedCardSection = createLearnedGrantedCardSection(selectedMoveData, urlParams);
+                if (grantedCardSection) {
+                    learnedMoveDiv.appendChild(grantedCardSection);
+                }
+            }
         }
         
         learnedMoveContainer.appendChild(learnedMoveDiv);
     }
 
+    /**
+     * Create granted card section for learned moves
+     */
+    function createLearnedGrantedCardSection(move, urlParams) {
+        if (!move.grantsCard || !window.InlineCards) {
+            return null;
+        }
+        
+        const containerId = `learned_granted_card_${move.id}`;
+        const cardSection = window.InlineCards.createCardContainer(containerId, "Grants:");
+        
+        // Show granted card immediately for learned moves (they're always "active")
+        setTimeout(() => {
+            window.InlineCards.displayCard(containerId, move.grantsCard);
+        }, 100);
+        
+        return cardSection;
+    }
+    
     /**
      * Update move options based on selected role
      */
@@ -238,12 +265,16 @@ window.TakeFrom = (function() {
         if (selectedRole && window.availableMap && window.availableMap[selectedRole]) {
             moveSelect.disabled = false;
             
-            // Get available moves for selected role
+            // Get available moves for selected role and current role
             const availableMoves = window.availableMap[selectedRole];
+            const currentRole = window.Utils ? window.Utils.getCurrentRole() : null;
+            const currentRoleMoves = currentRole && window.availableMap[currentRole] ? window.availableMap[currentRole] : {};
             
-            // Filter moves to only show those available to that role
+            // Filter moves to only show those available to selected role but NOT to current role
             window.moves.forEach(move => {
-                if (move.id !== moveId && availableMoves.hasOwnProperty(move.id)) {
+                if (move.id !== moveId && 
+                    availableMoves.hasOwnProperty(move.id) && 
+                    !currentRoleMoves.hasOwnProperty(move.id)) {
                     const option = document.createElement("option");
                     option.value = move.id;
                     option.textContent = move.title;
@@ -264,7 +295,7 @@ window.TakeFrom = (function() {
      * Handle takefrom selection changes (quiet version - no re-render)
      */
     function handleSelectionChangeQuiet(roleSelect, moveSelect, takeFromMoveId) {
-        const currentRole = getCurrentRole();
+        const currentRole = window.Utils ? window.Utils.getCurrentRole() : null;
         const selectedMove = moveSelect.value;
         
         // Get previous selection to remove it if changed
@@ -279,10 +310,7 @@ window.TakeFrom = (function() {
             }
         }
         
-        // Add newly selected move to available moves (quietly)
-        if (selectedMove && currentRole) {
-            addLearnedMoveQuiet(currentRole, selectedMove);
-        }
+        // Note: We don't need to modify availableMap - learned moves are self-contained
     }
 
     /**
@@ -327,13 +355,7 @@ window.TakeFrom = (function() {
             moveSelect.appendChild(defaultOption);
             moveSelect.disabled = true;
             
-            // Remove the learned move from availableMap
-            if (previousMove) {
-                const currentRole = getCurrentRole();
-                if (currentRole && window.availableMap && window.availableMap[currentRole]) {
-                    delete window.availableMap[currentRole][previousMove];
-                }
-            }
+            // Learned moves are self-contained - no availableMap cleanup needed
         }
         
         if (learnedMoveContainer) {
@@ -377,34 +399,14 @@ window.TakeFrom = (function() {
                             updateLearnedMoveDisplay(moveSelect, learnedMoveContainer, urlParams);
                         }
                     
-                        // Add move back to availableMap
-                        const currentRole = getCurrentRole();
-                        if (currentRole) {
-                            addLearnedMoveQuiet(currentRole, savedMove);
-                        }
+                        // Learned moves are self-contained - no availableMap modification needed
                     }
                 }, 50);
             }
         }
     }
 
-    /**
-     * Add learned move to current role's available moves (quiet - no re-render)
-     */
-    function addLearnedMoveQuiet(currentRole, learnedMoveId) {
-        if (currentRole && learnedMoveId && window.availableMap && window.availableMap[currentRole]) {
-            // Add the learned move to the current role's available moves
-            window.availableMap[currentRole][learnedMoveId] = true;
-        }
-    }
 
-    /**
-     * Get current role from the form (utility function)
-     */
-    function getCurrentRole() {
-        const roleSelect = document.getElementById('role');
-        return roleSelect ? roleSelect.value : null;
-    }
 
     /**
      * Check if any checkbox for a takefrom move is still checked
@@ -437,8 +439,6 @@ window.TakeFrom = (function() {
         handleTakeFromMoveToggle,
         updateLearnedMoveDisplay,
         updateMoveOptions,
-        addLearnedMoveQuiet,
-        getCurrentRole,
         checkIfAnyTakeFromMoveChecked
     };
 })();

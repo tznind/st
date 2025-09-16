@@ -1,0 +1,91 @@
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  margin: 0;
+  flex-grow: 1;
+}
+
+.loyalty-section {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.loyalty-section strong {
+  margin-right: 0.5rem;
+}
+
+.loyalty-section input[type="checkbox"] {
+  margin: 0 0.1rem;
+}
+
+.stats-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.stats-row .form-field {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.stats-row .form-field label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+}
+
+.stats-row .form-field input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.instinct-grid {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.instinct-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.instinct-column label {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.instinct-other {
+  margin-top: 0.5rem;
+}
+
+.instinct-other label {
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+/* Compact styling for Cost and Beast of Legend sections */
+.form-field strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 0.1rem;
+  line-height: 1.3;
+}
+
+.form-field br {
+  display: none;
+}

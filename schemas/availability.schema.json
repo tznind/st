@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://roguetrader.local/schemas/availability.schema.json",
-  "title": "Rogue Trader Availability Map",
+  "title": "Commander Availability Map",
   "description": "Schema for mapping roles to move IDs and their initial checked state",
   "type": "object",
   "patternProperties": {
@@ -13,7 +13,7 @@
           "type": "string",
           "description": "Path to the JSON file containing moves for this role",
           "pattern": "^data/moves/.+\\.json$"
-        }
+        },
       },
       "patternProperties": {
         "^[a-zA-Z0-9]+$": {

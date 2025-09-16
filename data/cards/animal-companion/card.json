@@ -1,0 +1,12 @@
+{
+  "id": "animal-companion",
+  "title": "Animal Companion",
+  "path": "data/cards/animal-companion",
+  "description": "Your loyal animal companion from the wilds",
+  "version": "1.0.0",
+  "author": "Stonetop System",
+  "files": {
+    "html": "card.html",
+    "css": "card.css"
+  }
+}

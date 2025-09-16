@@ -23,6 +23,7 @@ window.Persistence = (function() {
             'input[type="password"]',
             'input[type="hidden"]',
             'input[type="checkbox"]',
+            'input[type="radio"]',
             'select',
             'textarea'
         ];
@@ -71,6 +72,12 @@ window.Persistence = (function() {
                         params.delete(input.id);
                     }
                 }
+            } else if (input.type === 'radio') {
+                // For radio buttons, only save the checked one's value
+                if (input.checked) {
+                    params.set(input.name, input.value);
+                }
+                // Note: We don't delete unchecked radios since only one in a group can be checked
             } else {
                 // Handle regular inputs
                 value = input.value || '';
@@ -99,7 +106,16 @@ window.Persistence = (function() {
         const loadedValues = {};
         
         inputs.forEach(input => {
-            if (params.has(input.id)) {
+            if (input.type === 'radio') {
+                // For radio buttons, check if the name (group) has a value that matches this input's value
+                if (params.has(input.name)) {
+                    const savedValue = params.get(input.name);
+                    input.checked = input.value === savedValue;
+                    if (input.checked) {
+                        loadedValues[input.name] = savedValue;
+                    }
+                }
+            } else if (params.has(input.id)) {
                 const value = params.get(input.id);
                 
                 if (input.type === 'checkbox') {
@@ -127,7 +143,7 @@ window.Persistence = (function() {
         
         // Clear form inputs
         inputs.forEach(input => {
-            if (input.type === 'checkbox') {
+            if (input.type === 'checkbox' || input.type === 'radio') {
                 input.checked = false;
             } else {
                 input.value = '';
@@ -155,7 +171,14 @@ window.Persistence = (function() {
                 if (target.id && shouldPersist(target)) {
                     saveToURL(form);
                     if (onStateChange) {
-                        const value = target.type === 'checkbox' ? target.checked : target.value;
+                        let value;
+                        if (target.type === 'checkbox') {
+                            value = target.checked;
+                        } else if (target.type === 'radio') {
+                            value = target.checked ? target.value : null;
+                        } else {
+                            value = target.value;
+                        }
                         onStateChange(target.id, value);
                     }
                 }
@@ -179,7 +202,7 @@ window.Persistence = (function() {
      * Check if an input should be persisted
      */
     function shouldPersist(input) {
-        const persistableTypes = ['text', 'number', 'email', 'url', 'tel', 'search', 'password', 'hidden', 'checkbox'];
+        const persistableTypes = ['text', 'number', 'email', 'url', 'tel', 'search', 'password', 'hidden', 'checkbox', 'radio'];
         const persistableElements = ['select', 'textarea'];
         
         return (persistableTypes.includes(input.type) || persistableElements.includes(input.tagName.toLowerCase())) && input.id;
@@ -214,7 +237,7 @@ window.Persistence = (function() {
         
         // Extract move ID, handling multiple instances (move_id_1 -> move_id)
         const moveId = inputId.replace('move_', '').replace(/_\d+$/, '').replace(/_pick_\d+$/, '');
-        const currentRole = getCurrentRole();
+        const currentRole = window.Utils ? window.Utils.getCurrentRole() : null;
         
         if (currentRole && window.availableMap[currentRole]) {
             return window.availableMap[currentRole][moveId] === true;
@@ -222,13 +245,6 @@ window.Persistence = (function() {
         return false;
     }
     
-    /**
-     * Get current role (helper function)
-     */
-    function getCurrentRole() {
-        const roleSelect = document.getElementById('role');
-        return roleSelect ? roleSelect.value : null;
-    }
     
     /**
      * Refresh persistence after dynamic content changes
