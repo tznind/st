@@ -11,7 +11,8 @@
     "a01221": false,
     "fa0122": false,
     "ae0122": false,
-    "de0122": false
+    "de0122": false,
+    "ae0121": false
   },
   "Marshal": {
     "_movesFile": "data/moves/marshal.json",
@@ -36,6 +37,7 @@
   },
   "The Ranger": {
     "_movesFile": "data/moves/the-ranger.json",
+    "cards": [],
     "rg002": false
   },
   "The Lightbearer": {
