@@ -14,19 +14,14 @@ window.initializeMovesData = async function() {
         
         console.log('Loading game data from JSON files...');
         
-        // Load all game data
-        await window.JsonLoader.loadAllGameData();
+        // Load stats and availability data first
+        await Promise.all([
+            window.JsonLoader.loadStatsData(),
+            window.JsonLoader.loadAvailabilityMap()
+        ]);
         
-        // Combine moves from all roles (dynamically discover loaded move variables)
-        window.moves = [];
-        
-        // Look for all variables ending with "Moves" and combine them
-        for (const key in window) {
-            if (key.endsWith('Moves') && Array.isArray(window[key])) {
-                console.log(`Found move data: ${key} with ${window[key].length} moves`);
-                window.moves = window.moves.concat(window[key]);
-            }
-        }
+        // Load all role moves and get the combined array
+        window.moves = await window.JsonLoader.loadAllGameData();
         
         console.log('All game data initialized:', window.moves.length, 'moves loaded');
         

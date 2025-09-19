@@ -48,10 +48,23 @@
       },
       "pick": {
         "type": "array",
-        "description": "Array of options for pick-one moves",
+        "description": "Array of options for pick moves (multiple selections allowed)",
         "items": {
           "type": "string"
         }
+      },
+      "pickOne": {
+        "type": "array",
+        "description": "Array of options for pickOne moves (radio buttons, only one selection allowed)",
+        "items": {
+          "type": "string"
+        }
+      },
+      "multiplePick": {
+        "type": "integer",
+        "description": "Number of columns for pick/pickOne options (creates grid layout with separate selections per column)",
+        "minimum": 2,
+        "maximum": 5
       },
       "takefrom": {
         "type": "array",

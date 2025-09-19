@@ -84,67 +84,18 @@ window.InlineCards = (function() {
     }
 
     /**
-     * Check if any checkbox for a move is checked
-     * @param {string} moveId - ID of the move to check
-     * @returns {boolean} True if any checkbox is checked
-     */
-    function isAnyMoveCheckboxChecked(moveId) {
-        // Check single checkbox
-        const singleCheckbox = document.getElementById(`move_${moveId}`);
-        if (singleCheckbox && singleCheckbox.checked) return true;
-        
-        // Check multiple checkboxes
-        let index = 1;
-        while (true) {
-            const checkbox = document.getElementById(`move_${moveId}_${index}`);
-            if (!checkbox) break;
-            if (checkbox.checked) return true;
-            index++;
-        }
-        return false;
-    }
-
-    /**
      * Handle display/hide of cards based on move checkbox state
      * @param {string} moveId - ID of the move
      * @param {string} cardId - ID of the card to display
      * @param {string} containerId - ID of the container
-     * @param {boolean} forceCheck - Force check state (optional)
+     * @param {boolean} isChecked - Whether the move is checked
      */
-    function toggleCardDisplay(moveId, cardId, containerId, forceCheck = null) {
-        const isChecked = forceCheck !== null ? forceCheck : isAnyMoveCheckboxChecked(moveId);
-        
+    function toggleCardDisplay(moveId, cardId, containerId, isChecked) {
         if (isChecked) {
             displayCard(containerId, cardId);
         } else {
             hideCard(containerId);
         }
-    }
-
-    /**
-     * Restore inline cards for a role (called during initialization)
-     * @param {string} role - Current role
-     * @param {function} moveFilter - Function to filter which moves to check
-     */
-    function restoreInlineCards(role, moveFilter = null) {
-        if (!window.moves || !role) return;
-
-        console.log('Restoring inline cards for role:', role);
-        
-        // Find all relevant moves and check if they're selected
-        const relevantMoves = window.moves.filter(move => {
-            if (!move.grantsCard) return false;
-            return moveFilter ? moveFilter(move) : true;
-        });
-
-        relevantMoves.forEach(move => {
-            console.log(`Checking move ${move.id} for inline card restoration`);
-            if (isAnyMoveCheckboxChecked(move.id)) {
-                console.log(`Restoring inline card for move ${move.id}`);
-                const containerId = `granted_card_${move.id}`;
-                displayCard(containerId, move.grantsCard);
-            }
-        });
     }
 
     /**
@@ -166,9 +117,7 @@ window.InlineCards = (function() {
         displayCard,
         hideCard,
         createCardContainer,
-        isAnyMoveCheckboxChecked,
-        toggleCardDisplay,
-        restoreInlineCards
+        toggleCardDisplay
     };
 
 })();

@@ -16,6 +16,9 @@ window.MovesCore = (function() {
             const checkbox = document.createElement("input");
             checkbox.type = "checkbox";
             
+            // Add data attribute to identify the parent move
+            checkbox.setAttribute('data-move-id', move.id);
+            
             if (checkboxCount === 1) {
                 // Single checkbox - use original ID format
                 checkbox.id = `move_${move.id}`;
@@ -140,40 +143,16 @@ window.MovesCore = (function() {
         const containerId = `granted_card_${move.id}`;
         const cardSection = window.InlineCards.createCardContainer(containerId, "Grants:");
         
-        // Check if move is initially selected
-        const urlGranted = urlParams.get(`move_${move.id}`) === '1';
-        // Check multiple checkboxes if this is a multi-checkbox move
-        let anyUrlGranted = urlGranted;
-        if (!anyUrlGranted) {
-            let index = 1;
-            while (urlParams.has(`move_${move.id}_${index}`)) {
-                if (urlParams.get(`move_${move.id}_${index}`) === '1') {
-                    anyUrlGranted = true;
-                    break;
-                }
-                index++;
-            }
-        }
+        // Use the existing isMoveTaken function to check if move is selected
+        const isTaken = isMoveTaken(move, urlParams);
         
-        // Hide the container initially if move is not selected
-        if (!anyUrlGranted) {
+        if (isTaken) {
+            // Show the card immediately if taken
+            window.InlineCards.displayCard(containerId, move.grantsCard);
+        } else {
+            // Hide initially
             cardSection.style.display = 'none';
         }
-        
-        // Show granted card if move is selected (delay to ensure checkboxes are set up)
-        setTimeout(() => {
-            if (window.InlineCards) {
-                const domGranted = window.InlineCards.isAnyMoveCheckboxChecked(move.id);
-                const isGranted = anyUrlGranted || domGranted;
-                
-                if (isGranted) {
-                    window.InlineCards.displayCard(containerId, move.grantsCard);
-                } else {
-                    // Make sure it's hidden if not granted
-                    cardSection.style.display = 'none';
-                }
-            }
-        }, 300);
         
         return cardSection;
     }
@@ -189,31 +168,175 @@ window.MovesCore = (function() {
         pickTitle.textContent = "Pick:";
         pickDiv.appendChild(pickTitle);
         
-        const pickList = document.createElement("ul");
-        move.pick.forEach((option, index) => {
-            const li = document.createElement("li");
-            const checkbox = document.createElement("input");
-            checkbox.type = "checkbox";
-            checkbox.id = `move_${move.id}_pick_${index + 1}`;
-            checkbox.name = `move_${move.id}_pick_${index + 1}`;
-            checkbox.setAttribute('aria-label', `Pick ${option}`);
-            
-            // Restore from URL if exists
-            if (urlParams.has(checkbox.id)) {
-                checkbox.checked = urlParams.get(checkbox.id) === '1';
-            }
-            
-            const label = document.createElement("label");
-            label.setAttribute('for', checkbox.id);
-            label.appendChild(checkbox);
-            label.appendChild(document.createTextNode(option));
-            
-            li.appendChild(label);
-            pickList.appendChild(li);
-        });
+        const multiplePick = move.multiplePick || 1;
         
-        pickDiv.appendChild(pickList);
+        if (multiplePick > 1) {
+            // Create list with multiple checkboxes per option (like multiple moves)
+            const pickList = document.createElement("ul");
+            
+            move.pick.forEach((option, optionIndex) => {
+                const li = document.createElement("li");
+                li.className = "pick-option-item";
+                
+                // Create multiple checkboxes for this option
+                const checkboxContainer = document.createElement("div");
+                checkboxContainer.className = "pick-checkboxes";
+                
+                for (let col = 1; col <= multiplePick; col++) {
+                    const checkbox = document.createElement("input");
+                    checkbox.type = "checkbox";
+                    
+                    // ID format: first column uses _p1, _p2, etc. Additional columns use _p1_c2, _p1_c3, etc.
+                    const baseId = `move_${move.id}_p${optionIndex + 1}`;
+                    checkbox.id = col === 1 ? baseId : `${baseId}_c${col}`;
+                    checkbox.name = checkbox.id;
+                    checkbox.setAttribute('aria-label', `Pick ${option} (Instance ${col})`);
+                    checkbox.setAttribute('data-move-id', move.id);
+                    
+                    // Restore from URL if exists
+                    if (urlParams.has(checkbox.id)) {
+                        checkbox.checked = urlParams.get(checkbox.id) === '1';
+                    }
+                    
+                    checkboxContainer.appendChild(checkbox);
+                }
+                
+                // Add the option text after all checkboxes
+                const optionText = document.createElement("span");
+                optionText.className = "pick-option-text";
+                optionText.textContent = option;
+                
+                li.appendChild(checkboxContainer);
+                li.appendChild(optionText);
+                pickList.appendChild(li);
+            });
+            
+            pickDiv.appendChild(pickList);
+        } else {
+            // Single column layout (original behavior)
+            const pickList = document.createElement("ul");
+            move.pick.forEach((option, index) => {
+                const li = document.createElement("li");
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                
+                checkbox.id = `move_${move.id}_p${index + 1}`;
+                checkbox.name = `move_${move.id}_p${index + 1}`;
+                checkbox.setAttribute('aria-label', `Pick ${option}`);
+                checkbox.setAttribute('data-move-id', move.id);
+                
+                // Restore from URL if exists
+                if (urlParams.has(checkbox.id)) {
+                    checkbox.checked = urlParams.get(checkbox.id) === '1';
+                }
+                
+                const label = document.createElement("label");
+                label.setAttribute('for', checkbox.id);
+                label.appendChild(checkbox);
+                label.appendChild(document.createTextNode(option));
+                
+                li.appendChild(label);
+                pickList.appendChild(li);
+            });
+            
+            pickDiv.appendChild(pickList);
+        }
+        
         return pickDiv;
+    }
+
+    /**
+     * Create pickOne options section (radio buttons)
+     */
+    function createPickOneOptions(move, urlParams) {
+        const pickOneDiv = document.createElement("div");
+        pickOneDiv.className = "pick-one-options";
+        
+        const pickOneTitle = document.createElement("strong");
+        pickOneTitle.textContent = "Pick One:";
+        pickOneDiv.appendChild(pickOneTitle);
+        
+        const multiplePick = move.multiplePick || 1;
+        
+        if (multiplePick > 1) {
+            // Create list with multiple radio buttons per option (like multiple moves)
+            const pickOneList = document.createElement("ul");
+            
+            move.pickOne.forEach((option, optionIndex) => {
+                const li = document.createElement("li");
+                li.className = "pick-one-option-item";
+                
+                // Create multiple radio buttons for this option
+                const radioContainer = document.createElement("div");
+                radioContainer.className = "pick-one-radios";
+                
+                for (let col = 1; col <= multiplePick; col++) {
+                    const radio = document.createElement("input");
+                    radio.type = "radio";
+                    
+                    // Each column gets its own radio group
+                    radio.name = col === 1 ? `move_${move.id}_pickone` : `move_${move.id}_pickone_c${col}`;
+                    
+                    // ID format: first column uses _o1, _o2, etc. Additional columns use _o1_c2, _o1_c3, etc.
+                    const baseId = `move_${move.id}_o${optionIndex + 1}`;
+                    radio.id = col === 1 ? baseId : `${baseId}_c${col}`;
+                    radio.value = `${optionIndex + 1}`;
+                    radio.setAttribute('aria-label', `Pick one: ${option} (Instance ${col})`);
+                    radio.setAttribute('data-move-id', move.id);
+                    
+                    // Restore from URL if exists
+                    if (urlParams.has(radio.id)) {
+                        radio.checked = urlParams.get(radio.id) === '1';
+                    }
+                    
+                    radioContainer.appendChild(radio);
+                }
+                
+                // Add the option text after all radio buttons
+                const optionText = document.createElement("span");
+                optionText.className = "pick-one-option-text";
+                optionText.textContent = option;
+                
+                li.appendChild(radioContainer);
+                li.appendChild(optionText);
+                pickOneList.appendChild(li);
+            });
+            
+            pickOneDiv.appendChild(pickOneList);
+        } else {
+            // Single column layout (original behavior)
+            const pickOneList = document.createElement("ul");
+            const radioGroupName = `move_${move.id}_pickone`;
+            
+            move.pickOne.forEach((option, index) => {
+                const li = document.createElement("li");
+                const radio = document.createElement("input");
+                radio.type = "radio";
+                radio.name = radioGroupName;
+                
+                radio.id = `move_${move.id}_o${index + 1}`;
+                radio.value = `${index + 1}`;
+                radio.setAttribute('aria-label', `Pick one: ${option}`);
+                radio.setAttribute('data-move-id', move.id);
+                
+                // Restore from URL if exists
+                if (urlParams.has(radio.id)) {
+                    radio.checked = urlParams.get(radio.id) === '1';
+                }
+                
+                const label = document.createElement("label");
+                label.setAttribute('for', radio.id);
+                label.appendChild(radio);
+                label.appendChild(document.createTextNode(option));
+                
+                li.appendChild(label);
+                pickOneList.appendChild(li);
+            });
+            
+            pickOneDiv.appendChild(pickOneList);
+        }
+        
+        return pickOneDiv;
     }
 
     /**
@@ -244,7 +367,13 @@ window.MovesCore = (function() {
             });
         }
         
-        // Add pick options if they exist
+        // Add pickOne options if they exist (render first as they're typically more fundamental)
+        if (move.pickOne && Array.isArray(move.pickOne) && move.pickOne.length > 0) {
+            const pickOneElement = createPickOneOptions(move, urlParams);
+            moveDiv.appendChild(pickOneElement);
+        }
+        
+        // Add pick options if they exist (render after pickOne as they're typically add-on features)
         if (move.pick && Array.isArray(move.pick) && move.pick.length > 0) {
             const pickElement = createPickOptions(move, urlParams);
             moveDiv.appendChild(pickElement);
@@ -298,11 +427,36 @@ window.MovesCore = (function() {
             }
         }
         
-        // Check pick option checkboxes if they exist
+        // Check pick option checkboxes if they exist (_p1, _p2, etc. and _p1_c2, _p1_c3, etc.)
         if (move.pick && Array.isArray(move.pick)) {
+            const multiplePick = move.multiplePick || 1;
             for (let i = 1; i <= move.pick.length; i++) {
-                if (urlParams.get(`move_${move.id}_pick_${i}`) === '1') {
+                // Check first column
+                if (urlParams.get(`move_${move.id}_p${i}`) === '1') {
                     return true;
+                }
+                // Check additional columns if multiplePick > 1
+                for (let col = 2; col <= multiplePick; col++) {
+                    if (urlParams.get(`move_${move.id}_p${i}_c${col}`) === '1') {
+                        return true;
+                    }
+                }
+            }
+        }
+        
+        // Check pickOne option radio buttons if they exist (_o1, _o2, etc. and _o1_c2, _o1_c3, etc.)
+        if (move.pickOne && Array.isArray(move.pickOne)) {
+            const multiplePick = move.multiplePick || 1;
+            for (let i = 1; i <= move.pickOne.length; i++) {
+                // Check first column
+                if (urlParams.get(`move_${move.id}_o${i}`) === '1') {
+                    return true;
+                }
+                // Check additional columns if multiplePick > 1
+                for (let col = 2; col <= multiplePick; col++) {
+                    if (urlParams.get(`move_${move.id}_o${i}_c${col}`) === '1') {
+                        return true;
+                    }
                 }
             }
         }
@@ -314,6 +468,12 @@ window.MovesCore = (function() {
      * Group moves by category
      */
     function groupMovesByCategory(moves, available, hideUntaken = false, urlParams = null) {
+        console.log('groupMovesByCategory called with:');
+        console.log('- Total moves:', moves.length);
+        console.log('- Available moves:', Object.keys(available));
+        console.log('- Looking for move "is":', moves.find(m => m.id === 'is'));
+        console.log('- "is" in available:', available.hasOwnProperty('is'), available['is']);
+        
         const groups = {
             uncategorized: [], // Moves without category go here
             categorized: new Map() // Map of category name to moves
@@ -340,28 +500,36 @@ window.MovesCore = (function() {
         return groups;
     }
 
+
     /**
-     * Render all moves for a role
+     * Render all moves for roles with merged availability
      */
-    function renderMovesForRole(role) {
+    function renderMovesForRole(roles, mergedAvailability) {
         const movesContainer = document.getElementById("moves");
         if (!movesContainer) return;
         
         movesContainer.innerHTML = "";
         
-        if (!role || !window.availableMap || !window.availableMap[role]) {
+        if (!roles || roles.length === 0 || !mergedAvailability) {
             return;
         }
         
-        const available = window.availableMap[role];
         const urlParams = new URLSearchParams(location.search);
         
         // Check if hiding untaken moves
         const hideUntakenCheckbox = document.getElementById('hide_untaken');
         const hideUntaken = hideUntakenCheckbox && hideUntakenCheckbox.checked;
         
-        // Group moves by category
-        const groups = groupMovesByCategory(window.moves, available, hideUntaken, urlParams);
+        // Group moves by category using merged availability
+        const groups = groupMovesByCategory(window.moves, mergedAvailability, hideUntaken, urlParams);
+        
+        // Add role information to the header
+        if (roles.length > 1) {
+            const rolesHeader = document.createElement("h2");
+            rolesHeader.className = "roles-header";
+            rolesHeader.textContent = `Roles: ${roles.join(', ')}`;
+            movesContainer.appendChild(rolesHeader);
+        }
         
         // First render uncategorized moves under "Moves" header
         if (groups.uncategorized.length > 0) {
@@ -369,7 +537,7 @@ window.MovesCore = (function() {
             movesContainer.appendChild(movesHeader);
             
             groups.uncategorized.forEach(move => {
-                const moveElement = renderMove(move, available, urlParams);
+                const moveElement = renderMove(move, mergedAvailability, urlParams);
                 movesContainer.appendChild(moveElement);
             });
         }
@@ -382,7 +550,7 @@ window.MovesCore = (function() {
             
             const categoryMoves = groups.categorized.get(categoryName);
             categoryMoves.forEach(move => {
-                const moveElement = renderMove(move, available, urlParams);
+                const moveElement = renderMove(move, mergedAvailability, urlParams);
                 movesContainer.appendChild(moveElement);
             });
         });
@@ -395,6 +563,7 @@ window.MovesCore = (function() {
         createDescription,
         createOutcome,
         createPickOptions,
+        createPickOneOptions,
         createCategoryHeader,
         groupMovesByCategory,
         isMoveTaken,

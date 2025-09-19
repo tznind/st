@@ -195,35 +195,26 @@ window.TakeFrom = (function() {
         const learnedMoveDiv = document.createElement("div");
         learnedMoveDiv.className = "learned-move";
         
-        // Create the move with checkbox(es) - reuse existing functions
+        // Use the centralized renderMove function to avoid code duplication
         if (window.MovesCore) {
-            const checkboxes = window.MovesCore.createMoveCheckboxes(selectedMoveData, {[selectedMoveId]: true}, urlParams);
-            const titleContainer = window.MovesCore.createMoveTitle(selectedMoveData, checkboxes);
-            learnedMoveDiv.appendChild(titleContainer);
+            const renderedMove = window.MovesCore.renderMove(selectedMoveData, {[selectedMoveId]: true}, urlParams);
             
-            // Add outcomes if they exist
-            if (selectedMoveData.outcomes && Array.isArray(selectedMoveData.outcomes) && selectedMoveData.outcomes.length > 0) {
-                selectedMoveData.outcomes.forEach(outcome => {
-                    if (outcome) {
-                        const outcomeElement = window.MovesCore.createOutcome(outcome);
-                        learnedMoveDiv.appendChild(outcomeElement);
+            // The renderMove creates a full .move div, but we want the content in our .learned-move div
+            // So we copy the children from the rendered move to our learned move container
+            while (renderedMove.firstChild) {
+                learnedMoveDiv.appendChild(renderedMove.firstChild);
+            }
+            
+            // Replace any granted card sections with learned-specific versions
+            const grantedCardSections = learnedMoveDiv.querySelectorAll('.granted-card-options');
+            grantedCardSections.forEach(section => {
+                if (selectedMoveData.grantsCard) {
+                    const learnedCardSection = createLearnedGrantedCardSection(selectedMoveData, urlParams);
+                    if (learnedCardSection) {
+                        section.parentNode.replaceChild(learnedCardSection, section);
                     }
-                });
-            }
-            
-            // Add pick options if they exist
-            if (selectedMoveData.pick && Array.isArray(selectedMoveData.pick) && selectedMoveData.pick.length > 0) {
-                const pickElement = window.MovesCore.createPickOptions(selectedMoveData, urlParams);
-                learnedMoveDiv.appendChild(pickElement);
-            }
-            
-            // Add granted card section if the learned move grants a card
-            if (selectedMoveData.grantsCard) {
-                const grantedCardSection = createLearnedGrantedCardSection(selectedMoveData, urlParams);
-                if (grantedCardSection) {
-                    learnedMoveDiv.appendChild(grantedCardSection);
                 }
-            }
+            });
         }
         
         learnedMoveContainer.appendChild(learnedMoveDiv);
@@ -412,25 +403,9 @@ window.TakeFrom = (function() {
      * Check if any checkbox for a takefrom move is still checked
      */
     function checkIfAnyTakeFromMoveChecked(moveId) {
-        // Check for single checkbox
-        const singleCheckbox = document.getElementById(`move_${moveId}`);
-        if (singleCheckbox && singleCheckbox.checked) {
-            return true;
-        }
-        
-        // Check for multiple checkboxes (move_id_1, move_id_2, etc.)
-        let index = 1;
-        while (true) {
-            const multiCheckbox = document.getElementById(`move_${moveId}_${index}`);
-            if (!multiCheckbox) break; // No more checkboxes
-            
-            if (multiCheckbox.checked) {
-                return true;
-            }
-            index++;
-        }
-        
-        return false;
+        // Use data attribute selector to find all checkboxes/radios for this move
+        const moveElements = document.querySelectorAll(`[data-move-id="${moveId}"]:checked`);
+        return moveElements.length > 0;
     }
 
     // Public API

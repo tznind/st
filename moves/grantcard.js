@@ -23,12 +23,8 @@ window.GrantCard = (function() {
      * Initialize for a role (called when role is selected)
      */
     function handleRoleChange(role) {
-        if (role && window.InlineCards) {
-            // Longer delay to ensure moves are fully rendered and checkboxes restored
-            setTimeout(() => {
-                window.InlineCards.restoreInlineCards(role);
-            }, 400);
-        }
+        // Card restoration is now handled automatically by the persistence system
+        // and event listeners - no manual restoration needed
     }
 
     return {

@@ -55,22 +55,11 @@ window.Persistence = (function() {
             
             // Handle checkboxes differently - use checked state
             if (input.type === 'checkbox') {
-                value = input.checked ? '1' : '0';
                 if (input.checked) {
                     params.set(input.id, '1');
                 } else {
-                    // For move checkboxes, only save unchecked state if it overrides a default
-                    if (input.id.startsWith('move_')) {
-                        // Check if this move has a default 'true' state that we're overriding
-                        const needsExplicitZero = checkIfDefaultIsTrue(input.id);
-                        if (needsExplicitZero) {
-                            params.set(input.id, '0');
-                        } else {
-                            params.delete(input.id); // Remove unchecked non-defaults
-                        }
-                    } else {
-                        params.delete(input.id);
-                    }
+                    // Remove unchecked checkboxes to keep URL clean
+                    params.delete(input.id);
                 }
             } else if (input.type === 'radio') {
                 // For radio buttons, only save the checked one's value
@@ -227,24 +216,6 @@ window.Persistence = (function() {
         });
     }
 
-    /**
-     * Check if a move has a default 'true' state in availableMap
-     * @param {string} inputId - The input ID (e.g. 'move_a1b2c3')
-     * @returns {boolean} True if this move defaults to checked
-     */
-    function checkIfDefaultIsTrue(inputId) {
-        if (!inputId.startsWith('move_') || !window.availableMap) return false;
-        
-        // Extract move ID, handling multiple instances (move_id_1 -> move_id)
-        const moveId = inputId.replace('move_', '').replace(/_\d+$/, '').replace(/_pick_\d+$/, '');
-        const currentRole = window.Utils ? window.Utils.getCurrentRole() : null;
-        
-        if (currentRole && window.availableMap[currentRole]) {
-            return window.availableMap[currentRole][moveId] === true;
-        }
-        return false;
-    }
-    
     
     /**
      * Refresh persistence after dynamic content changes

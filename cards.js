@@ -119,12 +119,31 @@ window.Cards = (function() {
         }
     }
 
+
     /**
-     * Render cards for a specific role
-     * @param {string} role - The role to render cards for
+     * Get list of card definitions from merged availability map
+     * @param {Object} mergedAvailability - Merged availability map containing cards array
+     * @returns {Array} Array of card objects with id and path
+     */
+    function getCardsFromMergedAvailability(mergedAvailability) {
+        if (!mergedAvailability || !mergedAvailability.cards) {
+            return [];
+        }
+
+        // Convert card names to card objects with id and path
+        return mergedAvailability.cards.map(cardName => ({
+            id: cardName,
+            path: `data/cards/${cardName}`
+        }));
+    }
+
+    /**
+     * Render cards for roles using merged availability
+     * @param {Array<string>} roles - Array of roles to render cards for
+     * @param {Object} mergedAvailability - Merged availability map
      * @param {string} containerId - ID of the container to render cards into
      */
-    async function renderCardsForRole(role, containerId = 'cards-container') {
+    async function renderCardsForRole(roles, mergedAvailability, containerId = 'cards-container') {
         const container = document.getElementById(containerId);
         if (!container) {
             console.error(`Cards container not found: ${containerId}`);
@@ -134,8 +153,8 @@ window.Cards = (function() {
         // Clear existing cards
         container.innerHTML = '';
 
-        // Get card definitions for this role
-        const cardDefs = getCardsForRole(role);
+        // Get card definitions from merged availability
+        const cardDefs = getCardsFromMergedAvailability(mergedAvailability);
         if (!cardDefs || cardDefs.length === 0) {
             // Hide container if no cards
             container.style.display = 'none';
@@ -158,7 +177,7 @@ window.Cards = (function() {
             }
 
             // Cards are now rendered and ready for persistence
-            console.log(`Rendered ${cardDefs.length} cards for role: ${role}`);
+            console.log(`Rendered ${cardDefs.length} cards for roles: ${roles.join(', ')}`);
             
             // Note: Persistence refresh is handled by the caller
 
@@ -167,26 +186,6 @@ window.Cards = (function() {
             container.innerHTML = '<div class="card card-error"><p>Error loading cards</p></div>';
         }
     }
-
-    /**
-     * Get list of card definitions for a role from availability map
-     * @param {string} role - The role to get cards for
-     * @returns {Array} Array of card objects with id and path
-     */
-    function getCardsForRole(role) {
-        if (!window.availableMap || !window.availableMap[role] || !window.availableMap[role].cards) {
-            return [];
-        }
-
-        // Convert card names to card objects with id and path
-        return window.availableMap[role].cards.map(cardName => ({
-            id: cardName,
-            path: `data/cards/${cardName}`
-        }));
-    }
-
-
-
 
     /**
      * Initialize cards system
@@ -202,7 +201,7 @@ window.Cards = (function() {
     return {
         loadCard,
         renderCardsForRole,
-        getCardsForRole,
+        getCardsFromMergedAvailability,
         initialize
     };
 })();

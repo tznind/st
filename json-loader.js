@@ -80,7 +80,22 @@ window.JsonLoader = (function() {
         }
         
         console.log(`Loading ${roleConfigs.length} move files from availability map`);
-        return loadMultipleJsonData(roleConfigs);
+        
+        // Load all move files and combine them
+        const loadedData = await loadMultipleJsonData(roleConfigs);
+        
+        // Combine all move arrays into a single array
+        const allMoves = [];
+        roleConfigs.forEach(config => {
+            const moves = window[config.variableName];
+            if (Array.isArray(moves)) {
+                console.log(`${config.variableName} contains:`, moves.map(m => m.id));
+                allMoves.push(...moves);
+            }
+        });
+        
+        console.log(`Combined ${allMoves.length} total moves`);
+        return allMoves;
     }
 
     /**
@@ -111,11 +126,11 @@ window.JsonLoader = (function() {
                 loadAvailabilityMap()
             ]);
 
-            // Then load all role moves (needs availableMap to be loaded first)
-            await loadAllRoleMoves();
-
+            // Load all role moves and return the combined array
+            const allMoves = await loadAllRoleMoves();
+            
             console.log('All game data loaded successfully');
-            return true;
+            return allMoves;
         } catch (error) {
             console.error('Failed to load game data:', error);
             throw error;
