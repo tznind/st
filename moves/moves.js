@@ -9,13 +9,11 @@ window.Moves = (function() {
      * Initialize moves system
      */
     function initialize() {
-        // Set up event listeners for takefrom checkboxes (let persistence handle regular checkboxes)
+        // Set up event listeners for special move functionality (takefrom, card granting)
         setupMoveEventListeners();
         
-        // Role changes are now handled centrally by main.js
-        
-        // Listen for availableMap updates
-        setupAvailableMapUpdateListener();
+        // Role changes and regular checkboxes are now handled by persistence system
+        // No additional setup needed
     }
 
     /**
@@ -60,56 +58,9 @@ window.Moves = (function() {
         return element.getAttribute('data-move-id');
     }
 
-    /**
-     * Set up listener for role changes (now handled by main.js)
-     * This is kept for backward compatibility but delegates to main system
-     */
-    function setupRoleChangeListener() {
-        // Role change handling is now centralized in main.js
-        // This function is kept for compatibility but does nothing
-    }
-
-    /**
-     * Set up listener for availableMap updates
-     */
-    function setupAvailableMapUpdateListener() {
-        window.addEventListener('availableMapUpdated', (event) => {
-            const { role } = event.detail;
-            if (role === window.Utils.getCurrentRole()) {
-                renderMovesForRole(role);
-            }
-        });
-    }
-
-    /**
-     * Render moves for roles with merged availability
-     * @param {Array<string>} roles - Array of roles to render moves for
-     * @param {Object} mergedAvailability - Merged availability map
-     * @param {boolean} refreshPersistence - Whether to refresh persistence after rendering (default: true)
-     */
-    function renderMovesForRole(roles, mergedAvailability, refreshPersistence = true) {
-        if (window.MovesCore) {
-            window.MovesCore.renderMovesForRole(roles, mergedAvailability);
-            
-            // After rendering moves, refresh persistence to handle new checkboxes
-            if (refreshPersistence && window.Persistence) {
-                const form = document.querySelector('form');
-                if (form) {
-                    // Add a small delay to ensure DOM is fully updated
-                    setTimeout(() => {
-                        window.Persistence.refreshPersistence(form);
-                    }, 50);
-                }
-            }
-        }
-    }
-
-
-
     // Public API
     return {
-        initialize,
-        renderMovesForRole
+        initialize
     };
 })();
 

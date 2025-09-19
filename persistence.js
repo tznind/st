@@ -158,7 +158,12 @@ window.Persistence = (function() {
             form.addEventListener('change', (event) => {
                 const target = event.target;
                 if (target.id && shouldPersist(target)) {
+                    // Update URL first
                     saveToURL(form);
+                    
+                    // Then trigger layout update
+                    triggerLayoutUpdate(target);
+                    
                     if (onStateChange) {
                         let value;
                         if (target.type === 'checkbox') {
@@ -176,7 +181,12 @@ window.Persistence = (function() {
             form.addEventListener('input', (event) => {
                 const target = event.target;
                 if (target.id && shouldPersist(target) && target.type !== 'checkbox' && target.tagName.toLowerCase() !== 'select') {
+                    // Update URL first
                     saveToURL(form);
+                    
+                    // Then trigger layout update for text inputs
+                    triggerLayoutUpdate(target);
+                    
                     if (onStateChange) {
                         onStateChange(target.id, target.value);
                     }
@@ -216,6 +226,29 @@ window.Persistence = (function() {
         });
     }
 
+    
+    /**
+     * Trigger layout update based on the changed input
+     * @param {HTMLElement} target - The input that changed
+     */
+    function triggerLayoutUpdate(target) {
+        if (!window.Layout) return;
+        
+        // Determine the appropriate layout update type
+        if (target.id === 'hide_untaken') {
+            // Hide/show untaken moves toggle - can use quick update
+            window.Layout.quickLayoutUpdate('hide-untaken-toggle');
+        } else if (target.id === 'role' || target.id === 'role2' || target.name.startsWith('role')) {
+            // Role selection changed - needs full layout
+            window.Layout.layoutApplication();
+        } else if (target.id && target.id.startsWith('move_')) {
+            // Move checkbox changed - needs full layout to handle granted cards and other effects
+            window.Layout.layoutApplication();
+        } else {
+            // For other changes (text inputs, etc.), no immediate layout change needed
+            // The URL has been updated and will be reflected on next render
+        }
+    }
     
     /**
      * Refresh persistence after dynamic content changes

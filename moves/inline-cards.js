@@ -32,9 +32,6 @@ window.InlineCards = (function() {
                     parentContainer.style.display = 'block';
                 }
                 
-                // Refresh persistence to capture new card inputs
-                refreshPersistence();
-                
                 console.log(`Displayed card '${cardId}' inline in container '${containerId}'`);
             }
         } catch (error) {
@@ -98,19 +95,6 @@ window.InlineCards = (function() {
         }
     }
 
-    /**
-     * Refresh persistence (with delay to ensure DOM is updated)
-     */
-    function refreshPersistence() {
-        if (window.Persistence) {
-            const form = document.querySelector('form');
-            setTimeout(() => {
-                if (form) {
-                    window.Persistence.refreshPersistence(form);
-                }
-            }, 100);
-        }
-    }
 
     // Public API
     return {
