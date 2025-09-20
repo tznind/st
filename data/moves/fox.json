@@ -139,7 +139,7 @@
     "description": "When you Defy Danger, Persuade or Interfere by being deceitful, you have advantage.  When another move (like Seek Insight) allows a player ot ask you a question, you can opt not to answer."
   },
   {
-    "id":"abc123",
+    "id":"fox001",
     "title":"Eye on the door (Requires level 6+)",
     "description":"When you and your allies need to get out of here, name your escape route and roll +Intelligence",
     "outcomes": [
