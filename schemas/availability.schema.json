@@ -31,7 +31,7 @@
           "description": "Move ID mapped to its initial checked state (true = initially checked, false = initially unchecked)"
         }
       },
-      "required": ["_movesFile", "cards"],
+      "required": ["_movesFile"],
       "additionalProperties": false
     }
   },
