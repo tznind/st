@@ -41,20 +41,3 @@ php -S localhost:8000
 
 Then visit `http://localhost:8000/cs.html`
 
-### Adding New Roles
-
-To add a new role with moves:
-
-1. Create a JSON file in `data/moves/` (e.g., `data/moves/new-role.json`)
-2. Add the role to `data/availability.json` with a `_movesFile` property:
-
-```json
-"New Role": {
-  "_movesFile": "data/moves/new-role.json",
-  "move1": true,
-  "move2": false
-}
-```
-
-The system will automatically load the moves file and make the role available.
-
