@@ -137,5 +137,21 @@
     "id": "de0122",
     "title": "Pants on Fire (Requires level 6+)",
     "description": "When you Defy Danger, Persuade or Interfere by being deceitful, you have advantage.  When another move (like Seek Insight) allows a player ot ask you a question, you can opt not to answer."
+  },
+  {
+    "id":"abc123",
+    "title":"Eye on the door (Requires level 6+)",
+    "description":"When you and your allies need to get out of here, name your escape route and roll +Intelligence",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "You're gone",
+        "bullets": []
+      },
+      {
+        "range": "7–9",
+        "text": "You can stay or go but if you go, it costs you - the GM will tell you what (or who) you leave behind or take with you."
+      }
+    ]
   }
 ]
