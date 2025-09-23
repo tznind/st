@@ -84,13 +84,20 @@ window.JsonLoader = (function() {
         // Load all move files and combine them
         const loadedData = await loadMultipleJsonData(roleConfigs);
         
-        // Combine all move arrays into a single array
+        // Combine all move arrays into a single array and normalize categories
         const allMoves = [];
         roleConfigs.forEach(config => {
             const moves = window[config.variableName];
             if (Array.isArray(moves)) {
                 console.log(`${config.variableName} contains:`, moves.map(m => m.id));
-                allMoves.push(...moves);
+                // Normalize moves: set category to "Moves" if not specified
+                const normalizedMoves = moves.map(move => {
+                    if (!move.category) {
+                        return { ...move, category: "Moves" };
+                    }
+                    return move;
+                });
+                allMoves.push(...normalizedMoves);
             }
         });
         

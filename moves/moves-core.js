@@ -519,10 +519,7 @@ window.MovesCore = (function() {
         console.log('- Looking for move "is":', moves.find(m => m.id === 'is'));
         console.log('- "is" in available:', available.hasOwnProperty('is'), available['is']);
         
-        const groups = {
-            uncategorized: [], // Moves without category go here
-            categorized: new Map() // Map of category name to moves
-        };
+        const categorized = new Map(); // Map of category name to moves
         
         moves.forEach(move => {
             if (available.hasOwnProperty(move.id)) {
@@ -531,18 +528,16 @@ window.MovesCore = (function() {
                     return;
                 }
                 
-                if (!move.category) {
-                    groups.uncategorized.push(move);
-                } else {
-                    if (!groups.categorized.has(move.category)) {
-                        groups.categorized.set(move.category, []);
-                    }
-                    groups.categorized.get(move.category).push(move);
+                // All moves should have a category by now (normalized to "Moves" if empty)
+                const category = move.category || "Moves";
+                if (!categorized.has(category)) {
+                    categorized.set(category, []);
                 }
+                categorized.get(category).push(move);
             }
         });
         
-        return groups;
+        return categorized;
     }
 
 
@@ -566,7 +561,7 @@ window.MovesCore = (function() {
         const hideUntaken = hideUntakenCheckbox && hideUntakenCheckbox.checked;
         
         // Group moves by category using merged availability
-        const groups = groupMovesByCategory(window.moves, mergedAvailability, hideUntaken, urlParams);
+        const categorized = groupMovesByCategory(window.moves, mergedAvailability, hideUntaken, urlParams);
         
         // Add role information to the header
         if (roles.length > 1) {
@@ -576,24 +571,15 @@ window.MovesCore = (function() {
             movesContainer.appendChild(rolesHeader);
         }
         
-        // First render uncategorized moves under "Moves" header
-        if (groups.uncategorized.length > 0) {
-            const movesHeader = createCategoryHeader("Moves");
-            movesContainer.appendChild(movesHeader);
-            
-            groups.uncategorized.forEach(move => {
-                const moveElement = renderMove(move, mergedAvailability, urlParams);
-                movesContainer.appendChild(moveElement);
-            });
-        }
+        // Sort categories according to configuration
+        const sortedCategories = sortCategories(Array.from(categorized.keys()));
         
-        // Then render categorized moves with their category headers
-        const sortedCategories = sortCategories(Array.from(groups.categorized.keys()));
+        // Render categories in sorted order
         sortedCategories.forEach(categoryName => {
             const categoryHeader = createCategoryHeader(categoryName);
             movesContainer.appendChild(categoryHeader);
             
-            const categoryMoves = groups.categorized.get(categoryName);
+            const categoryMoves = categorized.get(categoryName);
             categoryMoves.forEach(move => {
                 const moveElement = renderMove(move, mergedAvailability, urlParams);
                 movesContainer.appendChild(moveElement);
