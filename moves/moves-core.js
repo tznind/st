@@ -169,10 +169,14 @@ window.MovesCore = (function() {
         pickDiv.appendChild(pickTitle);
         
         const multiplePick = move.multiplePick || 1;
+        const useColumns = move.pick.length > 10;
         
         if (multiplePick > 1) {
             // Create list with multiple checkboxes per option (like multiple moves)
             const pickList = document.createElement("ul");
+            if (useColumns) {
+                pickList.className = "pick-list-columns";
+            }
             
             move.pick.forEach((option, optionIndex) => {
                 const li = document.createElement("li");
@@ -213,8 +217,12 @@ window.MovesCore = (function() {
             
             pickDiv.appendChild(pickList);
         } else {
-            // Single column layout (original behavior)
+            // Single column layout (original behavior) or 2-column layout for large lists
             const pickList = document.createElement("ul");
+            if (useColumns) {
+                pickList.className = "pick-list-columns";
+            }
+            
             move.pick.forEach((option, index) => {
                 const li = document.createElement("li");
                 const checkbox = document.createElement("input");
@@ -257,10 +265,14 @@ window.MovesCore = (function() {
         pickOneDiv.appendChild(pickOneTitle);
         
         const multiplePick = move.multiplePick || 1;
+        const useColumns = move.pickOne.length > 10;
         
         if (multiplePick > 1) {
             // Create list with multiple radio buttons per option (like multiple moves)
             const pickOneList = document.createElement("ul");
+            if (useColumns) {
+                pickOneList.className = "pick-list-columns";
+            }
             
             move.pickOne.forEach((option, optionIndex) => {
                 const li = document.createElement("li");
@@ -304,8 +316,12 @@ window.MovesCore = (function() {
             
             pickOneDiv.appendChild(pickOneList);
         } else {
-            // Single column layout (original behavior)
+            // Single column layout (original behavior) or 2-column layout for large lists
             const pickOneList = document.createElement("ul");
+            if (useColumns) {
+                pickOneList.className = "pick-list-columns";
+            }
+            
             const radioGroupName = `move_${move.id}_pickone`;
             
             move.pickOne.forEach((option, index) => {
