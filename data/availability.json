@@ -2,7 +2,9 @@
   "Fox": {
     "_movesFile": "data/moves/fox.json",
     "cards": [],
-    "l1a2b3": false,
+    "fbg1": false,
+    "fbg2": false,
+    "fbg3": false,
     "d4e5f6": false,
     "g7h8i9": false,
     "1587dd": false,
