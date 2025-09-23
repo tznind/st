@@ -465,6 +465,51 @@ window.MovesCore = (function() {
     }
 
     /**
+     * Sort categories according to global configuration
+     * @param {Array<string>} categories - Array of category names to sort
+     * @returns {Array<string>} Sorted array of category names
+     */
+    function sortCategories(categories) {
+        // Get the global category order if available
+        const categoryOrder = window.categoriesConfig?.order || [];
+        
+        if (categoryOrder.length === 0) {
+            // No category order defined, fall back to alphabetical sorting
+            return categories.sort();
+        }
+        
+        // Create a map of category name to its position in the order
+        const orderMap = new Map();
+        categoryOrder.forEach((category, index) => {
+            orderMap.set(category, index);
+        });
+        
+        // Sort categories using the order map, with undefined positions at the end
+        return categories.sort((a, b) => {
+            const posA = orderMap.get(a);
+            const posB = orderMap.get(b);
+            
+            // If both are in the order list, sort by position
+            if (posA !== undefined && posB !== undefined) {
+                return posA - posB;
+            }
+            
+            // If only A is in the order list, A comes first
+            if (posA !== undefined && posB === undefined) {
+                return -1;
+            }
+            
+            // If only B is in the order list, B comes first
+            if (posA === undefined && posB !== undefined) {
+                return 1;
+            }
+            
+            // If neither is in the order list, sort alphabetically
+            return a.localeCompare(b);
+        });
+    }
+
+    /**
      * Group moves by category
      */
     function groupMovesByCategory(moves, available, hideUntaken = false, urlParams = null) {
@@ -543,7 +588,7 @@ window.MovesCore = (function() {
         }
         
         // Then render categorized moves with their category headers
-        const sortedCategories = Array.from(groups.categorized.keys()).sort();
+        const sortedCategories = sortCategories(Array.from(groups.categorized.keys()));
         sortedCategories.forEach(categoryName => {
             const categoryHeader = createCategoryHeader(categoryName);
             movesContainer.appendChild(categoryHeader);
@@ -565,6 +610,7 @@ window.MovesCore = (function() {
         createPickOptions,
         createPickOneOptions,
         createCategoryHeader,
+        sortCategories,
         groupMovesByCategory,
         isMoveTaken,
         renderMove,
