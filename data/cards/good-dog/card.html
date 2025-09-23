@@ -1,6 +1,49 @@
-
+<!-- Good Dog Card for Stonetop -->
+<div class="card good-dog-card">
+  <div class="card-header">
+    <h3 class="card-title">🐕 Good Dog</h3>
+    <div class="loyalty-section">
+      <strong>Loyalty:</strong>
+      <input type="checkbox" id="gd_l1">
+      <input type="checkbox" id="gd_l2">
+      <input type="checkbox" id="gd_l3">
+    </div>
+  </div>
+  
   <!-- Basic Info -->
   <div class="form-field">
-    <label for="td_nm">Name:</label>
-    <input type="text" id="td_nm" placeholder="Detail (if any) for replacing placeholder text in move">
+    <label for="gd_nm">Name:</label>
+    <input type="text" id="gd_nm" placeholder="Your dog's name">
   </div>
+  
+  <!-- Dog Type Choice -->
+  <div class="form-field">
+    <strong>Type:</strong> Follower
+    <div class="type-choice">
+      <label><input type="radio" name="gd_type" id="gd_retriever" value="retriever" checked> Retriever</label>
+      <label><input type="radio" name="gd_type" id="gd_herder" value="herder"> Herder</label>
+    </div>
+  </div>
+  
+  <!-- HP Tracking -->
+  <div class="form-field">
+    <label for="gd_hp">HP:</label>
+    <input type="number" id="gd_hp" value="6" min="0" max="6" style="width: 80px;"> (Max:6)
+  </div>
+  
+  <!-- Fixed Stats Display -->
+  <div class="stats-display">
+    <div class="stat-item">
+      <strong>Tags:</strong> keen-nosed, clever
+    </div>
+    <div class="stat-item">
+      <strong>Damage:</strong> d6 (hand, grabby)
+    </div>
+    <div class="stat-item">
+      <strong>Instinct:</strong> to play
+    </div>
+    <div class="stat-item">
+      <strong>Cost:</strong> affection
+    </div>
+  </div>
+</div>
