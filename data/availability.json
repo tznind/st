@@ -117,6 +117,9 @@
     "cards": [],
     "hbg1": false,
     "hbg2": false,
-    "hbg3": false
+    "hbg3": false,
+    "hsp": true,
+    "hsp1":false,
+    "hsp2":false
   }
 }

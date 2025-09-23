@@ -1,0 +1,12 @@
+{
+  "id": "token-detail",
+  "title": "Token Detail",
+  "path": "data/cards/token-detail",
+  "description": "Replacement text for placeholders in token",
+  "version": "1.0.0",
+  "author": "Stonetop System",
+  "files": {
+    "html": "card.html",
+    "css": "card.css"
+  }
+}

@@ -75,5 +75,38 @@
         "text": "Don't mark XP, hold +1 Omen, and tell us of the nightmares you have breen having and how your fears play into them."
       }
     ]
+  },
+  {
+    "id":"hsp",
+    "title":"Pick 2",
+    "category": "Special Possessions",
+    "pick": [
+      "A heap of expectations: of little use",
+      "A good dog (tick move below)",
+      "Husbandry tools: brushes, muzzles, collars, feed, ◇ whips, ◇ bridles, etc.  Gain advantage to Persuade domestic beasts (livestock, dogs, etc)",
+      "Stoneworker's tools: chisels, drills, ◇ prybars, ◇ spikes, ◇ block & tackles, wheelbarrow, etc.",
+      "Tannery (or access to it): lime, acid, salts, thick gloves, ◇ a boilrd leather cuirass (1 Armor), etc.",
+      "Personal token, fraught with meaning (tick move below)"
+    ]
+  },
+  {
+    "id":"hsp1",
+    "title":"A Good Dog",
+    "category": "Special Possessions",
+    "grantsCard": "good-dog"
+  },
+  {
+    "id":"hsp2",
+    "title":"Personal Token",
+    "category": "Special Possessions",
+    "pick": [
+      "A shield bearing ______'s crest",
+      "A wool cloak, woven for you by ____",
+      "A letter, spattered with tears & blood",
+      "A flute, a gift from someone you loved",
+      "A fine locket, holding a strand of hair",
+      "A tinderbox, lovingly engraved"
+    ],
+    "grantsCard": "token-detail"
   }
 ]
