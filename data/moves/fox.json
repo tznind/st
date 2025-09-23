@@ -11,7 +11,6 @@
     "category": "Background",
     "description": "You start with either Burgle or Light Fingers (your choice) as an extra move and either burglar tools or a hidden stash (your choice) as an additional special possession."
   },
-
   {
     "id": "fbg3",
     "title": "The Prodigal Returned (+Charisma)",
@@ -38,6 +37,22 @@
         "text": "The GM chooses 1 and then some"
       }
     ]
+  },
+  {
+    "id":"fsp",
+    "title":"Pick 2",
+    "category": "Special Possessions",
+    "pick": [
+      "Burglar's Kit: picks, files snippers, wire, ◇ prybars, ◇ hacksaws, ◇ a lantern.",
+      "Carpenter's tools: chisels, files nails, pitch, ◇ prybars, ◇ saws, ◇◇ firkins, barrels, etc",
+      "Distillery: skins of fine whisky (2 uses, grants advantage to Persuade), copper tubes, malt, ◇◇ firkins, stills, barrels, etc.",
+      "Hidden Stash: 3 uses, each use produces valuables worth a purse of silvers",
+      "Mummer's kit: juggling balls, whirlybird seeds, motley, ribbons, bells, ◇ puppets, ◇ a fiddle etc.",
+      "Scribe's tools: parchment, inks, pigments, vials, quills, ◇ a notebook, etc.",
+      "Tannery (or access to it): lime, acid, salts, thick gloves, ◇ a boilrd leather cuirass (1 Armor), etc.",
+      "Trading contacts: small amounts of salt, glass, silk, spice, medicinal herbs, pigments, ivory, etc"
+    ]
+
   },
   {
     "id": "d4e5f6",
