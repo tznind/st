@@ -182,5 +182,116 @@
         "text": "You can stay or go but if you go, it costs you - the GM will tell you what (or who) you leave behind or take with you."
       }
     ]
+  },
+  {
+    "id": "fx01",
+    "title": "All in the Wrist",
+    "description": "Any knife or dagger gets the thrown tag in your hands. Also, you keep a number of iron throwing blades (near) on you; they don't take up space in your inventory. Your ammo replenishes whenever you Outfit."
+  },
+  {
+    "id": "fx02",
+    "title": "Ambush (+Dexterity)",
+    "description": "When you attack someone up close and they don't see it coming, deal your damage or roll +Dexterity.",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "Deal your damage and pick 2",
+        "bullets": [
+          "Deal +1d4 damage",
+          "Stop them from making noise/raising an alarm",
+          "Slip away before they can react",
+          "Create an opportunity; you or an ally gains advantage on the next move to act on it"
+        ]
+      },
+      {
+        "range": "7–9",
+        "text": "Deal your damage and pick 1",
+        "bullets": []
+      }
+    ]
+  },
+  {
+    "id": "fx03",
+    "title": "Burgle (+Intelligence)",
+    "description": "When you break into a place or thing, roll +Intelligence.",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "You're in, but pick 1",
+        "bullets": [
+          "It took a fair bit of time/effort",
+          "You made a lot of noise",
+          "You broke something on your way in",
+          "You had to use up 1d4 small items (say what)"
+        ]
+      },
+      {
+        "range": "7–9",
+        "text": "You're in, but pick 2",
+        "bullets": []
+      }
+    ]
+  },
+  {
+    "id": "fx04",
+    "title": "Catlike",
+    "description": "When you carry a light load and move with care, you make no noise. When you keep still in shadows or darkness, you remain unseen until you draw attention to yourself, move positions, or attack."
+  },
+  {
+    "id": "fx05",
+    "title": "Perceptive",
+    "description": "When you Seek Insight, you may ask 1 additional question. Even on a 6-, you can ask 1 question (though you might not like how you learn the answer)."
+  },
+  {
+    "id": "fx06",
+    "title": "Parry & Riposte (Requires Skill at Arms)",
+    "description": "When you Defend with a weapon that you can wield quickly, you can spend 1 Readiness to both halve an attack's effects/damage and strike back at the attacker (deal your damage with disadvantage), instead of spending 1 Readiness for each."
+  },
+  {
+    "id": "fx07",
+    "title": "Battle Dancer (Requires level 6+ and Skill at Arms)",
+    "description": "When you roll +Dexterity to Clash, on a 12+ you deal your damage, avoid your enemy's attack, and impress/embarrass/overawe your foes."
+  },
+  {
+    "id": "fx08",
+    "title": "Cheap Shot (Requires level 6+ and Ambush)",
+    "description": "When you Ambush with a hand or precise weapon, you have advantage on your damage roll."
+  },
+  {
+    "id": "fx09",
+    "title": "Second Intent (Requires level 6+, Parry & Riposte, and Ambush)",
+    "description": "When you Defend and spend 1 Readiness to Parry & Riposte, also pick 1 option from the Ambush list."
+  },
+  {
+    "id": "fx10",
+    "title": "Slippery (Requires level 6+)",
+    "description": "When you roll to escape being caught or controlled, treat a 6- as a 7-9. On a 12+, say how you turn the tables or use the circumstances to your advantage."
+  },
+  {
+    "id": "fx11",
+    "title": "Free Running",
+    "description": "When you carry a light load and move with speed and grace, gain advantage on any move to surmount or bypass a physical obstacle."
+  },
+  {
+    "id": "fx12",
+    "title": "Irresistible",
+    "description": "When you interact with someone, you can ask their player if they find you attractive and get an honest answer (usually 'yes'). When you Persuade by using your considerable charms as leverage, you have advantage."
+  },
+  {
+    "id": "fx13",
+    "title": "Light Fingers (+Dexterity)",
+    "description": "When you perform sleight of hand on an unwary mark, you succeed and no one's the wiser. If you're being watched, roll +Dexterity.",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "You succeed and no one's the wiser",
+        "bullets": []
+      },
+      {
+        "range": "7–9",
+        "text": "You succeed OR no one's the wiser (your choice)",
+        "bullets": []
+      }
+    ]
   }
 ]

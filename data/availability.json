@@ -16,7 +16,20 @@
     "ae0122": false,
     "de0122": false,
     "ae0121": false,
-    "fox001": false
+    "fox001": false,
+    "fx01": false,
+    "fx02": false,
+    "fx03": false,
+    "fx04": false,
+    "fx05": false,
+    "fx06": false,
+    "fx07": false,
+    "fx08": false,
+    "fx09": false,
+    "fx10": false,
+    "fx11": false,
+    "fx12": false,
+    "fx13": false
   },
   "Marshal": {
     "_movesFile": "data/moves/marshal.json",
