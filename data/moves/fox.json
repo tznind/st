@@ -1,19 +1,19 @@
 [
   {
-    "id": "bg1",
+    "id": "fbg1",
     "title": "The Natural (+Intelligence)",
     "category": "Background",
     "description": "When you Seek Insight, you may roll +Intelligence instead of +Wisdom and add \"What opportunity does no one else see?\" to the list of possible questions."
   },
    {
-    "id": "bg2",
+    "id": "fbg2",
     "title": "A Life of Crime",
     "category": "Background",
     "description": "You start with either Burgle or Light Fingers (your choice) as an extra move and either burglar tools or a hidden stash (your choice) as an additional special possession."
   },
 
   {
-    "id": "bg3",
+    "id": "fbg3",
     "title": "The Prodigal Returned (+Charisma)",
     "category": "Background",
     "description": "When you declare that you know someone outside of Stonetop, someone who can help, name them and roll.",
