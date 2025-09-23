@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://roguetrader.local/schemas/categories.schema.json",
+  "title": "Categories Configuration",
+  "description": "Schema for defining the global order of move categories",
+  "type": "object",
+  "properties": {
+    "order": {
+      "type": "array",
+      "description": "Array of category names in the desired display order",
+      "items": {
+        "type": "string",
+        "description": "Category name (case-sensitive)"
+      },
+      "uniqueItems": true
+    }
+  },
+  "required": ["order"],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "order": [
+        "Moves",
+        "Equipment",
+        "Advancement"
+      ]
+    }
+  ]
+}
