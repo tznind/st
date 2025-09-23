@@ -111,5 +111,12 @@
     "hv004": true,
     "hv005": false,
     "hv006": false
+  },
+  "The Would Be Hero":{
+    "_movesFile": "data/moves/the-would-be-hero.json",
+    "cards": [],
+    "hbg1": false,
+    "hbg2": false,
+    "hbg3": false
   }
 }
