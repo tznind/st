@@ -242,8 +242,17 @@ window.Persistence = (function() {
             // Role selection changed - needs full layout
             window.Layout.layoutApplication();
         } else if (target.id && target.id.startsWith('move_')) {
-            // Move checkbox changed - needs full layout to handle granted cards and other effects
-            window.Layout.layoutApplication();
+            // Move checkbox changed - only do full layout if it has special effects
+            const moveId = target.getAttribute('data-move-id');
+            const move = window.moves?.find(m => m.id === moveId);
+            
+            if (move && (move.grantsCard || move.takefrom)) {
+                // Has special effects - needs full layout
+                window.Layout.layoutApplication();
+            } else {
+                // Regular move checkbox - no special layout needed, just URL update
+                // The checkbox state is already updated by the browser
+            }
         } else {
             // For other changes (text inputs, etc.), no immediate layout change needed
             // The URL has been updated and will be reflected on next render

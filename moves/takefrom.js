@@ -17,15 +17,50 @@ window.TakeFrom = (function() {
         heading.textContent = "Learn from:";
         takeFromDiv.appendChild(heading);
         
+        // Support multiple takefrom instances
+        const maxInstances = move.multiple || 1;
+        const instancesContainer = document.createElement("div");
+        instancesContainer.className = "takefrom-instances";
+        
+        // Create all possible instances (they'll be shown/hidden based on checked boxes)
+        for (let instance = 1; instance <= maxInstances; instance++) {
+            const instanceDiv = createTakeFromInstance(move, urlParams, instance);
+            instancesContainer.appendChild(instanceDiv);
+        }
+        
+        takeFromDiv.appendChild(instancesContainer);
+        
+        // Container for learned moves from all instances
+        const learnedMovesContainer = document.createElement("div");
+        learnedMovesContainer.className = "learned-moves-container";
+        learnedMovesContainer.id = `learned_moves_${move.id}`;
+        takeFromDiv.appendChild(learnedMovesContainer);
+        
+        return takeFromDiv;
+    }
+    
+    /**
+     * Create a single takefrom instance (role + move dropdowns)
+     */
+    function createTakeFromInstance(move, urlParams, instance) {
+        const instanceDiv = document.createElement("div");
+        instanceDiv.className = "takefrom-instance";
+        instanceDiv.id = `takefrom_instance_${move.id}_${instance}`;
+        
+        // Initially hide instances > 1
+        if (instance > 1) {
+            instanceDiv.style.display = 'none';
+        }
+        
         const controlsDiv = document.createElement("div");
         controlsDiv.className = "takefrom-controls";
         
-        // Role selector
+        // Role selector (with instance number)
         const roleLabel = document.createElement("label");
-        roleLabel.textContent = "Role: ";
+        roleLabel.textContent = instance > 1 ? `Role ${instance}: ` : "Role: ";
         const roleSelect = document.createElement("select");
-        roleSelect.id = `takefrom_${move.id}_role`;
-        roleSelect.name = `takefrom_${move.id}_role`;
+        roleSelect.id = instance > 1 ? `takefrom_${move.id}_${instance}_role` : `takefrom_${move.id}_role`;
+        roleSelect.name = instance > 1 ? `takefrom_${move.id}_${instance}_role` : `takefrom_${move.id}_role`;
         
         // Add default option
         const defaultOption = document.createElement("option");
@@ -40,16 +75,8 @@ window.TakeFrom = (function() {
             const allAvailableRoles = window.Utils.getAllAvailableRoles();
             const currentRoles = window.Utils.getCurrentRoles();
             matchingRoles = window.Utils.getMatchingRoles(move.takefrom, allAvailableRoles, currentRoles);
-            console.log('TakeFrom Debug:', {
-                moveId: move.id,
-                takefromPatterns: move.takefrom,
-                allAvailableRoles: allAvailableRoles,
-                currentRoles: currentRoles,
-                matchingRoles: matchingRoles
-            });
         } else {
             // Fallback to original behavior if Utils not available
-            console.warn('Utils not available, using fallback takefrom behavior');
             matchingRoles = move.takefrom || [];
         }
         
@@ -61,12 +88,12 @@ window.TakeFrom = (function() {
             roleSelect.appendChild(option);
         });
         
-        // Move selector
+        // Move selector (with instance number)
         const moveLabel = document.createElement("label");
-        moveLabel.textContent = "Move: ";
+        moveLabel.textContent = instance > 1 ? `Move ${instance}: ` : "Move: ";
         const moveSelect = document.createElement("select");
-        moveSelect.id = `takefrom_${move.id}_move`;
-        moveSelect.name = `takefrom_${move.id}_move`;
+        moveSelect.id = instance > 1 ? `takefrom_${move.id}_${instance}_move` : `takefrom_${move.id}_move`;
+        moveSelect.name = instance > 1 ? `takefrom_${move.id}_${instance}_move` : `takefrom_${move.id}_move`;
         moveSelect.disabled = true; // Initially disabled
         
         // Add default option
@@ -75,13 +102,16 @@ window.TakeFrom = (function() {
         defaultMoveOption.textContent = "Select move...";
         moveSelect.appendChild(defaultMoveOption);
         
-        // Restore values from URL
-        if (urlParams.has(`takefrom_${move.id}_role`)) {
-            const savedRole = urlParams.get(`takefrom_${move.id}_role`);
-            const savedMove = urlParams.get(`takefrom_${move.id}_move`);
+        // Restore values from URL for this instance
+        const roleParamKey = instance > 1 ? `takefrom_${move.id}_${instance}_role` : `takefrom_${move.id}_role`;
+        const moveParamKey = instance > 1 ? `takefrom_${move.id}_${instance}_move` : `takefrom_${move.id}_move`;
+        
+        if (urlParams.has(roleParamKey)) {
+            const savedRole = urlParams.get(roleParamKey);
+            const savedMove = urlParams.get(moveParamKey);
             
             roleSelect.value = savedRole;
-            updateMoveOptions(roleSelect, moveSelect, move.id);
+            updateMoveOptions(roleSelect, moveSelect, move.id, instance);
             
             // Use a delay to ensure options are populated before setting value
             setTimeout(() => {
@@ -90,7 +120,7 @@ window.TakeFrom = (function() {
                     
                     // Also update the learned move display after setting the value
                     setTimeout(() => {
-                        updateLearnedMoveDisplay(moveSelect, learnedMoveContainer, urlParams);
+                        updateAllLearnedMoveDisplays(move.id, urlParams);
                     }, 50);
                 }
             }, 100);
@@ -98,12 +128,12 @@ window.TakeFrom = (function() {
         
         // Event listener for role change
         roleSelect.addEventListener('change', () => {
-            handleRoleChange(roleSelect, moveSelect, move.id);
+            handleRoleChange(roleSelect, moveSelect, move.id, instance);
         });
         
         // Event listener for move selection
         moveSelect.addEventListener('change', () => {
-            handleMoveChange(roleSelect, moveSelect, move.id);
+            handleMoveChange(roleSelect, moveSelect, move.id, instance);
         });
         
         roleLabel.appendChild(roleSelect);
@@ -111,52 +141,77 @@ window.TakeFrom = (function() {
         
         controlsDiv.appendChild(roleLabel);
         controlsDiv.appendChild(moveLabel);
-        takeFromDiv.appendChild(controlsDiv);
+        instanceDiv.appendChild(controlsDiv);
         
-        // Container for the learned move (initially empty)
-        const learnedMoveContainer = document.createElement("div");
-        learnedMoveContainer.className = "learned-move-container";
-        learnedMoveContainer.id = `learned_move_${move.id}`;
-        takeFromDiv.appendChild(learnedMoveContainer);
+        // Individual learned move container for this instance
+        const instanceLearnedContainer = document.createElement("div");
+        instanceLearnedContainer.className = "learned-move-container";
+        instanceLearnedContainer.id = `learned_move_${move.id}_${instance}`;
+        instanceDiv.appendChild(instanceLearnedContainer);
         
         // Show learned move if there's a selection (delay to allow restoration to complete)
         setTimeout(() => {
-            updateLearnedMoveDisplay(moveSelect, learnedMoveContainer, urlParams);
+            updateLearnedMoveDisplay(moveSelect, instanceLearnedContainer, urlParams);
         }, 150);
         
-        return takeFromDiv;
+        return instanceDiv;
+    }
+    
+    /**
+     * Initialize takefrom sections after page render (called by layout system)
+     */
+    function initializeTakeFromSections() {
+        if (!window.moves) return;
+        
+        // Find all moves with takefrom and initialize their visibility
+        window.moves.forEach(move => {
+            if (move.takefrom && move.multiple) {
+                // Update instance visibility based on current checkbox states
+                updateTakeFromInstanceVisibility(move.id);
+            }
+        });
+        
+        // Also update all learned move displays after a brief delay
+        setTimeout(() => {
+            const urlParams = new URLSearchParams(location.search);
+            window.moves.forEach(move => {
+                if (move.takefrom) {
+                    updateAllLearnedMoveDisplays(move.id, urlParams);
+                }
+            });
+        }, 200);
     }
 
     /**
      * Handle role dropdown change
      */
-    function handleRoleChange(roleSelect, moveSelect, moveId) {
-        updateMoveOptions(roleSelect, moveSelect, moveId);
+    function handleRoleChange(roleSelect, moveSelect, moveId, instance = 1) {
+        updateMoveOptions(roleSelect, moveSelect, moveId, instance);
         // Clear move selection when role changes
         moveSelect.value = '';
         
-        // Clear the learned move display
-        const learnedMoveContainer = document.getElementById(`learned_move_${moveId}`);
+        // Clear the learned move display for this instance
+        const learnedMoveContainer = document.getElementById(`learned_move_${moveId}_${instance}`);
         if (learnedMoveContainer) {
             learnedMoveContainer.innerHTML = '';
         }
         
-        handleSelectionChangeQuiet(roleSelect, moveSelect, moveId);
+        handleSelectionChangeQuiet(roleSelect, moveSelect, moveId, instance);
         updateURL(roleSelect, moveSelect);
     }
 
     /**
      * Handle move dropdown change
      */
-    function handleMoveChange(roleSelect, moveSelect, moveId) {
-        // Update the inline learned move display
-        const learnedMoveContainer = document.getElementById(`learned_move_${moveId}`);
+    function handleMoveChange(roleSelect, moveSelect, moveId, instance = 1) {
+        // Update the inline learned move display for this instance
+        const learnedMoveContainer = document.getElementById(`learned_move_${moveId}_${instance}`);
         if (learnedMoveContainer) {
             updateLearnedMoveDisplay(moveSelect, learnedMoveContainer, new URLSearchParams(location.search));
         }
         
         // Handle the selection change (but don't re-render the whole page)
-        handleSelectionChangeQuiet(roleSelect, moveSelect, moveId);
+        handleSelectionChangeQuiet(roleSelect, moveSelect, moveId, instance);
         updateURL(roleSelect, moveSelect);
     }
 
@@ -264,7 +319,7 @@ window.TakeFrom = (function() {
     /**
      * Update move options based on selected role
      */
-    function updateMoveOptions(roleSelect, moveSelect, moveId) {
+    function updateMoveOptions(roleSelect, moveSelect, moveId, instance = 1) {
         const selectedRole = roleSelect.value;
         const currentValue = moveSelect.value; // Preserve current selection
         
@@ -319,12 +374,12 @@ window.TakeFrom = (function() {
     /**
      * Handle takefrom selection changes (quiet version - no re-render)
      */
-    function handleSelectionChangeQuiet(roleSelect, moveSelect, takeFromMoveId) {
+    function handleSelectionChangeQuiet(roleSelect, moveSelect, takeFromMoveId, instance = 1) {
         const currentRoles = window.Utils ? window.Utils.getCurrentRoles() : [];
         const selectedMove = moveSelect.value;
         
         // Get previous selection to remove it if changed
-        const prevKey = `takefrom_${takeFromMoveId}_move`;
+        const prevKey = instance > 1 ? `takefrom_${takeFromMoveId}_${instance}_move` : `takefrom_${takeFromMoveId}_move`;
         const urlParams = new URLSearchParams(location.search);
         const previousMove = urlParams.get(prevKey);
         
@@ -339,6 +394,102 @@ window.TakeFrom = (function() {
         
         // Note: We don't need to modify availableMap - learned moves are self-contained
     }
+    
+    /**
+     * Update all learned move displays for a takefrom move
+     */
+    function updateAllLearnedMoveDisplays(moveId, urlParams) {
+        const move = window.moves?.find(m => m.id === moveId);
+        if (!move) return;
+        
+        const maxInstances = move.multiple || 1;
+        
+        for (let instance = 1; instance <= maxInstances; instance++) {
+            const moveSelectId = instance > 1 ? `takefrom_${moveId}_${instance}_move` : `takefrom_${moveId}_move`;
+            const moveSelect = document.getElementById(moveSelectId);
+            const learnedContainer = document.getElementById(`learned_move_${moveId}_${instance}`);
+            
+            if (moveSelect && learnedContainer) {
+                updateLearnedMoveDisplay(moveSelect, learnedContainer, urlParams);
+            }
+        }
+    }
+    
+    /**
+     * Update visibility of takefrom instances based on number of checked boxes
+     */
+    function updateTakeFromInstanceVisibility(moveId) {
+        const move = window.moves?.find(m => m.id === moveId);
+        if (!move || !move.multiple) return;
+        
+        // Count checked boxes for this move
+        const checkedCount = getCheckedBoxCount(moveId);
+        const maxInstances = move.multiple;
+        
+        // Show/hide instances based on checked count
+        for (let instance = 1; instance <= maxInstances; instance++) {
+            const instanceDiv = document.getElementById(`takefrom_instance_${moveId}_${instance}`);
+            if (instanceDiv) {
+                if (instance <= checkedCount) {
+                    instanceDiv.style.display = 'block';
+                } else {
+                    instanceDiv.style.display = 'none';
+                    // Clear selections for hidden instances
+                    clearInstanceSelections(moveId, instance);
+                }
+            }
+        }
+    }
+    
+    /**
+     * Get count of checked boxes for a move
+     */
+    function getCheckedBoxCount(moveId) {
+        let count = 0;
+        
+        const move = window.moves?.find(m => m.id === moveId);
+        if (!move) return 0;
+        
+        if (move.multiple) {
+            // For multiple moves, check move_ID_1, move_ID_2, etc.
+            for (let i = 1; i <= move.multiple; i++) {
+                const checkbox = document.getElementById(`move_${moveId}_${i}`);
+                if (checkbox?.checked) count++;
+            }
+        } else {
+            // For single moves, check move_ID
+            const mainCheckbox = document.getElementById(`move_${moveId}`);
+            if (mainCheckbox?.checked) count++;
+        }
+        
+        return count;
+    }
+    
+    /**
+     * Clear selections for a specific instance
+     */
+    function clearInstanceSelections(moveId, instance) {
+        const roleSelectId = instance > 1 ? `takefrom_${moveId}_${instance}_role` : `takefrom_${moveId}_role`;
+        const moveSelectId = instance > 1 ? `takefrom_${moveId}_${instance}_move` : `takefrom_${moveId}_move`;
+        
+        const roleSelect = document.getElementById(roleSelectId);
+        const moveSelect = document.getElementById(moveSelectId);
+        const learnedContainer = document.getElementById(`learned_move_${moveId}_${instance}`);
+        
+        if (roleSelect) roleSelect.value = '';
+        if (moveSelect) {
+            moveSelect.value = '';
+            moveSelect.disabled = true;
+        }
+        if (learnedContainer) learnedContainer.innerHTML = '';
+        
+        // Remove from URL parameters
+        const params = new URLSearchParams(location.search);
+        params.delete(roleSelectId);
+        params.delete(moveSelectId);
+        const newUrl = params.toString() ? '?' + params.toString() : location.pathname;
+        history.replaceState({}, '', newUrl);
+    }
 
     /**
      * Handle when the main takefrom move checkbox is toggled
@@ -349,7 +500,8 @@ window.TakeFrom = (function() {
             const anyStillChecked = checkIfAnyTakeFromMoveChecked(moveId);
             
             if (anyStillChecked) {
-                // Some checkboxes are still checked, don't reset
+                // Some checkboxes are still checked, update visibility
+                updateTakeFromInstanceVisibility(moveId);
                 return;
             }
             
@@ -358,6 +510,8 @@ window.TakeFrom = (function() {
         } else {
             // Move was checked - restore previous state if it exists in URL
             restoreTakeFromSelection(moveId);
+            // Update visibility to show appropriate number of instances
+            updateTakeFromInstanceVisibility(moveId);
         }
     }
 
@@ -458,6 +612,9 @@ window.TakeFrom = (function() {
         handleTakeFromMoveToggle,
         updateLearnedMoveDisplay,
         updateMoveOptions,
-        checkIfAnyTakeFromMoveChecked
+        checkIfAnyTakeFromMoveChecked,
+        updateTakeFromInstanceVisibility,
+        updateAllLearnedMoveDisplays,
+        initializeTakeFromSections
     };
 })();

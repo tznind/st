@@ -46,6 +46,13 @@ window.Layout = (function() {
             // Apply persistence to restore all form state immediately
             applyPersistenceState(urlParams);
             
+            // Initialize takefrom sections after persistence is applied
+            if (window.TakeFrom) {
+                setTimeout(() => {
+                    window.TakeFrom.initializeTakeFromSections();
+                }, 100);
+            }
+            
             // Restore scroll position after a brief delay to ensure layout is complete
             setTimeout(() => {
                 window.scrollTo(0, scrollY);
@@ -176,6 +183,7 @@ window.Layout = (function() {
                     const urlParams = new URLSearchParams(location.search);
                     await renderMoves(selectedRoles, mergedAvailability, urlParams);
                     applyPersistenceState(urlParams);
+                    
                     // Restore scroll position
                     setTimeout(() => window.scrollTo(0, scrollY), 25);
                 }

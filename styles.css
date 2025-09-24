@@ -467,6 +467,36 @@ button:focus {
   cursor: not-allowed;
 }
 
+/* === MULTIPLE TAKEFROM INSTANCES === */
+.takefrom-instances {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.takefrom-instance {
+  background: #f8f9fa;
+  border: 1px solid #90caf9;
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.takefrom-instance:first-child {
+  background: #e3f2fd;
+}
+
+.learned-moves-container {
+  margin-top: 15px;
+}
+
+.learned-moves-container .learned-move-container {
+  margin-top: 10px;
+}
+
+.learned-moves-container .learned-move-container:first-child {
+  margin-top: 0;
+}
+
 /* === GRANTED CARD DISPLAY === */
 .granted-card-options {
   background: #e0f2fe;
