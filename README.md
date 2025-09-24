@@ -41,3 +41,8 @@ php -S localhost:8000
 
 Then visit `http://localhost:8000/cs.html`
 
+## License
+
+Character sheet code is licensed under the [MIT license](./LICENSE).
+
+Stonetop moves and character designs are copyright Penny Lantern - used with permission of Jason Lutes.
