@@ -163,7 +163,13 @@
   {
     "id": "h013",
     "title": "Speak Truth to Power (Requires Anger is a Gift)",
-    "description": "When you demand that someone does what is clearly good and right, you have advantage to Persuade. If they refuse, gain +1 Resolve."
+    "description": "When you demand that someone does what is clearly good and right, you have advantage to Persuade.",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "If they refuse, gain +1 Resolve."
+      }
+    ]
   },
   {
     "id": "h002",
@@ -189,7 +195,13 @@
   {
     "id": "h003",
     "title": "But I Get Up Again (Requires I Get Knocked Down)",
-    "description": "When you use I Get Knocked Down, you have advantage on your next roll against whatever dealt the damage and your next blow against them does +1d4 damage."
+    "description": "When you use I Get Knocked Down, you have advantage on your next roll against whatever dealt the damage.",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "Your next blow against them does +1d4 damage."
+      }
+    ]
   },
   {
     "id": "h006",
@@ -209,7 +221,13 @@
   {
     "id": "h009",
     "title": "Never Gonna Keep Me Down",
-    "description": "When you have 5 or fewer current HP, you impose disadvantage on any damage you take. Once per session, when you are at Death's Door, don't roll. You get a 10+."
+    "description": "When you have 5 or fewer current HP, you impose disadvantage on any damage you take.",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "Once per session, when you are at Death's Door, don't roll. You get a 10+."
+      }
+    ]
   },
   {
     "id": "h010",
@@ -233,12 +251,24 @@
   {
     "id": "h011",
     "title": "Resourceful",
-    "description": "When you Defy Danger and roll a 6-, ask the GM a question from Seek Insight after they describe what happens. Gain advantage on your next roll to act on the answer."
+    "description": "When you Defy Danger and roll a 6-, ask the GM a question from Seek Insight after they describe what happens.",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "Gain advantage on your next roll to act on the answer."
+      }
+    ]
   },
   {
     "id": "h012",
     "title": "Something to Remember Me By",
-    "description": "When you spend Readiness (from Defend) to strike back at an attacker, you deal +1d4 damage and scar, mark, or diminish them in some way (the GM will say how, or ask you to)."
+    "description": "When you spend Readiness (from Defend) to strike back at an attacker, you deal +1d4 damage.",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "You also scar, mark, or diminish them in some way (the GM will say how, or ask you to)."
+      }
+    ]
   },
   {
     "id": "h014",
@@ -248,7 +278,13 @@
   {
     "id": "h015",
     "title": "Underestimated",
-    "description": "As long as you avoid overt hostility, no enemy will consider you a threat. When you first make your move against an enemy who underestimates you, you have advantage."
+    "description": "As long as you avoid overt hostility, no enemy will consider you a threat.",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "When you first make your move against an enemy who underestimates you, you have advantage."
+      }
+    ]
   },
   {
     "id": "h016",
@@ -275,7 +311,13 @@
   {
     "id": "h018",
     "title": "A Force to be Reckoned With (Requires level 6+; replaces Underestimated)",
-    "description": " Any intelligent creature who looks you in the eye or hears the steel in your voice instinctively knows that you are a force to be reckoned with, and treats you appropriately. When you Defy Danger against something trying to harm or constrain you, on a 12+ you turn the tables on them (the GM will say how, or ask you to)."
+    "description": "Any intelligent creature who looks you in the eye or hears the steel in your voice instinctively knows that you are a force to be reckoned with, and treats you appropriately.",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "When you Defy Danger against something trying to harm or constrain you, on a 12+ you turn the tables on them (the GM will say how, or ask you to)."
+      }
+    ]
   },
   {
     "id": "h019",
@@ -300,6 +342,12 @@
   {
     "id": "h022",
     "title": "Voice of Experience (Requires level 6+; replaces Inquiring Minds)",
-    "description": "When another PC comes to you for advice and you tell them what you think is best, they have advantage on their first roll to follow your advice. When you Seek Insight, you can always ask, 'What is about to happen?' for free, even on a 6-."
+    "description": "When another PC comes to you for advice and you tell them what you think is best, they have advantage on their first roll to follow your advice.",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "When you Seek Insight, you can always ask, 'What is about to happen?' for free, even on a 6-."
+      }
+    ]
   }
 ]
