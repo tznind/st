@@ -232,21 +232,8 @@
   {
     "id": "h010",
     "title": "Potential for Greatness",
-    "description": "(Requires the Would-Be Hero) Once per level, when you roll a stat and get a 10+, mark one of the following (note the level during which you marked it). You don't have to mark them in order.",
-    "outcomes": [
-      {
-        "range": "",
-        "text": "",
-        "bullets": [
-          "Increase the stat you rolled by 1, to a max of +2 (at level ___)",
-          "Increase the stat you rolled by 1, to a max of +2 (at level ___)",
-          "Increase the stat you rolled by 1, to a max of +2 (at level ___)",
-          "Increase the stat you rolled by 1, to a max of +2 (at level ___)",
-          "Increase your max HP by 4 (at level ___)",
-          "Increase your damage die to a d8 (at level ___)"
-        ]
-      }
-    ]
+    "description": "(Requires the Would-Be Hero) Once per level, when you roll a stat and get a 10+, mark one of the options on your Potential for Greatness card. You don't have to mark them in order",
+    "grantsCard": "potential-greatness"
   },
   {
     "id": "h011",

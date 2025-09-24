@@ -1,0 +1,12 @@
+{
+  "id": "potential-greatness",
+  "title": "Potential For Greatness",
+  "path": "data/cards/potential-greatness",
+  "description": "Track your heroism",
+  "version": "1.0.0",
+  "author": "Stonetop System",
+  "files": {
+    "html": "card.html",
+    "css": "card.css"
+  }
+}
