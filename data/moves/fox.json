@@ -58,7 +58,8 @@
     "id": "d4e5f6",
     "title": "Dabbler - (Requires level 2+ and the Fox)",
     "description": "Each time you take this move, learn a new skill from Heavy, Marshal, Ranger, or Seeker",
-    "takefrom": ["Marshal", "The Heavy","The Ranger","The Seeker"]
+    "takefrom": ["Marshal", "The Heavy","The Ranger","The Seeker"],
+    "multiple": 3
   },
   {
     "id": "g7h8i9",

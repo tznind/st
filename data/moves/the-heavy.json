@@ -8,13 +8,8 @@
     "id": "hv00a",
     "title": "Seasoned Warrior (Requires level 2+ and the Heavy)",
     "description": "Take a move from the Fix, Marshal, Ranger or Seeker playbooks",
-    "takefrom": ["Fox", "Marshal","The Ranger","The Seeker"]
-  },
-    {
-    "id": "hv00b",
-    "title": "Seasoned Warrior 2 (Requires level 2+ and the Heavy)",
-    "description": "Take a move from the Fix, Marshal, Ranger or Seeker playbooks",
-    "takefrom": ["Fox", "Marshal","The Ranger","The Seeker"]
+    "takefrom": ["Fox", "Marshal","The Ranger","The Seeker"],
+    "multiple": 3
   },
   {
     "id": "hv003",
