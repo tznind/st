@@ -108,5 +108,194 @@
       "A tinderbox, lovingly engraved"
     ],
     "grantsCard": "token-detail"
+  },
+  {
+    "id":"fa1",
+    "title":"Fear",
+    "category": "Fear & Anger",
+    "description": "What do you fear most? (choose 1, maybe 2)",
+    "pick": [
+        "Fire, burning, the smell of charred flesh",
+        "That they won't take you seriously",
+        "That you really aren't cut out for this",
+        "The death of your family or loved ones",
+        "Being alone and helpless",
+        "Violence, bloodshed, and pain",
+        "Monsters",
+        "What you're capable of",
+        "What you must do"
+    ]
+  },
+  {
+    "id":"fa2",
+    "title":"Anger",
+    "category": "Fear & Anger",
+    "description": "What makes you burn with righteous anger? (choose 2, maybe 3)",
+    "pick":[
+        "Bullying, slavery, and oppression",
+        "Wanton cruelty and unnecessary suffering",
+        "Injustice and inequality",
+        "Cowardice, treachery, and selfishness",
+        "The despoiling of beauty and innocence",
+        "Threats to your loved ones",
+        "Violence to children, animals, the innocent",
+        "Perversions of nature"
+    ]
+  },
+  {
+    "id": "h001",
+    "title": "Anger is a Gift",
+    "description": "When you burn with righteous anger (Fear & Anger - above), hold 2 Resolve. You can spend your Resolve 1-for-1 to:",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "",
+        "bullets": [
+          "Set aside fear and doubt to do what must be done",
+          "Act suddenly, catching them off-guard",
+          "Inspire allies or bystanders to follow your lead",
+          "Strike hard (+1d4 damage, forceful)",
+          "Keep your footing, position, and/or your course despite what befalls you"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "h013",
+    "title": "Speak Truth to Power (Requires Anger is a Gift)",
+    "description": "When you demand that someone does what is clearly good and right, you have advantage to Persuade. If they refuse, gain +1 Resolve."
+  },
+  {
+    "id": "h002",
+    "title": "Better Part of Valor",
+    "description": "When you are outnumbered or facing a foe bigger than you, you have advantage to hide from, escape from, or sneak past them."
+  },
+  {
+    "id": "h004",
+    "title": "I Get Knocked Down",
+    "description": "When you take damage despite your best efforts to avoid it, you can choose to halve the damage but pick 1 of the following:",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "Whatever you choose, the GM will describe the details.",
+        "bullets": [
+          "You lose something (footing, grip, etc.)",
+          "Something on your person breaks",
+          "You're out of it for a moment"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "h003",
+    "title": "But I Get Up Again (Requires I Get Knocked Down)",
+    "description": "When you use I Get Knocked Down, you have advantage on your next roll against whatever dealt the damage and your next blow against them does +1d4 damage."
+  },
+  {
+    "id": "h006",
+    "title": "In Over Your Head",
+    "description": "When another PC rescues you from danger, mark XP."
+  },
+  {
+    "id": "h007",
+    "title": "Inquiring Minds",
+    "description": "When you seek out and receive honest advice, gain advantage on your next roll to follow that advice."
+  },
+  {
+    "id": "h008",
+    "title": "Iron Will",
+    "description": "When you are subject to mind control or magic that affects your feelings, you can take 1d4 damage (ignoring armor) to disregard its influence."
+  },
+  {
+    "id": "h009",
+    "title": "Never Gonna Keep Me Down",
+    "description": "When you have 5 or fewer current HP, you impose disadvantage on any damage you take. Once per session, when you are at Death's Door, don't roll. You get a 10+."
+  },
+  {
+    "id": "h010",
+    "title": "Potential for Greatness",
+    "description": "(Requires the Would-Be Hero) Once per level, when you roll a stat and get a 10+, mark one of the following (note the level during which you marked it). You don't have to mark them in order.",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "",
+        "bullets": [
+          "Increase the stat you rolled by 1, to a max of +2 (at level ___)",
+          "Increase the stat you rolled by 1, to a max of +2 (at level ___)",
+          "Increase the stat you rolled by 1, to a max of +2 (at level ___)",
+          "Increase the stat you rolled by 1, to a max of +2 (at level ___)",
+          "Increase your max HP by 4 (at level ___)",
+          "Increase your damage die to a d8 (at level ___)"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "h011",
+    "title": "Resourceful",
+    "description": "When you Defy Danger and roll a 6-, ask the GM a question from Seek Insight after they describe what happens. Gain advantage on your next roll to act on the answer."
+  },
+  {
+    "id": "h012",
+    "title": "Something to Remember Me By",
+    "description": "When you spend Readiness (from Defend) to strike back at an attacker, you deal +1d4 damage and scar, mark, or diminish them in some way (the GM will say how, or ask you to)."
+  },
+  {
+    "id": "h014",
+    "title": "Tough Love",
+    "description": "When you honestly think another PC is in the wrong and call them on it, they have disadvantage on any rolls against you until you two work it out."
+  },
+  {
+    "id": "h015",
+    "title": "Underestimated",
+    "description": "As long as you avoid overt hostility, no enemy will consider you a threat. When you first make your move against an enemy who underestimates you, you have advantage."
+  },
+  {
+    "id": "h016",
+    "title": "Up With People",
+    "description": "When you converse with someone (PC or NPC) you can hold 2 Rapport with them. If you do, they hold 1 Rapport with you. During the conversation, either of you can spend 1 Rapport to ask the other player one of the following and get an honest answer.",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "",
+        "bullets": [
+          "What weighs you down or holds you back?",
+          "What drives you forward?",
+          "What lesson would you have me learn?",
+          "What do you think of me, truly?"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "h017",
+    "title": "Versatile (Requires level 2+, the Would-be Hero)",
+    "description": "Choose a move from any other playbook, as long as you meet its requirements. You can pick from a different playbook each time. You can't take Improved Stat or Superior Stat."
+  },
+  {
+    "id": "h018",
+    "title": "A Force to be Reckoned With (Requires level 6+; replaces Underestimated)",
+    "description": " Any intelligent creature who looks you in the eye or hears the steel in your voice instinctively knows that you are a force to be reckoned with, and treats you appropriately. When you Defy Danger against something trying to harm or constrain you, on a 12+ you turn the tables on them (the GM will say how, or ask you to)."
+  },
+  {
+    "id": "h019",
+    "title": "Big Damn Hero (Requires level 6+; replaces In Over Your Head) ",
+    "description": "When you first leap into danger to protect someone, don't roll to Defend. Instead, treat it as though you rolled a 10+. When you Defend, you can spend 1 Readiness to lock eyes with an attacker; they have disadvantage on damage rolls against you and your ward for the rest of the fight."
+  },
+  {
+    "id": "h020",
+    "title": "Superior Stat (Requires all 6 marks in Potential for Greatness)",
+    "description": "Increase one of your stats by +1 (to a max of +3).",
+    "pickOne": ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]
+  },
+  {
+    "id": "h021",
+    "title": "Undaunted (Requires level 6+; replaces Better Part of Valor)",
+    "description": "When you are outnumbered or facing a foe bigger than you, you get +1 armor and deal +1d6 damage."
+  },
+  {
+    "id": "h022",
+    "title": "Voice of Experience (Requires level 6+; replaces Inquiring Minds)",
+    "description": "When another PC comes to you for advice and you tell them what you think is best, they have advantage on their first roll to follow your advice. When you Seek Insight, you can always ask, 'What is about to happen?' for free, even on a 6-."
   }
 ]
