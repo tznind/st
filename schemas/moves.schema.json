@@ -68,9 +68,10 @@
       },
       "takefrom": {
         "type": "array",
-        "description": "List of roles this move can be taken from",
+        "description": "List of roles this move can be taken from. Supports wildcard patterns: '*' matches any role, 'prefix*' matches roles starting with prefix (case-insensitive). Roles already possessed by the character are automatically excluded.",
         "items": {
-          "type": "string"
+          "type": "string",
+          "examples": ["Navigator", "Mech Adept", "*", "the*", "Void*"]
         }
       },
       "multiple": {

@@ -132,12 +132,98 @@ window.Utils = (function() {
         return merged;
     }
 
+    /**
+     * Check if a role matches a pattern (supports wildcards)
+     * @param {string} role - The role name to check
+     * @param {string} pattern - The pattern to match against (supports * wildcard)
+     * @returns {boolean} True if the role matches the pattern
+     */
+    function roleMatchesPattern(role, pattern) {
+        if (!role || !pattern) return false;
+        
+        // Convert to lowercase for case-insensitive matching
+        const roleLower = role.toLowerCase();
+        const patternLower = pattern.toLowerCase();
+        
+        // Handle exact match
+        if (roleLower === patternLower) return true;
+        
+        // Handle wildcard patterns
+        if (patternLower.includes('*')) {
+            // Simple wildcard matching
+            if (patternLower === '*') {
+                return true; // Match everything
+            }
+            
+            // Handle prefix wildcards like "the*"
+            if (patternLower.endsWith('*')) {
+                const prefix = patternLower.slice(0, -1);
+                return roleLower.startsWith(prefix);
+            }
+            
+            // Handle suffix wildcards like "*master"
+            if (patternLower.startsWith('*')) {
+                const suffix = patternLower.slice(1);
+                return roleLower.endsWith(suffix);
+            }
+            
+            // Handle middle wildcards (convert to regex)
+            const regexPattern = patternLower.replace(/\*/g, '.*');
+            const regex = new RegExp(`^${regexPattern}$`);
+            return regex.test(roleLower);
+        }
+        
+        return false;
+    }
+    
+    /**
+     * Get roles that match any of the given patterns
+     * @param {Array<string>} patterns - Array of patterns to match against
+     * @param {Array<string>} availableRoles - Array of available role names
+     * @param {Array<string>} excludeRoles - Array of roles to exclude from results
+     * @returns {Array<string>} Array of matching role names
+     */
+    function getMatchingRoles(patterns, availableRoles, excludeRoles = []) {
+        if (!patterns || !Array.isArray(patterns) || patterns.length === 0) {
+            return [];
+        }
+        
+        if (!availableRoles || !Array.isArray(availableRoles)) {
+            return [];
+        }
+        
+        const excludeSet = new Set(excludeRoles.map(role => role.toLowerCase()));
+        const matchingRoles = new Set();
+        
+        patterns.forEach(pattern => {
+            availableRoles.forEach(role => {
+                if (roleMatchesPattern(role, pattern) && !excludeSet.has(role.toLowerCase())) {
+                    matchingRoles.add(role);
+                }
+            });
+        });
+        
+        return Array.from(matchingRoles).sort();
+    }
+    
+    /**
+     * Get all available role names from the availableMap
+     * @returns {Array<string>} Array of all available role names
+     */
+    function getAllAvailableRoles() {
+        if (!window.availableMap) return [];
+        return Object.keys(window.availableMap);
+    }
+
     // Public API
     return {
         debounce,
         getCurrentRole,
         getCurrentRoles,
         getRoleSelectors,
-        mergeRoleAvailability
+        mergeRoleAvailability,
+        roleMatchesPattern,
+        getMatchingRoles,
+        getAllAvailableRoles
     };
 })();

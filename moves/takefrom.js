@@ -33,8 +33,28 @@ window.TakeFrom = (function() {
         defaultOption.textContent = "Select role...";
         roleSelect.appendChild(defaultOption);
         
-        // Add role options
-        move.takefrom.forEach(role => {
+        // Get matching roles using pattern matching (supports wildcards)
+        let matchingRoles = [];
+        
+        if (window.Utils && window.Utils.getMatchingRoles) {
+            const allAvailableRoles = window.Utils.getAllAvailableRoles();
+            const currentRoles = window.Utils.getCurrentRoles();
+            matchingRoles = window.Utils.getMatchingRoles(move.takefrom, allAvailableRoles, currentRoles);
+            console.log('TakeFrom Debug:', {
+                moveId: move.id,
+                takefromPatterns: move.takefrom,
+                allAvailableRoles: allAvailableRoles,
+                currentRoles: currentRoles,
+                matchingRoles: matchingRoles
+            });
+        } else {
+            // Fallback to original behavior if Utils not available
+            console.warn('Utils not available, using fallback takefrom behavior');
+            matchingRoles = move.takefrom || [];
+        }
+        
+        // Add role options (sorted and excluding current roles)
+        matchingRoles.forEach(role => {
             const option = document.createElement("option");
             option.value = role;
             option.textContent = role;
@@ -258,16 +278,28 @@ window.TakeFrom = (function() {
         if (selectedRole && window.availableMap && window.availableMap[selectedRole]) {
             moveSelect.disabled = false;
             
-            // Get available moves for selected role and current role
+            // Get available moves for selected role and current roles
             const availableMoves = window.availableMap[selectedRole];
-            const currentRole = window.Utils ? window.Utils.getCurrentRole() : null;
-            const currentRoleMoves = currentRole && window.availableMap[currentRole] ? window.availableMap[currentRole] : {};
+            const currentRoles = window.Utils ? window.Utils.getCurrentRoles() : [];
             
-            // Filter moves to only show those available to selected role but NOT to current role
+            // Get all moves available to current roles (combined)
+            const currentRolesMoves = {};
+            currentRoles.forEach(role => {
+                const roleData = window.availableMap[role];
+                if (roleData) {
+                    Object.keys(roleData).forEach(key => {
+                        if (!key.startsWith('_') && key !== 'cards' && roleData[key] === true) {
+                            currentRolesMoves[key] = true;
+                        }
+                    });
+                }
+            });
+            
+            // Filter moves to only show those available to selected role but NOT to current roles
             window.moves.forEach(move => {
                 if (move.id !== moveId && 
                     availableMoves.hasOwnProperty(move.id) && 
-                    !currentRoleMoves.hasOwnProperty(move.id)) {
+                    !currentRolesMoves.hasOwnProperty(move.id)) {
                     const option = document.createElement("option");
                     option.value = move.id;
                     option.textContent = move.title;
@@ -288,7 +320,7 @@ window.TakeFrom = (function() {
      * Handle takefrom selection changes (quiet version - no re-render)
      */
     function handleSelectionChangeQuiet(roleSelect, moveSelect, takeFromMoveId) {
-        const currentRole = window.Utils ? window.Utils.getCurrentRole() : null;
+        const currentRoles = window.Utils ? window.Utils.getCurrentRoles() : [];
         const selectedMove = moveSelect.value;
         
         // Get previous selection to remove it if changed
@@ -297,10 +329,12 @@ window.TakeFrom = (function() {
         const previousMove = urlParams.get(prevKey);
         
         // Remove previously learned move if it exists and is different
-        if (previousMove && previousMove !== selectedMove && currentRole) {
-            if (window.availableMap && window.availableMap[currentRole]) {
-                delete window.availableMap[currentRole][previousMove];
-            }
+        if (previousMove && previousMove !== selectedMove && currentRoles.length > 0) {
+            currentRoles.forEach(role => {
+                if (window.availableMap && window.availableMap[role]) {
+                    delete window.availableMap[role][previousMove];
+                }
+            });
         }
         
         // Note: We don't need to modify availableMap - learned moves are self-contained
