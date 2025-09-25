@@ -313,9 +313,8 @@
   },
   {
     "id": "ms019",
-    "title": "Like an Open Book",
+    "title": "Like an Open Book (Requires level 6+ and Take the Measure)",
     "description": "When you Take the Measure of someone who fears or respects you, your second question can be anything you want. The GM might ask how you could possibly know this; tell them or ask something else.",
-    "requirements": "Requires level 6+ and Take the Measure",
     "outcomes": [
       {
         "range": "",
@@ -325,9 +324,8 @@
   },
   {
     "id": "ms020",
-    "title": "Noble Mien",
+    "title": "Noble Mien (Requires level 6+)",
     "description": "When you lead an NPC through danger and return them to safety, if they aren't part of your crew they will either offer to join your crew or pledge their future aid and support.",
-    "requirements": "Requires level 6+",
     "outcomes": [
       {
         "range": "",
@@ -337,9 +335,8 @@
   },
   {
     "id": "ms021",
-    "title": "Peace Through Strength",
+    "title": "Peace Through Strength (Requires level 6+ and Speak Softly)",
     "description": "When you stand ready to fight alongside like-minded allies, anything capable of fear recognizes you as a serious threat and treats you accordingly.",
-    "requirements": "Requires level 6+ and Speak Softly",
     "outcomes": [
       {
         "range": "",
