@@ -71,9 +71,75 @@
     "takeCategory": ["Moves"]
   },
   {
+    "id": "hv007",
+    "title": "Battle Joy",
+    "description": "When you spill blood—yours or another's—and lose yourself in battle, you ignore fear, pain, mind-control, and the effects of debilities as long as you keep fighting. When the action stops, roll +Constitution",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "That was a rush, regain 1d4 HP"
+      },
+      {
+        "range": "7–9",
+        "text": "You're winded and out of it, but you'll be fine with a few minutes' rest"
+      },
+      {
+        "range": "≤ 6",
+        "text": "Mark a debility but don't mark XP"
+      }
+    ]
+  },
+  {
+    "id": "hv008",
+    "title": "Berserker (Requires Battle Joy)",
+    "description": "While in your Battle Joy, add the area tag to your melee attacks, lashing out at anyone nearby (friend and foe alike). Roll damage separately for each target."
+  },
+  {
+    "id": "hv009",
+    "title": "Carved Out of Wood",
+    "description": "Increase your max HP by 4."
+  },
+  {
     "id": "hv003",
     "title": "Dangerous (Requires the Heavy)",
     "description": "When you deal your damage, you have advantage."
+  },
+  {
+    "id": "hv010",
+    "title": "Formidable",
+    "description": "When you wade into battle, you can choose to roll +Charisma",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "Both:",
+        "bullets": [
+          "Lesser foes will quail, hesitate, or flee before you",
+          "Doughty foes will focus on you, seeing you as the greatest threat"
+        ]
+      },
+      {
+        "range": "7–9",
+        "text": "Pick 1:",
+        "bullets": [
+          "Lesser foes will quail, hesitate, or flee before you",
+          "Doughty foes will focus on you, seeing you as the greatest threat"
+        ]
+      },
+      {
+        "range": "≤ 6",
+        "text": "Pick 1 but ask the GM what you've missed"
+      }
+    ]
+  },
+  {
+    "id": "hv011",
+    "title": "Frosty",
+    "description": "When you Defy Danger by keeping calm and carrying on, on a 10+ you can also ask the GM a question that you could ask when Seeking Insight. You have advantage on your next move to act on the answer."
+  },
+  {
+    "id": "hv012",
+    "title": "Guardian",
+    "description": "When you Defend, hold 1 extra Readiness. Even on a 6-, hold 1 Readiness (plus whatever the GM says)."
   },
   {
     "id": "hv004",
@@ -81,13 +147,108 @@
     "description": "When you are at Death's Door, you can roll +Constitution or +nothing (your choice). On a 7-9, you can mark a debility of your choice to regain 1 HP"
   },
   {
+    "id": "hv013",
+    "title": "Intimidating",
+    "description": "When you Persuade using violence or threats, you have advantage."
+  },
+  {
+    "id": "hv006",
+    "title": "Musclebound (Requires +2 Strength)",
+    "description": "When you make a hand-to-hand or thrown attack, it's forceful and messy. If it would already be forceful and/or messy, it's even more so"
+  },
+  {
+    "id": "hv014",
+    "title": "Payback",
+    "description": "When you deal damage to a foe that has harmed you or one of your allies, deal +1d4 damage."
+  },
+  {
+    "id": "hv015",
+    "title": "Relentless",
+    "description": "When you Clash and your foe survives, you gain advantage the next time you Clash with them."
+  },
+  {
+    "id": "hv016",
+    "title": "Situational Awareness",
+    "description": "When you Seek Insight, add the following to the list of questions you can ask:",
+    "outcomes": [
+      {
+        "text": "",
+        "bullets": [
+          "Who or what here is the biggest threat?",
+          "What is my enemy's true position?",
+          "What here can I use as a weapon?"
+        ]
+      },
+      {
+        "text": "When a fight breaks out, ask the GM 1 question that you could ask when Seeking Insight."
+      }
+    ]
+  },
+  {
+    "id": "hv017",
+    "title": "Terror on the Field",
+    "description": "When you reduce a foe to 0 HP, describe how you take them out. If you fell them in a particularly brutal or impressive manner, their allies are impressed, dismayed, or frightened and respond accordingly."
+  },
+  {
+    "id": "hv018",
+    "title": "Uncanny Reflexes",
+    "description": "When you are unarmored and carrying a normal or light load, you impose disadvantage on any damage you take that you could dodge or roll with."
+  },
+  {
     "id": "hv005",
     "title": "Unfettered",
     "description": "When you are subject to physical or mental restraint, you may mark a debility to immediately break free of that restraint."
   },
   {
-    "id": "hv006",
-    "title": "Musclebound (Requires +2 Strength)",
-    "description": "When you make a hand-to-hand or thrown attack, it's forceful and messy. If it would already be forcefuland/or messy, it's even more so"
+    "id": "hv019",
+    "title": "Unstoppable (Requires Hard to Kill)",
+    "description": "When you are reduced to 0 HP in battle, you can keep fighting. Each time you take damage while at 0 HP, mark 1. If something would heal you while you keep fighting, clear one mark instead. When you stop fighting, roll for Death's Door with a -1 penalty for each circle marked. If you survive, clear all your circles.",
+    "tracks": [
+      {
+        "name": "Fighting at 0 HP",
+        "max": 6,
+        "shape": "circle"
+      }
+    ]
+  },
+  {
+    "id": "hv020",
+    "title": "Bringer of Ruin (Requires level 6+)",
+    "description": "When you roll a 12+ to Clash and your foe survives, name something they possess (like their sword, their position, a limb, their dignity, etc.), but nothing that would kill them outright. Whatever you name, it is broken, shattered, lost. Tell us how."
+  },
+  {
+    "id": "hv021",
+    "title": "Cut From Granite (Requires level 6+ and Carved Out of Wood)",
+    "description": "Gain +1 armor (stacks with other sources) and increase your max HP by another 2 (+6 HP total)."
+  },
+  {
+    "id": "hv022",
+    "title": "Mighty Thews (Requires level 6+ and Musclebound)",
+    "description": "When you perform a feat of extraordinary strength (bursting chains, smashing through a wall, heaving a boulder, etc.), pick 1 from the list below and do it.",
+    "outcomes": [
+      {
+        "text": "",
+        "bullets": [
+          "It takes a while",
+          "You cause unwanted damage or harm",
+          "It takes a toll (mark a debility)"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hv023",
+    "title": "Nemesis (Requires level 6+ and Relentless)",
+    "description": "When you Clash and your foe survives, all of your future attacks against them do +1d6 damage."
+  },
+  {
+    "id": "hv024",
+    "title": "Steadfast Guardian (Requires level 6+ and Guardian)",
+    "description": "When you hold Readiness (from Defend), you can always suffer the damage/effects of an attack instead of your ward; no need to spend Readiness, you can just do it."
+  },
+  {
+    "id": "hv025",
+    "title": "Stone Cold (Requires level 6+ and Frosty)",
+    "description": "When you Defy Danger (or Struggle as One) by keeping calm and carrying on, treat a 6- as a 7-9."
   }
 ]
