@@ -1,5 +1,62 @@
 [
   {
+    "id": "rbg1",
+    "title": "Mighty Hunter",
+    "category": "Background",
+    "description": "You are a hunter of the Great Wood, the best the town has seen in generations. You know every part of the Wood within a two-day march.",
+    "outcomes": [
+      {
+        "text": "You start with both the Expert Tracker move and the Stalker move. Go mark them now."
+      }
+    ]
+  },
+  {
+    "id": "rbg2",
+    "title": "Wide Wanderer",
+    "category": "Background",
+    "description": "You have travelled much of the known world and perhaps parts beyond. Add each of the following to the Neighbors list in the Stonetop playbook, choosing 1 trait for each:",
+    "outcomes": [
+      {
+        "text": "",
+        "bullets": [
+          "Ennis (from Marshedge)",
+          "Shahar (from Gordon's Delve)",
+          "Yannic (from the Hillfolk)",
+          "Tovia (from Lygos)",
+          "Sasca (from the northern Manmarch)"
+        ]
+      },
+      {
+        "text": "You start with the Mental Map move. Mark it now. When you Know Things about the wider world, you can roll +WIS instead of +INT."
+      },
+      {
+        "text": "When you arrive somewhere you've visited before (your call), tell the GM when you were last here, and the GM will tell you how it's changed."
+      }
+    ]
+  },
+  {
+    "id": "rbg3",
+    "title": "Beast-Bonded",
+    "category": "Background",
+    "description": "You grew up civilized, but your soul is bound to a beast of the wild. You're closer to it than to any man or woman. How did this bond come about? How long ago?",
+    "outcomes": [
+      {
+        "text": "You start with the Animal Companion move. Go mark it now."
+      },
+      {
+        "text": "When you focus on your animal companion for a few moments, you can use any of the actions you've marked below, no matter the distance between you. Mark 1 action at 1st level, then another at 3rd, 5th, 7th, and 9th."
+      }
+    ],
+    "pick": [
+          "Gauge its distance and direction from you",
+          "Call it back to your side",
+          "Sense its emotional state",
+          "Get a brief impression of what it senses",
+          "Lend it your strength—lose 1d6 HP, and it regains an equal amount"
+        
+    ]
+  },
+  {
     "id": "rg002",
     "title": "Animal Companion",
     "description": "You have formed a bond with a wild animal. It will accompany you and aid you, but it has its own needs and instincts.",

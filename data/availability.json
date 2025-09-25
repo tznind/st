@@ -34,6 +34,9 @@
   "Marshal": {
     "_movesFile": "data/moves/marshal.json",
     "cards": [],
+    "mbg1": false,
+    "mbg2": false,
+    "mbg3": false,
     "j1k2l3": false,
     "ms001":false
   },
@@ -55,6 +58,9 @@
   "The Ranger": {
     "_movesFile": "data/moves/the-ranger.json",
     "cards": [],
+    "rbg1": false,
+    "rbg2": false,
+    "rbg3": false,
     "rg002": false
   },
   "The Lightbearer": {
