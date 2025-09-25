@@ -42,6 +42,18 @@
     "id":"fsp",
     "title":"Pick 2",
     "category": "Special Possessions",
+    "tracks": [
+      {
+        "name": "Whisky",
+        "max": 2,
+        "shape": "square"
+      },
+      {
+        "name": "Stash",
+        "max": 3,
+        "shape": "circle"
+      }
+    ],
     "pick": [
       "Burglar's Kit: picks, files snippers, wire, ◇ prybars, ◇ hacksaws, ◇ a lantern.",
       "Carpenter's tools: chisels, files nails, pitch, ◇ prybars, ◇ saws, ◇◇ firkins, barrels, etc",
