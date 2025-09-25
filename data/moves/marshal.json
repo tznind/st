@@ -51,12 +51,34 @@
     "id": "msp",
     "title": "Special Possessions (pick 2)",
     "category": "Special Possessions",
+    "tracks": [    
+      {
+        "name": "Whisky",
+        "max": 2,
+        "shape": "square"
+      }
+    ],
     "pick": [
-      "Placeholder 1: Description here",
-      "Placeholder 2: Description here",
-      "Placeholder 3: Description here",
-      "Placeholder 4: Description here",
-      "Placeholder 5: Description here"
+       "Chirurgeon's tools: catgut, straps, bandages, tubes, poultice, willow bark, ◇ bonesaws, etc.",
+       "Distillery: skins of fine whisky (2 uses, grants advantage to Persuade), copper tubes, malt, ◇◇ firkins, stills, barrels, etc.",
+       "Engineer's tools: rulers, tapes, rods, plumb-bobs, ◇ tripods, ◇ block & tackles, wheelbarrow, etc.",
+       "Personal symbol (a flag, crest, marking, etc.): when you display or reveal it in a dramatic fashion, your crew holds +1 Loyalty (max 3).",
+       "Scribe's tools: parchment, ink, pigments, vials,quills, ◇ a notebook, etc.",
+       "Weapons of war: Mark move below"
+    ]
+  },
+  {
+    "id":"mspa",
+    "title":"Weapons of War",
+    "category": "Special Possessions",
+    "outcomes": [{
+      "text": "Choose up to 3 (now or later)"
+    }],
+    "pick": [
+       "◇ Sword, iron (close, +1 damage)",
+       "◇◇ Long spear, fine steel (reach, 2 piercing)",
+       "◇ Battleaxe, iron (close, messy)",
+       "◇ Compound bow (far, +1 damage, x piercing; low ammo, all out)"
     ]
   },
   {
