@@ -32,6 +32,9 @@ window.InlineCards = (function() {
                     parentContainer.style.display = 'block';
                 }
                 
+                // Try to initialize card-specific functionality
+                initializeCardFunctionality(cardId);
+                
                 console.log(`Displayed card '${cardId}' inline in container '${containerId}'`);
             }
         } catch (error) {
@@ -80,6 +83,33 @@ window.InlineCards = (function() {
         return cardDiv;
     }
 
+    /**
+     * Initialize card-specific functionality after card HTML is inserted
+     * @param {string} cardId - ID of the card to initialize
+     */
+    function initializeCardFunctionality(cardId) {
+        // Use a short timeout to ensure DOM is fully ready
+        setTimeout(function() {
+            console.log(`Attempting to initialize card functionality for: ${cardId}`);
+            
+            // Try card-specific initialization functions
+            switch (cardId) {
+                case 'initiates-of-danu':
+                    if (typeof window.initializeInitiatesOfDanu === 'function') {
+                        console.log('Calling initializeInitiatesOfDanu...');
+                        window.initializeInitiatesOfDanu();
+                    } else {
+                        console.log('initializeInitiatesOfDanu function not found');
+                    }
+                    break;
+                // Add other cards here as needed
+                default:
+                    console.log(`No specific initialization function for card: ${cardId}`);
+                    break;
+            }
+        }, 10);
+    }
+    
     /**
      * Handle display/hide of cards based on move checkbox state
      * @param {string} moveId - ID of the move
