@@ -6,7 +6,7 @@
     "description": "Your sacred pouch (magical) doesn't take up space in your inventory. What remarkable trait does it possess?",
     "tracks": [{
       "name": "Stock",
-      "max": 10,
+      "max": 16,
       "shape": "circle"
 
     }],
@@ -20,7 +20,7 @@
         ]
       }
     ],
-    "pickOne": [
+    "pick": [
       "It cannot be cut, torn, or burned by any natural means.",
       "Unless someone is specifically searching for your pouch, they will ignore its presence.",
       "So long as the pouch is sealed, nothing within can be detected or found by magic, nor can any-thing within escape or affect the outside world",
