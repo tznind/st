@@ -1,5 +1,58 @@
 [
   {
+    "id": "hbg1",
+    "title": "Sheriff",
+    "category": "Background",
+    "description": "You keep order in Stonetop and protect it from outside threats. It might not be anything official, but everyone knows you've got a cool head and the weight to back up your words. When you bark an order or warning, roll +CHA.",
+    "outcomes": [
+      {
+        "range": "≥ 7",
+        "text": "They must choose 1:",
+        "bullets": [
+          "Do what you say",
+          "Dig in/take cover/flee",
+          "Attack you"
+        ]
+      },
+      {
+        "range": "≥ 10",
+        "text": "You can tell which one they're going to do and do something first; gain advantage if you do."
+      }
+    ]
+  },
+  {
+    "id": "hbg2",
+    "title": "Blood-Soaked Past",
+    "category": "Background",
+    "description": "You left behind a life of violence and a name mothers used to scare their children. For whatever reason, the people of Stonetop took you (back?) in and treat you like one of their own.",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "When you Persuade using violence or threats against someone who knows your black reputation, you can roll +STR instead of +CHA."
+      },
+      {
+        "range": "",
+        "text": "If you take the Formidable move, you can choose to roll +CON instead of +CHA."
+      },
+      {
+        "range": "",
+        "text": "When you fight to kill without mercy or hesitation, you deal +1d4 damage."
+      }
+    ]
+  },
+  {
+    "id": "hbg3",
+    "title": "Storm-Marked",
+    "category": "Background",
+    "description": "You've been touched by Tor (Rainmaker, Thunder-head, Slayer-of-Beasts!) and bear runic markings similar to those etched into the Stone. When did the marks manifest? Are they a symbol of your strength, speed, and courage? Or their source?",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "You start with the Storm Markings major arcanum. Mark one of the boxes on the front of the Storm Markings sheet, and describe here the time you were struck by lightning and walked away unharmed:"
+      }
+    ]
+  },
+  {
     "id": "hv001",
     "title": "Armored",
     "description": "When you carry a shield, mark only ◇ (instead of ◇◇). Also, you can ignore the cumbersome tag on any armor you wear. If you take this move at the start of play, pick 1 (all are armor 2, warm, cumbersome):",

@@ -65,6 +65,8 @@
     "cards": [],
     "bl000": false,
     "bl001": false,
+    "bbg1": false,
+    "bbg2": false,
     "bl002": false,
     "bl003": false,
     "bl004": false,
@@ -166,6 +168,9 @@
   "The Heavy": {
     "_movesFile": "data/moves/the-heavy.json",
     "cards": [],
+    "hbg1": false,
+    "hbg2": false,
+    "hbg3": false,
     "ae0121": false,
     "ae0122": false,
     "hv00a": false,
