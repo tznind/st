@@ -95,11 +95,13 @@
     "id": "ff0011",
     "title": "Silver Tongued (+Charisma)",
     "description": "When you use words to avoid suspicion or trouble, roll +Charisma.",
-    "track": {
-      "name": "Nerve",
-      "max": 3,
-      "shape": "circle"
-    },
+    "tracks": [
+      {
+        "name": "Nerve",
+        "max": 3,
+        "shape": "circle"
+      }
+    ],
     "outcomes": [
       {
         "range": "≥ 10",

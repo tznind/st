@@ -45,11 +45,13 @@
         "title": "Prophet (+Wisdom)",
         "category": "Background",
         "description": "The line of Judges was broken long ago, the Chronicle lost or fallen into ruin. Aratis has called you personally to her service though dreams, omens, and visions. Some in town resent the authority you've assumed. When you spend a few days communing with Aratis about a threat facing Stonetop or civilization as a whole, roll +Wisdom:",
-        "track": {
-            "name": "Sanction",
-            "max": 2,
-            "shape": "hexagon"
-        },
+        "tracks": [
+            {
+                "name": "Sanction",
+                "max": 2,
+                "shape": "hexagon"
+            }
+        ],
         "outcomes": [
             {
                 "range": "10+",
@@ -163,11 +165,13 @@
     "id": "j010",
     "title": "Chronicler of Stonetop",
     "description": "When you write up detailed session notes and share them with the other players, hold +1 Diligence. You can spend 1 Diligence at any time to add +1 to a roll that you or a fellow player just made.",
-    "track": {
-      "name": "Diligence",
-      "max": 3,
-      "shape": "circle"
-    }
+    "tracks": [
+      {
+        "name": "Diligence",
+        "max": 3,
+        "shape": "circle"
+      }
+    ]
   },
   {
     "id": "j011",

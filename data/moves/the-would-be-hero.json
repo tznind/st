@@ -34,11 +34,13 @@
     "title": "Destined (Start of Session + Omens)",
     "category": "Background",
     "description": "Fate has laid her hand upon you.  Choose 3-4 of the items below to describe your destiny.  When you are at Death's Door, ask yourself, \"Is my destiny fulfilled?\" If it is not, treat a miss as a 7-9 and a 7-9 as a 10+.  At start of session role +Omens",
-    "track": {
-      "name": "Omens",
-      "max": 3,
-      "shape": "square"
-    },
+    "tracks": [
+      {
+        "name": "Omens",
+        "max": 3,
+        "shape": "square"
+      }
+    ],
     "pick": [
       "anointed",
       "marked at birth",
@@ -151,11 +153,13 @@
     "id": "h001",
     "title": "Anger is a Gift",
     "description": "When you burn with righteous anger (Fear & Anger - above), hold 2 Resolve. You can spend your Resolve 1-for-1 to:",
-    "track": {
-      "name": "Resolve",
-      "max": 3,
-      "shape": "triangle"
-    },
+    "tracks": [
+      {
+        "name": "Resolve",
+        "max": 3,
+        "shape": "triangle"
+      }
+    ],
     "outcomes": [
       {
         "range": "",
