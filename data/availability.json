@@ -88,10 +88,16 @@
     "lb010": false,
     "ae0122": false,
     "lb023": false,
+    "iv001": false,
     "iv002": false,
     "iv003": false,
     "iv004": false,
-    "iv005": false
+    "iv005": false,
+    "iv006": false,
+    "iv007": false,
+    "iv008": false,
+    "iv009": false,
+    "iv010": false
   },
   "The Seeker": {
     "_movesFile": "data/moves/the-seeker.json",

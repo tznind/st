@@ -390,5 +390,99 @@
         "bullets": []
       }
     ]
+  },
+  {
+    "id": "iv006",
+    "category": "Invocations",
+    "title": "Bath of Healing Light",
+    "description": "Cup your hands around your light and focus it. Your patient... (pick 2):",
+    "outcomes": [
+      {
+        "text": "",
+        "bullets": [
+          "Regains 5 HP (can pick this twice)",
+          "Clears a debility (can pick this twice)",
+          "Has one of their problematic wounds stabilized",
+          "Recovers from a minor condition (drunk, etc.)"
+        ]
+      },
+      {
+        "range": "Reduced",
+        "text": "Pick only 1 (instead of 2)."
+      },
+      {
+        "range": "Empowered",
+        "text": "Add these to your possible choices:",
+        "bullets": [
+          "Regains 10 HP (can pick this twice)",
+          "Fully recovers from a problematic wound",
+          "Is cured of a dire affliction, poison, or disease"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "iv007",
+    "category": "Invocations",
+    "title": "Blinding Light (ongoing)",
+    "description": "Your light blazes. Any in range who look at it are temporarily blinded. Those not looking at it directly must avert their eyes. You are unaffected.",
+    "outcomes": [
+      {
+        "range": "Reduced",
+        "text": "The light flares only for a moment."
+      },
+      {
+        "range": "Empowered",
+        "text": "If you wish, your allies are unaffected."
+      }
+    ]
+  },
+  {
+    "id": "iv008",
+    "category": "Invocations",
+    "title": "Dancing Light (ongoing)",
+    "description": "Your light takes to the air, floating as you direct it, untethered from its fuel. You can move it anywhere that you can see it, and even change its shape or color.",
+    "outcomes": [
+      {
+        "range": "Reduced",
+        "text": "It dims, reducing its range by one step."
+      },
+      {
+        "range": "Empowered",
+        "text": "You can use another Invocation through the Dancing Light while it is ongoing."
+      }
+    ]
+  },
+  {
+    "id": "iv009",
+    "category": "Invocations",
+    "title": "Go Back to the Shadow",
+    "description": "Spirits of darkness in your light take 2d8 damage (ignores armor). Roll damage for each spirit separately. A spirit reduced to 0 HP is either banished from this world or back to whatever tethers it here.",
+    "outcomes": [
+      {
+        "range": "Reduced",
+        "text": "Affected spirits take only 1d8 damage."
+      },
+      {
+        "range": "Empowered",
+        "text": "A spirit reduced to 0 HP is either utterly destroyed OR it's banished from the world and anything tethering it here is destroyed (GM's choice)."
+      }
+    ]
+  },
+  {
+    "id": "iv010",
+    "category": "Invocations",
+    "title": "Moth to a Flame (ongoing)",
+    "description": "Name an individual or type of mortal creature. They gaze raptly at your light and will follow it, slowly. The effect ends if they take damage.",
+    "outcomes": [
+      {
+        "range": "Reduced",
+        "text": "It lasts only briefly OR only some of the named creatures are affected (GM's choice)."
+      },
+      {
+        "range": "Empowered",
+        "text": "The effect continues for a few moments after they first take damage. Taking damage a second time ends the effect immediately."
+      }
+    ]
   }
 ]
