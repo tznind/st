@@ -1,0 +1,59 @@
+[
+    {
+        "id": "jbg1",
+        "title": "Legacy",
+        "category": "Background",
+        "description": "You are the latest in a long line of Judges—born here, apprenticed to the prior Judge, and charged with the passing of the mantle. The Chronicle is a rich repository of lore, but there’s no index, so good luck finding anything.",
+        "outcomes": [
+            {
+                "range": "",
+                "text": "When you Know Thing about the people or history of stonetop, you have advantage."
+            },
+            {
+                "range": "",
+                "text": "When you spend days, weeks, or months poring over the Chronicle, ask the GM a question, and the GM will tell you what you learn in that time."
+            }
+        ]
+    },
+    {
+        "id": "jbg2",
+        "title": "Missionary",
+        "category": "Background",
+        "description": "You are part of a larger order of Aratis, sent toStonetop to spread the faith and protect the flicker-ing flame of civilization. The Chronicle is new and a work in progress; your position in town is far from certain.",
+        "outcomes": [
+            {
+                "range": "",
+                "text": "Add the following Judges to the Neighbors section of the Stonetop playbook:",
+                "bullets": [
+                    "Devin (from Marshedge)",
+                    "Haeris (from Gordin's Delve)",
+                    "Rahat (from Lygos)"
+                ]
+            },
+            {
+                "range": "",
+                "text": "When you call upon the Judges of another steading for aid or information, they are oath-bound to give it. You are likewise oathbound to support them."
+            },
+            {
+                "range": "",
+                "text": "You have an aviary in addition to your usual choice of special possessions. When you send a message via trained bird, as is the way of the Judges of your order, the GM will tell you if and when you receive a response , and what it says."
+            }
+        ]
+    },
+    {
+        "id": "jbg3",
+        "title": "Prophet (+Wisdom)",
+        "category": "Background",
+        "description": "The line of Judges was broken long ago, the Chronicle lost or fallen into ruin. Aratis has called you personally to her service though dreams, omens, and visions. Some in town resent the authority you've assumed. When you spend a few days communing with Aratis about a threat facing Stonetop or civilization as a whole, roll +Wisdom:",
+        "outcomes": [
+            {
+                "range": "10+",
+                "text": "Aratis reveals the course of action she would have you take; You hold 2 Sanction. While acting on her orders, spend 1 Sanction to add +1 to a roll you just made"
+            },
+            {
+                "range": "7-9",
+                "text": "As above but no Sanction."
+            }
+        ]
+    }  
+]

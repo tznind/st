@@ -111,6 +111,13 @@
     "hv005": false,
     "hv006": false
   },
+  "The Judge":{
+    "_movesFile": "data/moves/the-judge.json",
+    "cards": [],
+    "jbg1":false,
+    "jbg2":false,
+    "jbg3":false
+  },
   "The Would Be Hero":{
     "_movesFile": "data/moves/the-would-be-hero.json",
     "cards": [],
