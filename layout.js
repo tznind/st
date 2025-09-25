@@ -116,6 +116,11 @@ window.Layout = (function() {
         if (window.MovesCore) {
             window.MovesCore.renderMovesForRole(roles, mergedAvailability);
             
+            // Initialize track counters after moves are rendered
+            if (window.Track) {
+                window.Track.initializeTrackCounters();
+            }
+            
             // After moves are rendered, restore inline cards based on URL state
             await restoreInlineCards(urlParams);
         }
@@ -182,6 +187,12 @@ window.Layout = (function() {
                     const mergedAvailability = window.Utils.mergeRoleAvailability(selectedRoles);
                     const urlParams = new URLSearchParams(location.search);
                     await renderMoves(selectedRoles, mergedAvailability, urlParams);
+                    
+                    // Initialize track counters after moves are rendered
+                    if (window.Track) {
+                        window.Track.initializeTrackCounters();
+                    }
+                    
                     applyPersistenceState(urlParams);
                     
                     // Restore scroll position

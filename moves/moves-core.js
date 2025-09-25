@@ -53,9 +53,9 @@ window.MovesCore = (function() {
     }
 
     /**
-     * Create move title with checkboxes
+     * Create move title with checkboxes and optional track display
      */
-    function createMoveTitle(move, checkboxes) {
+    function createMoveTitle(move, checkboxes, urlParams) {
         const titleContainer = document.createElement("div");
         titleContainer.className = "move-title";
         
@@ -81,6 +81,20 @@ window.MovesCore = (function() {
             
             titleContainer.appendChild(checkboxContainer);
             titleContainer.appendChild(titleText);
+        }
+        
+        // Add track display if move has tracking (support both single track and multiple tracks)
+        if ((move.track || move.tracks) && window.Track) {
+            console.log('MovesCore: Found track/tracks for move:', move.id, 'calling createTrackDisplay');
+            const trackDisplay = window.Track.createTrackDisplay(move, urlParams);
+            if (trackDisplay) {
+                console.log('MovesCore: Adding track display to title container for move:', move.id);
+                titleContainer.appendChild(trackDisplay);
+            } else {
+                console.log('MovesCore: createTrackDisplay returned null for move:', move.id);
+            }
+        } else {
+            console.log('MovesCore: No track system or no tracks for move:', move.id, 'track:', move.track, 'tracks:', move.tracks, 'window.Track:', !!window.Track);
         }
         
         return titleContainer;
@@ -364,7 +378,7 @@ window.MovesCore = (function() {
         
         // Create checkboxes and title
         const checkboxes = createMoveCheckboxes(move, available, urlParams);
-        const titleContainer = createMoveTitle(move, checkboxes);
+        const titleContainer = createMoveTitle(move, checkboxes, urlParams);
         moveDiv.appendChild(titleContainer);
         
         // Add description if it exists

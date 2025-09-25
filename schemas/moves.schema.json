@@ -95,6 +95,61 @@
       "grantsCard": {
         "type": "string",
         "description": "Card name to grant when this move is selected"
+      },
+      "track": {
+        "type": "object",
+        "description": "Single tracking configuration (legacy - use tracks for multiple)",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Display name for the tracked resource",
+            "examples": ["Inspire", "Hold", "Focus"]
+          },
+          "max": {
+            "type": "integer",
+            "description": "Maximum number of points that can be tracked",
+            "minimum": 1,
+            "maximum": 10,
+            "default": 5
+          },
+          "shape": {
+            "type": "string",
+            "description": "Visual shape for the track counters",
+            "enum": ["square", "circle", "triangle", "hexagon"],
+            "default": "square"
+          }
+        },
+        "required": ["name"],
+        "additionalProperties": false
+      },
+      "tracks": {
+        "type": "array",
+        "description": "Array of tracking configurations for multiple resources",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Display name for the tracked resource",
+              "examples": ["Inspire", "Hold", "Focus"]
+            },
+            "max": {
+              "type": "integer",
+              "description": "Maximum number of points that can be tracked",
+              "minimum": 1,
+              "maximum": 10,
+              "default": 5
+            },
+            "shape": {
+              "type": "string",
+              "description": "Visual shape for the track counters",
+              "enum": ["square", "circle", "triangle", "hexagon"],
+              "default": "square"
+            }
+          },
+          "required": ["name"],
+          "additionalProperties": false
+        }
       }
     },
     "required": ["id", "title"],

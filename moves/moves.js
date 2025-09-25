@@ -31,7 +31,7 @@ window.Moves = (function() {
     }
 
     /**
-     * Handle special move checkbox changes (takeFrom, card granting, etc.)
+     * Handle special move checkbox changes (takeFrom, card granting, track, etc.)
      */
     function handleTakeFromMoveIfNeeded(checkbox) {
         const moveId = extractMoveId(checkbox);
@@ -46,6 +46,11 @@ window.Moves = (function() {
         if (move && move.grantsCard && window.InlineCards) {
             const containerId = `granted_card_${moveId}`;
             window.InlineCards.toggleCardDisplay(moveId, move.grantsCard, containerId, checkbox.checked);
+        }
+        
+        // Check if this move has tracking
+        if (move && move.track && window.Track) {
+            window.Track.handleTrackedMoveToggle(moveId, checkbox.checked);
         }
         
     }
