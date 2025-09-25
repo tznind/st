@@ -42,7 +42,7 @@
               }
             }
           },
-          "required": ["range", "text"],
+          "required": ["text"],
           "additionalProperties": false
         }
       },
