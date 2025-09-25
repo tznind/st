@@ -57,9 +57,220 @@
     ]
   },
   {
+    "id": "rg003",
+    "title": "Alpha (Requires Wild Speech or Spirit Tongue)",
+    "description": "When you assert your dominance over a beast or spirit of the wild, roll +Wisdom",
+    "outcomes": [
+      {
+        "range": "≥ 7",
+        "text": "It must choose 1 from the list below",
+        "bullets": [
+          "Fight you for dominance",
+          "Slink away or flee, then avoid you",
+          "Accept your authority, at least for now"
+        ]
+      },
+      {
+        "range": "≥ 10",
+        "text": "You also gain advantage on your next roll against it"
+      }
+    ]
+  },
+  {
     "id": "rg002",
     "title": "Animal Companion",
     "description": "You have formed a bond with a wild animal. It will accompany you and aid you, but it has its own needs and instincts.",
     "grantsCard": "animal-companion"
+  },
+  {
+    "id": "rg004",
+    "title": "Big Game Hunter",
+    "description": "When you strike at the weak spot of a large or huge creature, you deal +2 damage."
+  },
+  {
+    "id": "rg005",
+    "title": "Blot Out the Sun",
+    "description": "When you Let Fly with a bow, you can deplete your ammunition (mark the next ammo status after your weapon) before you roll. If you do, choose 1:",
+    "outcomes": [
+      {
+        "text": "",
+        "bullets": [
+          "Gain advantage on your damage roll",
+          "Add the area tag to your attack; roll damage separately for each target"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rg006",
+    "title": "Call the Shot",
+    "description": "When you take your time and calmly line up the perfect shot, either deal your damage or roll +Dexterity",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "Deal your damage and pick 2",
+        "bullets": [
+          "Ignore armor or deal +1d4 damage (your call)",
+          "Stun, hobble, or hinder them",
+          "Make them trip or drop what they're holding",
+          "Do no harm; don't deal your damage after all"
+        ]
+      },
+      {
+        "range": "7–9",
+        "text": "Deal your damage and pick 1",
+        "bullets": []
+      }
+    ]
+  },
+  {
+    "id": "rg007",
+    "title": "Expert Tracker",
+    "description": "When you Seek Insight by searching for tracks or studying the signs left by passing creatures, you can ask 'What happened here recently?' for free, even on a 6-. When you follow a creature's trail, roll +Wisdom",
+    "outcomes": [
+      {
+        "range": "≥ 7",
+        "text": "You follow the trail to a significant change in direction, terrain, or mode of transport"
+      },
+      {
+        "range": "≥ 10",
+        "text": "You can also ask the GM a reasonable question about your quarry and get an honest, useful answer"
+      }
+    ]
+  },
+  {
+    "id": "rg008",
+    "title": "Home on the Range",
+    "description": "When a journey requires you to Defy Danger or Struggle as One, treat a 6- as a 7-9."
+  },
+  {
+    "id": "rg009",
+    "title": "Magnificent Specimen (Requires Animal Companion)",
+    "description": "Each time you take this move, your companion gains 2 additional options of your choice.",
+    "multiple": 4
+  },
+  {
+    "id": "rg010",
+    "title": "Mental Map",
+    "description": "You can always retrace your steps and can accurately gauge distances and directions. You might not know the way forward but can always find your way back. When you think back on a place you've been to or observed, you can retroactively Seek Insight about it as if you were still there."
+  },
+  {
+    "id": "rg011",
+    "title": "Naturalist",
+    "description": "When you Know Things about beasts, natural environs, or spirits of the wild, you have advantage."
+  },
+  {
+    "id": "rg012",
+    "title": "On the Hoof",
+    "description": "When you travel through the wilderness, you can procure 1d6 uses of provisions each day (roll with disadvantage in winter or barren terrain). Each use of provisions can substitute for 1 supplies when you Make Camp."
+  },
+  {
+    "id": "rg013",
+    "title": "Pack Horse",
+    "description": "You can carry up to 44 with a light load, 74 with a normal load, and 104 with a heavy load."
+  },
+  {
+    "id": "rg014",
+    "title": "Predator",
+    "description": "When you Seek Insight, add the following to the list of questions you can ask:",
+    "outcomes": [
+      {
+        "text": "",
+        "bullets": [
+          "Who or what here is the easiest prey?",
+          "How is ________ weak or vulnerable?"
+        ]
+      },
+      {
+        "text": "When acting on the answer to either question, deal an extra 1d4 damage."
+      }
+    ]
+  },
+  {
+    "id": "rg015",
+    "title": "A Safe Place",
+    "description": "When you select and prepare the party's camp site, hold 1 Precaution, or 2 Precaution if you are well-versed with this area and its dangers. If trouble finds your camp site, you can spend 1 Precaution to reveal a simple defense, warning, or trick that you prepared in advance. If you do, tell us how you knew to make that specific preparation.",
+    "tracks": [
+      {
+        "name": "Precaution",
+        "max": 2,
+        "shape": "triangle"
+      }
+    ]
+  },
+  {
+    "id": "rg016",
+    "title": "Sense the Unnatural",
+    "description": "When you Seek Insight, you can always ask, 'What here is a perversion of the natural order?' for free, even on a 6-."
+  },
+  {
+    "id": "rg017",
+    "title": "Stalker",
+    "description": "When you carry a normal or light load and move with care, you make no noise and leave no sign of your passing. When you hide yourself in a natural environment, you remain unseen until you draw attention to yourself, move positions, or attack."
+  },
+  {
+    "id": "rg018",
+    "title": "Wild Speech",
+    "description": "The grunts, barks, chirps, and calls of natural beasts are as a language to you. You can understand their intentions and communicate basic ideas. When you Persuade a beast, you can choose to roll +Wisdom."
+  },
+  {
+    "id": "rg019",
+    "title": "Worldly (Requires level 2+ and the Ranger)",
+    "description": "Take a move from the Blessed, Fox, Heavy, or Seeker playbooks, for which you otherwise qualify. You can pick from a different playbook each time. You can't pick Improved Stat or Superior Stat.",
+    "multiple": 4,
+    "takeFrom": ["The Blessed", "Fox", "The Heavy", "The Seeker"],
+    "takeCategory": ["Moves"]
+  },
+  {
+    "id": "rg020",
+    "title": "Beast of Legend (Requires level 6+ and Magnificent Specimen)",
+    "description": "Each time you take this move, pick 1:",
+    "multiple": 2,
+    "outcomes": [
+      {
+        "text": "",
+        "bullets": [
+          "They are exceptional (and roll +2 instead of +1)",
+          "They get +4 HP and +1 armor"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rg021",
+    "title": "Constant Vigilance (Requires level 6+)",
+    "description": "When a foe would get the drop on you, they don't—you get to act first instead. (If the GM describes an enemy taking you by surprise, even on a 6-, remind them of this move and say what you do.)"
+  },
+  {
+    "id": "rg022",
+    "title": "Giant Slayer (Requires level 6+; replaces Big Game Hunter)",
+    "description": "When you strike at a weak spot of a large or huge creature, you deal another +2 damage (+4 total)."
+  },
+  {
+    "id": "rg023",
+    "title": "Master Tracker (Requires level 6+ and Expert Tracker)",
+    "description": "When you even briefly scan for tracks or other signs left by passing creatures, you can ask the GM, 'What happened here recently?' and get an honest answer—no need to Seek Insight."
+  },
+  {
+    "id": "rg024",
+    "title": "Trailblazer (Requires level 6+ and Home on the Range)",
+    "description": "When a journey causes you to Defy Danger or Struggle as One, don't roll; you always get a 10+."
+  },
+  {
+    "id": "rg025",
+    "title": "Walk It Off (Requires level 6+)",
+    "description": "When you would mark a debility, you can mark this move instead to no ill effect. Clear it as you would a debility.",
+    "tracks": [
+      {
+        "name": "Walk It Off",
+        "max": 1,
+        "shape": "square"
+      }
+    ]
+  },
+  {
+    "id": "rg026",
+    "title": "Warden of the Wild (Requires level 6+ and Sense the Unnatural)",
+    "description": "When you deal damage to something you know to be a perversion of the natural order, deal +1d4 damage."
   }
 ]
