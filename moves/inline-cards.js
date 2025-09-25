@@ -23,6 +23,7 @@ window.InlineCards = (function() {
                 container.innerHTML = '';
                 const cardDiv = document.createElement("div");
                 cardDiv.className = className;
+                cardDiv.setAttribute('data-card-id', cardId);
                 cardDiv.innerHTML = cardData.html;
                 container.appendChild(cardDiv);
                 

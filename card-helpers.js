@@ -6,8 +6,8 @@
 window.CardHelpers = (function() {
     'use strict';
 
-    // Registry of initialized cards
-    const initializedCards = new Set();
+    // Registry of initialized cards and their DOM elements
+    const initializedCards = new Map();
 
     /**
      * Register a card for automatic initialization
@@ -15,28 +15,54 @@ window.CardHelpers = (function() {
      * @param {function} initFunction - Function to call when card is ready
      */
     function registerCard(cardId, initFunction) {
-        // Wait for the card to be rendered in DOM
+        console.log(`Registering card: ${cardId}`);
+        
+        // Create a persistent observer that handles both addition and removal
         const observer = new MutationObserver((mutations) => {
             for (const mutation of mutations) {
+                // Handle added nodes
                 for (const node of mutation.addedNodes) {
                     if (node.nodeType === 1) { // Element node
                         const cardElement = node.querySelector(`[data-card-id="${cardId}"]`) || 
                                           (node.getAttribute && node.getAttribute('data-card-id') === cardId ? node : null);
                         
-                        if (cardElement && !initializedCards.has(cardId)) {
-                            initializedCards.add(cardId);
-                            observer.disconnect();
+                        if (cardElement) {
+                            const existingElement = initializedCards.get(cardId);
                             
-                            // Initialize after a short delay to ensure DOM is fully ready
-                            setTimeout(() => {
-                                try {
-                                    initFunction();
-                                    console.log(`Card ${cardId} initialized via CardHelpers`);
-                                } catch (error) {
-                                    console.error(`Error initializing card ${cardId}:`, error);
-                                }
-                            }, 50);
-                            break;
+                            // Only initialize if this is a new card element or the existing one is no longer in DOM
+                            if (!existingElement || !document.body.contains(existingElement)) {
+                                console.log(`Initializing card: ${cardId}${existingElement ? ' (DOM recreated)' : ' (first time)'}`);
+                                
+                                // Store reference to this card element
+                                initializedCards.set(cardId, cardElement);
+                                
+                                // Initialize after a short delay to ensure DOM is fully ready
+                                setTimeout(() => {
+                                    try {
+                                        initFunction();
+                                        console.log(`Card ${cardId} initialized via CardHelpers`);
+                                    } catch (error) {
+                                        console.error(`Error initializing card ${cardId}:`, error);
+                                    }
+                                }, 50);
+                            }
+                        }
+                    }
+                }
+                
+                // Handle removed nodes
+                for (const node of mutation.removedNodes) {
+                    if (node.nodeType === 1) { // Element node
+                        const cardElement = node.querySelector ? 
+                                          (node.querySelector(`[data-card-id="${cardId}"]`) || 
+                                           (node.getAttribute && node.getAttribute('data-card-id') === cardId ? node : null)) : null;
+                        
+                        if (cardElement) {
+                            const storedElement = initializedCards.get(cardId);
+                            if (storedElement === cardElement) {
+                                console.log(`Card ${cardId} DOM removed, ready for re-initialization`);
+                                initializedCards.delete(cardId);
+                            }
                         }
                     }
                 }
@@ -47,6 +73,10 @@ window.CardHelpers = (function() {
             childList: true,
             subtree: true
         });
+        
+        // Store the observer reference in case we need to clean up later
+        if (!window.cardObservers) window.cardObservers = new Map();
+        window.cardObservers.set(cardId, observer);
     }
 
     /**
