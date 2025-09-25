@@ -9,14 +9,13 @@ window.Track = (function() {
      * Create a track counter display for a move
      */
     function createTrackDisplay(move, urlParams) {
-        console.log('Track system: createTrackDisplay called for move:', move.id, 'track:', move.track, 'tracks:', move.tracks);
-        if (!move.track && !move.tracks) {
-            console.log('Track system: No track/tracks found for move:', move.id);
+        console.log('Track system: createTrackDisplay called for move:', move.id, 'tracks:', move.tracks);
+        if (!move.tracks) {
+            console.log('Track system: No tracks found for move:', move.id);
             return null;
         }
         
-        // Support both single track (legacy) and multiple tracks
-        const trackConfigs = move.tracks || [move.track];
+        const trackConfigs = move.tracks;
         console.log('Track system: Using track configs:', trackConfigs);
         
         const trackContainer = document.createElement('div');
@@ -171,10 +170,10 @@ window.Track = (function() {
         // Update all track displays based on current URL state
         let trackMovesFound = 0;
         window.moves.forEach(move => {
-            if (move.track || move.tracks) {
+            if (move.tracks) {
                 trackMovesFound++;
-                console.log('Track system: Processing move', move.id, 'with tracks:', move.tracks || move.track);
-                const trackConfigs = move.tracks || [move.track];
+                console.log('Track system: Processing move', move.id, 'with tracks:', move.tracks);
+                const trackConfigs = move.tracks;
                 trackConfigs.forEach((trackConfig, index) => {
                     const trackId = trackConfigs.length > 1 ? `${move.id}_${index}` : move.id;
                     const currentValue = getCurrentTrackValue(trackId, urlParams);
@@ -194,8 +193,8 @@ window.Track = (function() {
         if (!isChecked) {
             // Move was unchecked - reset all tracks to 0
             const move = window.moves?.find(m => m.id === moveId);
-            if (move?.track || move?.tracks) {
-                const trackConfigs = move.tracks || [move.track];
+            if (move?.tracks) {
+                const trackConfigs = move.tracks;
                 trackConfigs.forEach((trackConfig, index) => {
                     const trackId = trackConfigs.length > 1 ? `${moveId}_${index}` : moveId;
                     const maxValue = trackConfig.max || 5;
