@@ -1,0 +1,272 @@
+<!-- Initiates of Danu Card -->
+<div class="card initiates-card">
+  <div class="card-header">
+    <h3 class="card-title">🌿 Initiates of Danu</h3>
+    <p class="selection-note">Choose 2 or 3 initiates to serve as your followers by checking the boxes below.</p>
+  </div>
+  
+  <!-- Enfys -->
+  <div class="initiate-row" id="enfys-row">
+    <div class="initiate-header">
+      <div class="initiate-title">
+        <input type="checkbox" id="enfys-selected" class="initiate-selector">
+        <h4>Enfys, the acolyte</h4>
+      </div>
+      <div class="stats-line">
+        <span class="trait-tags">bird-wise, innocent, magical, well-informed</span>
+      </div>
+      <div class="combat-stats">
+        <span>Damage: bronze knife d4 (hand)</span> | <span>Armor: 0</span> | <span>Max HP: 6</span>
+      </div>
+    </div>
+    
+    <div class="tracking-section">
+      <div class="hp-loyalty">
+        <div class="stat-group">
+          <label for="enf_hp">HP:</label>
+          <input type="number" id="enf_hp" min="0" max="6" placeholder="6">
+        </div>
+        <div class="loyalty-group">
+          <label>Loyalty:</label>
+          <div class="loyalty-track" data-initiate="enfys">
+            <div class="loyalty-circle" data-value="1"></div>
+            <div class="loyalty-circle" data-value="2"></div>
+            <div class="loyalty-circle" data-value="3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="abilities-section">
+      <div class="instinct-cost">
+        <strong>Instinct:</strong> to get distracted | <strong>Cost:</strong> knowledge, secret lore
+      </div>
+      <div class="powers">
+        <strong>Powers:</strong> Speak with birds • Ask a difficult question • Wander off
+      </div>
+    </div>
+    
+    <div class="custom-picks">
+      <div class="pick-row">
+        <input type="text" id="enf_p1" placeholder="he/she/they">
+        <input type="text" id="enf_p2" placeholder="just a child/on the cusp/a young adult">
+        <input type="text" id="enf_p3" placeholder="carefully chosen/marked by Danu/orphaned">
+      </div>
+      <div class="pick-row">
+        <input type="text" id="enf_p4" placeholder="carefree/curious/moody/secretive">
+      </div>
+    </div>
+  </div>
+
+  <!-- Afon -->
+  <div class="initiate-row" id="afon-row">
+    <div class="initiate-header">
+      <div class="initiate-title">
+        <input type="checkbox" id="afon-selected" class="initiate-selector">
+        <h4>Afon, a fellow initiate</h4>
+      </div>
+      <div class="stats-line">
+        <span class="trait-tags">fae-wise, devious, magical, self-sufficient, stealthy</span>
+      </div>
+      <div class="combat-stats">
+        <span>Damage: bronze hatchet d6 (hand)</span> | <span>Armor: 2 (0 vs. iron)</span> | <span>Max HP: 8</span>
+      </div>
+    </div>
+    
+    <div class="tracking-section">
+      <div class="hp-loyalty">
+        <div class="stat-group">
+          <label for="afo_hp">HP:</label>
+          <input type="number" id="afo_hp" min="0" max="8" placeholder="8">
+        </div>
+        <div class="loyalty-group">
+          <label>Loyalty:</label>
+          <div class="loyalty-track" data-initiate="afon">
+            <div class="loyalty-circle" data-value="1"></div>
+            <div class="loyalty-circle" data-value="2"></div>
+            <div class="loyalty-circle" data-value="3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="abilities-section">
+      <div class="instinct-cost">
+        <strong>Instinct:</strong> to act impulsively | <strong>Cost:</strong> wonder, joy
+      </div>
+      <div class="powers">
+        <strong>Powers:</strong> Weave a minor glamor • Appear or disappear unexpectedly • Speak an uncomfortable truth
+      </div>
+    </div>
+    
+    <div class="custom-picks">
+      <div class="pick-row">
+        <input type="text" id="afo_p1" placeholder="he/she/they">
+        <input type="text" id="afo_p2" placeholder="comes and goes/in the Wood/a hut near town">
+        <input type="text" id="afo_p3" placeholder="aloof/baudy and lewd/unnerving">
+      </div>
+      <div class="pick-row">
+        <input type="text" id="afo_p4" placeholder="rites of... ecstasy/indulgence/moonlight">
+      </div>
+    </div>
+  </div>
+
+  <!-- Gwendyl -->
+  <div class="initiate-row" id="gwendyl-row">
+    <div class="initiate-header">
+      <div class="initiate-title">
+        <input type="checkbox" id="gwendyl-selected" class="initiate-selector">
+        <h4>Gwendyl, your mentor</h4>
+      </div>
+      <div class="stats-line">
+        <span class="trait-tags">herb-wise, gossipy, tireless, healer, magical</span>
+      </div>
+      <div class="combat-stats">
+        <span>Damage: iron knife d6 (hand)</span> | <span>Armor: 0</span> | <span>Max HP: 6</span>
+      </div>
+    </div>
+    
+    <div class="tracking-section">
+      <div class="hp-loyalty">
+        <div class="stat-group">
+          <label for="gwe_hp">HP:</label>
+          <input type="number" id="gwe_hp" min="0" max="6" placeholder="6">
+        </div>
+        <div class="loyalty-group">
+          <label>Loyalty:</label>
+          <div class="loyalty-track" data-initiate="gwendyl">
+            <div class="loyalty-circle" data-value="1"></div>
+            <div class="loyalty-circle" data-value="2"></div>
+            <div class="loyalty-circle" data-value="3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="abilities-section">
+      <div class="instinct-cost">
+        <strong>Instinct:</strong> to take offense | <strong>Cost:</strong> consideration, affection
+      </div>
+      <div class="powers">
+        <strong>Powers:</strong> Tend to the sick, injured, women in labor • Weave a talisman of fertility or good luck • Point out a flaw in a person or plan
+      </div>
+    </div>
+    
+    <div class="custom-picks">
+      <div class="pick-row">
+        <input type="text" id="gwe_p1" placeholder="he/she/they">
+        <input type="text" id="gwe_p2" placeholder="a big family/has taken you in/lives alone">
+        <input type="text" id="gwe_p3" placeholder="blunt/demanding/put upon/suffers no fools">
+      </div>
+      <div class="pick-row">
+        <input type="text" id="gwe_p4" placeholder="rites of... earth & soil/mourning/petition">
+      </div>
+    </div>
+  </div>
+
+  <!-- Olwin -->
+  <div class="initiate-row" id="olwin-row">
+    <div class="initiate-header">
+      <div class="initiate-title">
+        <input type="checkbox" id="olwin-selected" class="initiate-selector">
+        <h4>Olwin, your anointed lover</h4>
+      </div>
+      <div class="stats-line">
+        <span class="trait-tags">Fates-wise, beautiful, passionate, magical</span>
+      </div>
+      <div class="combat-stats">
+        <span>Damage: iron spear d6 (close, thrown)</span> | <span>Armor: 1 (shield)</span> | <span>Max HP: 6</span>
+      </div>
+    </div>
+    
+    <div class="tracking-section">
+      <div class="hp-loyalty">
+        <div class="stat-group">
+          <label for="olw_hp">HP:</label>
+          <input type="number" id="olw_hp" min="0" max="6" placeholder="6">
+        </div>
+        <div class="loyalty-group">
+          <label>Loyalty:</label>
+          <div class="loyalty-track" data-initiate="olwin">
+            <div class="loyalty-circle" data-value="1"></div>
+            <div class="loyalty-circle" data-value="2"></div>
+            <div class="loyalty-circle" data-value="3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="abilities-section">
+      <div class="instinct-cost">
+        <strong>Instinct:</strong> to lack discretion | <strong>Cost:</strong> tenderness, respect
+      </div>
+      <div class="powers">
+        <strong>Powers:</strong> Perform a divination • Speak a (dire) prophecy • Make a big deal about something
+      </div>
+    </div>
+    
+    <div class="custom-picks">
+      <div class="pick-row">
+        <input type="text" id="olw_p1" placeholder="he/she/they">
+        <input type="text" id="olw_p2" placeholder="betrothed/true love/ceremonial">
+        <input type="text" id="olw_p3" placeholder="complicated/contrary/dramatic/passionate/tormented">
+      </div>
+      <div class="pick-row">
+        <input type="text" id="olw_p4" placeholder="rites of... blood/fire/sacred union">
+      </div>
+    </div>
+  </div>
+
+  <!-- Seren -->
+  <div class="initiate-row" id="seren-row">
+    <div class="initiate-header">
+      <div class="initiate-title">
+        <input type="checkbox" id="seren-selected" class="initiate-selector">
+        <h4>Seren the Eldest</h4>
+      </div>
+      <div class="stats-line">
+        <span class="trait-tags">exceptional, story-wise, insightful, frail, magical</span>
+      </div>
+      <div class="combat-stats">
+        <span>Damage: walking stick d4 (close)</span> | <span>Armor: 0</span> | <span>Max HP: 3</span>
+      </div>
+    </div>
+    
+    <div class="tracking-section">
+      <div class="hp-loyalty">
+        <div class="stat-group">
+          <label for="ser_hp">HP:</label>
+          <input type="number" id="ser_hp" min="0" max="3" placeholder="3">
+        </div>
+        <div class="loyalty-group">
+          <label>Loyalty:</label>
+          <div class="loyalty-track" data-initiate="seren">
+            <div class="loyalty-circle" data-value="1"></div>
+            <div class="loyalty-circle" data-value="2"></div>
+            <div class="loyalty-circle" data-value="3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="abilities-section">
+      <div class="instinct-cost">
+        <strong>Instinct:</strong> to hew to tradition | <strong>Cost:</strong> deference, good sense shown
+      </div>
+      <div class="powers">
+        <strong>Powers:</strong> Consult the spirits, or abjure them • Spin a tale to make a point • Use shame and guilt as leverage
+      </div>
+    </div>
+    
+    <div class="custom-picks">
+      <div class="pick-row">
+        <input type="text" id="ser_p1" placeholder="he/she/they">
+        <input type="text" id="ser_p2" placeholder="dismissed/pitied/feared/venerated">
+        <input type="text" id="ser_p3" placeholder="cagey/friendly but firm/imperious">
+      </div>
+      <div class="pick-row">
+        <input type="text" id="ser_p4" placeholder="rites of... iron/secret naming/winter">
+      </div>
+    </div>
+  </div>
+</div>

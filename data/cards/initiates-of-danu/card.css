@@ -1,0 +1,237 @@
+/* Initiates of Danu Card Styling */
+.initiates-card {
+  background: linear-gradient(135deg, #4B8B3B 0%, #7CB342 100%);
+  border: 2px solid #558B2F;
+  color: #2c3e50;
+}
+
+.initiates-card .card-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #558B2F;
+}
+
+.selection-note {
+  margin: 8px 0 0 0;
+  font-size: 14px;
+  color: #2E7D32;
+  font-style: italic;
+  text-align: center;
+}
+
+.initiates-card .card-title {
+  margin: 0;
+  font-size: 22px;
+  color: #2E7D32;
+  text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
+}
+
+/* Individual Initiate Rows */
+.initiate-row {
+  background: rgba(255,255,255,0.95);
+  border: 2px solid #66BB6A;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  padding: 12px;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+}
+
+.initiate-row:not(.selected) {
+  opacity: 0.6;
+  background: rgba(255,255,255,0.7);
+}
+
+.initiate-row:not(.selected) .tracking-section,
+.initiate-row:not(.selected) .custom-picks {
+  pointer-events: none;
+}
+
+.initiate-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.initiate-selector {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.initiate-header h4 {
+  margin: 0;
+  color: #2E7D32;
+  font-size: 18px;
+}
+
+.stats-line {
+  margin-bottom: 5px;
+}
+
+.trait-tags {
+  font-style: italic;
+  color: #4CAF50;
+  font-size: 14px;
+}
+
+.combat-stats {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+/* HP and Loyalty Tracking */
+.tracking-section {
+  margin: 10px 0;
+}
+
+.hp-loyalty {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.stat-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stat-group label {
+  font-weight: bold;
+  color: #2E7D32;
+  min-width: 30px;
+}
+
+.stat-group input {
+  width: 50px;
+  padding: 4px 6px;
+  border: 1px solid #66BB6A;
+  border-radius: 4px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.stat-group input:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 3px rgba(76, 175, 80, 0.3);
+}
+
+/* Loyalty Tracking */
+.loyalty-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.loyalty-group label {
+  font-weight: bold;
+  color: #2E7D32;
+  margin-right: 5px;
+}
+
+.loyalty-track {
+  display: flex;
+  gap: 4px;
+}
+
+.loyalty-circle {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #4CAF50;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: transparent;
+}
+
+.loyalty-circle:hover {
+  border-color: #2E7D32;
+  transform: scale(1.1);
+}
+
+.loyalty-circle.filled {
+  background: #66BB6A;
+  border-color: #4CAF50;
+}
+
+.loyalty-circle.filled:hover {
+  background: #4CAF50;
+  border-color: #2E7D32;
+}
+
+/* Abilities Section */
+.abilities-section {
+  margin: 12px 0;
+}
+
+.instinct-cost {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.powers {
+  font-size: 13px;
+  color: #666;
+}
+
+/* Custom Pick Fields */
+.custom-picks {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #ddd;
+}
+
+.pick-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.pick-row:last-child {
+  margin-bottom: 0;
+}
+
+.pick-row input {
+  flex: 1;
+  min-width: 140px;
+  padding: 4px 8px;
+  border: 1px solid #81C784;
+  border-radius: 3px;
+  font-size: 13px;
+  background: #F1F8E9;
+}
+
+.pick-row input:focus {
+  outline: none;
+  border-color: #4CAF50;
+  background: white;
+}
+
+.pick-row input::placeholder {
+  color: #888;
+  font-style: italic;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hp-loyalty {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .pick-row {
+    flex-direction: column;
+  }
+  
+  .pick-row input {
+    min-width: auto;
+  }
+}

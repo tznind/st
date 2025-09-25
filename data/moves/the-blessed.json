@@ -50,18 +50,12 @@
     "id": "bbg1",
     "title": "Initiate",
     "category": "Background",
-    "description": "Stonetop has long been home to a sacred order, keepers of the old ways and speakers for Danu. You are one such initiate, the most gifted in generations. There are other initiates in Stonetop, serving the goddess and the village. They aid you as followers—see the Initiates of Danu insert. Who are they? Choose 2 or 3:",
-    "pick": [
-      "Enfys, your acolyte, beloved by birds",
-      "Afon, strange and fae-touched",
-      "Gwendyl, your mentor, a talented healer",
-      "Olwin, your anointed lover, seer of fates",
-      "Seren the Eldest, wise and hard as winter"
-    ],
+    "description": "Stonetop has long been home to a sacred order, keepers of the old ways and speakers for Danu. You are one such initiate, the most gifted in generations. There are other initiates in Stonetop, serving the goddess and the village. They aid you as followers—use the Initiates of Danu card to choose and track 2 or 3 of them.",
+    "grantsCard": "initiates-of-danu",
     "outcomes": [
       {
         "range": "",
-        "text": "You gain the Rites of the Land move."
+        "text": "You gain the Rites of the Land move and Initiates of Danu Followers."
       }
     ]
   },
