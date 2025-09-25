@@ -217,6 +217,7 @@
     "hbg2": false,
     "hbg3": false,
     "hsp": true,
+    "hspa": false,
     "ae0121": false,
     "ae0122": false,
     "hv00a": false,
@@ -244,9 +245,7 @@
     "hv022": false,
     "hv023": false,
     "hv024": false,
-    "hv025": false,
-    "ae0121": false,
-    "ae0122": false
+    "hv025": false
   },
   "The Judge":{
     "_movesFile": "data/moves/the-judge.json",

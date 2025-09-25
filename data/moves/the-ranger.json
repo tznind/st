@@ -68,12 +68,17 @@
     {
       "name": "Lay",
       "max": 3,
-      "shape": "circle"
+      "shape": "hexagon"
+    },
+    {
+      "name": "Whisky",
+      "max": 2,
+      "shape": "square"
     }
   ],
     "pick": [
       "◇ Compound bow (far, +1 damage, x piercing; low ammo, all out)",
-      "Distillery: skins of fine whisky ( uses,grants advantage to Persuade), copper tubes, malt, firkins, stills, barrels, etc.",
+      "Distillery: skins of fine whisky (2 uses, grants advantage to Persuade), copper tubes, malt, ◇◇ firkins, stills, barrels, etc.",
       "Hideouts (3 uses): expend a use to have a well-stocked, safe shelter nearby; GM can veto.",
       "Husbandry tools: brushes, muzzles, collars, feed, whips, bridles, etc. Gain advantage to Persuade domestic beasts (livestock, dogs, etc.).",
       "Hounds: 2-3 followers, tick the move below",
