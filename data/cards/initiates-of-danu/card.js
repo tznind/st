@@ -35,6 +35,7 @@ console.log('*** INITIATES OF DANU SCRIPT STARTING ***');
     });
     
     setupLoyalty();
+    restoreLoyaltyState();
     updateDisplay();
   }
   
@@ -62,13 +63,18 @@ console.log('*** INITIATES OF DANU SCRIPT STARTING ***');
               console.log(`Loyalty circle clicked for ${initiateName}, value: ${clickedValue}`);
               
               // Update loyalty display
-              loyaltyCircles.forEach((c, cIndex) => {
-                if (cIndex < clickedValue) {
-                  c.classList.add('filled');
-                } else {
-                  c.classList.remove('filled');
+              updateLoyaltyDisplay(initiateName, clickedValue);
+              
+              // Save to hidden input for persistence
+              const loyaltyInput = document.getElementById(`${initiateName}_loyalty`);
+              if (loyaltyInput) {
+                loyaltyInput.value = clickedValue;
+                // Trigger persistence save
+                const form = document.querySelector('form');
+                if (form && window.Persistence) {
+                  window.Persistence.saveToURL(form);
                 }
-              });
+              }
             });
             circle.setAttribute('data-loyalty-listener', 'true');
           } else {
@@ -77,6 +83,35 @@ console.log('*** INITIATES OF DANU SCRIPT STARTING ***');
         });
       } else {
         console.log(`Loyalty track NOT FOUND for ${initiateName}`);
+      }
+    });
+  }
+  
+  function updateLoyaltyDisplay(initiateName, loyaltyValue) {
+    const loyaltyTrack = document.querySelector(`.loyalty-track[data-initiate="${initiateName}"]`);
+    if (loyaltyTrack) {
+      const loyaltyCircles = loyaltyTrack.querySelectorAll('.loyalty-circle');
+      loyaltyCircles.forEach((circle, circleIndex) => {
+        if (circleIndex < loyaltyValue) {
+          circle.classList.add('filled');
+        } else {
+          circle.classList.remove('filled');
+        }
+      });
+    }
+  }
+  
+  function restoreLoyaltyState() {
+    console.log('Restoring loyalty state from persistence...');
+    
+    initiateNames.forEach((initiateName) => {
+      const loyaltyInput = document.getElementById(`${initiateName}_loyalty`);
+      if (loyaltyInput && loyaltyInput.value) {
+        const loyaltyValue = parseInt(loyaltyInput.value);
+        if (loyaltyValue > 0) {
+          console.log(`Restoring ${initiateName} loyalty to ${loyaltyValue}`);
+          updateLoyaltyDisplay(initiateName, loyaltyValue);
+        }
       }
     });
   }
