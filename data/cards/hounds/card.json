@@ -1,0 +1,13 @@
+{
+  "id": "hounds",
+  "title": "Hounds",
+  "path": "data/cards/hounds",
+  "description": "Your loyal hunting Hounds",
+  "version": "1.0.0",
+  "author": "Stonetop System",
+  "files": {
+    "html": "card.html",
+    "css": "card.css",
+    "js": "card.js"
+  }
+}

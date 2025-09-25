@@ -1,0 +1,130 @@
+/* Hounds Card Styling */
+.hounds-card {
+  background: linear-gradient(135deg, #2F4F2F 0%, #8FBC8F 100%);
+  border: 2px solid #228B22;
+  color: #2c3e50;
+}
+
+.hounds-card .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #228B22;
+}
+
+.hounds-card .card-title {
+  margin: 0;
+  font-size: 22px;
+  color: #228B22;
+  text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
+}
+
+.loyalty-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  background: rgba(255,255,255,0.8);
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #228B22;
+}
+
+.loyalty-section .track-label {
+  font-weight: 600;
+  color: #228B22;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.loyalty-section .track-shapes {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.loyalty-section .track-shape {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #228B22;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  border-radius: 50%;
+}
+
+.loyalty-section .track-shape:hover {
+  border-color: #006400;
+  transform: scale(1.1);
+}
+
+.loyalty-section .track-shape.filled {
+  background: #90EE90;
+  border-color: #228B22;
+}
+
+.loyalty-section .track-shape.filled:hover {
+  background: #7CFC00;
+  border-color: #006400;
+}
+
+.hounds-card .form-field {
+  margin-bottom: 15px;
+  background: rgba(255,255,255,0.9);
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #8FBC8F;
+}
+
+.hounds-card .form-field label {
+  font-weight: 700;
+  color: #228B22;
+  display: inline-block;
+  margin-right: 10px;
+  min-width: 60px;
+}
+
+.hounds-card input[type="text"],
+.hounds-card input[type="number"] {
+  border: 2px solid #8FBC8F;
+  background: white;
+  border-radius: 4px;
+  padding: 6px 10px;
+}
+
+.hounds-card input[type="text"]:focus,
+.hounds-card input[type="number"]:focus {
+  border-color: #228B22;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(34, 139, 34, 0.1);
+}
+
+.stats-display {
+  background: rgba(255,255,255,0.95);
+  border: 2px solid #228B22;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+.stat-item {
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.stat-item:last-child {
+  margin-bottom: 0;
+}
+
+.stat-item strong {
+  color: #2F4F2F;
+  font-weight: 700;
+  min-width: 70px;
+}
