@@ -116,7 +116,9 @@
     "cards": [],
     "jbg1":false,
     "jbg2":false,
-    "jbg3":false
+    "jbg3":false,
+    "jsp":true,
+    "jspa":true
   },
   "The Would Be Hero":{
     "_movesFile": "data/moves/the-would-be-hero.json",
