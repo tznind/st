@@ -239,11 +239,6 @@
     ]
   },
   {
-    "id": "bl005",
-    "title": "Call the Spirits",
-    "description": "When you perform a short ritual and invoke the spirit(s) of a place or object, spend 1 Stock. The spirit(s) manifest before you and will hear what you have to say. What they do next is up to them."
-  },
-  {
     "id": "bl006",
     "title": "Trackless Step",
     "outcomes": [
