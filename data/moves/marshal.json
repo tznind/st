@@ -48,6 +48,171 @@
     ]
   },
   {
+    "id": "ms002",
+    "title": "Arts of War (Requires level 2+, the Marshal)",
+    "description": "Take a move from the Fox, Heavy, Judge, Ranger, or Seeker playbooks, for which you otherwise qualify. You can pick from a different playbook each time. You can't take Improved Stat or Superior Stat.",
+    "takeFrom": ["Fox", "The Heavy", "The Judge", "The Ranger", "The Seeker"],
+    "takeCategory": ["Moves"],
+    "multiple": 2
+  },
+  {
+    "id": "ms003",
+    "title": "Crew",
+    "description": "You've got a crew of stalwarts, six or so residents of Stonetop with some steel to them. See the Crew insert for details.",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "You have a crew of six or so residents with some steel to them. See the Crew insert for details."
+      }
+    ]
+  },
+  {
+    "id": "ms004",
+    "title": "Front Line Leader",
+    "description": "When you lead your crew into battle, hold 2 Presence. Spend Presence in lieu of your crew's Loyalty or as Readiness (as if you Defended them).",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "When you lead your crew into battle, hold 2 Presence. Spend Presence in lieu of your crew's Loyalty or as Readiness (as if you Defended them)."
+      }
+    ]
+  },
+  {
+    "id": "ms006",
+    "title": "Logistics",
+    "description": "When you have a steading Muster or Pull Together, or when you Requisition, you have advantage.",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "When you have a steading Muster or Pull Together, or when you Requisition, you have advantage."
+      }
+    ]
+  },
+  {
+    "id": "ms007",
+    "title": "Prepare a Welcome (Requires Read the Land)",
+    "description": "When you have your allies fortify a position and lie in wait for battle, hold 1 Surprise if you're rushed or 2 Surprises if you can take your time.",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "Hold 1 Surprise if rushed or 2 Surprises if you have time. Once battle is joined, spend 1 Surprise to reveal a prepared ploy, defense, or dirty trick and roll +INT:",
+        "bullets": [
+          "10+: It works as expected, and you regain 1 Surprise",
+          "7-9: It works as expected"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ms008",
+    "title": "Read the Land",
+    "description": "When you first take a moment to survey the terrain, ask the GM one of the following; gain advantage on your next roll to act on the answer.",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "Ask the GM one of the following and gain advantage on your next roll to act on the answer:",
+        "bullets": [
+          "What's the best way in, out, through, or past?",
+          "Where's the best spot for a trap or an ambush?",
+          "Where's the most defensible position?",
+          "What here is out of place?"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ms009",
+    "title": "Set-up Strike",
+    "description": "When you Clash and get a 7+, you can choose to deal damage with disadvantage. If you do, you create an opening for ally to act on, as if you provided Aid. Describe it!",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "When you Clash and get a 7+, you can choose to deal damage with disadvantage to create an opening for an ally (as if you provided Aid)."
+      }
+    ]
+  },
+  {
+    "id": "ms010",
+    "title": "Shake it Off",
+    "description": "When you order an ally to overcome fear, pain, doubt, or delusion, roll +CHA: on a 10+, they do it; on a 7-9, a PC gets advantage to do it; an NPC will do it, but they'll need time, they'll resent you, or they'll feel humiliated (GM decides).",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "They overcome it."
+      },
+      {
+        "range": "7–9",
+        "text": "A PC gets advantage to do it; an NPC will do it, but they'll need time, resent you, or feel humiliated (GM decides)."
+      }
+    ]
+  },
+  {
+    "id": "ms011",
+    "title": "Shield Wall",
+    "description": "When you have your crew form a shield wall, they Defend with advantage and on a 7+ they hold +2 Readiness (instead of the usual +1 for shields). As long as they maintain formation, they can go on the offensive without losing Readiness.",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "Your crew Defends with advantage and on a 7+ holds +2 Readiness (instead of +1). They can go offensive without losing Readiness while in formation."
+      }
+    ]
+  },
+  {
+    "id": "ms012",
+    "title": "Sir, Permission to Die, Sir",
+    "description": "When one of your followers would die, you can spend 1 of their Loyalty to have them survive (out of the action, but alive). If you let them go, mark XP.",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "When a follower would die, spend 1 of their Loyalty to have them survive (out of action, but alive). If you let them go, mark XP."
+      }
+    ]
+  },
+  {
+    "id": "ms013",
+    "title": "Speak Softly",
+    "description": "When you offer peace but your enemy refuses, gain advantage on your next roll against them.",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "When you offer peace but your enemy refuses, gain advantage on your next roll against them."
+      }
+    ]
+  },
+  {
+    "id": "ms014",
+    "title": "Take the Measure",
+    "description": "When you size someone up, ask their player one of the questions below and get an honest answer. If they fear or respect you (their call), you can ask another question. You can't use this move on them again until your relationship significantly changes.",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "Ask one of these questions and get an honest answer. If they fear or respect you, ask another:",
+        "bullets": [
+          "Can I trust them (to _______ )?",
+          "What do they intend to do?",
+          "How are they most useful/dangerous?",
+          "What weakness of theirs can I exploit?"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ms015",
+    "title": "Veteran Crew (Requires Crew)",
+    "description": "Each time you take this move, pick 1. You can also choose to reselect their Instinct and Cost.",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "Pick one:",
+        "bullets": [
+          "Select 2 new tags for your Crew",
+          "Increase their damage die from d6 to d8",
+          "Increase their max HP by 2 each"
+        ]
+      }
+    ]
+  },
+  {
     "id": "j1k2l3",
     "title": "We happy few (+Charisma)",
     "description": "When you give an inspiring speech to your allies before facing a dire threat.",
@@ -79,10 +244,85 @@
     "outcomes": [
       {
         "range": "",
-        "text": "When you go into battle, hold 2 Commandm, spend to:",
+        "text": "When you go into battle, hold 2 Command, spend to:",
         "bullets": [
           "shout an order or warning to an ally; they gain advantage on their next roll to do as you say"
         ]
+      }
+    ]
+  },
+  {
+    "id": "ms016",
+    "title": "Battlefield Grace (Requires level 6+ and Front Line Leader)",
+    "description": "When you take damage while leading your allies in battle, the damage roll has disadvantage.",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "When you take damage while leading your allies in battle, the damage roll has disadvantage."
+      }
+    ]
+  },
+  {
+    "id": "ms017",
+    "title": "Focus Fire (Requires level 6+, Stentorian)",
+    "description": "You can spend 1 Command to order your allies to bring down a foe. If you do, each ally has advantage on their next damage roll against that foe.",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "Spend 1 Command to order your allies to bring down a foe. Each ally has advantage on their next damage roll against that foe."
+      }
+    ]
+  },
+  {
+    "id": "ms018",
+    "title": "Heroes to the Last (Requires level 6+ and Veteran Crew)",
+    "description": "Each time you take this move, pick 1:",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "Pick one:",
+        "bullets": [
+          "They are exceptional (and roll +2 instead of +1)",
+          "They are inured to terror & horror",
+          "Increase their max HP by 4 each",
+          "Increase their damage die one size (max d10)"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ms019",
+    "title": "Like an Open Book",
+    "description": "When you Take the Measure of someone who fears or respects you, your second question can be anything you want. The GM might ask how you could possibly know this; tell them or ask something else.",
+    "requirements": "Requires level 6+ and Take the Measure",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "When you Take the Measure of someone who fears or respects you, your second question can be anything you want."
+      }
+    ]
+  },
+  {
+    "id": "ms020",
+    "title": "Noble Mien",
+    "description": "When you lead an NPC through danger and return them to safety, if they aren't part of your crew they will either offer to join your crew or pledge their future aid and support.",
+    "requirements": "Requires level 6+",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "When you lead an NPC through danger and return them to safety, if they aren't part of your crew they will offer to join your crew or pledge future aid and support."
+      }
+    ]
+  },
+  {
+    "id": "ms021",
+    "title": "Peace Through Strength",
+    "description": "When you stand ready to fight alongside like-minded allies, anything capable of fear recognizes you as a serious threat and treats you accordingly.",
+    "requirements": "Requires level 6+ and Speak Softly",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "When you stand ready to fight alongside like-minded allies, anything capable of fear recognizes you as a serious threat and treats you accordingly."
       }
     ]
   }
