@@ -119,6 +119,10 @@ console.log('*** INITIATES OF DANU SCRIPT STARTING ***');
   function updateDisplay() {
     console.log('Updating display...');
     
+    // Check if hide untaken is enabled
+    const hideUntakenCheckbox = document.getElementById('hide_untaken');
+    const hideUntaken = hideUntakenCheckbox ? hideUntakenCheckbox.checked : false;
+    
     initiateSelectors.forEach((selectorId, index) => {
       const checkbox = document.getElementById(selectorId);
       const initiateName = initiateNames[index];
@@ -127,11 +131,21 @@ console.log('*** INITIATES OF DANU SCRIPT STARTING ***');
       
       if (checkbox && row) {
         if (checkbox.checked) {
+          // Show and mark as selected
           row.classList.add('selected');
+          row.style.display = '';
           console.log(`Added selected to ${initiateName}`);
         } else {
+          // Remove selected styling
           row.classList.remove('selected');
-          console.log(`Removed selected from ${initiateName}`);
+          // Hide if 'Hide untaken' is checked, else show
+          if (hideUntaken) {
+            row.style.display = 'none';
+            console.log(`Hid unselected ${initiateName}`);
+          } else {
+            row.style.display = '';
+            console.log(`Removed selected from ${initiateName}`);
+          }
         }
       } else {
         console.log(`Missing elements for ${initiateName}: checkbox=${!!checkbox}, row=${!!row}`);
