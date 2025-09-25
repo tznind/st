@@ -48,6 +48,18 @@
     ]
   },
   {
+    "id": "msp",
+    "title": "Special Possessions (pick 2)",
+    "category": "Special Possessions",
+    "pick": [
+      "Placeholder 1: Description here",
+      "Placeholder 2: Description here",
+      "Placeholder 3: Description here",
+      "Placeholder 4: Description here",
+      "Placeholder 5: Description here"
+    ]
+  },
+  {
     "id": "ms002",
     "title": "Arts of War (Requires level 2+, the Marshal)",
     "description": "Take a move from the Fox, Heavy, Judge, Ranger, or Seeker playbooks, for which you otherwise qualify. You can pick from a different playbook each time. You can't take Improved Stat or Superior Stat.",

@@ -57,6 +57,31 @@
     ]
   },
   {
+    "id": "rsp",
+    "title": "Special Possessions (pick 2)",
+    "category": "Special Possessions",
+    "tracks": [{
+      "name": "Hideouts",
+      "max": 3,
+      "shape": "triangle"
+    },
+    {
+      "name": "Lay",
+      "max": 3,
+      "shape": "circle"
+    }
+  ],
+    "pick": [
+      "◇ Compound bow (far, +1 damage, x piercing; low ammo, all out)",
+      "Distillery: skins of fine whisky ( uses,grants advantage to Persuade), copper tubes, malt, firkins, stills, barrels, etc.",
+      "Hideouts (3 uses): expend a use to have a well-stocked, safe shelter nearby; GM can veto.",
+      "Husbandry tools: brushes, muzzles, collars, feed, whips, bridles, etc. Gain advantage to Persuade domestic beasts (livestock, dogs, etc.).",
+      "Hounds, 2-3 followers (trackers, keen-nosed, fast); HP 6; Damage d6 (hand, grabby);Instinct: to give chase; Cost: training.",
+      "Lay of the land (3 uses): expend a use to know where to find ___, without having to Know Things; GM can veto.",
+      "Trapping gear: snares, pelts, musk, bait, etc.When you Forage, get +1 use of provisions"
+    ]
+  },
+  {
     "id": "rg003",
     "title": "Alpha (Requires Wild Speech or Spirit Tongue)",
     "description": "When you assert your dominance over a beast or spirit of the wild, roll +Wisdom",

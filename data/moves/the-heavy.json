@@ -53,6 +53,18 @@
     ]
   },
   {
+    "id": "hsp",
+    "title": "Special Possessions (pick 2)",
+    "category": "Special Possessions",
+    "pick": [
+      "Placeholder 1: Description here",
+      "Placeholder 2: Description here",
+      "Placeholder 3: Description here",
+      "Placeholder 4: Description here",
+      "Placeholder 5: Description here"
+    ]
+  },
+  {
     "id": "hv001",
     "title": "Armored",
     "description": "When you carry a shield, mark only ◇ (instead of ◇◇). Also, you can ignore the cumbersome tag on any armor you wear. If you take this move at the start of play, pick 1 (all are armor 2, warm, cumbersome):",
