@@ -304,7 +304,6 @@
     "description": "Any intelligent creature who looks you in the eye or hears the steel in your voice instinctively knows that you are a force to be reckoned with, and treats you appropriately.",
     "outcomes": [
       {
-        "range": "",
         "text": "When you Defy Danger against something trying to harm or constrain you, on a 12+ you turn the tables on them (the GM will say how, or ask you to)."
       }
     ]

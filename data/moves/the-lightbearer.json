@@ -65,23 +65,65 @@
     ]
   },
   {
+    "id": "lb011",
+    "title": "All is Illuminated (+Wisdom)",
+    "description": "When you look closely on another and see their soul laid bare, roll +WIS:",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "Ask their player 1 question from the list below, plus \"And what would make them feel loved, beautiful, or worthy?\":",
+        "bullets": [
+          "Of what are they most ashamed?",
+          "What do they most desire or covet?",
+          "What hope have they abandoned?",
+          "Who or what is most precious to them?"
+        ]
+      },
+      {
+        "range": "7-9",
+        "text": "Ask them 1 question from the list. In any case, they must answer truthfully.",
+        "bullets": []
+      }
+    ]
+  },
+  {
+    "id": "lb012",
+    "title": "And Behold a Pale Horse",
+    "description": "When you spend the night gazing into a flame, ask the GM to reveal an impending doom or grim portent that will come to pass unless you intervene, and how you might yet do so."
+  },
+  {
     "id": "lb002",
     "title": "A Candle Against the Dark",
     "description": "When you wield a holy light but go otherwise un-armed, you have 2 Armor."
   },
   {
-    "id": "lb003",
-    "title": "Consecrated Flame",
-    "description": "When you whisper words of consecration to a flame, the flame casts a holy light. Holy light is",
-         "outcomes": [
+    "id": "lb013",
+    "title": "Luminous Shield (Requires A Candle Against the Dark)",
+    "description": "When you brandish a holy light to turn aside an attack against body, mind, or soul, roll +CHA:",
+    "outcomes": [
       {
-        "range": "",
-        "text": "Uncomfortable to creatures of darkness to look upon, but does no true harm."
+        "range": "≥ 10",
+        "text": "Pick 2:",
+        "bullets": [
+          "The attack is deflected, doing no harm",
+          "The attacker, if in range of your light, is briefly blinded",
+          "Your holy light is not extinguished"
+        ]
       },
       {
-        "range": "",
-        "text": "Lasts until the flame goes out or until you consecrate another flame.",
+        "range": "7-9",
+        "text": "Pick 1",
         "bullets": []
+      }
+    ]
+  },
+  {
+    "id": "lb003",
+    "title": "Consecrated Flame",
+    "description": "When you whisper words of consecration to a flame, the flame casts a holy light. Holy light is uncomfortable for creatures of darkness to look upon, but does no true harm.",
+    "outcomes": [
+      {
+        "text": "The holy light lasts until the flame goes out or until you consecrate another flame, whichever comes first."
       }
     ]
   },
@@ -118,9 +160,90 @@
     "description": "When you are in darkness, you are able to see by the light of your inner fire.  When you take damage from cold or fire, reduce that damage by 2."
   },
   {
+    "id": "lb014",
+    "title": "Guiding Light (+Charisma)",
+    "description": "When you lead one or more NPCs through danger, roll +CHA:",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "You all make it through (Helior be praised)."
+      },
+      {
+        "range": "7-9",
+        "text": "The GM will tell you what's required to get everyone through safely."
+      }
+    ]
+  },
+  {
+    "id": "lb015",
+    "title": "Helior's Unblinking Eye (+Wisdom)",
+    "description": "When you stare into the sun long enough to lose your vision, name a person or place that you know and roll +WIS:",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "You briefly glimpse your subject as if from a great height, and choose 2:",
+        "bullets": [
+          "The glimpse lasts as long as you wish",
+          "Your point of view shifts to very close range",
+          "You recover your vision quickly"
+        ]
+      },
+      {
+        "range": "7-9",
+        "text": "You briefly glimpse your subject as if from a great height, and choose 1",
+        "bullets": []
+      }
+    ]
+  },
+  {
+    "id": "lb016",
+    "title": "Keep the Home-fires Burning",
+    "description": "When you build a camp fire and sprinkle it with ash from your own hearth, anyone who Makes Camp with you is free from nightmares or bad dreams.",
+    "outcomes": [
+      {
+        "text": "They also recover (extra) HP equal to your CHA."
+      }
+    ]
+  },
+  {
     "id": "lb007",
     "title": "Lamplighter",
     "description": "When you whisper to a flammable object (torch, wick, kindling, etc.), it ignites in moments."
+  },
+  {
+    "id": "lb017",
+    "title": "Piety",
+    "description": "When you spend at least an hour in proper worship to Helior, hold 1 Blessing. Other faithful PCs who partake in this worship also hold 1 Blessing.",
+    "outcomes": [
+      {
+        "text": "At any time, you can spend 1 Blessing to add +1 to a roll you just made in pursuit of a righteous cause."
+      }
+    ]
+  },
+  {
+    "id": "lb018",
+    "title": "Radiant Countenance",
+    "description": "When you give someone your fond attention, you can then Persuade them with advantage.",
+    "outcomes": [
+      {
+        "text": "If they are a follower, you can instead choose to Strengthen Your Bond (as if you paid their cost)."
+      }
+    ]
+  },
+  {
+    "id": "lb019",
+    "title": "Rise Like the Sun (+Charisma)",
+    "description": "When you draw attention to yourself by word or deed, roll +CHA:",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "Everyone turns and looks, and you hold their gaze as long as you keep giving them reason to look."
+      },
+      {
+        "range": "7-9",
+        "text": "Everyone turns and looks."
+      }
+    ]
   },
   {
     "id": "lb008",
@@ -149,9 +272,39 @@
     "description": "When you Invoke the Sun God, you may mark a debility to use 2 Invocations at once. Roll once, and apply any consequences to both Invocations."
    },
    {
+    "id": "lb020",
+    "title": "Empowered Invocations (Requires level 6+ and Invoke the Sun God)",
+    "description": "When you Invoke the Sun God, you can choose an extra consequence before you roll. If you do, the Invocation has its empowered effect."
+   },
+   {
+    "id": "lb021",
+    "title": "Glorious Servant (Requires level 6+ and Invoke the Sun God)",
+    "description": "When you Invoke the Sun God and roll a 10+, you need not choose a consequence; on a 7-9, you choose a consequence but the GM does not."
+   },
+   {
+    "id": "lb022",
+    "title": "Hungry Flames (Requires level 6+ and Purifying Flames)",
+    "description": "When you deal damage with a holy light, you deal +1d6 damage and your target is engulfed in holy light and flames."
+   },
+   {
     "id": "lb010",
     "title": "Light, More Light (Requires level 6+ and Consecrated Flame)",
     "description": "When you consecrate a flame, it burns brighter than normal. A rushlight or candle illuminates to reachrange, an oil lamp, lantern, or torch out to nearrange, and a bullseye lantern out to far range."
+   },
+   {
+    "id": "lb023",
+    "title": "Wielder of the White Flame (Requires level 6+ and Invoke the Sun God)",
+    "description": "When you channel Helior's essence into an object you carry, roll +WIS:",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "It ignites with a white flame that casts a holy light (reach, area) and burns neither you nor the object, and you may Invoke the Sun God right now as if you rolled a 10+."
+      },
+      {
+        "range": "7-9",
+        "text": "It ignites with a white flame that casts a holy light (reach, area) and burns neither you nor the object."
+      }
+    ]
    },
   {
     "id": "iv001",
