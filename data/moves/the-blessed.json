@@ -89,6 +89,23 @@
     "id": "bsp",
     "title": "Special Possessions (pick 2)",
     "category": "Special Possessions",
+    "tracks": [
+      {
+        "name": "Offerings",
+        "max": 3,
+        "shape": "circle"
+      },
+      {
+        "name": "Bezoar",
+        "max": 3,
+        "shape": "hexagon"
+      },
+      {
+        "name": "Bendis Root",
+        "max": 4,
+        "shape": "square"
+      }
+    ],
     "pick": [
       "Apiary: beeswax, candles (last ~1 hr, close), ◇ honey, ◇ bee smokers, ◇ hats & veils, etc.",
       "Collected offerings: Expend a use to produce something valuable to a spirit of the wild. Restore 1 use each season",
