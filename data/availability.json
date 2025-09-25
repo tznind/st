@@ -77,7 +77,21 @@
     "bl008": false,
     "bl009": false,
     "bl010": false,
-    "bl011": false
+    "bl011": false,
+    "bl012": false,
+    "bl013": false,
+    "bl014": false,
+    "bl015": false,
+    "bl016": false,
+    "bl017": false,
+    "bl018": false,
+    "bl019": false,
+    "bl020": false,
+    "bl021": false,
+    "bl022": false,
+    "bl023": false,
+    "ae0121": false,
+    "ae0122": false
   },
   "The Ranger": {
     "_movesFile": "data/moves/the-ranger.json",

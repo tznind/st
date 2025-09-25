@@ -122,6 +122,41 @@
     "grantsCard": "mastiffs"
   },
   {
+    "id": "bl012",
+    "title": "Amulets & Talismans",
+    "description": "When you craft a protective charm for someone, spend 1 Stock and name a source of harm (fire, stabbing, etc.). When they would suffer such harm while bearing your charm, roll +Intelligence. One can benefit from only 1 charm at a time, and it loses its potency after 1 use.",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "They ignore the harm entirely"
+      },
+      {
+        "range": "7–9",
+        "text": "They suffer only half the damage or effect"
+      },
+      {
+        "range": "≤ 6",
+        "text": "They suffer the harm normally"
+      }
+    ]
+  },
+  {
+    "id": "bl013",
+    "title": "Barkskin",
+    "description": "When you are touching the ground, you have 2 armor. When you mark another with 1 Stock, they gain this benefit so long as the mark remains."
+  },
+  {
+    "id": "bl014",
+    "title": "Big Magic",
+    "description": "Each time you take this move, choose an additional remarkable trait for your sacred pouch and increase your max Stock by 2.",
+    "multiple": 3
+  },
+  {
+    "id": "bl005",
+    "title": "Call the Spirits",
+    "description": "When you perform a short ritual and invoke the spirit(s) of a place or object, spend 1 Stock. The spirit(s) manifest before you and will hear what you have to say. What they do next is up to them."
+  },
+  {
     "id": "bl002",
     "title": "Danu's Grasp (+Wisdom)",
     "description": "When you call on the world itself to bind a spirit or a perversion of nature, spend 1 stock and roll +Wisdom.",
@@ -143,6 +178,43 @@
       {
         "range": "",
         "text": "If this brings them to 0 HP, they are pulled into the earth and bound in rune-etched stone."
+      }
+    ]
+  },
+  {
+    "id": "bl015",
+    "title": "Heed My Words",
+    "description": "When you Persuade by talking sense or warning against foolishness, you have advantage."
+  },
+  {
+    "id": "bl009",
+    "title": "Healer's Arts",
+    "description": "When someone Recovers under your care, they recover (extra) HP equal to your Wisdom. If you also spend 1 Stock, they heal an extra 5 HP and their wounds/injuries are stabilized."
+  },
+  {
+    "id": "bl022",
+    "title": "Into the Lion's Den",
+    "description": "When you approach a beast calmly and show no fear, it will not harm you—though it may well threaten you and test your nerve. When you lay your hand gently upon a beast, it will calm to your touch."
+  },
+  {
+    "id": "bl007",
+    "title": "Lightning Rod",
+    "description": "When you Defend while touching the ground, you can spend 1 Readiness to intercept a nearby magical attack and redirect it harmlessly into the ground"
+  },
+  {
+    "id": "bl023",
+    "title": "Rites of the Land",
+    "description": "Once per season, when you oversee the sacred rites, hold 1 Favor. If you also sacrifice 1 Surplus, hold 4 Favor instead. Spend Favor in lieu of Stock, 1-for-1.",
+    "tracks": [
+      {
+        "name": "Favor",
+        "max": 4,
+        "shape": "triangle"
+      }
+    ],
+    "outcomes": [
+      {
+        "text": "At any time, when you sacrifice a thing much-loved, clear a steading debility or increase Fortunes by 1."
       }
     ]
   },
@@ -184,14 +256,79 @@
     ]
   },
   {
-    "id": "bl007",
-    "title": "Lightning Rod",
-    "description": "When you Defend while touching the ground, you can spend 1 Readiness to intercept a nearby magical attack and redirect it harmlessly into the ground"
+    "id": "bl016",
+    "title": "Veil",
+    "description": "When you wrap yourself or another in a subtle veil, spend 1 Stock and choose 1:",
+    "outcomes": [
+      {
+        "text": "",
+        "bullets": [
+          "A type of being you name (including 'people') will tend to ignore your presence",
+          "People will perceive you as someone else, though you must wear something of an individual's in order to impersonate them"
+        ]
+      },
+      {
+        "text": "When your deception comes under scrutiny, roll +Intelligence",
+        "range": "≥ 10",
+        "bullets": ["The veil holds, and no one is the wiser"]
+      },
+      {
+        "range": "7–9",
+        "text": "The veil holds, but there is further scrutiny or a complication (GM's choice)"
+      }
+    ]
+  },
+  {
+    "id": "bl017",
+    "title": "Wards & Bindings",
+    "description": "When you mark a boundary with sacred signs, spend 1 Stock and describe who or what they affect (using no more words than your level). Also, choose whether the affected beings are repelled or trapped by the signs. When your wards or bindings are first tested, roll +Intelligence",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "They will hold as long as the signs remain unmarred (and the affected creature can do nothing to affect them directly)"
+      },
+      {
+        "range": "7–9",
+        "text": "They hold for now but may be overcome through might or will"
+      }
+    ]
+  },
+  {
+    "id": "bl018",
+    "title": "Wild Soul (Requires level 2+ and the Blessed)",
+    "description": "Each time you take this move, gain a Ranger move of your choice for which you qualify. You can't pick Improved Stat or Superior Stat.",
+    "multiple": 4,
+    "takeFrom": ["The Ranger"],
+    "takeCategory": ["Moves"]
+  },
+  {
+    "id": "bl010",
+    "title": "Nature's Wrath (Requires level 6+ and Danu's Grasp)",
+    "description": "Danu's Grasp gains the area tag and can affect any creature. A mortal reduced to 0 HP is subdued or killed (your choice) rather than bound in stone."
+  },
+  {
+    "id": "bl019",
+    "title": "Potent Workings (Requires level 6+ and Amulets & Talismans)",
+    "description": "When you craft a protective charm, you may spend 1 additional Stock to choose 1:",
+    "outcomes": [
+      {
+        "text": "",
+        "bullets": [
+          "Name an additional type of harm",
+          "On a 10+, the charm retains its potency"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "bl020",
+    "title": "Shared Souls (Requires level 6+ and Into the Lion's Den)",
+    "description": "When you mark a beast with 1 Stock, you can direct its actions and perceive through its senses no matter the distance between you. Treat it as a follower with 3 Loyalty; when you spend its last Loyalty, the effect ends."
   },
   {
     "id": "bl008",
-    "title": "Suck the Poison Out (Requires level 6+ and Healer’s Arts)",
-    "description": "When you draw a malady from a patient’s body, mind, or soul, spend 1 Stock and roll +Wisdom",
+    "title": "Suck the Poison Out (Requires level 6+ and Healer's Arts)",
+    "description": "When you draw a malady from a patient's body, mind, or soul, spend 1 Stock and roll +Wisdom",
       "outcomes": [
       {
         "range": "≥ 10",
@@ -209,13 +346,8 @@
   ]
   },
   {
-    "id": "bl009",
-    "title": "Healer's Arts",
-    "description": "When someone Recovers under your care, they recover (extra) HP equal to your Wisdom. If you also spend 1 Stock, they heal an extra 5 HP and their wounds/injuries are stabilized. "
-  },
-  {
-    "id": "bl010",
-    "title": "Nature's Wrath (Requires level 6+ and Danu's Grasp)",
-    "description": "Danu's Grasp gains the area tag and can affect any creature. A mortal reduced to 0 HP is subdued or killed (your choice) rather than bound in stone."
+    "id": "bl021",
+    "title": "Voice of the Earth Mother (Requires level 6+ and Spirit Tongue)",
+    "description": "When you speak on behalf of Danu, natural beasts and spirits of the wild respect your authority. All but the most headstrong will do as you command, even against their instincts."
   }
 ]
