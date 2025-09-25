@@ -60,7 +60,10 @@
   "The Lightbearer": {
     "_movesFile": "data/moves/the-lightbearer.json",
     "cards": [],
+    "lbg1":false,
     "lb001": false,
+    "lbg3":false,
+    "lsp":true,
     "lb002": false,
     "lb003": true,
     "lb004": true,

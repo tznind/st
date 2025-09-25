@@ -1,8 +1,19 @@
 [
   {
+    "id":"lbg1",
+    "title": "Auspicious Birth",
+    "category": "Background",
+    "description": "You were born in Stonetop, and that birth was marked by the God of Light. You were born during an eclipse, perhaps, or under the light of a bright new star? Maybe you bear a sun-shaped birthmark?",
+    "outcomes": [
+      {"text":"Whatever the sign, your connection to Helior was clear early on. You've a place of honor in Stonetop, though it'd be a lie to say you don't make some uneasy"},
+      {"text":"When one of your moves would cause you to mark a debility, you may mark this move instead, to no ill effect. When you Make Camp, clear the circle."}
+    ]
+  },
+  {
     "id": "lb001",
     "title": "Itinerant Mystic",
-    "description": "When you go off a-wandering for",
+    "category": "Background",
+    "description": "They think of you as a self-important kook who comes through now and again, speaking in riddles and playing tricks with the light. Sure, they know there's something holy about you, but it's not like you're a priest or anything. Priests talk sense.  When you go off a-wandering for",
      "outcomes": [
       {
         "range": "Months",
@@ -22,6 +33,35 @@
         "range": "Days",
         "text": "Hold 1 Enigma"
       }
+    ]
+  },
+  {
+    "id":"lbg3",
+    "title": "Soul on Fire",
+    "category": "Background",
+    "description": "You once led a wordly life, full of fear and doubt, base pleasures and petty grudges. But something happened. Injury, illness, a brush with death. Or just a moment of such profound misery and self-loathing that you thought you could fall no further.There, in the dark, Helior's light shined upon you, igniting in your soul, lifting you and filling you with a profound sense of purpose.",
+    "outcomes": [
+      {
+        "text":"When you Persuade a group by preaching charity, mercy, and hope and roll a 7+, aside from the usual effect, choose 1",
+        "bullets": [
+          "Your name and your message spread",
+          "Someone approaches you, now or later, eager toknow more"
+        ]
+      }
+    ]
+  },
+    {
+    "id":"lsp",
+    "title":"Pick 2",
+    "category": "Special Possessions",
+    "pick": [
+      "Apiary: beeswax, candles (last ~1 hr, close), ◇ honey, ◇ bee smokers, ◇ hats & veils, etc.",
+      "Books and Scrolls: Expend a use to consult your collection and turn a Know Things roll you just made into a 10+",
+      "Chandlery: beeswax, candles (last ~1hr, close), wicks, scented herbs, soap, lye, ash, etc.",
+      "Distillery: skins of fine whisky (2 uses, grants advantage to Persuade), copper tubes, malt, ◇◇ firkins, stills, barrels, etc.",
+      "Glassworks: vials, charms, lenses, sand, marbles, bellows, crucible, ◇ laterns  (hours, reach, area) etc.",
+      "Holy relics: (3 uses) if you have one in inventory when you Invoke the Sun God, you can mark a use in lieu of choosing a consequence.",
+      "Luthier's tools: chisels, files, catgut, various woods, stains, ◇ a lute, ◇ a fiddle, etc."
     ]
   },
   {
