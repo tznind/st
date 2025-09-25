@@ -70,6 +70,11 @@
     "id": "ms004",
     "title": "Front Line Leader",
     "description": "When you lead your crew into battle, hold 2 Presence. Spend Presence in lieu of your crew's Loyalty or as Readiness (as if you Defended them).",
+    "track": {
+      "name": "Presence",
+      "max": 2,
+      "shape": "square"
+    },
     "outcomes": [
       {
         "range": "",
@@ -92,6 +97,11 @@
     "id": "ms007",
     "title": "Prepare a Welcome (Requires Read the Land)",
     "description": "When you have your allies fortify a position and lie in wait for battle, hold 1 Surprise if you're rushed or 2 Surprises if you can take your time.",
+    "track": {
+      "name": "Surprises",
+      "max": 2,
+      "shape": "triangle"
+    },
     "outcomes": [
       {
         "range": "",
@@ -241,6 +251,11 @@
     "id": "ms001",
     "title": "Stenorian",
     "description": "When you raise your voice, it carries far and cuts through even the din of battle",
+    "track": {
+      "name": "Command",
+      "max": 2,
+      "shape": "hexagon"
+    },
     "outcomes": [
       {
         "range": "",
