@@ -56,6 +56,35 @@
             }
         ]
     },
+    {
+        "id":"jc1",
+        "title": "The Chronicle (Good)",
+        "description": "The Judge of Aratis is charged with maintaining the Chronicle, a history of the community, its people, their knowledge, and their traditions. The nature of the lore contained in the Chronicle depends on your Background, but it is more than a mere book; it is a physical place.  Choose 3:",
+        "category": "Background",
+        "pick": [
+            
+            "... is a sturdy vault from the time of the Makers",
+            ".... has plenty of room to grow",
+            ".... is hidden underground",
+            ".... has but one entrance, magically sealed",
+            ".... bears minor magicks to preserve its contents",
+            ".... is warded against spirits and magic",
+            ".... includes your living quarters & office"
+        ]
+    },
+    {
+        "id":"jc2",
+        "title": "The Chronicle (Bad)",
+        "description": "Alas it... (choose 2)",
+        "category": "Background",
+        "pick": [
+            "... sits on the outskirts, near the Old Wall",
+            ".... is cramped, chaotic, and overflowing",
+            ".... is little more than a crude cellar",
+            ".... seems to be haunted",
+            ".... contains a few dangerous artifacts"
+        ]
+    },
   {
     "id":"jsp",
     "title":"Pick",
@@ -79,7 +108,6 @@
       "◇◇ Makerglass shield, etched with Aratis's symbol (indestructible, +1 armor, +1 Readiness on a Defend 7+",
       "◇ Helm set with a dark ice \"jewel\" Protects your mind from magical influence."
     ]
-
   },
   {
     "id": "j001",
