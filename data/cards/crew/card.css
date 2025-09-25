@@ -1,0 +1,281 @@
+/* Crew Card Styling */
+.crew-card {
+  background: linear-gradient(135deg, #4B0082 0%, #9370DB 100%);
+  border: 2px solid #6A5ACD;
+  color: #2c3e50;
+}
+
+.crew-card .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #6A5ACD;
+}
+
+.crew-card .card-title {
+  margin: 0;
+  font-size: 22px;
+  color: #4B0082;
+  text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
+}
+
+.loyalty-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  background: rgba(255,255,255,0.8);
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #6A5ACD;
+}
+
+.loyalty-section .track-label {
+  font-weight: 600;
+  color: #4B0082;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.loyalty-section .track-shapes {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.loyalty-section .track-shape {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #6A5ACD;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  border-radius: 50%;
+}
+
+.loyalty-section .track-shape:hover {
+  border-color: #4B0082;
+  transform: scale(1.1);
+}
+
+.loyalty-section .track-shape.filled {
+  background: #DDA0DD;
+  border-color: #6A5ACD;
+}
+
+.loyalty-section .track-shape.filled:hover {
+  background: #DA70D6;
+  border-color: #4B0082;
+}
+
+.crew-card .form-field {
+  margin-bottom: 15px;
+  background: rgba(255,255,255,0.9);
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #9370DB;
+}
+
+.crew-card .form-field label {
+  font-weight: 700;
+  color: #4B0082;
+  display: inline-block;
+  margin-right: 10px;
+  min-width: 100px;
+}
+
+.crew-card input[type="text"],
+.crew-card input[type="number"],
+.crew-card select {
+  border: 2px solid #9370DB;
+  background: white;
+  border-radius: 4px;
+  padding: 6px 10px;
+}
+
+.crew-card input[type="text"]:focus,
+.crew-card input[type="number"]:focus,
+.crew-card select:focus {
+  border-color: #6A5ACD;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(106, 90, 205, 0.1);
+}
+
+.stats-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.stats-row .form-field {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.stats-row .form-field label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+  min-width: auto;
+}
+
+.stats-row .form-field input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.instinct-grid {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.instinct-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.instinct-column label {
+  display: block;
+  margin-bottom: 0.25rem;
+  min-width: auto;
+  font-weight: normal;
+}
+
+.instinct-other {
+  margin-top: 0.5rem;
+}
+
+.instinct-other label {
+  display: inline-block;
+  margin-right: 0.5rem;
+  min-width: auto;
+  font-weight: normal;
+}
+
+.crew-card strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #4B0082;
+}
+
+.crew-card hr {
+  border: none;
+  border-top: 2px solid #9370DB;
+  margin: 1rem 0;
+}
+
+/* Checkbox styling */
+.crew-card input[type="checkbox"] {
+  margin-right: 8px;
+  transform: scale(1.1);
+}
+
+.crew-card input[type="radio"] {
+  margin-right: 6px;
+  transform: scale(1.1);
+}
+
+/* Crew member rows */
+.member-row {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 2fr 60px 60px 30px;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+  padding: 8px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 4px;
+  border: 1px solid #DDA0DD;
+}
+
+.member-row input[type="text"] {
+  border: 1px solid #9370DB;
+  padding: 4px 6px;
+  font-size: 12px;
+  border-radius: 3px;
+}
+
+.member-row .member-name,
+.member-row .member-tag,
+.member-row .member-traits,
+.member-row .member-hp,
+.member-row .member-maxhp {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.member-row .remove-member {
+  background: #DC143C;
+  color: white;
+  border: none;
+  padding: 4px 6px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 11px;
+  min-width: 20px;
+}
+
+.member-row .remove-member:hover {
+  background: #B22222;
+}
+
+.member-headers {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 2fr 60px 60px 30px;
+  gap: 8px;
+  margin-bottom: 5px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #4B0082;
+}
+
+.member-headers .remove-spacer {
+  min-width: 30px;
+}
+
+/* Add Member Button */
+.add-member {
+  background: #4B0082;
+  color: white;
+  border: 2px solid #6A5ACD;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  transition: all 0.2s ease;
+}
+
+.add-member:hover {
+  background: #6A5ACD;
+  border-color: #9370DB;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(75, 0, 130, 0.3);
+}
+
+.members-section {
+  margin-top: 15px;
+}
+
+/* Readonly field styling */
+.crew-card input[readonly] {
+  background-color: #f5f5f5;
+  color: #666;
+  cursor: default;
+  border-color: #bbb;
+}
+
+.crew-card input[readonly]:focus {
+  border-color: #bbb;
+  box-shadow: none;
+}

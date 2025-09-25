@@ -1,0 +1,13 @@
+{
+  "id": "crew",
+  "title": "Crew",
+  "path": "data/cards/crew",
+  "description": "Your loyal crew of stalwarts",
+  "version": "1.0.0",
+  "author": "Stonetop System",
+  "files": {
+    "html": "card.html",
+    "css": "card.css",
+    "js": "card.js"
+  }
+}
