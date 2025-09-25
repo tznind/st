@@ -92,13 +92,7 @@
   {
     "id": "ms003",
     "title": "Crew",
-    "description": "You've got a crew of stalwarts, six or so residents of Stonetop with some steel to them. See the Crew insert for details.",
-    "outcomes": [
-      {
-        "range": "",
-        "text": "You have a crew of six or so residents with some steel to them. See the Crew insert for details."
-      }
-    ]
+    "description": "You've got a crew of stalwarts, six or so residents of Stonetop with some steel to them. See the Crew insert for details."
   },
   {
     "id": "ms004",
