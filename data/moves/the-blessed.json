@@ -1,9 +1,25 @@
 [
   {
     "id": "bl000",
-    "title": "Stock",
-    "description": "Track your stock here",
-    "multiple": 10
+    "title": "Sacred Pouch",
+    "category": "Special Possessions",
+    "description": "Your sacred pouch (magical) doesn't take up space in your inventory. What remarkable trait does it possess?",
+    "outcomes": [
+      {
+        "text": "It can hold up to 3 Stock (sacred herbs, powders, stones, pigments, chalks, clay, and so forth).",
+        "bullets": [
+          "Each time you gain an even-numbered level, your pouch can hold +1 Stock.",
+          "When anyone but you looks inside your sacred pouch and touches the materials therein, the Stock is ruined.",
+          "When you have a few days of downtime in familiar terrain, you may replenish your Stock."
+        ]
+      }
+    ],
+    "pickOne": [
+      "It cannot be cut, torn, or burned by any natural means.",
+      "Unless someone is specifically searching for your pouch, they will ignore its presence.",
+      "So long as the pouch is sealed, nothing within can be detected or found by magic, nor can any-thing within escape or affect the outside world",
+      "Unnatural and unclean creatures cannot bear to touch it"
+    ]
   },
   {
     "id": "bl001",
@@ -61,6 +77,18 @@
         "range": "",
         "text": "Once per session, when your wild ways offend or alienate you from someone, mark XP."
       }
+    ]
+  },
+  {
+    "id": "bsp",
+    "title": "Special Possessions (pick 2)",
+    "category": "Special Possessions",
+    "pick": [
+      "Apiary: beeswax, candles (last ~1 hr, close), ◇ honey, ◇ bee smokers, ◇ hats & veils, etc.",
+      "Collected offerings: Expend a use to produce something valuable to a spirit of the wild. Restore 1 use each season",
+      "Goat herd: milk, cheese, pelts, meat, blood, horn, wool, etc. Each season, 1 in 4 chance of having a bezoar (swallow it to cure poison).",
+      "Herb garden: shears, mortars & pestles, herbs, seeds, remedies, mild poisons, spades, etc. Each spring, d4 uses of bendis root (reach, area, burns ~1 hr, fumes repel perversions of nature)",
+      "Mastiffs: 2-3 followers, tick the move below"
     ]
   },
   {

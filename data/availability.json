@@ -63,10 +63,11 @@
   "The Blessed": {
     "_movesFile": "data/moves/the-blessed.json",
     "cards": [],
-    "bl000": false,
+    "bl000": true,
     "bl001": false,
     "bbg1": false,
     "bbg2": false,
+    "bsp": true,
     "bl002": false,
     "bl003": false,
     "bl004": false,
