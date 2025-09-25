@@ -80,5 +80,179 @@
       "◇ Helm set with a dark ice \"jewel\" Protects your mind from magical influence."
     ]
 
+  },
+  {
+    "id": "j001",
+    "title": "Aegis of Faith",
+    "description": "When you bear a shield, it can turn away spells, magical effects, and insubstantial attacks as if they were physical blows."
+  },
+  {
+    "id": "j003",
+    "title": "Bear Witness",
+    "description": "When you speak the truth with conviction and candor, none can doubt you. They might deny what you say, but in their hearts they recognize the truth."
+  },
+  {
+    "id": "j005",
+    "title": "Break Bread",
+    "description": "When you share a proper meal with someone and each of you eats their fill, each of you recovers 1d8 (extra) hit points."
+  },
+  {
+    "id": "j007",
+    "title": "Bulwark",
+    "description": "When you Defend, you can spend 1 Readiness to stand fast, holding your position despite what befalls you."
+  },
+  {
+    "id": "j009",
+    "title": "Censure",
+    "description": "When you first denounce someone (or thing) as an agent of chaos or anathema to civilization, pick 1:",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "",
+        "bullets": [
+          "You/your allies deal +1 damage against them",
+          "They deal -1 damage",
+          "They recoil and might be momentarily stunned"
+        ]
+      },
+      {
+        "range": "",
+        "text": "The bonus/penalty ends if you use this move again."
+      }
+    ]
+  },
+  {
+    "id": "j008",
+    "title": "Castigate (Requires level 2+, Censure)",
+    "description": "When you Censure someone (or thing), pick 2 effects instead of 1."
+  },
+  {
+    "id": "j010",
+    "title": "Chronicler of Stonetop",
+    "description": "When you write up detailed session notes and share them with the other players, hold +1 Diligence. You can spend 1 Diligence at any time to add +1 to a roll that you or a fellow player just made."
+  },
+  {
+    "id": "j011",
+    "title": "For the Greater Good",
+    "description": "When you Persuade someone to act in defense of their community or civilization at large, you have advantage."
+  },
+  {
+    "id": "j012",
+    "title": "The Hammer and the Book (+Wisdom)",
+    "description": "When you strike a thing of supernatural chaos, roll +WIS:",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "Deal your damage and choose 1 from the list below:",
+        "bullets": [
+          "Deal +1d6 damage",
+          "Ignore the thing's armor or other defenses",
+          "Suppress one of its unnatural powers",
+          "Force it from its host"
+        ]
+      },
+      {
+        "range": "7–9",
+        "text": "Deal damage and choose 1, but you also expose yourself to harm or unwanted attention.",
+        "bullets": []
+      }
+    ]
+  },
+  {
+    "id": "j013",
+    "title": "Hound of Aratis",
+    "description": "When you Seek Insight, you can always ask \"What here is tainted by chaos?\" for free, even on a 6-."
+  },
+  {
+    "id": "j016",
+    "title": "Like a Dog with a Bone (Requires Hound of Aratis)",
+    "description": "When you attack something you know to be tainted by chaos, deal +1d6 damage."
+  },
+  {
+    "id": "j015",
+    "title": "Knowledge is Power",
+    "description": "When you roll 10+ to Know Things, you or an ally gain advantage on the next roll to act on what you learn."
+  },
+  {
+    "id": "j017",
+    "title": "Many Hands Make Light Work",
+    "description": "When you jump in to help another character who just rolled, tell us how and ask the GM what else is required or what the consequences will be. If you accept, increase your ally's roll by +1."
+  },
+  {
+    "id": "j006",
+    "title": "A Bundle of Sticks Unbroken (Requires Many Hands Make Light Work)",
+    "description": "When you Struggle as One, you and one ally of your choice have advantage."
+  },
+  {
+    "id": "j018",
+    "title": "Truth or Consequences",
+    "description": "When you look into someone's eyes and gaze upon their soul, you can ask their player, \"Are you lying or hiding something from me?\" and get an honest answer.",
+    "outcomes": [
+        {
+            "range": "",
+            "text": "If the answer is \"Yes,\" you have advantage on your next roll against them."
+        },
+        {
+            "range": "",
+            "text": "When you lie or otherwise deceive someone through words, you have disadvantage on your next roll against them."
+        }
+    ]
+  },
+  {
+    "id": "j004",
+    "title": "Binding Arbitration (Requires Truth or Consequences)",
+    "description": "When you bear witness to someone's promise or oath, henceforth:",
+    "outcomes": [
+        {
+            "text": "You may ask their player if they have kept their word. They must answer honestly. The character need not be present."
+        },
+        {
+            "text": "If they have broken their word, you gain advantage on all rolls against them until they admit their wrong and suffer an appropriate consequence (your call)."
+        }
+    ]
+  },
+  {
+    "id": "j019",
+    "title": "Vision Unclouded",
+    "description": "When you Seek Insight, you can always ask \"What here is hidden by illusion or magic?\" for free, even on a 6-."
+  },
+  {
+    "id": "j020",
+    "title": "Well-Read (+Wisdom)",
+    "description": "When you name the source in which you read about the matter at hand, roll +WIS to Know Things instead of +INT."
+  },
+  {
+    "id": "j021",
+    "title": "A Mighty Rampart (Requires level 6+; replaces Bulwark)",
+    "description": "When you hold Readiness (from Defend), you cannot be forced from your position. Also, you can spend 1 Readiness to completely ignore the effects/damage of an attack that you suffer."
+  },
+  {
+    "id": "j022",
+    "title": "Armistice (Requires level 6+ and Bear Witness)",
+    "description": "When you approach an enemy to negotiate in good faith, they will at least hear you out. Even the most debased and savage foe will delay violence until you've had your say."
+  },
+  {
+    "id": "j023",
+    "title": "Condemn (Requires level 6+ and Censure)",
+    "description": "When you Censure someone:",
+    "outcomes": [
+        {"text": "They are marked with a mystical brand that cannot be removed or hidden until you dismiss it."},
+        {"text": "Any intelligent creature who sees the mark recognizes the bearer as an agent of chaos and anathema to civilization"}
+    ]
+  },
+  {
+    "id": "j025",
+    "title": "Proclamation (Requires level 6+ and Condemn)",
+    "description": "When you Censure, you may denounce a group or faction as long as you can clearly identify them. Apply the effects of Censure to every member of that group, regardless of distance."
+  },
+  {
+    "id": "j024",
+    "title": "Mirrorshield (Requires level 6+ and Aegis of Faith)",
+    "description": "When you Defend with a shield, you can spend 1 Readiness to intercept a magical force and redirect it to a different target (or none)."
+  },
+  {
+    "id": "j027",
+    "title": "The Tower Eternal (Requires level 6+)",
+    "description": "When you Defy Danger against magic, treat a result of 6- as a 7-9."
   }
 ]
