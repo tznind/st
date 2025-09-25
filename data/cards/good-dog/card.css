@@ -12,16 +12,54 @@
 
 .loyalty-section {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  background: rgba(255,255,255,0.8);
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #007bff;
+}
+
+.loyalty-section .track-label {
+  font-weight: 600;
+  color: #007bff;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.loyalty-section .track-shapes {
+  display: flex;
+  gap: 3px;
   align-items: center;
-  gap: 0.25rem;
 }
 
-.loyalty-section strong {
-  margin-right: 0.5rem;
+.loyalty-section .track-shape {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #007bff;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  border-radius: 50%;
 }
 
-.loyalty-section input[type="checkbox"] {
-  margin: 0 0.1rem;
+.loyalty-section .track-shape:hover {
+  border-color: #0056b3;
+  transform: scale(1.1);
+}
+
+.loyalty-section .track-shape.filled {
+  background: #80bdff;
+  border-color: #007bff;
+}
+
+.loyalty-section .track-shape.filled:hover {
+  background: #66b0ff;
+  border-color: #0056b3;
 }
 
 /* Stats display for fixed dog stats */

@@ -1,0 +1,151 @@
+/* Mastiffs Card Styling */
+.mastiffs-card {
+  background: linear-gradient(135deg, #8B4513 0%, #DEB887 100%);
+  border: 2px solid #654321;
+  color: #2c3e50;
+}
+
+.mastiffs-card .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #654321;
+}
+
+.mastiffs-card .card-title {
+  margin: 0;
+  font-size: 22px;
+  color: #654321;
+  text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
+}
+
+.loyalty-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  background: rgba(255,255,255,0.8);
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #654321;
+}
+
+.loyalty-section .track-label {
+  font-weight: 600;
+  color: #654321;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.loyalty-section .track-shapes {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.loyalty-section .track-shape {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #8B4513;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  border-radius: 50%;
+}
+
+.loyalty-section .track-shape:hover {
+  border-color: #654321;
+  transform: scale(1.1);
+}
+
+.loyalty-section .track-shape.filled {
+  background: #DEB887;
+  border-color: #8B4513;
+}
+
+.loyalty-section .track-shape.filled:hover {
+  background: #D2B48C;
+  border-color: #654321;
+}
+
+.mastiffs-card .form-field {
+  margin-bottom: 15px;
+  background: rgba(255,255,255,0.9);
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #DEB887;
+}
+
+.mastiffs-card .form-field label {
+  font-weight: 700;
+  color: #654321;
+  display: inline-block;
+  margin-right: 10px;
+  min-width: 60px;
+}
+
+.mastiffs-card input[type="text"],
+.mastiffs-card input[type="number"] {
+  border: 2px solid #DEB887;
+  background: white;
+  border-radius: 4px;
+  padding: 6px 10px;
+}
+
+.mastiffs-card input[type="text"]:focus,
+.mastiffs-card input[type="number"]:focus {
+  border-color: #8B4513;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+}
+
+.type-choice {
+  margin-top: 8px;
+  display: flex;
+  gap: 20px;
+}
+
+.type-choice label {
+  display: flex !important;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600 !important;
+  color: #654321 !important;
+  cursor: pointer;
+  min-width: auto !important;
+}
+
+.type-choice input[type="radio"] {
+  transform: scale(1.2);
+  margin: 0 !important;
+}
+
+.stats-display {
+  background: rgba(255,255,255,0.95);
+  border: 2px solid #654321;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+.stat-item {
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.stat-item:last-child {
+  margin-bottom: 0;
+}
+
+.stat-item strong {
+  color: #8B4513;
+  font-weight: 700;
+  min-width: 70px;
+}

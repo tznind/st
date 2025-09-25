@@ -4,6 +4,12 @@
     "title": "Sacred Pouch",
     "category": "Special Possessions",
     "description": "Your sacred pouch (magical) doesn't take up space in your inventory. What remarkable trait does it possess?",
+    "tracks": [{
+      "name": "Stock",
+      "max": 10,
+      "shape": "circle"
+
+    }],
     "outcomes": [
       {
         "text": "It can hold up to 3 Stock (sacred herbs, powders, stones, pigments, chalks, clay, and so forth).",
@@ -90,6 +96,13 @@
       "Herb garden: shears, mortars & pestles, herbs, seeds, remedies, mild poisons, spades, etc. Each spring, d4 uses of bendis root (reach, area, burns ~1 hr, fumes repel perversions of nature)",
       "Mastiffs: 2-3 followers, tick the move below"
     ]
+  },
+  {
+    "id": "bl011",
+    "title": "Mastiffs",
+    "description": "2-3 followers (alert, keen-nosed, fierce,overprotective); HP 6; Damage d6 (hand, grabby); Instinct: to bark & threaten; Cost: affection.",
+    "category": "Special Possessions",
+    "grantsCard": "mastiffs"
   },
   {
     "id": "bl002",

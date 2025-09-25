@@ -1,8 +1,8 @@
 {
-  "id": "good-dog",
-  "title": "Good Dog",
-  "path": "data/cards/good-dog",
-  "description": "Your loyal Dog",
+  "id": "mastiffs",
+  "title": "Mastiffs",
+  "path": "data/cards/mastiffs",
+  "description": "Your loyal Mastiffs",
   "version": "1.0.0",
   "author": "Stonetop System",
   "files": {

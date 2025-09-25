@@ -76,7 +76,8 @@
     "bl007": false,
     "bl008": false,
     "bl009": false,
-    "bl010": false
+    "bl010": false,
+    "bl011": false
   },
   "The Ranger": {
     "_movesFile": "data/moves/the-ranger.json",
