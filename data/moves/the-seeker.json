@@ -117,9 +117,99 @@
     ]
   },
   {
+    "id": "sk015",
+    "title": "Countermeasures",
+    "description": "When you witness a magical effect, you may ask the GM, \"how can this be countered or interrupted?\" and get an honest answer. You or an ally gain advantage on your next roll to act on the answer."
+  },
+  {
+    "id": "sk016",
+    "title": "Everything Bleeds",
+    "description": "When you exploit an unnatural foe's specific weakness or vulnerability, deal +1d6 damage."
+  },
+  {
+    "id": "sk017",
+    "title": "Everything Burns (+Intelligence)",
+    "description": "When you inspect a work of artifice or magic for a fatal flaw, roll +INT:",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "The GM will reveal the best way to destroy/sabotage it, and you or an ally also gain advantage to act on the info."
+      },
+      {
+        "range": "7-9",
+        "text": "The GM will reveal the best way to destroy/sabotage it."
+      }
+    ]
+  },
+  {
+    "id": "sk018",
+    "title": "Initiate of the Secret Arts (Requires level 2+ and the Seeker)",
+    "multiple": 3,
+    "description": "You have a \"Sacred Pouch\" (3 Stock, magical), as per the Blessed, but with no extraordinary qualities. Each time you take this move, choose a Blessed move for which you otherwise qualify. (You can't take Improved Stat or Superior Stat.)",
+    "takeFrom": ["The Blessed"],
+    "takeCategory": ["Moves"]
+
+  },
+  {
+    "id": "sk019",
+    "title": "Logbook",
+    "description": "You have a logbook (2 uses, slow) that doesn't take up space in your inventory. When you (and only you) consult your logbook and expend a use, you can ignore a Know Things roll you just made and treat the result as a 10+. When the Seasons Change, reset your logbook to 2 uses."
+  },
+  {
+    "id": "sk020",
+    "title": "Magpie",
+    "description": "When you Have What You Need, you can produce something strange, specific, maybe even valuable or a little bit magical, but if you do, tell us where you got it and 2 of the following:",
+    "outcomes": [
+      {
+        "text": "",
+        "bullets": [
+          "How it's not quite right, but maybe it'll do?",
+          "The trouble you caused back home by getting it",
+          "Why using it will draw unwanted attention",
+          "That it's the only thing like this that you've got, and why it'll only work the one time"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sk021",
+    "title": "Never at a Loss",
+    "description": "When you Know Things and roll a 6-, you may choose to not mark XP. If you don't mark XP, the worst that happens is that the GM tells you nothing interesting or useful about the subject, but instead tells you how you could learn more."
+  },
+  {
+    "id": "sk022",
+    "title": "Polyglot",
+    "description": "When you first encounter a living language in play, describe your proficiency with it (if any) and how you came to acquire it. When you Know Things about any script, text, runes or symbols that you encounter, you have advantage."
+  },
+  {
+    "id": "sk023",
+    "title": "Cryptologist (Requires Polyglot, +Intelligence)",
+    "description": "When you study encoded, forgotten, or arcane marks or writing, roll +INT:",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "You can fully decipher them in just a few minutes."
+      },
+      {
+        "range": "7-9",
+        "text": "You get the gist in a few minutes, but fully deciphering them will take you an hour or so."
+      }
+    ]
+  },
+  {
     "id": "sk007",
     "title": "Quick Study",
     "description": "When you study something magical that should take months to understand, it instead takes mere weeks. If it should take weeks, it takes days. If it should take days, it takes only a few hours."
+  },
+  {
+    "id": "sk024",
+    "title": "Safety First",
+    "description": "When you spend an hour or so preparing your mystical defenses, hold 2 Protection. When you are affected by harmful magic, spend 1 Protection to halve the damage or effect."
+  },
+  {
+    "id": "sk025",
+    "title": "Sage Advice",
+    "description": "When someone asks you for guidance, they get advantage on their next roll to follow your advice."
   },
   {
     "id": "sk008",
@@ -127,8 +217,38 @@
     "description": "When you wish to invent a spell or magical effect, detail its workings with the GM (using existing ar-cana for guidance). Then, Make a Plan to invent it.If you like, pick one of the GM's statements and ask them to provide an alternative: (for example \"first you must _____\" could become \"first you must _____, or it will take months\")."
   },
   {
+    "id": "sk026",
+    "title": "Deep Insight (Requires level 6+ and Attuned)",
+    "description": "When you Seek Insight about a magical object, effect, or creature, you may ask one additional question, not limited to the list. Even on a 6-, you get to ask this question."
+  },
+  {
+    "id": "sk027",
+    "title": "Improvise (Requires level 6+ and Quick Study)",
+    "description": "When you attempt to use or trigger one of an arcanum's mysteries without having unlocked it, roll +INT:",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "You pull it off, at least this once, and you also unlock that mystery in the process."
+      },
+      {
+        "range": "7-9",
+        "text": "You pull it off, at least this once."
+      }
+    ]
+  },
+  {
+    "id": "sk028",
+    "title": "Mind Over Magic (Requires level 6+)",
+    "description": "When you roll to study or use an arcanum, you can roll +INT instead of whatever stat you would normally roll."
+  },
+  {
     "id": "sk009",
-    "title": "Overchannel (Requires level 6+)",
+    "title": "Overchannel (Requires level 6+ and Conduit of Power)",
     "description": "When you would mark a Consequence from a major arcanum, you may mark a debility instead."
+  },
+  {
+    "id": "sk029",
+    "title": "Proof Against Detection (Requires level 6+ and Safety First)",
+    "description": "When you hold Protection, you can't be scried upon or sensed by magical means, and have advantage to Defy Danger by being stealthy."
   }
 ]
