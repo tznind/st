@@ -80,7 +80,10 @@
   "The Seeker": {
     "_movesFile": "data/moves/the-seeker.json",
     "cards": [],
-    "sk001": true,
+    "sk001": false,
+    "skbg2": false,
+    "skbg3": false,
+    "ssp": true,
     "sk002": false,
     "sk003": false,
     "sk004": false,
