@@ -64,12 +64,12 @@
         "pick": [
             
             "... is a sturdy vault from the time of the Makers",
-            ".... has plenty of room to grow",
-            ".... is hidden underground",
-            ".... has but one entrance, magically sealed",
-            ".... bears minor magicks to preserve its contents",
-            ".... is warded against spirits and magic",
-            ".... includes your living quarters & office"
+            "... has plenty of room to grow",
+            "... is hidden underground",
+            "... has but one entrance, magically sealed",
+            "... bears minor magicks to preserve its contents",
+            "... is warded against spirits and magic",
+            "... includes your living quarters & office"
         ]
     },
     {
@@ -79,10 +79,10 @@
         "category": "Background",
         "pick": [
             "... sits on the outskirts, near the Old Wall",
-            ".... is cramped, chaotic, and overflowing",
-            ".... is little more than a crude cellar",
-            ".... seems to be haunted",
-            ".... contains a few dangerous artifacts"
+            "... is cramped, chaotic, and overflowing",
+            "... is little more than a crude cellar",
+            "... seems to be haunted",
+            "... contains a few dangerous artifacts"
         ]
     },
   {
