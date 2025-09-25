@@ -66,12 +66,20 @@
         "minimum": 2,
         "maximum": 5
       },
-      "takefrom": {
+      "takeFrom": {
         "type": "array",
         "description": "List of roles this move can be taken from. Supports wildcard patterns: '*' matches any role, 'prefix*' matches roles starting with prefix (case-insensitive). Roles already possessed by the character are automatically excluded.",
         "items": {
           "type": "string",
           "examples": ["Navigator", "Mech Adept", "*", "the*", "Void*"]
+        }
+      },
+      "takeCategory": {
+        "type": "array",
+        "description": "Optional array of categories to filter moves when using takeFrom. Only moves with matching categories will be shown. Moves without a category are treated as 'Moves' category.",
+        "items": {
+          "type": "string",
+          "examples": ["Moves", "Equipment", "Advancement"]
         }
       },
       "multiple": {

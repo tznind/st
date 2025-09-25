@@ -9,7 +9,7 @@ window.Moves = (function() {
      * Initialize moves system
      */
     function initialize() {
-        // Set up event listeners for special move functionality (takefrom, card granting)
+        // Set up event listeners for special move functionality (takeFrom, card granting)
         setupMoveEventListeners();
         
         // Role changes and regular checkboxes are now handled by persistence system
@@ -17,13 +17,13 @@ window.Moves = (function() {
     }
 
     /**
-     * Set up event listeners for move checkboxes and takefrom functionality
+     * Set up event listeners for move checkboxes and takeFrom functionality
      */
     function setupMoveEventListeners() {
         document.addEventListener('change', (event) => {
             const target = event.target;
             
-            // Only handle special takefrom checkbox logic, let persistence handle the rest
+            // Only handle special takeFrom checkbox logic, let persistence handle the rest
             if (target.id && target.id.startsWith('move_')) {
                 handleTakeFromMoveIfNeeded(target);
             }
@@ -31,14 +31,14 @@ window.Moves = (function() {
     }
 
     /**
-     * Handle special move checkbox changes (takefrom, card granting, etc.)
+     * Handle special move checkbox changes (takeFrom, card granting, etc.)
      */
     function handleTakeFromMoveIfNeeded(checkbox) {
         const moveId = extractMoveId(checkbox);
         
-        // Check if this is a takefrom move that needs special handling
+        // Check if this is a takeFrom move that needs special handling
         const move = window.moves && window.moves.find(m => m.id === moveId);
-        if (move && move.takefrom && window.TakeFrom) {
+        if (move && move.takeFrom && window.TakeFrom) {
             window.TakeFrom.handleTakeFromMoveToggle(moveId, checkbox.checked);
         }
         

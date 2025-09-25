@@ -295,7 +295,7 @@
     "title": "Versatile (Requires level 2+, the Would-be Hero)",
     "multiple": 4,
     "description": "Choose a move from any other playbook, as long as you meet its requirements. You can pick from a different playbook each time. You can't take Improved Stat or Superior Stat.",
-    "takefrom": ["*"]
+    "takeFrom": ["*"]
   },
   {
     "id": "h018",

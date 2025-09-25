@@ -46,7 +46,7 @@ window.Layout = (function() {
             // Apply persistence to restore all form state immediately
             applyPersistenceState(urlParams);
             
-            // Initialize takefrom sections after persistence is applied
+            // Initialize takeFrom sections after persistence is applied
             if (window.TakeFrom) {
                 setTimeout(() => {
                     window.TakeFrom.initializeTakeFromSections();

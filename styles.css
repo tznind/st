@@ -422,7 +422,7 @@ button:focus {
 }
 
 /* === TAKEFROM OPTIONS === */
-.takefrom-options {
+.takeFrom-options {
   background: #e3f2fd;
   border: 1px solid #bbdefb;
   border-radius: 4px;
@@ -430,7 +430,7 @@ button:focus {
   margin-top: 15px;
 }
 
-.takefrom-controls {
+.takeFrom-controls {
   display: flex;
   gap: 20px;
   align-items: center;
@@ -438,7 +438,7 @@ button:focus {
   flex-wrap: wrap;
 }
 
-.takefrom-controls label {
+.takeFrom-controls label {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -446,7 +446,7 @@ button:focus {
   color: #1976d2;
 }
 
-.takefrom-controls select {
+.takeFrom-controls select {
   min-width: 150px;
   padding: 6px 10px;
   border: 2px solid #90caf9;
@@ -455,33 +455,33 @@ button:focus {
   font-size: 14px;
 }
 
-.takefrom-controls select:focus {
+.takeFrom-controls select:focus {
   border-color: #1976d2;
   outline: none;
   box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
 }
 
-.takefrom-controls select:disabled {
+.takeFrom-controls select:disabled {
   background: #f5f5f5;
   color: #999;
   cursor: not-allowed;
 }
 
 /* === MULTIPLE TAKEFROM INSTANCES === */
-.takefrom-instances {
+.takeFrom-instances {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-.takefrom-instance {
+.takeFrom-instance {
   background: #f8f9fa;
   border: 1px solid #90caf9;
   border-radius: 4px;
   padding: 12px;
 }
 
-.takefrom-instance:first-child {
+.takeFrom-instance:first-child {
   background: #e3f2fd;
 }
 
@@ -730,19 +730,19 @@ hr {
     transform: scale(1.0);
   }
   
-  .takefrom-controls {
+  .takeFrom-controls {
     flex-direction: column;
     gap: 15px;
     align-items: flex-start;
   }
   
-  .takefrom-controls label {
+  .takeFrom-controls label {
     flex-direction: column;
     align-items: flex-start;
     gap: 5px;
   }
   
-  .takefrom-controls select {
+  .takeFrom-controls select {
     min-width: 100%;
   }
   

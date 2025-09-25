@@ -395,8 +395,8 @@ window.MovesCore = (function() {
             moveDiv.appendChild(pickElement);
         }
         
-        // Add takefrom section if it exists
-        if (move.takefrom && Array.isArray(move.takefrom) && move.takefrom.length > 0) {
+        // Add takeFrom section if it exists
+        if (move.takeFrom && Array.isArray(move.takeFrom) && move.takeFrom.length > 0) {
             if (window.TakeFrom) {
                 const takeFromSection = window.TakeFrom.createTakeFromSection(move, urlParams);
                 moveDiv.appendChild(takeFromSection);

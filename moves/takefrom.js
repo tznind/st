@@ -7,20 +7,20 @@ window.TakeFrom = (function() {
 
 
     /**
-     * Create takefrom section for learning moves from other roles
+     * Create takeFrom section for learning moves from other roles
      */
     function createTakeFromSection(move, urlParams) {
         const takeFromDiv = document.createElement("div");
-        takeFromDiv.className = "takefrom-options";
+        takeFromDiv.className = "takeFrom-options";
         
         const heading = document.createElement("strong");
         heading.textContent = "Learn from:";
         takeFromDiv.appendChild(heading);
         
-        // Support multiple takefrom instances
+        // Support multiple takeFrom instances
         const maxInstances = move.multiple || 1;
         const instancesContainer = document.createElement("div");
-        instancesContainer.className = "takefrom-instances";
+        instancesContainer.className = "takeFrom-instances";
         
         // Create all possible instances (they'll be shown/hidden based on checked boxes)
         for (let instance = 1; instance <= maxInstances; instance++) {
@@ -40,12 +40,12 @@ window.TakeFrom = (function() {
     }
     
     /**
-     * Create a single takefrom instance (role + move dropdowns)
+     * Create a single takeFrom instance (role + move dropdowns)
      */
     function createTakeFromInstance(move, urlParams, instance) {
         const instanceDiv = document.createElement("div");
-        instanceDiv.className = "takefrom-instance";
-        instanceDiv.id = `takefrom_instance_${move.id}_${instance}`;
+        instanceDiv.className = "takeFrom-instance";
+        instanceDiv.id = `takeFrom_instance_${move.id}_${instance}`;
         
         // Initially hide instances > 1
         if (instance > 1) {
@@ -53,14 +53,14 @@ window.TakeFrom = (function() {
         }
         
         const controlsDiv = document.createElement("div");
-        controlsDiv.className = "takefrom-controls";
+        controlsDiv.className = "takeFrom-controls";
         
         // Role selector (with instance number)
         const roleLabel = document.createElement("label");
         roleLabel.textContent = instance > 1 ? `Role ${instance}: ` : "Role: ";
         const roleSelect = document.createElement("select");
-        roleSelect.id = instance > 1 ? `takefrom_${move.id}_${instance}_role` : `takefrom_${move.id}_role`;
-        roleSelect.name = instance > 1 ? `takefrom_${move.id}_${instance}_role` : `takefrom_${move.id}_role`;
+        roleSelect.id = instance > 1 ? `takeFrom_${move.id}_${instance}_role` : `takeFrom_${move.id}_role`;
+        roleSelect.name = instance > 1 ? `takeFrom_${move.id}_${instance}_role` : `takeFrom_${move.id}_role`;
         
         // Add default option
         const defaultOption = document.createElement("option");
@@ -74,10 +74,10 @@ window.TakeFrom = (function() {
         if (window.Utils && window.Utils.getMatchingRoles) {
             const allAvailableRoles = window.Utils.getAllAvailableRoles();
             const currentRoles = window.Utils.getCurrentRoles();
-            matchingRoles = window.Utils.getMatchingRoles(move.takefrom, allAvailableRoles, currentRoles);
+            matchingRoles = window.Utils.getMatchingRoles(move.takeFrom, allAvailableRoles, currentRoles);
         } else {
             // Fallback to original behavior if Utils not available
-            matchingRoles = move.takefrom || [];
+            matchingRoles = move.takeFrom || [];
         }
         
         // Add role options (sorted and excluding current roles)
@@ -92,8 +92,8 @@ window.TakeFrom = (function() {
         const moveLabel = document.createElement("label");
         moveLabel.textContent = instance > 1 ? `Move ${instance}: ` : "Move: ";
         const moveSelect = document.createElement("select");
-        moveSelect.id = instance > 1 ? `takefrom_${move.id}_${instance}_move` : `takefrom_${move.id}_move`;
-        moveSelect.name = instance > 1 ? `takefrom_${move.id}_${instance}_move` : `takefrom_${move.id}_move`;
+        moveSelect.id = instance > 1 ? `takeFrom_${move.id}_${instance}_move` : `takeFrom_${move.id}_move`;
+        moveSelect.name = instance > 1 ? `takeFrom_${move.id}_${instance}_move` : `takeFrom_${move.id}_move`;
         moveSelect.disabled = true; // Initially disabled
         
         // Add default option
@@ -103,8 +103,8 @@ window.TakeFrom = (function() {
         moveSelect.appendChild(defaultMoveOption);
         
         // Restore values from URL for this instance
-        const roleParamKey = instance > 1 ? `takefrom_${move.id}_${instance}_role` : `takefrom_${move.id}_role`;
-        const moveParamKey = instance > 1 ? `takefrom_${move.id}_${instance}_move` : `takefrom_${move.id}_move`;
+        const roleParamKey = instance > 1 ? `takeFrom_${move.id}_${instance}_role` : `takeFrom_${move.id}_role`;
+        const moveParamKey = instance > 1 ? `takeFrom_${move.id}_${instance}_move` : `takeFrom_${move.id}_move`;
         
         if (urlParams.has(roleParamKey)) {
             const savedRole = urlParams.get(roleParamKey);
@@ -158,14 +158,14 @@ window.TakeFrom = (function() {
     }
     
     /**
-     * Initialize takefrom sections after page render (called by layout system)
+     * Initialize takeFrom sections after page render (called by layout system)
      */
     function initializeTakeFromSections() {
         if (!window.moves) return;
         
-        // Find all moves with takefrom and initialize their visibility
+        // Find all moves with takeFrom and initialize their visibility
         window.moves.forEach(move => {
-            if (move.takefrom && move.multiple) {
+            if (move.takeFrom && move.multiple) {
                 // Update instance visibility based on current checkbox states
                 updateTakeFromInstanceVisibility(move.id);
             }
@@ -175,7 +175,7 @@ window.TakeFrom = (function() {
         setTimeout(() => {
             const urlParams = new URLSearchParams(location.search);
             window.moves.forEach(move => {
-                if (move.takefrom) {
+                if (move.takeFrom) {
                     updateAllLearnedMoveDisplays(move.id, urlParams);
                 }
             });
@@ -333,6 +333,10 @@ window.TakeFrom = (function() {
         if (selectedRole && window.availableMap && window.availableMap[selectedRole]) {
             moveSelect.disabled = false;
             
+            // Get the source move to check for takeCategory filter
+            const sourceMove = window.moves && window.moves.find(m => m.id === moveId);
+            const takeCategoryFilter = sourceMove && sourceMove.takeCategory ? sourceMove.takeCategory : null;
+            
             // Get available moves for selected role and current roles
             const availableMoves = window.availableMap[selectedRole];
             const currentRoles = window.Utils ? window.Utils.getCurrentRoles() : [];
@@ -355,6 +359,18 @@ window.TakeFrom = (function() {
                 if (move.id !== moveId && 
                     availableMoves.hasOwnProperty(move.id) && 
                     !currentRolesMoves.hasOwnProperty(move.id)) {
+                    
+                    // Apply category filtering if takeCategory is specified
+                    if (takeCategoryFilter && Array.isArray(takeCategoryFilter) && takeCategoryFilter.length > 0) {
+                        // Get the move's category (default to "Moves" if not specified)
+                        const moveCategory = move.category || "Moves";
+                        
+                        // Check if this move's category is in the allowed categories
+                        if (!takeCategoryFilter.includes(moveCategory)) {
+                            return; // Skip this move as it's not in the allowed categories
+                        }
+                    }
+                    
                     const option = document.createElement("option");
                     option.value = move.id;
                     option.textContent = move.title;
@@ -372,14 +388,14 @@ window.TakeFrom = (function() {
     }
 
     /**
-     * Handle takefrom selection changes (quiet version - no re-render)
+     * Handle takeFrom selection changes (quiet version - no re-render)
      */
     function handleSelectionChangeQuiet(roleSelect, moveSelect, takeFromMoveId, instance = 1) {
         const currentRoles = window.Utils ? window.Utils.getCurrentRoles() : [];
         const selectedMove = moveSelect.value;
         
         // Get previous selection to remove it if changed
-        const prevKey = instance > 1 ? `takefrom_${takeFromMoveId}_${instance}_move` : `takefrom_${takeFromMoveId}_move`;
+        const prevKey = instance > 1 ? `takeFrom_${takeFromMoveId}_${instance}_move` : `takeFrom_${takeFromMoveId}_move`;
         const urlParams = new URLSearchParams(location.search);
         const previousMove = urlParams.get(prevKey);
         
@@ -396,7 +412,7 @@ window.TakeFrom = (function() {
     }
     
     /**
-     * Update all learned move displays for a takefrom move
+     * Update all learned move displays for a takeFrom move
      */
     function updateAllLearnedMoveDisplays(moveId, urlParams) {
         const move = window.moves?.find(m => m.id === moveId);
@@ -405,7 +421,7 @@ window.TakeFrom = (function() {
         const maxInstances = move.multiple || 1;
         
         for (let instance = 1; instance <= maxInstances; instance++) {
-            const moveSelectId = instance > 1 ? `takefrom_${moveId}_${instance}_move` : `takefrom_${moveId}_move`;
+            const moveSelectId = instance > 1 ? `takeFrom_${moveId}_${instance}_move` : `takeFrom_${moveId}_move`;
             const moveSelect = document.getElementById(moveSelectId);
             const learnedContainer = document.getElementById(`learned_move_${moveId}_${instance}`);
             
@@ -416,23 +432,35 @@ window.TakeFrom = (function() {
     }
     
     /**
-     * Update visibility of takefrom instances based on number of checked boxes
+     * Update visibility of takeFrom instances based on number of checked boxes
      */
     function updateTakeFromInstanceVisibility(moveId) {
         const move = window.moves?.find(m => m.id === moveId);
-        if (!move || !move.multiple) return;
+        if (!move || !move.multiple) {
+            console.log(`updateTakeFromInstanceVisibility: Move '${moveId}' not found or not multiple (multiple: ${move?.multiple})`);
+            return;
+        }
+        
+        console.log(`updateTakeFromInstanceVisibility: Processing move '${moveId}'`);
         
         // Count checked boxes for this move
         const checkedCount = getCheckedBoxCount(moveId);
         const maxInstances = move.multiple;
         
+        console.log(`updateTakeFromInstanceVisibility: checkedCount: ${checkedCount}, maxInstances: ${maxInstances}`);
+        
         // Show/hide instances based on checked count
         for (let instance = 1; instance <= maxInstances; instance++) {
-            const instanceDiv = document.getElementById(`takefrom_instance_${moveId}_${instance}`);
+            const instanceDivId = `takeFrom_instance_${moveId}_${instance}`;
+            const instanceDiv = document.getElementById(instanceDivId);
+            console.log(`updateTakeFromInstanceVisibility: Instance ${instance}, div '${instanceDivId}', found: ${!!instanceDiv}`);
+            
             if (instanceDiv) {
                 if (instance <= checkedCount) {
+                    console.log(`updateTakeFromInstanceVisibility: Showing instance ${instance}`);
                     instanceDiv.style.display = 'block';
                 } else {
+                    console.log(`updateTakeFromInstanceVisibility: Hiding instance ${instance}`);
                     instanceDiv.style.display = 'none';
                     // Clear selections for hidden instances
                     clearInstanceSelections(moveId, instance);
@@ -448,20 +476,30 @@ window.TakeFrom = (function() {
         let count = 0;
         
         const move = window.moves?.find(m => m.id === moveId);
-        if (!move) return 0;
+        if (!move) {
+            console.log(`getCheckedBoxCount: Move '${moveId}' not found`);
+            return 0;
+        }
+        
+        console.log(`getCheckedBoxCount: Checking move '${moveId}', multiple: ${move.multiple}`);
         
         if (move.multiple) {
             // For multiple moves, check move_ID_1, move_ID_2, etc.
             for (let i = 1; i <= move.multiple; i++) {
-                const checkbox = document.getElementById(`move_${moveId}_${i}`);
+                const checkboxId = `move_${moveId}_${i}`;
+                const checkbox = document.getElementById(checkboxId);
+                console.log(`getCheckedBoxCount: Checking checkbox '${checkboxId}', found: ${!!checkbox}, checked: ${checkbox?.checked}`);
                 if (checkbox?.checked) count++;
             }
         } else {
             // For single moves, check move_ID
-            const mainCheckbox = document.getElementById(`move_${moveId}`);
+            const checkboxId = `move_${moveId}`;
+            const mainCheckbox = document.getElementById(checkboxId);
+            console.log(`getCheckedBoxCount: Checking checkbox '${checkboxId}', found: ${!!mainCheckbox}, checked: ${mainCheckbox?.checked}`);
             if (mainCheckbox?.checked) count++;
         }
         
+        console.log(`getCheckedBoxCount: Final count for '${moveId}': ${count}`);
         return count;
     }
     
@@ -469,8 +507,8 @@ window.TakeFrom = (function() {
      * Clear selections for a specific instance
      */
     function clearInstanceSelections(moveId, instance) {
-        const roleSelectId = instance > 1 ? `takefrom_${moveId}_${instance}_role` : `takefrom_${moveId}_role`;
-        const moveSelectId = instance > 1 ? `takefrom_${moveId}_${instance}_move` : `takefrom_${moveId}_move`;
+        const roleSelectId = instance > 1 ? `takeFrom_${moveId}_${instance}_role` : `takeFrom_${moveId}_role`;
+        const moveSelectId = instance > 1 ? `takeFrom_${moveId}_${instance}_move` : `takeFrom_${moveId}_move`;
         
         const roleSelect = document.getElementById(roleSelectId);
         const moveSelect = document.getElementById(moveSelectId);
@@ -492,22 +530,28 @@ window.TakeFrom = (function() {
     }
 
     /**
-     * Handle when the main takefrom move checkbox is toggled
+     * Handle when the main takeFrom move checkbox is toggled
      */
     function handleTakeFromMoveToggle(moveId, isChecked) {
+        console.log(`handleTakeFromMoveToggle: moveId='${moveId}', isChecked=${isChecked}`);
+        
         if (!isChecked) {
             // Check if ANY checkbox for this move is still checked
             const anyStillChecked = checkIfAnyTakeFromMoveChecked(moveId);
+            console.log(`handleTakeFromMoveToggle: Unchecked, anyStillChecked=${anyStillChecked}`);
             
             if (anyStillChecked) {
                 // Some checkboxes are still checked, update visibility
+                console.log(`handleTakeFromMoveToggle: Some checkboxes still checked, updating visibility`);
                 updateTakeFromInstanceVisibility(moveId);
                 return;
             }
             
             // ALL checkboxes unchecked - reset dropdowns and hide learned move
+            console.log(`handleTakeFromMoveToggle: All checkboxes unchecked, resetting`);
             resetTakeFromSelection(moveId);
         } else {
+            console.log(`handleTakeFromMoveToggle: Move was checked, restoring and updating visibility`);
             // Move was checked - restore previous state if it exists in URL
             restoreTakeFromSelection(moveId);
             // Update visibility to show appropriate number of instances
@@ -516,11 +560,11 @@ window.TakeFrom = (function() {
     }
 
     /**
-     * Reset takefrom selection when move is unchecked
+     * Reset takeFrom selection when move is unchecked
      */
     function resetTakeFromSelection(moveId) {
-        const roleSelect = document.getElementById(`takefrom_${moveId}_role`);
-        const moveSelect = document.getElementById(`takefrom_${moveId}_move`);
+        const roleSelect = document.getElementById(`takeFrom_${moveId}_role`);
+        const moveSelect = document.getElementById(`takeFrom_${moveId}_move`);
         const learnedMoveContainer = document.getElementById(`learned_move_${moveId}`);
         
         if (roleSelect) {
@@ -552,16 +596,16 @@ window.TakeFrom = (function() {
     }
 
     /**
-     * Restore takefrom selection when move is checked
+     * Restore takeFrom selection when move is checked
      */
     function restoreTakeFromSelection(moveId) {
         const urlParams = new URLSearchParams(location.search);
-        const roleSelect = document.getElementById(`takefrom_${moveId}_role`);
-        const moveSelect = document.getElementById(`takefrom_${moveId}_move`);
+        const roleSelect = document.getElementById(`takeFrom_${moveId}_role`);
+        const moveSelect = document.getElementById(`takeFrom_${moveId}_move`);
         const learnedMoveContainer = document.getElementById(`learned_move_${moveId}`);
         
         // Restore role selection
-        const savedRole = urlParams.get(`takefrom_${moveId}_role`);
+        const savedRole = urlParams.get(`takeFrom_${moveId}_role`);
         if (savedRole && roleSelect) {
             roleSelect.value = savedRole;
             
@@ -571,7 +615,7 @@ window.TakeFrom = (function() {
                 
                 // Restore move selection after a delay
                 setTimeout(() => {
-                    const savedMove = urlParams.get(`takefrom_${moveId}_move`);
+                    const savedMove = urlParams.get(`takeFrom_${moveId}_move`);
                     if (savedMove) {
                         moveSelect.value = savedMove;
                         
@@ -598,7 +642,7 @@ window.TakeFrom = (function() {
 
 
     /**
-     * Check if any checkbox for a takefrom move is still checked
+     * Check if any checkbox for a takeFrom move is still checked
      */
     function checkIfAnyTakeFromMoveChecked(moveId) {
         // Use data attribute selector to find all checkboxes/radios for this move

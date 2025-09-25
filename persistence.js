@@ -246,7 +246,7 @@ window.Persistence = (function() {
             const moveId = target.getAttribute('data-move-id');
             const move = window.moves?.find(m => m.id === moveId);
             
-            if (move && (move.grantsCard || move.takefrom)) {
+            if (move && (move.grantsCard || move.takeFrom)) {
                 // Has special effects - needs full layout
                 window.Layout.layoutApplication();
             } else {

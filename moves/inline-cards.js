@@ -1,6 +1,6 @@
 /**
  * Inline Cards Module - Unified system for displaying cards inline with moves
- * Replaces duplicated logic from grantcard.js and takefrom.js
+ * Replaces duplicated logic from grantcard.js and takeFrom.js
  */
 
 window.InlineCards = (function() {
