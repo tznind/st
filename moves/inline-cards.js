@@ -86,6 +86,7 @@ window.InlineCards = (function() {
 
     /**
      * Initialize card-specific functionality after card HTML is inserted
+     * Uses convention-based approach: looks for window.initialize[PascalCaseCardId] function
      * @param {string} cardId - ID of the card to initialize
      */
     function initializeCardFunctionality(cardId) {
@@ -93,20 +94,21 @@ window.InlineCards = (function() {
         setTimeout(function() {
             console.log(`Attempting to initialize card functionality for: ${cardId}`);
             
-            // Try card-specific initialization functions
-            switch (cardId) {
-                case 'initiates-of-danu':
-                    if (typeof window.initializeInitiatesOfDanu === 'function') {
-                        console.log('Calling initializeInitiatesOfDanu...');
-                        window.initializeInitiatesOfDanu();
-                    } else {
-                        console.log('initializeInitiatesOfDanu function not found');
-                    }
-                    break;
-                // Add other cards here as needed
-                default:
-                    console.log(`No specific initialization function for card: ${cardId}`);
-                    break;
+            // Convert kebab-case card ID to PascalCase function name
+            // Examples: 'initiates-of-danu' -> 'InitiatesOfDanu', 'animal-companion' -> 'AnimalCompanion'
+            const functionName = 'initialize' + cardId
+                .split('-')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join('');
+            
+            console.log(`Looking for initialization function: ${functionName}`);
+            
+            // Try to call the convention-based initialization function
+            if (typeof window[functionName] === 'function') {
+                console.log(`Calling ${functionName}...`);
+                window[functionName]();
+            } else {
+                console.log(`${functionName} function not found - card may not need special initialization`);
             }
         }, 10);
     }

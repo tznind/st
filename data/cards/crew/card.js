@@ -5,22 +5,14 @@
   console.log('Crew script loading...');
   
   let memberCount = 0;
-  let isInitialized = false;
   
   function initializeCrew() {
-    if (isInitialized) {
-      console.log('Crew already initialized, skipping...');
-      return;
-    }
-    
     console.log('Initializing crew...');
     
-    // Wait a bit for the DOM to be fully ready
-    setTimeout(function() {
-      const loyaltyShapes = document.querySelectorAll('.crew-card [data-track-id="cr_loyalty"]');
-      const loyaltyLabel = document.querySelector('.crew-card .track-label');
-      const addMemberBtn = document.getElementById('add-member');
-      const membersContainer = document.getElementById('crew-members');
+    const loyaltyShapes = document.querySelectorAll('.crew-card [data-track-id="cr_loyalty"]');
+    const loyaltyLabel = document.querySelector('.crew-card .track-label');
+    const addMemberBtn = document.getElementById('add-member');
+    const membersContainer = document.getElementById('crew-members');
       
       if (!addMemberBtn || !membersContainer) {
         console.log('Member management elements not found');
@@ -261,26 +253,29 @@
         }
       });
       
-      // Loyalty click handlers
+      // Loyalty click handlers with duplicate prevention
       loyaltyShapes.forEach((shape, index) => {
-        shape.addEventListener('click', function(event) {
-          event.preventDefault();
-          event.stopPropagation();
-          
-          const clickedValue = parseInt(this.dataset.value);
-          let newValue;
-          
-          if (clickedValue <= currentLoyalty) {
-            newValue = clickedValue - 1;
-          } else {
-            newValue = clickedValue;
-          }
-          
-          newValue = Math.max(0, Math.min(newValue, 3));
-          currentLoyalty = newValue;
-          updateLoyaltyDisplay(newValue);
-          updateURL();
-        });
+        if (!shape.hasAttribute('data-cr-loyalty-listener')) {
+          shape.addEventListener('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            const clickedValue = parseInt(this.dataset.value);
+            let newValue;
+            
+            if (clickedValue <= currentLoyalty) {
+              newValue = clickedValue - 1;
+            } else {
+              newValue = clickedValue;
+            }
+            
+            newValue = Math.max(0, Math.min(newValue, 3));
+            currentLoyalty = newValue;
+            updateLoyaltyDisplay(newValue);
+            updateURL();
+          });
+          shape.setAttribute('data-cr-loyalty-listener', 'true');
+        }
       });
       
       // Load existing members from URL
@@ -327,14 +322,16 @@
       // Initialize calculated fields (damage and HP)
       updateCalculatedFields();
       
-      // Mark as initialized to prevent multiple initializations
-      isInitialized = true;
-      
       console.log('Crew initialization complete');
-    }, 100);
   }
   
-  // Multiple initialization attempts
+  // Create global initialization function that can be called whenever card is recreated
+  window.initializeCrew = function() {
+    console.log('Initializing Crew card...');
+    initializeCrew();
+  };
+  
+  // Multiple initialization attempts for first load
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializeCrew);
   } else {
