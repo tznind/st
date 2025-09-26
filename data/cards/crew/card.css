@@ -279,3 +279,82 @@
   border-color: #bbb;
   box-shadow: none;
 }
+
+/* === NARROW SCREEN RESPONSIVE (480px breakpoint) === */
+@media (max-width: 480px) {
+  /* Reduce card-specific padding and margins */
+  .crew-card .form-field {
+    margin-bottom: 12px;
+    padding: 10px;
+  }
+  
+  .crew-card .card-header {
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+  }
+  
+  /* Make stats row stack vertically on narrow screens */
+  .stats-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .stats-row .form-field {
+    margin-bottom: 10px;
+  }
+  
+  /* Stack instinct grid vertically */
+  .instinct-grid {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  /* Simplify member row grid for narrow screens */
+  .member-row {
+    display: block;
+    padding: 6px;
+    margin-bottom: 6px;
+  }
+  
+  .member-row > * {
+    display: block;
+    margin-bottom: 4px;
+    width: 100% !important;
+  }
+  
+  .member-row .remove-member {
+    display: inline-block;
+    width: auto !important;
+    margin: 4px 0 0 0;
+  }
+  
+  /* Hide member headers on narrow screens since we're stacking */
+  .member-headers {
+    display: none;
+  }
+  
+  /* Reduce various spacing */
+  .members-section {
+    margin-top: 12px;
+  }
+  
+  .add-member {
+    padding: 6px 12px;
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+  
+  .crew-card hr {
+    margin: 0.75rem 0;
+  }
+  
+  .crew-card .card-title {
+    font-size: 20px;
+  }
+  
+  /* Compress form field labels */
+  .crew-card .form-field label {
+    margin-bottom: 4px;
+    min-width: auto;
+  }
+}

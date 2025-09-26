@@ -235,3 +235,123 @@
     min-width: auto;
   }
 }
+
+/* === NARROW SCREEN RESPONSIVE (480px breakpoint) === */
+@media (max-width: 480px) {
+  /* Reduce overall card padding and margins */
+  .initiates-card .card-header {
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+  }
+  
+  .initiates-card .card-title {
+    font-size: 20px;
+  }
+  
+  .selection-note {
+    font-size: 13px;
+    margin: 6px 0 0 0;
+  }
+  
+  /* Reduce initiate row spacing */
+  .initiate-row {
+    margin-bottom: 12px;
+    padding: 10px;
+  }
+  
+  .initiate-title {
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  
+  .initiate-header h4 {
+    font-size: 16px;
+  }
+  
+  /* Compress HP and loyalty tracking */
+  .hp-loyalty {
+    gap: 15px;
+  }
+  
+  .stat-group {
+    gap: 6px;
+  }
+  
+  .stat-group label {
+    min-width: 25px;
+    font-size: 13px;
+  }
+  
+  .stat-group input {
+    width: 45px;
+    padding: 3px 5px;
+    font-size: 13px;
+  }
+  
+  .loyalty-group {
+    gap: 6px;
+  }
+  
+  .loyalty-group label {
+    font-size: 13px;
+    margin-right: 4px;
+  }
+  
+  .loyalty-circle {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .loyalty-track {
+    gap: 3px;
+  }
+  
+  /* Reduce abilities section spacing */
+  .abilities-section {
+    margin: 10px 0;
+  }
+  
+  .instinct-cost {
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+  
+  .powers {
+    font-size: 12px;
+  }
+  
+  /* Compress custom picks */
+  .custom-picks {
+    margin-top: 8px;
+    padding-top: 6px;
+  }
+  
+  .pick-row {
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  
+  .pick-row input {
+    padding: 3px 6px;
+    font-size: 12px;
+    min-width: 100px;
+  }
+  
+  /* Compress tracking section */
+  .tracking-section {
+    margin: 8px 0;
+  }
+  
+  .stats-line {
+    margin-bottom: 4px;
+  }
+  
+  .trait-tags {
+    font-size: 13px;
+  }
+  
+  .combat-stats {
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+}

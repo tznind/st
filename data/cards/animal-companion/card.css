@@ -127,3 +127,75 @@
 .form-field br {
   display: none;
 }
+
+/* === NARROW SCREEN RESPONSIVE (480px breakpoint) === */
+@media (max-width: 480px) {
+  /* Reduce header spacing */
+  .card-header {
+    margin-bottom: 0.75rem;
+  }
+  
+  /* Make stats row stack vertically */
+  .stats-row {
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .stats-row .form-field {
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Stack instinct grid vertically */
+  .instinct-grid {
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  /* Reduce loyalty section spacing */
+  .loyalty-section {
+    padding: 6px 10px;
+    gap: 4px;
+  }
+  
+  .loyalty-section .track-label {
+    font-size: 11px;
+  }
+  
+  .loyalty-section .track-shape {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .loyalty-section .track-shapes {
+    gap: 2px;
+  }
+  
+  /* Reduce form field spacing */
+  .form-field {
+    margin-bottom: 0.75rem;
+  }
+  
+  .form-field label {
+    margin-bottom: 0.1rem;
+  }
+  
+  .form-field strong {
+    margin-bottom: 0.1rem;
+  }
+  
+  /* Reduce instinct label margins */
+  .instinct-column label {
+    margin-bottom: 0.1rem;
+  }
+  
+  .instinct-other {
+    margin-top: 0.25rem;
+  }
+  
+  .instinct-other label {
+    margin-right: 0.25rem;
+  }
+}

@@ -128,3 +128,62 @@
   font-weight: 700;
   min-width: 70px;
 }
+
+/* === NARROW SCREEN RESPONSIVE (480px breakpoint) === */
+@media (max-width: 480px) {
+  /* Reduce header spacing */
+  .hounds-card .card-header {
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+  }
+  
+  .hounds-card .card-title {
+    font-size: 20px;
+  }
+  
+  /* Reduce form field spacing and padding */
+  .hounds-card .form-field {
+    margin-bottom: 12px;
+    padding: 10px;
+  }
+  
+  .hounds-card .form-field label {
+    margin-right: 8px;
+    min-width: 50px;
+    font-size: 14px;
+  }
+  
+  /* Reduce loyalty section spacing */
+  .loyalty-section {
+    padding: 6px 10px;
+    gap: 4px;
+  }
+  
+  .loyalty-section .track-label {
+    font-size: 11px;
+  }
+  
+  .loyalty-section .track-shape {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .loyalty-section .track-shapes {
+    gap: 2px;
+  }
+  
+  /* Reduce stats display spacing */
+  .stats-display {
+    padding: 12px;
+    margin-top: 12px;
+  }
+  
+  .stat-item {
+    margin-bottom: 8px;
+    gap: 6px;
+  }
+  
+  .stat-item strong {
+    min-width: 60px;
+  }
+}
