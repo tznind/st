@@ -95,7 +95,7 @@ window.InlineCards = (function() {
             console.log(`Attempting to initialize card functionality for: ${cardId}`);
             
             // Convert kebab-case card ID to PascalCase function name
-            // Examples: 'initiates-of-danu' -> 'InitiatesOfDanu', 'animal-companion' -> 'AnimalCompanion'
+            // Examples: 'ship' -> 'Ship', 'robotic-companion' -> 'RoboticCompanion'
             const functionName = 'initialize' + cardId
                 .split('-')
                 .map(word => word.charAt(0).toUpperCase() + word.slice(1))

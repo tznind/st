@@ -1,4 +1,5 @@
 /* === GLOBAL STYLES === */
+/* Note: Narrow screen breakpoint of 480px is used in media queries below */
 body {
   background: #f8f9fa;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -728,6 +729,125 @@ hr {
   
   .move-checkboxes input[type="checkbox"] {
     transform: scale(1.0);
+  }
+}
+
+/* === VERY NARROW SCREENS (Foldable phones and narrow devices) === */
+/* Breakpoint: 480px - change here and in ship/card.css if needed */
+@media (max-width: 480px) {
+  /* Remove ALL margins and minimal padding */
+  * {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  html {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  body {
+    padding: 8px 2px !important;
+    margin: 0 !important;
+  }
+  
+  /* Reduce form margins and padding */
+  form {
+    padding: 12px 4px !important;
+    margin: 0 !important;
+    border-radius: 4px;
+    max-width: none !important;
+    width: calc(100vw - 4px) !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Reduce card padding */
+  .card {
+    padding: 12px 8px;
+    border-radius: 4px;
+  }
+  
+  .card-title {
+    font-size: 18px;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+  }
+  
+  /* Reduce move padding */
+  .move {
+    padding: 12px 8px;
+    margin-bottom: 15px;
+  }
+  
+  /* Compress hex layout */
+  .hex-row {
+    gap: 15px;
+  }
+  
+  .hex-input-wrapper {
+    width: 85px;
+  }
+  
+  .hex-title {
+    font-size: 11px;
+  }
+  
+  /* Reduce various section margins */
+  .card-section {
+    margin-bottom: 15px;
+  }
+  
+  h3 {
+    margin: 15px 0 10px 0;
+    font-size: 1.1em;
+  }
+  
+  /* Compress pick options */
+  .pick-options,
+  .pick-one-options,
+  .takeFrom-options {
+    padding: 10px 8px;
+    margin-top: 10px;
+  }
+  
+  /* Reduce form field spacing */
+  .form-field {
+    margin-bottom: 8px;
+  }
+  
+  .form-controls {
+    margin-bottom: 12px;
+  }
+  
+  /* Reduce outcome padding */
+  .outcome {
+    padding: 12px 10px;
+    margin: 8px 0;
+  }
+  
+  /* Compress track counter */
+  .track-counter {
+    gap: 10px;
+  }
+  
+  .track-shape {
+    width: 12px;
+    height: 12px;
+  }
+  
+  /* Reduce divider margins */
+  hr {
+    margin: 20px 0;
+  }
+  
+  /* Container margins */
+  #moves-container,
+  #cards-container {
+    margin: 20px 0;
+  }
+  
+  .card-wrapper {
+    margin-bottom: 20px;
   }
 }
 
