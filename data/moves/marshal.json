@@ -308,24 +308,12 @@
   {
     "id": "ms016",
     "title": "Battlefield Grace (Requires level 6+ and Front Line Leader)",
-    "description": "When you take damage while leading your allies in battle, the damage roll has disadvantage.",
-    "outcomes": [
-      {
-        "range": "",
-        "text": "When you take damage while leading your allies in battle, the damage roll has disadvantage."
-      }
-    ]
+    "description": "When you take damage while leading your allies in battle, the damage roll has disadvantage."
   },
   {
     "id": "ms017",
     "title": "Focus Fire (Requires level 6+, Stentorian)",
-    "description": "You can spend 1 Command to order your allies to bring down a foe. If you do, each ally has advantage on their next damage roll against that foe.",
-    "outcomes": [
-      {
-        "range": "",
-        "text": "Spend 1 Command to order your allies to bring down a foe. Each ally has advantage on their next damage roll against that foe."
-      }
-    ]
+    "description": "You can spend 1 Command to order your allies to bring down a foe. If you do, each ally has advantage on their next damage roll against that foe."
   },
   {
     "id": "ms018",
