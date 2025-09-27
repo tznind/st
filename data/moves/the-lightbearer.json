@@ -54,13 +54,25 @@
     "id":"lsp",
     "title":"Pick 2",
     "category": "Special Possessions",
+    "tracks": [
+      {
+        "name": "Holy Relics",
+        "max": 3,
+        "shape": "circle"
+      },
+      {
+        "name": "Books and Scrolls",
+        "max": 3,
+        "shape": "square"
+      }
+    ],
     "pick": [
       "Apiary: beeswax, candles (last ~1 hr, close), ◇ honey, ◇ bee smokers, ◇ hats & veils, etc.",
       "Books and Scrolls: Expend a use to consult your collection and turn a Know Things roll you just made into a 10+",
       "Chandlery: beeswax, candles (last ~1hr, close), wicks, scented herbs, soap, lye, ash, etc.",
       "Distillery: skins of fine whisky (2 uses, grants advantage to Persuade), copper tubes, malt, ◇◇ firkins, stills, barrels, etc.",
       "Glassworks: vials, charms, lenses, sand, marbles, bellows, crucible, ◇ lanterns (hours, reach, area) etc.",
-      "Holy relics: (3 uses) if you have one in inventory when you Invoke the Sun God, you can mark a use in lieu of choosing a consequence.",
+      "Holy relics: if you have one in inventory when you Invoke the Sun God, you can mark a use in lieu of choosing a consequence.",
       "Luthier's tools: chisels, files, catgut, various woods, stains, ◇ a lute, ◇ a fiddle, etc."
     ]
   },

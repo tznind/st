@@ -236,10 +236,17 @@
     "id": "h009",
     "title": "Never Gonna Keep Me Down",
     "description": "When you have 5 or fewer current HP, you impose disadvantage on any damage you take.",
+    "tracks": [
+      {
+        "name": "Death's Door Triumph",
+        "max": 1,
+        "shape": "hexagon"
+      }
+    ],
     "outcomes": [
       {
         "range": "",
-        "text": "Once per session, when you are at Death's Door, don't roll. You get a 10+."
+        "text": "Once per session, when you are at Death's Door, you can mark Death's Door Triumph instead of rolling. You get a 10+. Clear this mark at the start of each session."
       }
     ]
   },
@@ -291,6 +298,13 @@
     "id": "h016",
     "title": "Up With People",
     "description": "When you converse with someone (PC or NPC) you can hold 2 Rapport with them. If you do, they hold 1 Rapport with you. During the conversation, either of you can spend 1 Rapport to ask the other player one of the following and get an honest answer.",
+    "tracks": [
+      {
+        "name": "Rapport",
+        "max": 2,
+        "shape": "hexagon"
+      }
+    ],
     "outcomes": [
       {
         "range": "",

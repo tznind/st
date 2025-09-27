@@ -243,22 +243,26 @@
     "id": "ms015",
     "title": "Veteran Crew (Requires Crew)",
     "description": "Each time you take this move, pick 1. You can also choose to reselect their Instinct and Cost.",
-    "outcomes": [
-      {
-        "range": "",
-        "text": "Pick one:",
-        "bullets": [
+    "multiple": 2,
+    "pick": [
+         "bullets": [
           "Select 2 new tags for your Crew",
           "Increase their damage die from d6 to d8",
           "Increase their max HP by 2 each"
         ]
-      }
     ]
   },
   {
     "id": "j1k2l3",
     "title": "We happy few (+Charisma)",
     "description": "When you give an inspiring speech to your allies before facing a dire threat.",
+    "tracks": [
+      {
+        "name": "Inspiration (per ally)",
+        "max": 2,
+        "shape": "triangle"
+      }
+    ],
     "outcomes": [
       {
         "range": "≥ 10",
