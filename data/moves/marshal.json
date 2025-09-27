@@ -63,7 +63,7 @@
        "Distillery: skins of fine whisky (2 uses, grants advantage to Persuade), copper tubes, malt, ◇◇ firkins, stills, barrels, etc.",
        "Engineer's tools: rulers, tapes, rods, plumb-bobs, ◇ tripods, ◇ block & tackles, wheelbarrow, etc.",
        "Personal symbol (a flag, crest, marking, etc.): when you display or reveal it in a dramatic fashion, your crew holds +1 Loyalty (max 3).",
-       "Scribe's tools: parchment, ink, pigments, vials,quills, ◇ a notebook, etc.",
+       "Scribe's tools: parchment, ink, pigments, vials, quills, ◇ a notebook, etc.",
        "Weapons of war: Mark move below"
     ]
   },
@@ -166,7 +166,7 @@
   {
     "id": "ms009",
     "title": "Set-up Strike",
-    "description": "When you Clash and get a 7+, you can choose to deal damage with disadvantage. If you do, you create an opening for ally to act on, as if you provided Aid. Describe it!",
+    "description": "When you Clash and get a 7+, you can choose to deal damage with disadvantage. If you do, you create an opening for an ally to act on, as if you provided Aid. Describe it!",
     "outcomes": [
       {
         "range": "",

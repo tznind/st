@@ -3,7 +3,7 @@
     "id": "hbg1",
     "title": "Impetuous Youth",
     "category": "Background",
-    "description": "When you make a move and come up short, you can give it your all and turn a ≤6 into a 7-9, a 7-9 into a 10+, and (if it matterns) a 10-11 into a 12+. But if you do, pick 1 (the GM will fill in the details):",
+    "description": "When you make a move and come up short, you can give it your all and turn a ≤6 into a 7-9, a 7-9 into a 10+, and (if it matters) a 10-11 into a 12+. But if you do, pick 1 (the GM will fill in the details):",
     "outcomes": [
       {
         "range": "",
@@ -33,7 +33,7 @@
     "id": "hbg3",
     "title": "Destined (Start of Session + Omens)",
     "category": "Background",
-    "description": "Fate has laid her hand upon you.  Choose 3-4 of the items below to describe your destiny.  When you are at Death's Door, ask yourself, \"Is my destiny fulfilled?\" If it is not, treat a miss as a 7-9 and a 7-9 as a 10+.  At start of session role +Omens",
+    "description": "Fate has laid her hand upon you.  Choose 3-4 of the items below to describe your destiny.  When you are at Death's Door, ask yourself, \"Is my destiny fulfilled?\" If it is not, treat a miss as a 7-9 and a 7-9 as a 10+.  At start of session roll +Omens",
     "tracks": [
       {
         "name": "Omens",
@@ -71,7 +71,7 @@
     "outcomes": [
       {
         "range": "≥ 10",
-        "text": "Loose all Omens and the GM will describe a dream, vision, or portent that points towards your fate.  Ask the GM a follow-up question and get a clear, helpful answer."
+        "text": "Lose all Omens and the GM will describe a dream, vision, or portent that points towards your fate.  Ask the GM a follow-up question and get a clear, helpful answer."
       },
       {
         "range": "7-9",
@@ -79,20 +79,20 @@
       },
       {
         "range": "≤ 6",
-        "text": "Don't mark XP, hold +1 Omen, and tell us of the nightmares you have breen having and how your fears play into them."
+        "text": "Don't mark XP, hold +1 Omen, and tell us of the nightmares you have been having and how your fears play into them."
       }
     ]
   },
   {
     "id":"hsp",
-    "title":"Special Posessions (Pick 2)",
+    "title":"Special Possessions (Pick 2)",
     "category": "Special Possessions",
     "pick": [
       "A heap of expectations: of little use",
       "A good dog (tick move below)",
       "Husbandry tools: brushes, muzzles, collars, feed, ◇ whips, ◇ bridles, etc.  Gain advantage to Persuade domestic beasts (livestock, dogs, etc)",
       "Stoneworker's tools: chisels, drills, ◇ prybars, ◇ spikes, ◇ block & tackles, wheelbarrow, etc.",
-      "Tannery (or access to it): lime, acid, salts, thick gloves, ◇ a boilrd leather cuirass (1 Armor), etc.",
+      "Tannery (or access to it): lime, acid, salts, thick gloves, ◇ a boiled leather cuirass (1 Armor), etc.",
       "Personal token, fraught with meaning (tick move below)"
     ]
   },

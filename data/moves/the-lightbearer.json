@@ -13,7 +13,7 @@
     "id": "lb001",
     "title": "Itinerant Mystic",
     "category": "Background",
-    "description": "They think of you as a self-important kook who comes through now and again, speaking in riddles and playing tricks with the light. Sure, they know there's something holy about you, but it's not like you're a priest or anything. Priests talk sense.  When you go off a-wandering for",
+    "description": "They think of you as a self-important kook who comes through now and again, speaking in riddles and playing tricks with the light. Sure, they know there's something holy about you, but it's not like you're a priest or anything. Priests talk sense. When you go off a-wandering for:",
      "outcomes": [
       {
         "range": "Months",
@@ -39,13 +39,13 @@
     "id":"lbg3",
     "title": "Soul on Fire",
     "category": "Background",
-    "description": "You once led a wordly life, full of fear and doubt, base pleasures and petty grudges. But something happened. Injury, illness, a brush with death. Or just a moment of such profound misery and self-loathing that you thought you could fall no further.There, in the dark, Helior's light shined upon you, igniting in your soul, lifting you and filling you with a profound sense of purpose.",
+    "description": "You once led a worldly life, full of fear and doubt, base pleasures and petty grudges. But something happened. Injury, illness, a brush with death. Or just a moment of such profound misery and self-loathing that you thought you could fall no further. There, in the dark, Helior's light shined upon you, igniting in your soul, lifting you and filling you with a profound sense of purpose.",
     "outcomes": [
       {
         "text":"When you Persuade a group by preaching charity, mercy, and hope and roll a 7+, aside from the usual effect, choose 1",
         "bullets": [
           "Your name and your message spread",
-          "Someone approaches you, now or later, eager toknow more"
+          "Someone approaches you, now or later, eager to know more"
         ]
       }
     ]
@@ -59,7 +59,7 @@
       "Books and Scrolls: Expend a use to consult your collection and turn a Know Things roll you just made into a 10+",
       "Chandlery: beeswax, candles (last ~1hr, close), wicks, scented herbs, soap, lye, ash, etc.",
       "Distillery: skins of fine whisky (2 uses, grants advantage to Persuade), copper tubes, malt, ◇◇ firkins, stills, barrels, etc.",
-      "Glassworks: vials, charms, lenses, sand, marbles, bellows, crucible, ◇ laterns  (hours, reach, area) etc.",
+      "Glassworks: vials, charms, lenses, sand, marbles, bellows, crucible, ◇ lanterns (hours, reach, area) etc.",
       "Holy relics: (3 uses) if you have one in inventory when you Invoke the Sun God, you can mark a use in lieu of choosing a consequence.",
       "Luthier's tools: chisels, files, catgut, various woods, stains, ◇ a lute, ◇ a fiddle, etc."
     ]
@@ -260,7 +260,7 @@
         "bullets": []
       },
       {
-        "range": "≤6",
+        "range": "≤ 6",
         "text": "Their heart hardens and whatever else the GM says, you can't use this move on them again.",
         "bullets": []
       }
@@ -289,7 +289,7 @@
    {
     "id": "lb010",
     "title": "Light, More Light (Requires level 6+ and Consecrated Flame)",
-    "description": "When you consecrate a flame, it burns brighter than normal. A rushlight or candle illuminates to reachrange, an oil lamp, lantern, or torch out to nearrange, and a bullseye lantern out to far range."
+    "description": "When you consecrate a flame, it burns brighter than normal. A rushlight or candle illuminates to reach range, an oil lamp, lantern, or torch out to near range, and a bullseye lantern out to far range."
    },
    {
     "id": "lb023",
@@ -310,7 +310,7 @@
     "id": "iv001",
     "category": "Invocations",
     "title": "Cleansing Light",
-    "description": "Your light flares, dispelling magic within range.Potent, lasting magics are merely suppressed, and slowly return to power once removed from your light.",
+    "description": "Your light flares, dispelling magic within range. Potent, lasting magics are merely suppressed, and slowly return to power once removed from your light.",
      "outcomes": [
       {
         "range": "Reduced",
@@ -360,7 +360,7 @@
    {
     "id": "iv004",
     "category": "Invocations",
-    "title": "Warmpth of the Sun (ongoing)",
+    "title": "Warmth of the Sun (ongoing)",
     "description": "While in your light, you and your allies are free of fear and doubt, and unharmed by extreme cold.",
      "outcomes": [
       {

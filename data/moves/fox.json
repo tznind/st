@@ -55,13 +55,13 @@
       }
     ],
     "pick": [
-      "Burglar's Kit: picks, files snippers, wire, ◇ prybars, ◇ hacksaws, ◇ a lantern.",
-      "Carpenter's tools: chisels, files nails, pitch, ◇ prybars, ◇ saws, ◇◇ firkins, barrels, etc",
+      "Burglar's Kit: picks, files, snippers, wire, ◇ prybars, ◇ hacksaws, ◇ a lantern.",
+      "Carpenter's tools: chisels, files, nails, pitch, ◇ prybars, ◇ saws, ◇◇ firkins, barrels, etc",
       "Distillery: skins of fine whisky (2 uses, grants advantage to Persuade), copper tubes, malt, ◇◇ firkins, stills, barrels, etc.",
       "Hidden Stash: 3 uses, each use produces valuables worth a purse of silvers",
       "Mummer's kit: juggling balls, whirlybird seeds, motley, ribbons, bells, ◇ puppets, ◇ a fiddle etc.",
       "Scribe's tools: parchment, inks, pigments, vials, quills, ◇ a notebook, etc.",
-      "Tannery (or access to it): lime, acid, salts, thick gloves, ◇ a boilrd leather cuirass (1 Armor), etc.",
+      "Tannery (or access to it): lime, acid, salts, thick gloves, ◇ a boiled leather cuirass (1 Armor), etc.",
       "Trading contacts: small amounts of salt, glass, silk, spice, medicinal herbs, pigments, ivory, etc"
     ]
   },
@@ -83,7 +83,7 @@
         "text": "Ask the GM both of the questions below",
         "bullets": [
           "What will trigger the ambush or trap?",
-          "What will happen once its triggered?"
+          "What will happen once it's triggered?"
         ]
       },
       {
@@ -185,7 +185,7 @@
   {
     "id": "de0122",
     "title": "Pants on Fire (Requires level 6+)",
-    "description": "When you Defy Danger, Persuade or Interfere by being deceitful, you have advantage.  When another move (like Seek Insight) allows a player ot ask you a question, you can opt not to answer."
+    "description": "When you Defy Danger, Persuade or Interfere by being deceitful, you have advantage.  When another move (like Seek Insight) allows a player to ask you a question, you can opt not to answer."
   },
   {
     "id":"fox001",
