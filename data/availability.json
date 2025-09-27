@@ -29,7 +29,8 @@
     "fx10": false,
     "fx11": false,
     "fx12": false,
-    "fx13": false
+    "fx13": false,
+    "fi": true
   },
   "Marshal": {
     "_movesFile": "data/moves/marshal.json",

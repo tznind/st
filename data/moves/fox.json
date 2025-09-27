@@ -313,5 +313,18 @@
         "bullets": []
       }
     ]
+  },
+  {
+    "id":"fi",
+    "title":"Instinct (Choose 1)",
+    "description": "You can change on levelling or when appropriate story events affect you.",
+    "category": "Instinct",
+    "pickOne": [
+      "CONSCIENCE - To feel guilty, to try to do right.",
+      "FREEDOM - To chafe against rules, expectations, obligations.",
+      "COMFORT - To enjoy yourself and avoid hardship.",
+      "PRESTIGE - To impress others, to build a name for yourself.",
+      "TRICKERY - To deceive, misdirect, outthink."
+    ]
   }
 ]
