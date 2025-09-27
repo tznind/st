@@ -27,6 +27,127 @@ label {
   margin-right: 10px;
 }
 
+/* === CHARACTER INFO BOX (Soft Gray) === */
+.character-info-box {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 12px;
+}
+
+.basic-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 12px;
+  max-width: 500px; /* Limit width so fields don't stretch too wide */
+}
+
+.basic-info .form-field {
+  margin-bottom: 0;
+}
+
+.basic-info input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.role-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.role-controls label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+.role-controls select {
+  min-width: 140px;
+}
+
+/* === STATS AND CONTROLS BOX (White with Gray Outline) === */
+.stats-controls-box {
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+/* === ALL STATS SECTION (Combat + Progression) === */
+.all-stats {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+/* All stats use the same vertical column styling */
+.all-stats label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-right: 0;
+}
+
+.all-stats label input[type="text"] {
+  width: 50px;
+  text-align: center;
+  margin-right: 0;
+}
+
+/* === STATUS CONDITIONS SECTION === */
+.status-conditions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+}
+
+.status-conditions label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-right: 0;
+  cursor: pointer;
+}
+
+.status-conditions input[type="checkbox"] {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+/* === UI CONTROL (outside boxes) === */
+.ui-control {
+  margin-bottom: 15px;
+}
+
+.ui-control label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+}
+
+.ui-control input[type="checkbox"] {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
 /* Form field containers */
 .form-field {
   margin-bottom: 10px;
@@ -709,6 +830,38 @@ hr {
   form {
     padding: 20px;
     margin: 10px;
+  }
+  
+  /* Character info box - remove margins in compact mode */
+  .character-info-box {
+    margin-bottom: 8px;
+    padding: 12px;
+  }
+  
+  .basic-info {
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  
+  /* Stats controls box - remove margins in compact mode */
+  .stats-controls-box {
+    margin-bottom: 10px;
+    padding: 12px;
+  }
+  
+  /* All stats - tighten gap on mobile */
+  .all-stats {
+    gap: 12px;
+  }
+  
+  /* Role controls - reduce gap on mobile */
+  .role-controls {
+    gap: 10px;
+  }
+  
+  /* Status conditions - wrap more tightly */
+  .status-conditions {
+    gap: 12px;
   }
   
   .hex-row {

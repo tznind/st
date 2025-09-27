@@ -10,51 +10,83 @@
 <body>
 
   <form>
-    <div class="form-field">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name">
+    <!-- Character Info Box -->
+    <div class="character-info-box">
+      <div class="basic-info">
+        <div class="form-field">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name">
+        </div>
+        
+        <div class="form-field">
+          <label for="player">Player:</label>
+          <input type="text" id="player" name="player">
+        </div>
+      </div>
+      
+      <div class="role-controls">
+        <label for="role">Role:</label>
+        <select id="role" name="role">
+          <option value="">Select role...</option>
+        </select>
+        <button type="button" id="copy-url-button">
+          <span class="button-text">Copy URL</span>
+          <span class="success-text">
+            <span class="checkmark"></span>
+            Copied!
+          </span>
+        </button>
+        <button type="button" id="clear-button">Clear</button>
+      </div>
     </div>
     
-    <div class="form-field">
-      <label for="player">Player:</label>
-      <input type="text" id="player" name="player">
+    <!-- Stats and Controls Box -->
+    <div class="stats-controls-box">
+      <!-- Combat and Progression Stats -->
+      <div class="all-stats">
+        <label for="damage">
+          Damage
+          <input type="text" id="damage" name="damage">
+        </label>
+        <label for="hp">
+          HP
+          <input type="text" id="hp" name="hp">
+        </label>
+        <label for="armor">
+          Armor
+          <input type="text" id="armor" name="armor">
+        </label>
+        
+        <label for="xp">
+          XP
+          <input type="text" id="xp" name="xp">
+        </label>
+        
+        <label for="level">
+          Level
+          <input type="text" id="level" name="level">
+        </label>
+      </div>
+      
+      <!-- Status Conditions -->
+      <div class="status-conditions">
+        <label>
+          <input type="checkbox" id="weakened" name="weakened">
+          Weakened
+        </label>
+        <label>
+          <input type="checkbox" id="dazed" name="dazed">
+          Dazed
+        </label>
+        <label>
+          <input type="checkbox" id="miserable" name="miserable">
+          Miserable
+        </label>
+      </div>
     </div>
     
-    <div class="form-controls">
-      <label for="damage">Damage:</label>
-      <input type="text" id="damage" name="damage">
-      <label for="hp">HP:</label>
-      <input type="text" id="hp" name="hp">
-      <label for="armor">Armor:</label>
-      <input type="text" id="armor" name="armor">
-    </div>
-    
-    <div class="form-field">
-      <label for="xp">XP:</label>
-      <input type="text" id="xp" name="xp">
-    </div>
-    
-    <div class="form-field">
-      <label for="level">Level:</label>
-      <input type="text" id="level" name="level">
-    </div>
-    
-    <div class="form-controls">
-      <label for="role">Role:</label>
-      <select id="role" name="role">
-        <option value="">Select role...</option>
-      </select>
-      <button type="button" id="copy-url-button">
-        <span class="button-text">Copy URL</span>
-        <span class="success-text">
-          <span class="checkmark"></span>
-          Copied!
-        </span>
-      </button>
-      <button type="button" id="clear-button">Clear</button>
-    </div>
-    
-    <div class="form-controls">
+    <!-- UI Control -->
+    <div class="ui-control">
       <label>
         <input type="checkbox" id="hide_untaken" name="hide_untaken">
         Hide untaken moves
