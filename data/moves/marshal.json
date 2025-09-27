@@ -98,7 +98,7 @@
   {
     "id": "ms004",
     "title": "Front Line Leader",
-    "description": "When you lead your crew into battle, hold 2 Presence. Spend Presence in lieu of your crew's Loyalty or as Readiness (as if you Defended them).",
+    "description": "When you lead your crew into battle, hold 2 Presence.",
     "tracks": [
       {
         "name": "Presence",
@@ -107,22 +107,14 @@
       }
     ],
     "outcomes": [
-      {
-        "range": "",
-        "text": "When you lead your crew into battle, hold 2 Presence. Spend Presence in lieu of your crew's Loyalty or as Readiness (as if you Defended them)."
-      }
+      {"text": "Spend Presence in lieu of your crew's Loyalty or as Readiness (as if you Defended them)."}
     ]
+
   },
   {
     "id": "ms006",
     "title": "Logistics",
-    "description": "When you have a steading Muster or Pull Together, or when you Requisition, you have advantage.",
-    "outcomes": [
-      {
-        "range": "",
-        "text": "When you have a steading Muster or Pull Together, or when you Requisition, you have advantage."
-      }
-    ]
+    "description": "When you have a steading Muster or Pull Together, or when you Requisition, you have advantage."
   },
   {
     "id": "ms007",
@@ -214,13 +206,7 @@
   {
     "id": "ms013",
     "title": "Speak Softly",
-    "description": "When you offer peace but your enemy refuses, gain advantage on your next roll against them.",
-    "outcomes": [
-      {
-        "range": "",
-        "text": "When you offer peace but your enemy refuses, gain advantage on your next roll against them."
-      }
-    ]
+    "description": "When you offer peace but your enemy refuses, gain advantage on your next roll against them."
   },
   {
     "id": "ms014",
@@ -245,11 +231,9 @@
     "description": "Each time you take this move, pick 1. You can also choose to reselect their Instinct and Cost.",
     "multiple": 2,
     "pick": [
-         "bullets": [
           "Select 2 new tags for your Crew",
           "Increase their damage die from d6 to d8",
           "Increase their max HP by 2 each"
-        ]
     ]
   },
   {
@@ -319,51 +303,28 @@
     "id": "ms018",
     "title": "Heroes to the Last (Requires level 6+ and Veteran Crew)",
     "description": "Each time you take this move, pick 1:",
-    "outcomes": [
-      {
-        "range": "",
-        "text": "Pick one:",
-        "bullets": [
+    "multiple": 2,
+    "pick": [
           "They are exceptional (and roll +2 instead of +1)",
           "They are inured to terror & horror",
           "Increase their max HP by 4 each",
           "Increase their damage die one size (max d10)"
-        ]
-      }
     ]
   },
   {
     "id": "ms019",
     "title": "Like an Open Book (Requires level 6+ and Take the Measure)",
-    "description": "When you Take the Measure of someone who fears or respects you, your second question can be anything you want. The GM might ask how you could possibly know this; tell them or ask something else.",
-    "outcomes": [
-      {
-        "range": "",
-        "text": "When you Take the Measure of someone who fears or respects you, your second question can be anything you want."
-      }
-    ]
+    "description": "When you Take the Measure of someone who fears or respects you, your second question can be anything you want. The GM might ask how you could possibly know this; tell them or ask something else."
   },
   {
     "id": "ms020",
     "title": "Noble Mien (Requires level 6+)",
-    "description": "When you lead an NPC through danger and return them to safety, if they aren't part of your crew they will either offer to join your crew or pledge their future aid and support.",
-    "outcomes": [
-      {
-        "range": "",
-        "text": "When you lead an NPC through danger and return them to safety, if they aren't part of your crew they will offer to join your crew or pledge future aid and support."
-      }
-    ]
+    "description": "When you lead an NPC through danger and return them to safety, if they aren't part of your crew they will either offer to join your crew or pledge their future aid and support."
   },
   {
     "id": "ms021",
     "title": "Peace Through Strength (Requires level 6+ and Speak Softly)",
-    "description": "When you stand ready to fight alongside like-minded allies, anything capable of fear recognizes you as a serious threat and treats you accordingly.",
-    "outcomes": [
-      {
-        "range": "",
-        "text": "When you stand ready to fight alongside like-minded allies, anything capable of fear recognizes you as a serious threat and treats you accordingly."
-      }
-    ]
+    "description": "When you stand ready to fight alongside like-minded allies, anything capable of fear recognizes you as a serious threat and treats you accordingly."
   },
   {
     "id": "mi",
