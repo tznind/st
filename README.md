@@ -4,6 +4,9 @@ This is a [stonetop](https://www.kickstarter.com/projects/1735046512/stonetop) i
 
 It is online at https://tznind.github.io/st/cs.html
 
+<img width="975" height="1241" alt="image" src="https://github.com/user-attachments/assets/a8d3d7dd-ab63-4c77-acfe-6259afde5c29" />
+
+
 See https://github.com/tznind/lc for main template repository.
 
 You can read more about Powered by the Apocalypse, including their permissive license terms, here:
