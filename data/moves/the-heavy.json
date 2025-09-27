@@ -6,8 +6,8 @@
     "description": "You keep order in Stonetop and protect it from outside threats. It might not be anything official, but everyone knows you've got a cool head and the weight to back up your words. When you bark an order or warning, roll +CHA.",
     "outcomes": [
       {
-        "range": "≥ 7",
-        "text": "They must choose 1:",
+        "range": "≥ 10",
+        "text": "They must choose 1 of the following.  Also you can tell which one they're going to do and do something first; gain advantage if you do.",
         "bullets": [
           "Do what you say",
           "Dig in/take cover/flee",
@@ -15,8 +15,8 @@
         ]
       },
       {
-        "range": "≥ 10",
-        "text": "You can tell which one they're going to do and do something first; gain advantage if you do."
+        "range": "≥ 7",
+        "text": "As above but you cannot tell which they are going to do (and don't have advantage)"
       }
     ]
   },
