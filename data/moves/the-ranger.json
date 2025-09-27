@@ -101,16 +101,16 @@
       
       {
         "range": "≥ 10",
-        "text": "You also gain advantage on your next roll against it"
-      },
-      {
-        "range": "≥ 7",
-        "text": "It must choose 1 from the list below",
+         "text": "It must choose 1 from the list below. And you gain advantage on your next roll against it",
         "bullets": [
           "Fight you for dominance",
           "Slink away or flee, then avoid you",
           "Accept your authority, at least for now"
         ]
+      },
+      {
+        "range": "≥ 7",
+        "text": "As above but you do not get advantage"
       }
     ]
   },
