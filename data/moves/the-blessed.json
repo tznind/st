@@ -125,7 +125,7 @@
         "text": "They ignore the harm entirely"
       },
       {
-        "range": "7–9",
+        "range": "7-9",
         "text": "They suffer only half the damage or effect"
       },
       {
@@ -165,7 +165,7 @@
         ]
       },
       {
-        "range": "7–9",
+        "range": "7-9",
         "text": "Choose 1",
         "bullets": []
       },
@@ -227,7 +227,7 @@
         "text": "You do it and can use the power again"
       },
       {
-        "range": "7–9",
+        "range": "7-9",
         "text": "You do it, but lose the power"
       }
     ]
@@ -262,7 +262,7 @@
         "bullets": ["The veil holds, and no one is the wiser"]
       },
       {
-        "range": "7–9",
+        "range": "7-9",
         "text": "The veil holds, but there is further scrutiny or a complication (GM's choice)"
       }
     ]
@@ -277,7 +277,7 @@
         "text": "They will hold as long as the signs remain unmarred (and the affected creature can do nothing to affect them directly)"
       },
       {
-        "range": "7–9",
+        "range": "7-9",
         "text": "They hold for now but may be overcome through might or will"
       }
     ]
@@ -324,7 +324,7 @@
         "text": "You remove the malady and can safely discard it or store it in your sacred pouch (taking the space of 1 Stock) to study or inflict on another"
       },
       {
-        "range": "7–9",
+        "range": "7-9",
         "text": "You remove it, but choose 1",
         "bullets": [
           "Your patient suffers lingering harm or trauma",

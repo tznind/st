@@ -115,7 +115,7 @@
         "text": "That was a rush, regain 1d4 HP"
       },
       {
-        "range": "7–9",
+        "range": "7-9",
         "text": "You're winded and out of it, but you'll be fine with a few minutes' rest"
       },
       {
@@ -153,7 +153,7 @@
         ]
       },
       {
-        "range": "7–9",
+        "range": "7-9",
         "text": "Pick 1:",
         "bullets": [
           "Lesser foes will quail, hesitate, or flee before you",
