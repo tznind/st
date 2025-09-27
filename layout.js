@@ -43,6 +43,11 @@ window.Layout = (function() {
             // Then render moves (including inline cards)
             await renderMoves(selectedRoles, mergedAvailability, urlParams);
             
+            // Ensure all moves start in expanded state (don't persist collapse state)
+            if (window.MovesCore) {
+                window.MovesCore.expandAllMoves();
+            }
+            
             // Apply persistence to restore all form state immediately
             applyPersistenceState(urlParams);
             
@@ -180,6 +185,9 @@ window.Layout = (function() {
         
         switch (changeType) {
             case 'hide-untaken-toggle':
+                // Store current collapse state before re-rendering
+                const collapseState = window.MovesCore ? window.MovesCore.getCurrentCollapseState() : null;
+                
                 // Just re-render moves section with scroll preservation
                 const scrollY = window.scrollY;
                 const selectedRoles = window.Utils.getCurrentRoles();
@@ -194,6 +202,11 @@ window.Layout = (function() {
                     }
                     
                     applyPersistenceState(urlParams);
+                    
+                    // Restore collapse state instead of expanding all
+                    if (window.MovesCore && collapseState) {
+                        window.MovesCore.restoreCollapseState(collapseState);
+                    }
                     
                     // Restore scroll position
                     setTimeout(() => window.scrollTo(0, scrollY), 25);

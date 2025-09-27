@@ -97,6 +97,22 @@ window.MovesCore = (function() {
             console.log('MovesCore: No track system or no tracks for move:', move.id, 'track:', move.track, 'tracks:', move.tracks, 'window.Track:', !!window.Track);
         }
         
+        // Add collapse/expand toggle button
+        const collapseToggle = document.createElement("button");
+        collapseToggle.type = "button";
+        collapseToggle.className = "move-collapse-toggle";
+        collapseToggle.setAttribute('aria-label', `Toggle ${move.title} details`);
+        collapseToggle.innerHTML = "-"; // Minus sign (expanded state)
+        
+        // Add click handler to toggle move content
+        collapseToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMoveCollapse(collapseToggle);
+        });
+        
+        titleContainer.appendChild(collapseToggle);
+        
         return titleContainer;
     }
 
@@ -381,10 +397,14 @@ window.MovesCore = (function() {
         const titleContainer = createMoveTitle(move, checkboxes, urlParams);
         moveDiv.appendChild(titleContainer);
         
+        // Create collapsible content container
+        const contentContainer = document.createElement("div");
+        contentContainer.className = "move-content";
+        
         // Add description if it exists
         const descriptionElement = createDescription(move);
         if (descriptionElement) {
-            moveDiv.appendChild(descriptionElement);
+            contentContainer.appendChild(descriptionElement);
         }
         
         // Add outcomes if they exist
@@ -392,7 +412,7 @@ window.MovesCore = (function() {
             move.outcomes.forEach(outcome => {
                 if (outcome) {
                     const outcomeElement = createOutcome(outcome);
-                    moveDiv.appendChild(outcomeElement);
+                    contentContainer.appendChild(outcomeElement);
                 }
             });
         }
@@ -400,20 +420,20 @@ window.MovesCore = (function() {
         // Add pickOne options if they exist (render first as they're typically more fundamental)
         if (move.pickOne && Array.isArray(move.pickOne) && move.pickOne.length > 0) {
             const pickOneElement = createPickOneOptions(move, urlParams);
-            moveDiv.appendChild(pickOneElement);
+            contentContainer.appendChild(pickOneElement);
         }
         
         // Add pick options if they exist (render after pickOne as they're typically add-on features)
         if (move.pick && Array.isArray(move.pick) && move.pick.length > 0) {
             const pickElement = createPickOptions(move, urlParams);
-            moveDiv.appendChild(pickElement);
+            contentContainer.appendChild(pickElement);
         }
         
         // Add takeFrom section if it exists
         if (move.takeFrom && Array.isArray(move.takeFrom) && move.takeFrom.length > 0) {
             if (window.TakeFrom) {
                 const takeFromSection = window.TakeFrom.createTakeFromSection(move, urlParams);
-                moveDiv.appendChild(takeFromSection);
+                contentContainer.appendChild(takeFromSection);
             }
         }
         
@@ -421,9 +441,12 @@ window.MovesCore = (function() {
         if (move.grantsCard) {
             const grantedCardSection = createGrantedCardSection(move, urlParams);
             if (grantedCardSection) {
-                moveDiv.appendChild(grantedCardSection);
+                contentContainer.appendChild(grantedCardSection);
             }
         }
+        
+        // Append content container to move div
+        moveDiv.appendChild(contentContainer);
         
         return moveDiv;
     }
@@ -436,6 +459,137 @@ window.MovesCore = (function() {
         headerElement.className = "category-header";
         headerElement.textContent = categoryName;
         return headerElement;
+    }
+
+    /**
+     * Toggle collapse/expand state for a single move
+     */
+    function toggleMoveCollapse(toggleButton) {
+        const moveDiv = toggleButton.closest('.move');
+        if (!moveDiv) return;
+        
+        const contentContainer = moveDiv.querySelector('.move-content');
+        if (!contentContainer) return;
+        
+        const isCurrentlyCollapsed = contentContainer.classList.contains('collapsed');
+        
+        if (isCurrentlyCollapsed) {
+            // Expand - show minus sign
+            contentContainer.classList.remove('collapsed');
+            toggleButton.classList.remove('collapsed');
+            toggleButton.innerHTML = '-'; // Minus (expanded state)
+            toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Expand', 'Collapse'));
+        } else {
+            // Collapse - show plus sign
+            contentContainer.classList.add('collapsed');
+            toggleButton.classList.add('collapsed');
+            toggleButton.innerHTML = '+'; // Plus (collapsed state)
+            toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Collapse', 'Expand'));
+        }
+    }
+    
+    /**
+     * Collapse all moves
+     */
+    function collapseAllMoves() {
+        const allMoves = document.querySelectorAll('.move');
+        allMoves.forEach(moveDiv => {
+            const contentContainer = moveDiv.querySelector('.move-content');
+            const toggleButton = moveDiv.querySelector('.move-collapse-toggle');
+            
+            if (contentContainer && toggleButton) {
+                contentContainer.classList.add('collapsed');
+                toggleButton.classList.add('collapsed');
+                toggleButton.innerHTML = '+'; // Plus (collapsed state)
+                toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Collapse', 'Expand'));
+            }
+        });
+    }
+    
+    /**
+     * Expand all moves
+     */
+    function expandAllMoves() {
+        const allMoves = document.querySelectorAll('.move');
+        allMoves.forEach(moveDiv => {
+            const contentContainer = moveDiv.querySelector('.move-content');
+            const toggleButton = moveDiv.querySelector('.move-collapse-toggle');
+            
+            if (contentContainer && toggleButton) {
+                contentContainer.classList.remove('collapsed');
+                toggleButton.classList.remove('collapsed');
+                toggleButton.innerHTML = '-'; // Minus (expanded state)
+                toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Expand', 'Collapse'));
+            }
+        });
+    }
+    
+    /**
+     * Get current collapse state of all moves
+     * Returns a map of move titles to their collapse state
+     */
+    function getCurrentCollapseState() {
+        const collapseState = new Map();
+        const allMoves = document.querySelectorAll('.move');
+        
+        allMoves.forEach(moveDiv => {
+            const titleElement = moveDiv.querySelector('.move-title label, .move-title .move-title-text');
+            const contentContainer = moveDiv.querySelector('.move-content');
+            
+            if (titleElement && contentContainer) {
+                // Extract move title text
+                const moveTitle = titleElement.textContent || titleElement.innerText;
+                const isCollapsed = contentContainer.classList.contains('collapsed');
+                collapseState.set(moveTitle.trim(), isCollapsed);
+            }
+        });
+        
+        console.log('MovesCore: Stored collapse state for', collapseState.size, 'moves');
+        return collapseState;
+    }
+    
+    /**
+     * Restore collapse state for moves
+     * @param {Map} collapseState - Map of move titles to collapse state
+     */
+    function restoreCollapseState(collapseState) {
+        if (!collapseState || collapseState.size === 0) {
+            console.log('MovesCore: No collapse state to restore');
+            return;
+        }
+        
+        const allMoves = document.querySelectorAll('.move');
+        let restoredCount = 0;
+        
+        allMoves.forEach(moveDiv => {
+            const titleElement = moveDiv.querySelector('.move-title label, .move-title .move-title-text');
+            const contentContainer = moveDiv.querySelector('.move-content');
+            const toggleButton = moveDiv.querySelector('.move-collapse-toggle');
+            
+            if (titleElement && contentContainer && toggleButton) {
+                const moveTitle = (titleElement.textContent || titleElement.innerText).trim();
+                const shouldBeCollapsed = collapseState.get(moveTitle);
+                
+                if (shouldBeCollapsed !== undefined) {
+                    if (shouldBeCollapsed) {
+                        // Collapse this move - show plus sign
+                        contentContainer.classList.add('collapsed');
+                        toggleButton.classList.add('collapsed');
+                        toggleButton.innerHTML = '+'; // Plus (collapsed state)
+                        toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Collapse', 'Expand'));
+                    } else {
+                        // Ensure this move is expanded - show minus sign
+                        contentContainer.classList.remove('collapsed');
+                        toggleButton.classList.remove('collapsed');
+                        toggleButton.innerHTML = '-'; // Minus (expanded state)
+                        toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Expand', 'Collapse'));
+                    }
+                    restoredCount++;
+                }
+            }
+        });
+        
+        console.log('MovesCore: Restored collapse state for', restoredCount, 'moves');
     }
 
     /**
@@ -630,6 +784,11 @@ window.MovesCore = (function() {
         groupMovesByCategory,
         isMoveTaken,
         renderMove,
-        renderMovesForRole
+        renderMovesForRole,
+        toggleMoveCollapse,
+        collapseAllMoves,
+        expandAllMoves,
+        getCurrentCollapseState,
+        restoreCollapseState
     };
 })();

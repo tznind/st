@@ -143,6 +143,26 @@
         if (copyButton) {
             copyButton.addEventListener('click', copyURLWithFeedback);
         }
+        
+        // Collapse all moves button
+        const collapseAllButton = document.getElementById('collapse-all-moves');
+        if (collapseAllButton) {
+            collapseAllButton.addEventListener('click', function() {
+                if (window.MovesCore) {
+                    window.MovesCore.collapseAllMoves();
+                }
+            });
+        }
+        
+        // Expand all moves button
+        const expandAllButton = document.getElementById('expand-all-moves');
+        if (expandAllButton) {
+            expandAllButton.addEventListener('click', function() {
+                if (window.MovesCore) {
+                    window.MovesCore.expandAllMoves();
+                }
+            });
+        }
 
         // Note: Other event handlers (role changes, checkbox changes, etc.) 
         // are now handled automatically by the persistence system
