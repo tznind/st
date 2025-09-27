@@ -98,6 +98,11 @@
     "title": "Alpha (Requires Wild Speech or Spirit Tongue)",
     "description": "When you assert your dominance over a beast or spirit of the wild, roll +Wisdom",
     "outcomes": [
+      
+      {
+        "range": "≥ 10",
+        "text": "You also gain advantage on your next roll against it"
+      },
       {
         "range": "≥ 7",
         "text": "It must choose 1 from the list below",
@@ -106,10 +111,6 @@
           "Slink away or flee, then avoid you",
           "Accept your authority, at least for now"
         ]
-      },
-      {
-        "range": "≥ 10",
-        "text": "You also gain advantage on your next roll against it"
       }
     ]
   },
@@ -166,12 +167,12 @@
     "description": "When you Seek Insight by searching for tracks or studying the signs left by passing creatures, you can ask 'What happened here recently?' for free, even on a 6-. When you follow a creature's trail, roll +Wisdom",
     "outcomes": [
       {
-        "range": "≥ 7",
-        "text": "You follow the trail to a significant change in direction, terrain, or mode of transport"
-      },
-      {
         "range": "≥ 10",
         "text": "You can also ask the GM a reasonable question about your quarry and get an honest, useful answer"
+      },
+      {
+        "range": "≥ 7",
+        "text": "You follow the trail to a significant change in direction, terrain, or mode of transport"
       }
     ]
   },
@@ -199,12 +200,22 @@
   {
     "id": "rg012",
     "title": "On the Hoof",
-    "description": "When you travel through the wilderness, you can procure 1d6 uses of provisions each day (roll with disadvantage in winter or barren terrain). Each use of provisions can substitute for 1 supplies when you Make Camp."
+    "description": "When you travel through the wilderness, you can procure 1d6 uses of provisions each day (roll with disadvantage in winter or barren terrain).",
+    "tracks": [{
+      "name": "Provisions",
+      "max": 6,
+      "shape": "circle"
+    }],
+    "outcomes": [
+      {
+        "text": "Each use of provisions can substitute for 1 supplies when you Make Camp."
+      }
+    ]
   },
   {
     "id": "rg013",
     "title": "Pack Horse",
-    "description": "You can carry up to 44 with a light load, 74 with a normal load, and 104 with a heavy load."
+    "description": "You can carry up to 4 with a light load, 7 with a normal load, and 10 with a heavy load."
   },
   {
     "id": "rg014",
@@ -226,14 +237,19 @@
   {
     "id": "rg015",
     "title": "A Safe Place",
-    "description": "When you select and prepare the party's camp site, hold 1 Precaution, or 2 Precaution if you are well-versed with this area and its dangers. If trouble finds your camp site, you can spend 1 Precaution to reveal a simple defense, warning, or trick that you prepared in advance. If you do, tell us how you knew to make that specific preparation.",
+    "description": "When you select and prepare the party's camp site, hold 1 Precaution, or 2 Precaution if you are well-versed with this area and its dangers",
     "tracks": [
       {
         "name": "Precaution",
         "max": 2,
         "shape": "triangle"
       }
-    ]
+    ],
+  "outcomes": [
+  {
+    "text": "If trouble finds your camp site, you can spend 1 Precaution to reveal a simple defense, warning, or trick that you prepared in advance. If you do, tell us how you knew to make that specific preparation."
+  }
+  ]
   },
   {
     "id": "rg016",
