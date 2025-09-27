@@ -17,6 +17,9 @@ window.Layout = (function() {
             // Preserve scroll position to prevent jumping
             const scrollY = window.scrollY;
             
+            // Preserve collapse state before re-rendering
+            const collapseState = window.MovesCore ? window.MovesCore.getCurrentCollapseState() : null;
+            
             const urlParams = new URLSearchParams(location.search);
             const selectedRoles = window.Utils.getCurrentRoles();
             
@@ -43,9 +46,9 @@ window.Layout = (function() {
             // Then render moves (including inline cards)
             await renderMoves(selectedRoles, mergedAvailability, urlParams);
             
-            // Ensure all moves start in expanded state (don't persist collapse state)
-            if (window.MovesCore) {
-                window.MovesCore.expandAllMoves();
+            // Restore collapse state instead of expanding all
+            if (window.MovesCore && collapseState) {
+                window.MovesCore.restoreCollapseState(collapseState);
             }
             
             // Apply persistence to restore all form state immediately

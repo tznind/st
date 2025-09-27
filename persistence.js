@@ -234,29 +234,25 @@ window.Persistence = (function() {
     function triggerLayoutUpdate(target) {
         if (!window.Layout) return;
         
-        // Determine the appropriate layout update type
+        // Determine if layout update is needed
         if (target.id === 'hide_untaken') {
-            // Hide/show untaken moves toggle - can use quick update
+            // Hide/show untaken moves toggle - use quick update to prevent flicker
             window.Layout.quickLayoutUpdate('hide-untaken-toggle');
         } else if (target.id === 'role' || target.id === 'role2' || target.name.startsWith('role')) {
-            // Role selection changed - needs full layout
+            // Role selection changed - needs full layout (will preserve collapse state)
             window.Layout.layoutApplication();
         } else if (target.id && target.id.startsWith('move_')) {
-            // Move checkbox changed - only do full layout if it has special effects
+            // Move checkbox changed - check if it has special effects
             const moveId = target.getAttribute('data-move-id');
             const move = window.moves?.find(m => m.id === moveId);
             
             if (move && (move.grantsCard || move.takeFrom)) {
-                // Has special effects - needs full layout
+                // Has special effects - needs full layout (will preserve collapse state)
                 window.Layout.layoutApplication();
-            } else {
-                // Regular move checkbox - no special layout needed, just URL update
-                // The checkbox state is already updated by the browser
             }
-        } else {
-            // For other changes (text inputs, etc.), no immediate layout change needed
-            // The URL has been updated and will be reflected on next render
+            // Regular moves don't need layout update - just URL persistence
         }
+        // Other changes don't need immediate layout updates
     }
     
     /**
