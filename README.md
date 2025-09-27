@@ -48,4 +48,4 @@ Then visit `http://localhost:8000/cs.html`
 
 Character sheet code is licensed under the [MIT license](./LICENSE).
 
-Stonetop moves and character designs are copyright Penny Lantern - used with permission of Jason Lutes.
+Stonetop content by **Penny Lantern** is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) - used with permission of Jason Lutes.
