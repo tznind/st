@@ -157,7 +157,7 @@
   },
   {
     "id": "sk020",
-    "title": "Magpie",
+    "title": "Magpie (+Intelligence)",
     "description": "When you Have What You Need, you can produce something strange, specific, maybe even valuable or a little bit magical, but if you do, tell us where you got it and 2 of the following:",
     "outcomes": [
       {
@@ -198,7 +198,7 @@
   },
   {
     "id": "sk007",
-    "title": "Quick Study",
+    "title": "Quick Study (+Intelligence)",
     "description": "When you study something magical that should take months to understand, it instead takes mere weeks. If it should take weeks, it takes days. If it should take days, it takes only a few hours."
   },
   {

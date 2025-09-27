@@ -1,7 +1,7 @@
 [
   {
     "id": "hbg1",
-    "title": "Sheriff",
+    "title": "Sheriff (+Charisma)",
     "category": "Background",
     "description": "You keep order in Stonetop and protect it from outside threats. It might not be anything official, but everyone knows you've got a cool head and the weight to back up your words. When you bark an order or warning, roll +CHA.",
     "outcomes": [
@@ -107,7 +107,7 @@
   },
   {
     "id": "hv007",
-    "title": "Battle Joy",
+    "title": "Battle Joy (+Constitution)",
     "description": "When you spill blood—yours or another's—and lose yourself in battle, you ignore fear, pain, mind-control, and the effects of debilities as long as you keep fighting. When the action stops, roll +Constitution",
     "outcomes": [
       {
@@ -141,7 +141,7 @@
   },
   {
     "id": "hv010",
-    "title": "Formidable",
+    "title": "Formidable (+Charisma)",
     "description": "When you wade into battle, you can choose to roll +Charisma",
     "outcomes": [
       {

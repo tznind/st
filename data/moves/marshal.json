@@ -17,7 +17,7 @@
   },
   {
     "id": "mbg2",
-    "title": "Penitent",
+    "title": "Penitent (+Strength)",
     "category": "Background",
     "description": "Before you came here, you led a band of ne'er-do-wells: bandits, raiders, or bloody-handed mercenaries. But something changed. A moment of truth led you and your followers—some of them at least—to leave that life behind. And for whatever reason, the people of Stonetop took you in.",
     "outcomes": [
@@ -126,7 +126,7 @@
   },
   {
     "id": "ms007",
-    "title": "Prepare a Welcome (Requires Read the Land)",
+    "title": "Prepare a Welcome (+Intelligence, Requires Read the Land)",
     "description": "When you have your allies fortify a position and lie in wait for battle, hold 1 Surprise if you're rushed or 2 Surprises if you can take your time.",
     "tracks": [
       {
@@ -176,7 +176,7 @@
   },
   {
     "id": "ms010",
-    "title": "Shake it Off",
+    "title": "Shake it Off (+Charisma)",
     "description": "When you order an ally to overcome fear, pain, doubt, or delusion, roll +CHA: on a 10+, they do it; on a 7-9, a PC gets advantage to do it; an NPC will do it, but they'll need time, they'll resent you, or they'll feel humiliated (GM decides).",
     "outcomes": [
       {

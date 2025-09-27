@@ -100,7 +100,7 @@
   },
   {
     "id": "1587dd",
-    "title": "Skill at Arms",
+    "title": "Skill at Arms (+Dexterity)",
     "description": "When you wield a weapon with speed and grace, roll +Dexterity to Clash (instead of +Strength)."
   },
   {
@@ -133,7 +133,7 @@
   },
   {
     "id": "b01221",
-    "title": "Laugh at Danger",
+    "title": "Laugh at Danger (+Charisma)",
     "description": "When you are about to roll +Constitution and you make a joke about the adversity you face, you can roll +Charisma instead."
   },
   {
@@ -189,7 +189,7 @@
   },
   {
     "id":"fox001",
-    "title":"Eye on the door (Requires level 6+)",
+    "title":"Eye on the door (+Intelligence, Requires level 6+)",
     "description":"When you and your allies need to get out of here, name your escape route and roll +Intelligence",
     "outcomes": [
       {

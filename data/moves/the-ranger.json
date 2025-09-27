@@ -36,7 +36,7 @@
   },
   {
     "id": "rbg3",
-    "title": "Beast-Bonded",
+    "title": "Beast-Bonded (+Wisdom)",
     "category": "Background",
     "description": "You grew up civilized, but your soul is bound to a beast of the wild. You're closer to it than to any man or woman. How did this bond come about? How long ago?",
     "outcomes": [
@@ -141,7 +141,7 @@
   },
   {
     "id": "rg006",
-    "title": "Call the Shot",
+    "title": "Called Shot (+Dexterity)",
     "description": "When you take your time and calmly line up the perfect shot, either deal your damage or roll +Dexterity",
     "outcomes": [
       {
@@ -163,7 +163,7 @@
   },
   {
     "id": "rg007",
-    "title": "Expert Tracker",
+    "title": "Expert Tracker (+Wisdom)",
     "description": "When you Seek Insight by searching for tracks or studying the signs left by passing creatures, you can ask 'What happened here recently?' for free, even on a 6-. When you follow a creature's trail, roll +Wisdom",
     "outcomes": [
       {

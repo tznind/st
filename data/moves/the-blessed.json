@@ -117,7 +117,7 @@
   },
   {
     "id": "bl012",
-    "title": "Amulets & Talismans",
+    "title": "Amulets & Talismans (+Intelligence)",
     "description": "When you craft a protective charm for someone, spend 1 Stock and name a source of harm (fire, stabbing, etc.). When they would suffer such harm while bearing your charm, roll +Intelligence. One can benefit from only 1 charm at a time, and it loses its potency after 1 use.",
     "outcomes": [
       {
@@ -219,7 +219,7 @@
   },
   {
     "id": "bl004",
-    "title": "Borrow Power (Requires Spirit Tongue)",
+    "title": "Borrow Power (+Wisdom, Requires Spirit Tongue)",
     "description": "When a spirit or beast loans you power, ask the GM for one of its tags or moves. Store it in your pouch in place of 1 Stock. When you use the borrowed tag or move, roll +Wisdom",
     "outcomes": [
       {
@@ -246,7 +246,7 @@
   },
   {
     "id": "bl016",
-    "title": "Veil",
+    "title": "Veil (+Intelligence)",
     "description": "When you wrap yourself or another in a subtle veil, spend 1 Stock and choose 1:",
     "outcomes": [
       {
@@ -269,7 +269,7 @@
   },
   {
     "id": "bl017",
-    "title": "Wards & Bindings",
+    "title": "Wards & Bindings (+Intelligence)",
     "description": "When you mark a boundary with sacred signs, spend 1 Stock and describe who or what they affect (using no more words than your level). Also, choose whether the affected beings are repelled or trapped by the signs. When your wards or bindings are first tested, roll +Intelligence",
     "outcomes": [
       {
@@ -316,7 +316,7 @@
   },
   {
     "id": "bl008",
-    "title": "Suck the Poison Out (Requires level 6+ and Healer's Arts)",
+    "title": "Suck the Poison Out (+Wisdom, Requires level 6+ and Healer's Arts)",
     "description": "When you draw a malady from a patient's body, mind, or soul, spend 1 Stock and roll +Wisdom",
       "outcomes": [
       {

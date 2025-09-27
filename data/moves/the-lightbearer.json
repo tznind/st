@@ -98,7 +98,7 @@
   },
   {
     "id": "lb013",
-    "title": "Luminous Shield (Requires A Candle Against the Dark)",
+    "title": "Luminous Shield (+Charisma, Requires A Candle Against the Dark)",
     "description": "When you brandish a holy light to turn aside an attack against body, mind, or soul, roll +CHA:",
     "outcomes": [
       {
