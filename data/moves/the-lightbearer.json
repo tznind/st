@@ -484,5 +484,18 @@
         "text": "The effect continues for a few moments after they first take damage. Taking damage a second time ends the effect immediately."
       }
     ]
+  },
+  {
+    "id": "li",
+    "title": "Instinct (Choose 1)",
+    "description": "You can change on levelling or when appropriate story events affect you.",
+    "category": "Instinct",
+    "pickOne": [
+      "CHARITY - To go without so that others are better off.",
+      "HOPE - To inspire others in the face of adversity.",
+      "MERCY - To bring relief or comfort, to give second chances.",
+      "PRAISE - To spread the glory and worship of Helior.",
+      "RIGHTEOUSNESS - To refuse to suffer an injustice or a lesser evil."
+    ]
   }
 ]

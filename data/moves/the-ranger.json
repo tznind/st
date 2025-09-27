@@ -309,5 +309,18 @@
     "id": "rg026",
     "title": "Warden of the Wild (Requires level 6+ and Sense the Unnatural)",
     "description": "When you deal damage to something you know to be a perversion of the natural order, deal +1d4 damage."
+  },
+  {
+    "id": "ri",
+    "title": "Instinct (Choose 1)",
+    "description": "You can change on levelling or when appropriate story events affect you.",
+    "category": "Instinct",
+    "pickOne": [
+      "ADVENTURE - To test yourself, to experience new things.",
+      "INDEPENDENCE - To refuse help and push others away.",
+      "STEWARDSHIP - To value beasts and natural places over people.",
+      "TENACITY - To be stubborn, to persist.",
+      "WONDER - To marvel at beauty, magnificence, splendor."
+    ]
   }
 ]

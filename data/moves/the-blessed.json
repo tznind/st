@@ -338,5 +338,18 @@
     "id": "bl021",
     "title": "Voice of the Earth Mother (Requires level 6+ and Spirit Tongue)",
     "description": "When you speak on behalf of Danu, natural beasts and spirits of the wild respect your authority. All but the most headstrong will do as you command, even against their instincts."
+  },
+  {
+    "id": "bi",
+    "title": "Instinct (Choose 1)",
+    "description": "You can change on levelling or when appropriate story events affect you.",
+    "category": "Instinct",
+    "pickOne": [
+      "DELIGHT - To find beauty, in even the most ugly thing.",
+      "DETACHMENT - To remain unmoved, to be cold as winter.",
+      "NURTURE - To help others grow, learn, or improve.",
+      "PRESERVATION - To protect the natural world.",
+      "REVERENCE - To demand sacrifice to the spirits and Danu."
+    ]
   }
 ]

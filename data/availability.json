@@ -61,7 +61,8 @@
     "ms018": false,
     "ms019": false,
     "ms020": false,
-    "ms021": false
+    "ms021": false,
+    "mi": true
   },
   "The Blessed": {
     "_movesFile": "data/moves/the-blessed.json",
@@ -94,7 +95,8 @@
     "bl022": false,
     "bl023": false,
     "ae0121": false,
-    "ae0122": false
+    "ae0122": false,
+    "bi": true
   },
   "The Ranger": {
     "_movesFile": "data/moves/the-ranger.json",
@@ -130,7 +132,8 @@
     "rg026": false,
     "rg027": false,
     "ae0121": false,
-    "ae0122": false
+    "ae0122": false,
+    "ri": true
   },
   "The Lightbearer": {
     "_movesFile": "data/moves/the-lightbearer.json",
@@ -172,7 +175,8 @@
     "iv007": false,
     "iv008": false,
     "iv009": false,
-    "iv010": false
+    "iv010": false,
+    "li": true
   },
   "The Seeker": {
     "_movesFile": "data/moves/the-seeker.json",
@@ -210,7 +214,8 @@
     "sk013": false,
     "sk014": false,
     "ae0122":false,
-    "ae0121":false
+    "ae0121":false,
+    "si": true
   },
   "The Heavy": {
     "_movesFile": "data/moves/the-heavy.json",
@@ -247,7 +252,8 @@
     "hv022": false,
     "hv023": false,
     "hv024": false,
-    "hv025": false
+    "hv025": false,
+    "hei": true
   },
   "The Judge":{
     "_movesFile": "data/moves/the-judge.json",
@@ -285,7 +291,8 @@
     "j025": false,
     "j024": false,
     "ae0122": false,
-    "j027": false
+    "j027": false,
+    "ji": true
   },
   "The Would Be Hero":{
     "_movesFile": "data/moves/the-would-be-hero.json",
@@ -319,6 +326,7 @@
     "h019": false,
     "h020": false,
     "h021": false,
-    "h022": false
+    "h022": false,
+    "hi": true
   }
 }

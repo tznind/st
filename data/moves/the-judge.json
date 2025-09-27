@@ -296,5 +296,18 @@
     "id": "j027",
     "title": "The Tower Eternal (Requires level 6+)",
     "description": "When you Defy Danger against magic, treat a result of 6- as a 7-9."
+  },
+  {
+    "id": "ji",
+    "title": "Instinct (Choose 1)",
+    "description": "You can change on levelling or when appropriate story events affect you.",
+    "category": "Instinct",
+    "pickOne": [
+      "AMBITION - To increase your status or influence.",
+      "DISPASSION - To disregard emotion or sentiment.",
+      "HARMONY - To seek a path that makes everyone happy.",
+      "ORTHODOXY - To strictly adhere to rules and traditions.",
+      "ZEAL - To judge quickly and without doubt."
+    ]
   }
 ]

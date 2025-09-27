@@ -250,5 +250,18 @@
     "id": "sk029",
     "title": "Proof Against Detection (Requires level 6+ and Safety First)",
     "description": "When you hold Protection, you can't be scried upon or sensed by magical means, and have advantage to Defy Danger by being stealthy."
+  },
+  {
+    "id": "si",
+    "title": "Instinct (Choose 1)",
+    "description": "You can change on levelling or when appropriate story events affect you.",
+    "category": "Instinct",
+    "pickOne": [
+      "CUNNING - To scheme, manipulate, and plot.",
+      "CURIOSITY - To seek answers that maybe you oughtn't.",
+      "HUBRIS - To assume you know best, that you can't fail.",
+      "MYSTERY - To avoid straight answers; to keep secrets.",
+      "VISION - To think big and pursue grandiose goals."
+    ]
   }
 ]

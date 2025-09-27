@@ -352,5 +352,18 @@
         "text": "When you Seek Insight, you can always ask, 'What is about to happen?' for free, even on a 6-."
       }
     ]
+  },
+  {
+    "id": "hi",
+    "title": "Instinct (Choose 1)",
+    "description": "You can change on levelling or when appropriate story events affect you.",
+    "category": "Instinct",
+    "pickOne": [
+      "DEFIANCE - To refuse to back down, give up, give in.",
+      "DOUBT - To question yourself, your actions, your worth.",
+      "EARNESTNESS - To prove yourself, to yourself and others.",
+      "OPTIMISM - To assume the best, and that things are simple.",
+      "SACRIFICE - To put the needs/wants of others above your own."
+    ]
   }
 ]

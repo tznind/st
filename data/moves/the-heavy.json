@@ -285,5 +285,18 @@
     "id": "hv025",
     "title": "Stone Cold (Requires level 6+ and Frosty)",
     "description": "When you Defy Danger (or Struggle as One) by keeping calm and carrying on, treat a 6- as a 7-9."
+  },
+  {
+    "id": "hei",
+    "title": "Instinct (Choose 1)",
+    "description": "You can change on levelling or when appropriate story events affect you.",
+    "category": "Instinct",
+    "pickOne": [
+      "PEACE - To avoid (further) bloodshed or violence.",
+      "PRIDE - To maintain your dignity, to demand respect.",
+      "RECKLESSNESS - To act without thought to the consequences.",
+      "TROUBLE - To stick your nose in where it's unwelcome.",
+      "VIOLENCE - To solve problems by force."
+    ]
   }
 ]

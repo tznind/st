@@ -372,5 +372,18 @@
         "text": "When you stand ready to fight alongside like-minded allies, anything capable of fear recognizes you as a serious threat and treats you accordingly."
       }
     ]
+  },
+  {
+    "id": "mi",
+    "title": "Instinct (Choose 1)",
+    "description": "You can change on levelling or when appropriate story events affect you.",
+    "category": "Instinct",
+    "pickOne": [
+      "AUTHORITY - To take charge and throw your weight around.",
+      "CAUTION - To keep everyone safe, to agonize over decisions.",
+      "DRIVE - To take on ever more responsibility.",
+      "HONOR - To keep your word, to follow a moral code.",
+      "RUTHLESSNESS - To do whatever it takes to win or survive."
+    ]
   }
 ]
