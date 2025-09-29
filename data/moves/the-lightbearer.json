@@ -4,6 +4,11 @@
     "title": "Auspicious Birth",
     "category": "Background",
     "description": "You were born in Stonetop, and that birth was marked by the God of Light. You were born during an eclipse, perhaps, or under the light of a bright new star? Maybe you bear a sun-shaped birthmark?",
+    "tracks": [{
+      "name": "Auspicious",
+      "max": 1,
+      "shape": "circle"
+    }],
     "outcomes": [
       {"text":"Whatever the sign, your connection to Helior was clear early on. You've a place of honor in Stonetop, though it'd be a lie to say you don't make some uneasy"},
       {"text":"When one of your moves would cause you to mark a debility, you may mark this move instead, to no ill effect. When you Make Camp, clear the circle."}
@@ -14,7 +19,12 @@
     "title": "Itinerant Mystic",
     "category": "Background",
     "description": "They think of you as a self-important kook who comes through now and again, speaking in riddles and playing tricks with the light. Sure, they know there's something holy about you, but it's not like you're a priest or anything. Priests talk sense. When you go off a-wandering for:",
-     "outcomes": [
+    "tracks": [{
+      "name": "Enigma",
+      "shape": "hexagon",
+      "max": 3
+    }],
+    "outcomes": [
       {
         "range": "Months",
         "text": "Hold 3 Enigma, spend to:",
@@ -226,6 +236,13 @@
     "id": "lb017",
     "title": "Piety",
     "description": "When you spend at least an hour in proper worship to Helior, hold 1 Blessing. Other faithful PCs who partake in this worship also hold 1 Blessing.",
+    "tracks": [
+      {
+        "name": "Blessing",
+        "max": 1,
+        "shape": "circle"
+      }
+    ],
     "outcomes": [
       {
         "text": "At any time, you can spend 1 Blessing to add +1 to a roll you just made in pursuit of a righteous cause."
