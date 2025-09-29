@@ -378,8 +378,8 @@ button:focus {
   background: #f8f9fa;
   border: 1px solid #e9ecef;
   border-radius: 6px;
-  padding: 10px;
-  margin-bottom: 20px;
+  padding: 8px;
+  margin-bottom: 12px;
   transition: box-shadow 0.2s;
   position: relative;
 }
@@ -392,10 +392,11 @@ button:focus {
   font-size: 18px;
   font-weight: bold;
   color: #2c3e50;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
   gap: 10px;
+  cursor: pointer;
 }
 
 .move-title label {
@@ -421,7 +422,6 @@ button:focus {
   font-size: 16px;
   font-weight: bold;
   color: #495057;
-  cursor: pointer;
   padding: 0;
   width: 24px;
   height: 24px;
@@ -430,16 +430,8 @@ button:focus {
   justify-content: center;
   border-radius: 4px;
   transition: background-color 0.2s;
-}
-
-.move-collapse-toggle:hover {
-  background: rgba(108, 117, 125, 0.1);
-  color: #495057;
-}
-
-.move-collapse-toggle:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(108, 117, 125, 0.3);
+  pointer-events: none; /* Clicks pass through to the title container */
+  user-select: none;
 }
 
 /* Simple + and - symbols, no special collapsed styling needed */
@@ -514,8 +506,8 @@ button:focus {
 .move-description {
   background: #f8f9fa;
   border-left: 3px solid #6c757d;
-  padding: 12px 15px;
-  margin: 15px 0;
+  padding: 8px 12px;
+  margin: 10px 0;
   border-radius: 0 4px 4px 0;
   font-style: italic;
 }
@@ -531,8 +523,8 @@ button:focus {
 .outcome {
   background: white;
   border-left: 4px solid #17a2b8;
-  padding: 15px;
-  margin: 10px 0;
+  padding: 10px;
+  margin: 8px 0;
   border-radius: 0 4px 4px 0;
 }
 
@@ -561,8 +553,9 @@ button:focus {
   background: #fff3cd;
   border: 1px solid #ffeaa7;
   border-radius: 4px;
-  padding: 15px;
-  margin-top: 15px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top: 10px;
 }
 
 .pick-options label {
@@ -587,8 +580,9 @@ button:focus {
   background: #f8f9fa;
   border: 1px solid #dee2e6;
   border-radius: 4px;
-  padding: 15px;
-  margin-top: 15px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top: 10px;
 }
 
 .pick-one-options label {
@@ -658,8 +652,8 @@ button:focus {
   background: #e3f2fd;
   border: 1px solid #bbdefb;
   border-radius: 4px;
-  padding: 15px;
-  margin-top: 15px;
+  padding: 10px;
+  margin-top: 10px;
 }
 
 .takeFrom-controls {

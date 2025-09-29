@@ -58,20 +58,29 @@ window.MovesCore = (function() {
     function createMoveTitle(move, checkboxes, urlParams) {
         const titleContainer = document.createElement("div");
         titleContainer.className = "move-title";
+        // Make the whole title area act as a disclosure control (except interactive elements)
+        titleContainer.setAttribute('role', 'button');
+        titleContainer.setAttribute('tabindex', '0');
+        // Default expanded on initial render; collapse functions will update as needed
+        titleContainer.setAttribute('aria-expanded', 'true');
         
         if (checkboxes.length === 1) {
-            // Single checkbox - use label as before
-            const label = document.createElement("label");
-            label.setAttribute('for', checkboxes[0].id);
-            label.appendChild(checkboxes[0]);
-            label.appendChild(document.createTextNode(move.title));
-            titleContainer.appendChild(label);
+            // Single checkbox - do NOT wrap in a label so title clicks don't toggle the checkbox
+            const checkbox = checkboxes[0];
+            checkbox.setAttribute('aria-label', checkbox.getAttribute('aria-label') || `Toggle ${move.title}`);
+            
+            const titleText = document.createElement("span");
+            titleText.className = "move-title-text";
+            titleText.textContent = move.title;
+            
+            titleContainer.appendChild(checkbox);
+            titleContainer.appendChild(titleText);
         } else {
             // Multiple checkboxes - put checkboxes inline before title
             const checkboxContainer = document.createElement("div");
             checkboxContainer.className = "move-checkboxes";
             
-            checkboxes.forEach((checkbox, index) => {
+            checkboxes.forEach((checkbox) => {
                 checkboxContainer.appendChild(checkbox);
             });
             
@@ -97,18 +106,34 @@ window.MovesCore = (function() {
             console.log('MovesCore: No track system or no tracks for move:', move.id, 'track:', move.track, 'tracks:', move.tracks, 'window.Track:', !!window.Track);
         }
         
-        // Add collapse/expand toggle button
-        const collapseToggle = document.createElement("button");
-        collapseToggle.type = "button";
+        // Add collapse/expand indicator (non-focusable, decorative)
+        const collapseToggle = document.createElement("span");
         collapseToggle.className = "move-collapse-toggle";
         collapseToggle.setAttribute('aria-label', `Toggle ${move.title} details`);
+        collapseToggle.setAttribute('role', 'presentation');
+        collapseToggle.setAttribute('aria-hidden', 'true');
         collapseToggle.innerHTML = "-"; // Minus sign (expanded state)
         
-        // Add click handler to toggle move content
-        collapseToggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
+        // Clicking the title background or text (but not inputs/buttons) toggles expand/collapse
+        titleContainer.addEventListener('click', function(e) {
+            // Ignore clicks on interactive elements to preserve their behavior
+            if (e.target.closest('input, button, select, textarea, a, label')) {
+                return;
+            }
             toggleMoveCollapse(collapseToggle);
+        });
+        
+        // Keyboard accessibility: Space/Enter on title toggles
+        titleContainer.addEventListener('keydown', function(e) {
+            // Only handle keyboard events if they originated from the title container itself,
+            // not from interactive elements within it
+            if (e.target !== titleContainer) {
+                return;
+            }
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleMoveCollapse(collapseToggle);
+            }
         });
         
         titleContainer.appendChild(collapseToggle);
@@ -479,12 +504,16 @@ window.MovesCore = (function() {
             toggleButton.classList.remove('collapsed');
             toggleButton.innerHTML = '-'; // Minus (expanded state)
             toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Expand', 'Collapse'));
+            const titleEl = moveDiv.querySelector('.move-title');
+            if (titleEl) titleEl.setAttribute('aria-expanded', 'true');
         } else {
             // Collapse - show plus sign
             contentContainer.classList.add('collapsed');
             toggleButton.classList.add('collapsed');
             toggleButton.innerHTML = '+'; // Plus (collapsed state)
             toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Collapse', 'Expand'));
+            const titleEl = moveDiv.querySelector('.move-title');
+            if (titleEl) titleEl.setAttribute('aria-expanded', 'false');
         }
     }
     
@@ -502,6 +531,8 @@ window.MovesCore = (function() {
                 toggleButton.classList.add('collapsed');
                 toggleButton.innerHTML = '+'; // Plus (collapsed state)
                 toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Collapse', 'Expand'));
+                const titleEl = moveDiv.querySelector('.move-title');
+                if (titleEl) titleEl.setAttribute('aria-expanded', 'false');
             }
         });
     }
@@ -518,8 +549,10 @@ window.MovesCore = (function() {
             if (contentContainer && toggleButton) {
                 contentContainer.classList.remove('collapsed');
                 toggleButton.classList.remove('collapsed');
-                toggleButton.innerHTML = '-'; // Minus (expanded state)
+                toggleButton.innerHTML = '-' ; // Minus (expanded state)
                 toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Expand', 'Collapse'));
+                const titleEl = moveDiv.querySelector('.move-title');
+                if (titleEl) titleEl.setAttribute('aria-expanded', 'true');
             }
         });
     }
@@ -577,12 +610,16 @@ window.MovesCore = (function() {
                         toggleButton.classList.add('collapsed');
                         toggleButton.innerHTML = '+'; // Plus (collapsed state)
                         toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Collapse', 'Expand'));
+                        const titleEl = moveDiv.querySelector('.move-title');
+                        if (titleEl) titleEl.setAttribute('aria-expanded', 'false');
                     } else {
                         // Ensure this move is expanded - show minus sign
                         contentContainer.classList.remove('collapsed');
                         toggleButton.classList.remove('collapsed');
-                        toggleButton.innerHTML = '-'; // Minus (expanded state)
+                        toggleButton.innerHTML = '-' ; // Minus (expanded state)
                         toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Expand', 'Collapse'));
+                        const titleEl = moveDiv.querySelector('.move-title');
+                        if (titleEl) titleEl.setAttribute('aria-expanded', 'true');
                     }
                     restoredCount++;
                 }
