@@ -22,6 +22,11 @@ window.Track = (function() {
         trackContainer.className = 'track-counter';
         trackContainer.id = `track_${move.id}`;
         
+        // Prevent any clicks in the track area from bubbling up
+        trackContainer.addEventListener('click', (event) => {
+            event.stopPropagation();
+        });
+        
         // Create each track counter
         trackConfigs.forEach((trackConfig, index) => {
             const trackId = trackConfigs.length > 1 ? `${move.id}_${index}` : move.id;
@@ -44,13 +49,28 @@ window.Track = (function() {
                 shapeElement.dataset.value = i;
                 shapeElement.setAttribute('data-track-id', trackId);
                 
+                // Make focusable and accessible
+                shapeElement.setAttribute('tabindex', '0');
+                shapeElement.setAttribute('role', 'button');
+                shapeElement.setAttribute('aria-label', `${trackConfig.name} - Set to ${i} of ${maxValue}`);
+                
                 if (i <= currentValue) {
                     shapeElement.classList.add('filled');
                 }
                 
                 // Add click handler for toggling
-                shapeElement.addEventListener('click', () => {
+                shapeElement.addEventListener('click', (event) => {
+                    event.stopPropagation(); // Prevent bubbling to collapse/expand handlers
                     handleShapeClick(trackId, i, maxValue);
+                });
+                
+                // Add keyboard handler
+                shapeElement.addEventListener('keydown', (event) => {
+                    if (event.key === ' ' || event.key === 'Enter') {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        handleShapeClick(trackId, i, maxValue);
+                    }
                 });
                 
                 shapesContainer.appendChild(shapeElement);

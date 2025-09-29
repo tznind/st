@@ -54,8 +54,12 @@ window.MovesCore = (function() {
 
     /**
      * Create move title with checkboxes and optional track display
+     * @param {Object} move - The move data
+     * @param {Array} checkboxes - Array of checkbox elements
+     * @param {URLSearchParams} urlParams - URL parameters
+     * @param {boolean} isNestedInCard - Whether this move is nested inside a granted card
      */
-    function createMoveTitle(move, checkboxes, urlParams) {
+    function createMoveTitle(move, checkboxes, urlParams, isNestedInCard = false) {
         const titleContainer = document.createElement("div");
         titleContainer.className = "move-title";
         // Make the whole title area act as a disclosure control (except interactive elements)
@@ -412,14 +416,18 @@ window.MovesCore = (function() {
 
     /**
      * Render a single move
+     * @param {Object} move - The move data
+     * @param {Object} available - Available moves map
+     * @param {URLSearchParams} urlParams - URL parameters
+     * @param {boolean} isNestedInCard - Whether this move is nested inside a granted card
      */
-    function renderMove(move, available, urlParams) {
+    function renderMove(move, available, urlParams, isNestedInCard = false) {
         const moveDiv = document.createElement("div");
         moveDiv.className = "move";
         
         // Create checkboxes and title
         const checkboxes = createMoveCheckboxes(move, available, urlParams);
-        const titleContainer = createMoveTitle(move, checkboxes, urlParams);
+        const titleContainer = createMoveTitle(move, checkboxes, urlParams, isNestedInCard);
         moveDiv.appendChild(titleContainer);
         
         // Create collapsible content container
