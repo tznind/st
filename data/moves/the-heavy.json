@@ -100,7 +100,7 @@
   {
     "id": "hv00a",
     "title": "Seasoned Warrior (Requires level 2+ and the Heavy)",
-    "description": "Take a move from the Fix, Marshal, Ranger or Seeker playbooks",
+    "description": "Take a move from the Fox, Marshal, Ranger or Seeker playbooks",
     "takeFrom": ["Fox", "Marshal","The Ranger","The Seeker"],
     "multiple": 3,
     "takeCategory": ["Moves"]
@@ -154,11 +154,7 @@
       },
       {
         "range": "7-9",
-        "text": "Pick 1:",
-        "bullets": [
-          "Lesser foes will quail, hesitate, or flee before you",
-          "Doughty foes will focus on you, seeing you as the greatest threat"
-        ]
+        "text": "Pick 1 only"
       },
       {
         "range": "≤ 6",
