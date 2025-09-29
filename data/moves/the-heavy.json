@@ -1,6 +1,6 @@
 [
   {
-    "id": "hbg1",
+    "id": "hvbg1",
     "title": "Sheriff (+Charisma)",
     "category": "Background",
     "description": "You keep order in Stonetop and protect it from outside threats. It might not be anything official, but everyone knows you've got a cool head and the weight to back up your words. When you bark an order or warning, roll +CHA.",
@@ -21,7 +21,7 @@
     ]
   },
   {
-    "id": "hbg2",
+    "id": "hvbg2",
     "title": "Blood-Soaked Past",
     "category": "Background",
     "description": "You left behind a life of violence and a name mothers used to scare their children. For whatever reason, the people of Stonetop took you (back?) in and treat you like one of their own.",
@@ -41,7 +41,7 @@
     ]
   },
   {
-    "id": "hbg3",
+    "id": "hvbg3",
     "title": "Storm-Marked",
     "category": "Background",
     "description": "You've been touched by Tor (Rainmaker, Thunder-head, Slayer-of-Beasts!) and bear runic markings similar to those etched into the Stone. When did the marks manifest? Are they a symbol of your strength, speed, and courage? Or their source?",

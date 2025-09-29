@@ -220,9 +220,9 @@
   "The Heavy": {
     "_movesFile": "data/moves/the-heavy.json",
     "cards": [],
-    "hbg1": false,
-    "hbg2": false,
-    "hbg3": false,
+    "hvbg1": false,
+    "hvbg2": false,
+    "hvbg3": false,
     "hsp": true,
     "hspa": false,
     "ae0121": false,
