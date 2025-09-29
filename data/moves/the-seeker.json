@@ -45,6 +45,18 @@
     "id":"ssp",
     "title":"Pick 2 (in addition to your scribe's tools)",
     "category": "Special Possessions",
+    "tracks": [
+    {
+      "name": "Whisky",
+      "max": 2,
+      "shape": "square"
+    },
+    {
+      "name": "Naptha",
+      "max": 5,
+      "shape": "hexagon"
+    }
+  ],
     "pick": [
       "Books and Scrolls: Expend a use to consult your collection and turn a Know Things roll you just made into a 10+",
       "Distillery: skins of fine whisky (2 uses, grants advantage to Persuade), copper tubes, malt, ◇◇ firkins, stills, barrels, etc.",
@@ -62,12 +74,14 @@
   {
     "id": "sk003",
     "title": "Conduit of Power",
-    "description": "When you would mark a Consequence from a major arcanum, you can mark 1 box here instead, with no negative effect. (These marks never clear.)",
-    "pick": [
-      "First Use",
-      "Second Use",
-      "Third Use"
-    ]
+    "tracks": [
+      {
+        "name": "Conduits",
+        "max": 3,
+        "shape": "circle"
+      }
+    ],
+    "description": "When you would mark a Consequence from a major arcanum, you can mark 1 box here instead, with no negative effect. (These marks never clear.)"
   },
   {
     "id": "sk004",
@@ -144,6 +158,13 @@
   {
     "id": "sk018",
     "title": "Initiate of the Secret Arts (Requires level 2+ and the Seeker)",
+    "tracks": [
+      {
+        "name": "Stock",
+        "max": 3,
+        "shape": "circle"
+      }
+    ],
     "multiple": 3,
     "description": "You have a \"Sacred Pouch\" (3 Stock, magical), as per the Blessed, but with no extraordinary qualities. Each time you take this move, choose a Blessed move for which you otherwise qualify. (You can't take Improved Stat or Superior Stat.)",
     "takeFrom": ["The Blessed"],
