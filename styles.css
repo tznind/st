@@ -830,6 +830,7 @@ button:focus {
 
 .card-wrapper {
   margin-bottom: 25px;
+  position: relative;
 }
 
 .card {
@@ -852,6 +853,50 @@ button:focus {
   margin: 0 0 20px 0;
   border-bottom: 2px solid #e1e5e9;
   padding-bottom: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* === CARD COLLAPSE/EXPAND === */
+.card-collapse-toggle {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  font-size: 16px;
+  font-weight: bold;
+  color: #495057;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  user-select: none;
+  flex-shrink: 0;
+  margin-left: 10px;
+}
+
+.card-collapse-toggle:hover {
+  background: #e9ecef;
+}
+
+/* Card content styling for collapse/expand */
+.card-content {
+  transition: all 0.3s ease-out;
+  overflow: hidden;
+}
+
+.card-content.collapsed {
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .card-section {

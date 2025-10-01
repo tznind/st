@@ -151,6 +151,9 @@
                 if (window.MovesCore) {
                     window.MovesCore.collapseAllMoves();
                 }
+                if (window.Cards) {
+                    window.Cards.collapseAllCards();
+                }
             });
         }
         
@@ -160,6 +163,9 @@
             expandAllButton.addEventListener('click', function() {
                 if (window.MovesCore) {
                     window.MovesCore.expandAllMoves();
+                }
+                if (window.Cards) {
+                    window.Cards.expandAllCards();
                 }
             });
         }

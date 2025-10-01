@@ -172,7 +172,11 @@ window.Cards = (function() {
                 const cardWrapper = document.createElement('div');
                 cardWrapper.className = 'card-wrapper';
                 cardWrapper.setAttribute('data-card-id', cardDef.id);
-                cardWrapper.innerHTML = cardData.html;
+                
+                // Create card element with collapse functionality
+                const cardElement = createCollapsibleCard(cardData);
+                cardWrapper.appendChild(cardElement);
+                
                 container.appendChild(cardWrapper);
             }
 
@@ -185,6 +189,222 @@ window.Cards = (function() {
             console.error('Error rendering cards:', error);
             container.innerHTML = '<div class="card card-error"><p>Error loading cards</p></div>';
         }
+    }
+
+    /**
+     * Create a collapsible card element from card data
+     * @param {Object} cardData - Card data with HTML and metadata
+     * @returns {HTMLElement} Card element with collapse functionality
+     */
+    function createCollapsibleCard(cardData) {
+        // Parse the card HTML to extract title and content
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(cardData.html, 'text/html');
+        const cardElement = doc.querySelector('.card');
+        
+        if (!cardElement) {
+            // If no .card element found, return the HTML as-is
+            const wrapper = document.createElement('div');
+            wrapper.innerHTML = cardData.html;
+            return wrapper.firstChild;
+        }
+        
+        // Find the card title (h3 or .card-title)
+        let titleElement = cardElement.querySelector('h3, .card-title');
+        if (!titleElement) {
+            // If no title found, create one from the card data
+            titleElement = document.createElement('h3');
+            titleElement.className = 'card-title';
+            titleElement.textContent = cardData.title || cardData.id;
+            cardElement.insertBefore(titleElement, cardElement.firstChild);
+        }
+        
+        // Ensure title element has the right classes for styling
+        if (!titleElement.classList.contains('card-title')) {
+            titleElement.classList.add('card-title');
+        }
+        
+        // Create collapse toggle button
+        const collapseToggle = document.createElement('button');
+        collapseToggle.className = 'card-collapse-toggle';
+        collapseToggle.setAttribute('aria-label', `Toggle ${cardData.title || cardData.id} details`);
+        collapseToggle.setAttribute('type', 'button');
+        collapseToggle.innerHTML = '-'; // Minus sign (expanded state)
+        
+        // Create content wrapper for everything except the title
+        const contentWrapper = document.createElement('div');
+        contentWrapper.className = 'card-content';
+        
+        // Move all content except the title to the content wrapper
+        const allChildren = Array.from(cardElement.children);
+        allChildren.forEach(child => {
+            if (child !== titleElement) {
+                contentWrapper.appendChild(child);
+            }
+        });
+        
+        // Add toggle button to title
+        titleElement.appendChild(collapseToggle);
+        
+        // Add content wrapper after title
+        cardElement.appendChild(contentWrapper);
+        
+        // Add click handlers for collapse/expand
+        titleElement.addEventListener('click', function(e) {
+            // Only handle clicks on the title itself or the toggle button
+            if (e.target === titleElement || e.target === collapseToggle) {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleCardCollapse(collapseToggle);
+            }
+        });
+        
+        // Add keyboard accessibility
+        titleElement.setAttribute('tabindex', '0');
+        titleElement.setAttribute('role', 'button');
+        titleElement.setAttribute('aria-expanded', 'true');
+        
+        titleElement.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleCardCollapse(collapseToggle);
+            }
+        });
+        
+        return cardElement;
+    }
+    
+    /**
+     * Toggle collapse/expand state for a single card
+     * @param {HTMLElement} toggleButton - The collapse toggle button
+     */
+    function toggleCardCollapse(toggleButton) {
+        const cardWrapper = toggleButton.closest('.card-wrapper');
+        if (!cardWrapper) return;
+        
+        const contentContainer = cardWrapper.querySelector('.card-content');
+        const titleElement = cardWrapper.querySelector('.card-title');
+        if (!contentContainer) return;
+        
+        const isCurrentlyCollapsed = contentContainer.classList.contains('collapsed');
+        
+        if (isCurrentlyCollapsed) {
+            // Expand - show minus sign
+            contentContainer.classList.remove('collapsed');
+            toggleButton.innerHTML = '-'; // Minus (expanded state)
+            toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Expand', 'Collapse'));
+            if (titleElement) titleElement.setAttribute('aria-expanded', 'true');
+        } else {
+            // Collapse - show plus sign
+            contentContainer.classList.add('collapsed');
+            toggleButton.innerHTML = '+'; // Plus (collapsed state)
+            toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Collapse', 'Expand'));
+            if (titleElement) titleElement.setAttribute('aria-expanded', 'false');
+        }
+    }
+    
+    /**
+     * Collapse all cards
+     */
+    function collapseAllCards() {
+        const allCards = document.querySelectorAll('.card-wrapper');
+        allCards.forEach(cardWrapper => {
+            const contentContainer = cardWrapper.querySelector('.card-content');
+            const toggleButton = cardWrapper.querySelector('.card-collapse-toggle');
+            const titleElement = cardWrapper.querySelector('.card-title');
+            
+            if (contentContainer && toggleButton) {
+                contentContainer.classList.add('collapsed');
+                toggleButton.innerHTML = '+'; // Plus (collapsed state)
+                toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Collapse', 'Expand'));
+                if (titleElement) titleElement.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
+    
+    /**
+     * Expand all cards
+     */
+    function expandAllCards() {
+        const allCards = document.querySelectorAll('.card-wrapper');
+        allCards.forEach(cardWrapper => {
+            const contentContainer = cardWrapper.querySelector('.card-content');
+            const toggleButton = cardWrapper.querySelector('.card-collapse-toggle');
+            const titleElement = cardWrapper.querySelector('.card-title');
+            
+            if (contentContainer && toggleButton) {
+                contentContainer.classList.remove('collapsed');
+                toggleButton.innerHTML = '-'; // Minus (expanded state)
+                toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Expand', 'Collapse'));
+                if (titleElement) titleElement.setAttribute('aria-expanded', 'true');
+            }
+        });
+    }
+    
+    /**
+     * Get current collapse state of all cards
+     * Returns a map of card IDs to their collapse state
+     */
+    function getCurrentCollapseState() {
+        const collapseState = new Map();
+        const allCards = document.querySelectorAll('.card-wrapper');
+        
+        allCards.forEach(cardWrapper => {
+            const cardId = cardWrapper.getAttribute('data-card-id');
+            const contentContainer = cardWrapper.querySelector('.card-content');
+            
+            if (cardId && contentContainer) {
+                const isCollapsed = contentContainer.classList.contains('collapsed');
+                collapseState.set(cardId, isCollapsed);
+            }
+        });
+        
+        console.log('Cards: Stored collapse state for', collapseState.size, 'cards');
+        return collapseState;
+    }
+    
+    /**
+     * Restore collapse state for cards
+     * @param {Map} collapseState - Map of card IDs to collapse state
+     */
+    function restoreCollapseState(collapseState) {
+        if (!collapseState || collapseState.size === 0) {
+            console.log('Cards: No collapse state to restore');
+            return;
+        }
+        
+        const allCards = document.querySelectorAll('.card-wrapper');
+        let restoredCount = 0;
+        
+        allCards.forEach(cardWrapper => {
+            const cardId = cardWrapper.getAttribute('data-card-id');
+            const contentContainer = cardWrapper.querySelector('.card-content');
+            const toggleButton = cardWrapper.querySelector('.card-collapse-toggle');
+            const titleElement = cardWrapper.querySelector('.card-title');
+            
+            if (cardId && contentContainer && toggleButton) {
+                const shouldBeCollapsed = collapseState.get(cardId);
+                
+                if (shouldBeCollapsed !== undefined) {
+                    if (shouldBeCollapsed) {
+                        // Collapse this card - show plus sign
+                        contentContainer.classList.add('collapsed');
+                        toggleButton.innerHTML = '+'; // Plus (collapsed state)
+                        toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Collapse', 'Expand'));
+                        if (titleElement) titleElement.setAttribute('aria-expanded', 'false');
+                    } else {
+                        // Ensure this card is expanded - show minus sign
+                        contentContainer.classList.remove('collapsed');
+                        toggleButton.innerHTML = '-'; // Minus (expanded state)
+                        toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Expand', 'Collapse'));
+                        if (titleElement) titleElement.setAttribute('aria-expanded', 'true');
+                    }
+                    restoredCount++;
+                }
+            }
+        });
+        
+        console.log('Cards: Restored collapse state for', restoredCount, 'cards');
     }
 
     /**
@@ -202,7 +422,11 @@ window.Cards = (function() {
         loadCard,
         renderCardsForRole,
         getCardsFromMergedAvailability,
-        initialize
+        initialize,
+        collapseAllCards,
+        expandAllCards,
+        getCurrentCollapseState,
+        restoreCollapseState
     };
 })();
 

@@ -18,7 +18,8 @@ window.Layout = (function() {
             const scrollY = window.scrollY;
             
             // Preserve collapse state before re-rendering
-            const collapseState = window.MovesCore ? window.MovesCore.getCurrentCollapseState() : null;
+            const moveCollapseState = window.MovesCore ? window.MovesCore.getCurrentCollapseState() : null;
+            const cardCollapseState = window.Cards ? window.Cards.getCurrentCollapseState() : null;
             
             const urlParams = new URLSearchParams(location.search);
             const selectedRoles = window.Utils.getCurrentRoles();
@@ -47,8 +48,11 @@ window.Layout = (function() {
             await renderMoves(selectedRoles, mergedAvailability, urlParams);
             
             // Restore collapse state instead of expanding all
-            if (window.MovesCore && collapseState) {
-                window.MovesCore.restoreCollapseState(collapseState);
+            if (window.MovesCore && moveCollapseState) {
+                window.MovesCore.restoreCollapseState(moveCollapseState);
+            }
+            if (window.Cards && cardCollapseState) {
+                window.Cards.restoreCollapseState(cardCollapseState);
             }
             
             // Apply persistence to restore all form state immediately
@@ -189,7 +193,8 @@ window.Layout = (function() {
         switch (changeType) {
             case 'hide-untaken-toggle':
                 // Store current collapse state before re-rendering
-                const collapseState = window.MovesCore ? window.MovesCore.getCurrentCollapseState() : null;
+                const moveCollapseState = window.MovesCore ? window.MovesCore.getCurrentCollapseState() : null;
+                const cardCollapseState = window.Cards ? window.Cards.getCurrentCollapseState() : null;
                 
                 // Just re-render moves section with scroll preservation
                 const scrollY = window.scrollY;
@@ -207,8 +212,11 @@ window.Layout = (function() {
                     applyPersistenceState(urlParams);
                     
                     // Restore collapse state instead of expanding all
-                    if (window.MovesCore && collapseState) {
-                        window.MovesCore.restoreCollapseState(collapseState);
+                    if (window.MovesCore && moveCollapseState) {
+                        window.MovesCore.restoreCollapseState(moveCollapseState);
+                    }
+                    if (window.Cards && cardCollapseState) {
+                        window.Cards.restoreCollapseState(cardCollapseState);
                     }
                     
                     // Restore scroll position
