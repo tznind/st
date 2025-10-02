@@ -96,6 +96,11 @@
         "type": "string",
         "description": "Card name to grant when this move is selected"
       },
+      "details": {
+        "type": "boolean",
+        "description": "If true, shows a free text input field for additional move details",
+        "default": false
+      },
       "tracks": {
         "type": "array",
         "description": "Array of tracking configurations for multiple resources",

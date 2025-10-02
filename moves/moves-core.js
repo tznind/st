@@ -217,6 +217,36 @@ window.MovesCore = (function() {
     }
 
     /**
+     * Create details input section
+     */
+    function createDetailsInput(move, urlParams) {
+        const detailsDiv = document.createElement("div");
+        detailsDiv.className = "move-details";
+        
+        const label = document.createElement("label");
+        label.setAttribute('for', `move_${move.id}_dtl`);
+        label.textContent = "Details:";
+        
+        const input = document.createElement("input");
+        input.type = "text";
+        input.id = `move_${move.id}_dtl`;
+        input.name = `move_${move.id}_dtl`;
+        input.placeholder = "Add additional details...";
+        input.setAttribute('aria-label', `Details for ${move.title}`);
+        input.setAttribute('data-move-id', move.id);
+        
+        // Restore value from URL if exists
+        if (urlParams.has(input.id)) {
+            input.value = urlParams.get(input.id);
+        }
+        
+        detailsDiv.appendChild(label);
+        detailsDiv.appendChild(input);
+        
+        return detailsDiv;
+    }
+
+    /**
      * Create pick options section
      */
     function createPickOptions(move, urlParams) {
@@ -476,6 +506,12 @@ window.MovesCore = (function() {
             if (grantedCardSection) {
                 contentContainer.appendChild(grantedCardSection);
             }
+        }
+        
+        // Add details input if specified
+        if (move.details) {
+            const detailsElement = createDetailsInput(move, urlParams);
+            contentContainer.appendChild(detailsElement);
         }
         
         // Append content container to move div
@@ -822,6 +858,7 @@ window.MovesCore = (function() {
         createMoveTitle,
         createDescription,
         createOutcome,
+        createDetailsInput,
         createPickOptions,
         createPickOneOptions,
         createCategoryHeader,
