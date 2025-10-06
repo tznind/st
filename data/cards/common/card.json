@@ -1,0 +1,13 @@
+{
+  "id": "common",
+  "title": "Common Equipment",
+  "path": "data/cards/common",
+  "description": "Common equipment and gear available to all characters",
+  "version": "1.0.0",
+  "author": "Core System",
+  "files": {
+    "html": "card.html",
+    "css": "card.css",
+    "js": "card.js"
+  }
+}

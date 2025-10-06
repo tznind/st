@@ -65,15 +65,15 @@
                 
                 // Check if wildcard * is present
                 if (allowedRolesList.includes('*')) {
-                    // Use all available roles if * is specified
-                    rolesToAdd = Object.keys(window.availableMap);
+                    // Use all available roles if * is specified (excluding special roles like Everyone)
+                    rolesToAdd = Object.keys(window.availableMap).filter(role => role !== 'Everyone');
                 } else {
-                    // Filter to only include roles that exist in availableMap
-                    rolesToAdd = allowedRolesList.filter(role => window.availableMap.hasOwnProperty(role));
+                    // Filter to only include roles that exist in availableMap (excluding special roles)
+                    rolesToAdd = allowedRolesList.filter(role => window.availableMap.hasOwnProperty(role) && role !== 'Everyone');
                 }
             } else {
-                // No data-roles attribute, use all available roles
-                rolesToAdd = Object.keys(window.availableMap);
+                // No data-roles attribute, use all available roles (excluding special roles like Everyone)
+                rolesToAdd = Object.keys(window.availableMap).filter(role => role !== 'Everyone');
             }
             
             // Add role options

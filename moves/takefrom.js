@@ -550,6 +550,8 @@ window.TakeFrom = (function() {
             // ALL checkboxes unchecked - reset dropdowns and hide learned move
             console.log(`handleTakeFromMoveToggle: All checkboxes unchecked, resetting`);
             resetTakeFromSelection(moveId);
+            // Also update visibility to hide all instances for multiple moves
+            updateTakeFromInstanceVisibility(moveId);
         } else {
             console.log(`handleTakeFromMoveToggle: Move was checked, restoring and updating visibility`);
             // Move was checked - restore previous state if it exists in URL
@@ -563,36 +565,19 @@ window.TakeFrom = (function() {
      * Reset takeFrom selection when move is unchecked
      */
     function resetTakeFromSelection(moveId) {
-        const roleSelect = document.getElementById(`takeFrom_${moveId}_role`);
-        const moveSelect = document.getElementById(`takeFrom_${moveId}_move`);
+        const move = window.moves?.find(m => m.id === moveId);
+        const maxInstances = move?.multiple || 1;
+        
+        // Clear all instances for multiple moves
+        for (let instance = 1; instance <= maxInstances; instance++) {
+            clearInstanceSelections(moveId, instance);
+        }
+        
+        // Also clear the learned moves container
         const learnedMoveContainer = document.getElementById(`learned_move_${moveId}`);
-        
-        if (roleSelect) {
-            roleSelect.value = '';
-        }
-        
-        if (moveSelect) {
-            const previousMove = moveSelect.value;
-            moveSelect.innerHTML = '';
-            const defaultOption = document.createElement('option');
-            defaultOption.value = '';
-            defaultOption.textContent = 'Select move...';
-            moveSelect.appendChild(defaultOption);
-            moveSelect.disabled = true;
-            
-            // Learned moves are self-contained - no availableMap cleanup needed
-        }
-        
         if (learnedMoveContainer) {
             learnedMoveContainer.innerHTML = '';
         }
-        
-        // Update URL
-        const params = new URLSearchParams(location.search);
-        if (roleSelect) params.delete(roleSelect.id);
-        if (moveSelect) params.delete(moveSelect.id);
-        const newUrl = params.toString() ? '?' + params.toString() : location.pathname;
-        history.replaceState({}, '', newUrl);
     }
 
     /**

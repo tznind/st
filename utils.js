@@ -98,7 +98,13 @@ window.Utils = (function() {
             _movesFiles: []
         };
         
-        roles.forEach(role => {
+        // Always include "Everyone" role if it exists, but don't duplicate it
+        const rolesToMerge = [...roles];
+        if (window.availableMap['Everyone'] && !rolesToMerge.includes('Everyone')) {
+            rolesToMerge.push('Everyone');
+        }
+        
+        rolesToMerge.forEach(role => {
             const roleData = window.availableMap[role];
             if (roleData) {
                 // Merge cards
@@ -208,11 +214,12 @@ window.Utils = (function() {
     
     /**
      * Get all available role names from the availableMap
+     * Excludes special roles like "Everyone" that shouldn't be user-selectable
      * @returns {Array<string>} Array of all available role names
      */
     function getAllAvailableRoles() {
         if (!window.availableMap) return [];
-        return Object.keys(window.availableMap);
+        return Object.keys(window.availableMap).filter(role => role !== 'Everyone');
     }
 
     // Public API

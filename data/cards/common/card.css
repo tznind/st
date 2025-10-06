@@ -1,0 +1,59 @@
+.common-equipment-card {
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 8px 0;
+}
+
+/* Ensure the card works well with the collapsible system */
+.card.common-equipment-card {
+    /* Card system styling will be applied */
+}
+
+.card.common-equipment-card .card-content.collapsed {
+    display: none;
+}
+
+.common-equipment-card h3 {
+    margin-top: 0;
+    color: #333;
+    border-bottom: 2px solid #666;
+    padding-bottom: 8px;
+}
+
+.common-equipment-card h4 {
+    margin: 16px 0 8px 0;
+    color: #555;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.notes textarea {
+    width: 100%;
+    min-height: 60px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
+    resize: vertical;
+}

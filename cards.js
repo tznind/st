@@ -119,6 +119,34 @@ window.Cards = (function() {
         }
     }
 
+    /**
+     * Initialize rendered cards by calling their exported init functions
+     * @param {Array} cardDefs - Array of card definitions that were rendered
+     */
+    function initializeRenderedCards(cardDefs) {
+        // Ensure CardInitializers namespace exists
+        window.CardInitializers = window.CardInitializers || {};
+        
+        cardDefs.forEach(cardDef => {
+            const cardId = cardDef.id;
+            
+            // Look for exported initialization function
+            const initFunction = window.CardInitializers[cardId];
+            if (typeof initFunction === 'function') {
+                try {
+                    console.log(`Initializing card: ${cardId}`);
+                    initFunction();
+                    console.log(`Card ${cardId} initialized successfully`);
+                } catch (error) {
+                    console.error(`Error initializing card ${cardId}:`, error);
+                }
+            } else {
+                // No initialization function found - that's okay, not all cards need one
+                console.log(`No initialization function found for card: ${cardId} (this is fine if the card doesn't need custom logic)`);
+            }
+        });
+    }
+
 
     /**
      * Get list of card definitions from merged availability map
@@ -182,6 +210,11 @@ window.Cards = (function() {
 
             // Cards are now rendered and ready for persistence
             console.log(`Rendered ${cardDefs.length} cards for roles: ${roles.join(', ')}`);
+            
+            // Initialize any cards that have initialization functions
+            setTimeout(() => {
+                initializeRenderedCards(cardDefs);
+            }, 100);
             
             // Note: Persistence refresh is handled by the caller
 

@@ -1,0 +1,13 @@
+[
+  {
+    "id": "universal",
+    "title": "Universal Access - Available to all characters",
+    "description": "This demonstrates the Everyone role functionality - this move appears for any selected role combination.",
+    "outcomes": [
+      {
+        "range": "",
+        "text": "This move is always available to demonstrate how the Everyone system works."
+      }
+    ]
+  }
+]

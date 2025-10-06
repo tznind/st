@@ -241,16 +241,16 @@ window.Persistence = (function() {
         } else if (target.id === 'role' || target.id === 'role2' || target.name.startsWith('role')) {
             // Role selection changed - needs full layout (will preserve collapse state)
             window.Layout.layoutApplication();
-        } else if (target.id && target.id.startsWith('move_')) {
+        } else if (target.id && target.id.startsWith('move_') && target.type === 'checkbox') {
             // Move checkbox changed - check if it has special effects
             const moveId = target.getAttribute('data-move-id');
             const move = window.moves?.find(m => m.id === moveId);
             
-            if (move && (move.grantsCard || move.takeFrom)) {
-                // Has special effects - needs full layout (will preserve collapse state)
+            if (move && move.grantsCard) {
+                // Has granted card - needs full layout (will preserve collapse state)
                 window.Layout.layoutApplication();
             }
-            // Regular moves don't need layout update - just URL persistence
+            // Regular moves and takeFrom moves don't need layout update for checkbox changes - just URL persistence
         }
         // Other changes don't need immediate layout updates
     }
