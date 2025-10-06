@@ -379,13 +379,16 @@ button:focus {
   border: 1px solid #e9ecef;
   border-radius: 6px;
   padding: 8px;
-  margin-bottom: 12px;
-  transition: box-shadow 0.2s;
+  margin-bottom: 8px;
+  margin-left: 24px;
+  border-left: 2px solid #e9ecef;
+  transition: box-shadow 0.2s, border-left-color 0.2s;
   position: relative;
 }
 
 .move:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-left-color: #007bff;
 }
 
 .move-title {
@@ -1013,6 +1016,57 @@ h3 {
   margin: 20px 0 15px 0;
   font-weight: 600;
 }
+
+/* === TREE-STYLE CATEGORY COLLAPSE === */
+.category-header.tree-node {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s;
+  padding: 4px 8px;
+  margin: 15px 0 8px 0;
+  border-radius: 4px;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #2c3e50;
+  background: transparent;
+}
+
+.category-header.tree-node:hover {
+  background: #f8f9fa;
+}
+
+.category-header.tree-node:focus {
+  outline: none;
+  background: #e9ecef;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+}
+
+.tree-triangle {
+  font-size: 12px;
+  color: #6c757d;
+  transition: color 0.2s ease;
+  min-width: 16px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.category-header-text {
+  flex-grow: 1;
+  font-weight: 600;
+  color: inherit;
+}
+
+.category-move-count {
+  font-size: 0.9em;
+  color: #6c757d;
+  font-weight: normal;
+  opacity: 0.8;
+}
+
+/* Tree hierarchy is now handled by the main .move styles above */
 
 
 /* === DIVIDERS === */
