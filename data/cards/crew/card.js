@@ -325,20 +325,7 @@
       console.log('Crew initialization complete');
   }
   
-  // Create global initialization function that can be called whenever card is recreated
-  window.initializeCrew = function() {
-    console.log('Initializing Crew card...');
-    initializeCrew();
-  };
-  
-  // Multiple initialization attempts for first load
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeCrew);
-  } else {
-    initializeCrew();
-  }
-  
-  // Also try after a delay in case cards are loaded dynamically
-  setTimeout(initializeCrew, 500);
-  setTimeout(initializeCrew, 1000);
+  // Export initialization function for the card system
+  window.CardInitializers = window.CardInitializers || {};
+  window.CardInitializers.crew = initializeCrew;
 })();

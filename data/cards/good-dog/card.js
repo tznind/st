@@ -92,20 +92,7 @@
     console.log('Good Dog loyalty initialization complete');
   }
   
-  // Create global initialization function that can be called whenever card is recreated
-  window.initializeGoodDog = function() {
-    console.log('Initializing Good Dog card...');
-    initializeGoodDogLoyalty();
-  };
-  
-  // Multiple initialization attempts for first load
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeGoodDogLoyalty);
-  } else {
-    initializeGoodDogLoyalty();
-  }
-  
-  // Also try after a delay in case cards are loaded dynamically
-  setTimeout(initializeGoodDogLoyalty, 500);
-  setTimeout(initializeGoodDogLoyalty, 1000);
+  // Export initialization function for the card system
+  window.CardInitializers = window.CardInitializers || {};
+  window.CardInitializers['good-dog'] = initializeGoodDogLoyalty;
 })();

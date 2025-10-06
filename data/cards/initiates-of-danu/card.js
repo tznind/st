@@ -153,36 +153,9 @@ console.log('*** INITIATES OF DANU SCRIPT STARTING ***');
     });
   }
   
-  // Create global initialization function that can be called whenever card is recreated
-  window.initializeInitiatesOfDanu = function() {
-    console.log('Initializing Initiates of Danu card...');
-    setupCheckboxes();
-  };
-  
-  // Simple initialization for first load
-  console.log('Setting up initialization...');
-  
-  // Try multiple times to catch the card when it's ready
-  setTimeout(function() {
-    console.log('First attempt at 100ms...');
-    setupCheckboxes();
-  }, 100);
-  
-  setTimeout(function() {
-    console.log('Second attempt at 1000ms...');
-    setupCheckboxes();
-  }, 1000);
-  
-  setTimeout(function() {
-    console.log('Third attempt at 2000ms...');
-    setupCheckboxes();
-  }, 2000);
-  
-  // Also try immediately if DOM is ready
-  if (document.readyState !== 'loading') {
-    console.log('DOM ready, trying immediately...');
-    setupCheckboxes();
-  }
+  // Export initialization function for the card system
+  window.CardInitializers = window.CardInitializers || {};
+  window.CardInitializers['initiates-of-danu'] = setupCheckboxes;
   
 })();
 

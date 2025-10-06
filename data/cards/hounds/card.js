@@ -92,20 +92,7 @@
     console.log('Hounds loyalty initialization complete');
   }
   
-  // Create global initialization function that can be called whenever card is recreated
-  window.initializeHounds = function() {
-    console.log('Initializing Hounds card...');
-    initializeHoundsLoyalty();
-  };
-  
-  // Multiple initialization attempts for first load
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeHoundsLoyalty);
-  } else {
-    initializeHoundsLoyalty();
-  }
-  
-  // Also try after a delay in case cards are loaded dynamically
-  setTimeout(initializeHoundsLoyalty, 500);
-  setTimeout(initializeHoundsLoyalty, 1000);
+  // Export initialization function for the card system
+  window.CardInitializers = window.CardInitializers || {};
+  window.CardInitializers.hounds = initializeHoundsLoyalty;
 })();

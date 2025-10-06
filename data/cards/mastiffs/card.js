@@ -92,20 +92,7 @@
     console.log('Mastiffs loyalty initialization complete');
   }
   
-  // Create global initialization function that can be called whenever card is recreated
-  window.initializeMastiffs = function() {
-    console.log('Initializing Mastiffs card...');
-    initializeMastiffsLoyalty();
-  };
-  
-  // Multiple initialization attempts for first load
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeMastiffsLoyalty);
-  } else {
-    initializeMastiffsLoyalty();
-  }
-  
-  // Also try after a delay in case cards are loaded dynamically
-  setTimeout(initializeMastiffsLoyalty, 500);
-  setTimeout(initializeMastiffsLoyalty, 1000);
+  // Export initialization function for the card system
+  window.CardInitializers = window.CardInitializers || {};
+  window.CardInitializers.mastiffs = initializeMastiffsLoyalty;
 })();
