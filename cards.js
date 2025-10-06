@@ -170,7 +170,7 @@ window.Cards = (function() {
                 const cardData = await loadCard(cardDef.id);
                 
                 const cardWrapper = document.createElement('div');
-                cardWrapper.className = 'card-wrapper';
+                cardWrapper.className = 'card-wrapper collapsed'; // Start collapsed
                 cardWrapper.setAttribute('data-card-id', cardDef.id);
                 
                 // Create card element with collapse functionality
@@ -229,11 +229,11 @@ window.Cards = (function() {
         collapseToggle.className = 'card-collapse-toggle';
         collapseToggle.setAttribute('aria-label', `Toggle ${cardData.title || cardData.id} details`);
         collapseToggle.setAttribute('type', 'button');
-        collapseToggle.innerHTML = '-'; // Minus sign (expanded state)
+        collapseToggle.innerHTML = '+'; // Plus sign (collapsed state - start collapsed)
         
         // Create content wrapper for everything except the title
         const contentWrapper = document.createElement('div');
-        contentWrapper.className = 'card-content';
+        contentWrapper.className = 'card-content collapsed'; // Start collapsed
         
         // Move all content except the title to the content wrapper
         const allChildren = Array.from(cardElement.children);
@@ -262,7 +262,7 @@ window.Cards = (function() {
         // Add keyboard accessibility
         titleElement.setAttribute('tabindex', '0');
         titleElement.setAttribute('role', 'button');
-        titleElement.setAttribute('aria-expanded', 'true');
+        titleElement.setAttribute('aria-expanded', 'false'); // Start collapsed
         
         titleElement.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
@@ -291,12 +291,14 @@ window.Cards = (function() {
         if (isCurrentlyCollapsed) {
             // Expand - show minus sign
             contentContainer.classList.remove('collapsed');
+            cardWrapper.classList.remove('collapsed');
             toggleButton.innerHTML = '-'; // Minus (expanded state)
             toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Expand', 'Collapse'));
             if (titleElement) titleElement.setAttribute('aria-expanded', 'true');
         } else {
             // Collapse - show plus sign
             contentContainer.classList.add('collapsed');
+            cardWrapper.classList.add('collapsed');
             toggleButton.innerHTML = '+'; // Plus (collapsed state)
             toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Collapse', 'Expand'));
             if (titleElement) titleElement.setAttribute('aria-expanded', 'false');
@@ -315,6 +317,7 @@ window.Cards = (function() {
             
             if (contentContainer && toggleButton) {
                 contentContainer.classList.add('collapsed');
+                cardWrapper.classList.add('collapsed');
                 toggleButton.innerHTML = '+'; // Plus (collapsed state)
                 toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Collapse', 'Expand'));
                 if (titleElement) titleElement.setAttribute('aria-expanded', 'false');
@@ -334,6 +337,7 @@ window.Cards = (function() {
             
             if (contentContainer && toggleButton) {
                 contentContainer.classList.remove('collapsed');
+                cardWrapper.classList.remove('collapsed');
                 toggleButton.innerHTML = '-'; // Minus (expanded state)
                 toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Expand', 'Collapse'));
                 if (titleElement) titleElement.setAttribute('aria-expanded', 'true');
@@ -389,12 +393,14 @@ window.Cards = (function() {
                     if (shouldBeCollapsed) {
                         // Collapse this card - show plus sign
                         contentContainer.classList.add('collapsed');
+                        cardWrapper.classList.add('collapsed');
                         toggleButton.innerHTML = '+'; // Plus (collapsed state)
                         toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Collapse', 'Expand'));
                         if (titleElement) titleElement.setAttribute('aria-expanded', 'false');
                     } else {
                         // Ensure this card is expanded - show minus sign
                         contentContainer.classList.remove('collapsed');
+                        cardWrapper.classList.remove('collapsed');
                         toggleButton.innerHTML = '-'; // Minus (expanded state)
                         toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Expand', 'Collapse'));
                         if (titleElement) titleElement.setAttribute('aria-expanded', 'true');

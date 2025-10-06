@@ -858,12 +858,6 @@ button:focus {
   border: 1px solid #1976d2;
 }
 
-
-/* === CARDS SECTION === */
-#cards-container {
-  margin: 30px 0;
-}
-
 .card-wrapper {
   margin-bottom: 25px;
   position: relative;
@@ -933,6 +927,18 @@ button:focus {
   margin-bottom: 0;
   padding-top: 0;
   padding-bottom: 0;
+}
+
+/* Reduce card title bottom border and padding when collapsed */
+.card-wrapper.collapsed .card-title {
+  border-bottom: 1px solid #e1e5e9;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+
+/* Reduce card wrapper margin when collapsed */
+.card-wrapper.collapsed {
+  margin-bottom: 8px;
 }
 
 .card-section {
@@ -1245,11 +1251,6 @@ hr {
     margin: 20px 0;
   }
   
-  /* Container margins */
-  #moves-container,
-  #cards-container {
-    margin: 20px 0;
-  }
   
   .card-wrapper {
     margin-bottom: 20px;
