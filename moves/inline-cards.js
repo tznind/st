@@ -86,31 +86,46 @@ window.InlineCards = (function() {
 
     /**
      * Initialize card-specific functionality after card HTML is inserted
-     * Uses convention-based approach: looks for window.initialize[PascalCaseCardId] function
+     * Uses new CardInitializers export pattern with fallback to old convention
      * @param {string} cardId - ID of the card to initialize
      */
     function initializeCardFunctionality(cardId) {
         // Use a short timeout to ensure DOM is fully ready
         setTimeout(function() {
-            console.log(`Attempting to initialize card functionality for: ${cardId}`);
+            console.log(`Inline Cards: Attempting to initialize card functionality for: ${cardId}`);
             
-            // Convert kebab-case card ID to PascalCase function name
-            // Examples: 'ship' -> 'Ship', 'robotic-companion' -> 'RoboticCompanion'
-            const functionName = 'initialize' + cardId
-                .split('-')
-                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                .join('');
+            // Ensure CardInitializers namespace exists
+            window.CardInitializers = window.CardInitializers || {};
             
-            console.log(`Looking for initialization function: ${functionName}`);
-            
-            // Try to call the convention-based initialization function
-            if (typeof window[functionName] === 'function') {
-                console.log(`Calling ${functionName}...`);
-                window[functionName]();
+            // Look for exported initialization function (new pattern)
+            const initFunction = window.CardInitializers[cardId];
+            if (typeof initFunction === 'function') {
+                try {
+                    console.log(`Inline Cards: Calling CardInitializers['${cardId}']()...`);
+                    initFunction();
+                    console.log(`Inline Cards: Card ${cardId} initialized successfully`);
+                } catch (error) {
+                    console.error(`Inline Cards: Error initializing card ${cardId}:`, error);
+                }
             } else {
-                console.log(`${functionName} function not found - card may not need special initialization`);
+                console.log(`Inline Cards: No new-style initialization function found for card: ${cardId}`);
+                
+                // Fallback to old convention-based approach for backwards compatibility
+                const functionName = 'initialize' + cardId
+                    .split('-')
+                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join('');
+                
+                console.log(`Inline Cards: Looking for old-style function: ${functionName}`);
+                
+                if (typeof window[functionName] === 'function') {
+                    console.log(`Inline Cards: Falling back to old convention: ${functionName}()`);
+                    window[functionName]();
+                } else {
+                    console.log(`Inline Cards: No initialization needed for ${cardId}`);
+                }
             }
-        }, 10);
+        }, 100); // Increased timeout to ensure card DOM is ready
     }
     
     /**
