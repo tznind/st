@@ -532,10 +532,13 @@ window.MovesCore = (function() {
         // Always add collapse functionality for tree-like appearance
         headerElement.classList.add('collapsible');
         
+        // Start collapsed by default
+        headerElement.classList.add('collapsed');
+        
         // Create expand/collapse triangle
         const triangle = document.createElement("span");
         triangle.className = "tree-triangle";
-        triangle.innerHTML = "▼"; // Down arrow (expanded state)
+        triangle.innerHTML = "▶"; // Right arrow (collapsed state)
         
         // Create text span
         const textSpan = document.createElement("span");
@@ -551,7 +554,7 @@ window.MovesCore = (function() {
         headerElement.style.cursor = 'pointer';
         headerElement.setAttribute('role', 'button');
         headerElement.setAttribute('tabindex', '0');
-        headerElement.setAttribute('aria-expanded', 'true');
+        headerElement.setAttribute('aria-expanded', 'false'); // Start collapsed
         headerElement.setAttribute('aria-label', `Toggle ${categoryName} category with ${moveCount} move${moveCount === 1 ? '' : 's'}`);
         
         // Add click handler
@@ -932,6 +935,8 @@ window.MovesCore = (function() {
             
             categoryMoves.forEach(move => {
                 const moveElement = renderMove(move, mergedAvailability, urlParams);
+                // Hide moves initially since categories start collapsed
+                moveElement.style.display = 'none';
                 movesContainer.appendChild(moveElement);
             });
         });
