@@ -103,17 +103,21 @@
     }
 
     /**
-     * Copy current URL to clipboard with visual feedback
+     * Copy current URL to clipboard with visual feedback and character count
      */
     async function copyURLWithFeedback() {
         const button = document.getElementById('copy-url-button');
         if (!button) return;
 
         try {
-            await window.Persistence.copyURLToClipboard();
+            const url = await window.Persistence.copyURLToClipboard();
+            const charCount = url.length;
             
             // Show success state
             button.classList.add('success');
+            
+            // Create and show character count flash
+            showCharacterCountFlash(button, charCount);
             
             // Reset after 2 seconds
             setTimeout(() => {
@@ -124,6 +128,48 @@
             console.error('Failed to copy URL:', error);
             alert('Failed to copy URL to clipboard');
         }
+    }
+
+    /**
+     * Show character count flash with color coding
+     */
+    function showCharacterCountFlash(button, charCount) {
+        // Remove any existing flash
+        const existingFlash = button.querySelector('.char-count-flash');
+        if (existingFlash) {
+            existingFlash.remove();
+        }
+        
+        // Create flash element
+        const flash = document.createElement('div');
+        flash.className = 'char-count-flash';
+        flash.textContent = `${charCount} chars`;
+        
+        // Add warning/danger classes based on character count
+        if (charCount > 7500) {
+            flash.classList.add('danger');
+        } else if (charCount > 2000) {
+            flash.classList.add('warning');
+        }
+        
+        // Append to button
+        button.appendChild(flash);
+        
+        // Show flash with smooth fade-in
+        setTimeout(() => {
+            flash.classList.add('show');
+        }, 100);
+        
+        // Hide flash after 2 seconds with smooth fade-out
+        setTimeout(() => {
+            flash.classList.remove('show');
+            // Remove element after fade completes
+            setTimeout(() => {
+                if (flash.parentNode) {
+                    flash.parentNode.removeChild(flash);
+                }
+            }, 400);
+        }, 2000);
     }
 
 
