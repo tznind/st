@@ -1,9 +1,6 @@
 .common-equipment-card {
-    background: #f5f5f5;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 16px;
-    margin: 8px 0;
+    border-left: 4px solid #1e3a8a;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
 }
 
 /* Ensure the card works well with the collapsible system */
@@ -15,11 +12,21 @@
     display: none;
 }
 
-.common-equipment-card h3 {
-    margin-top: 0;
-    color: #333;
-    border-bottom: 2px solid #666;
-    padding-bottom: 8px;
+.common-equipment-card .card-title {
+    color: #1e3a8a;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.common-equipment-card .card-title::before {
+    content: "⚙️";
+    font-size: 24px;
+}
+
+/* Smaller emoji when collapsed */
+.card-wrapper.collapsed .common-equipment-card .card-title::before {
+    font-size: 18px;
 }
 
 .common-equipment-card h4 {

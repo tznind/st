@@ -881,7 +881,6 @@ button:focus {
   font-size: 20px;
   font-weight: 700;
   margin: 0 0 20px 0;
-  border-bottom: 2px solid #e1e5e9;
   padding-bottom: 10px;
   cursor: pointer;
   display: flex;
@@ -929,16 +928,20 @@ button:focus {
   padding-bottom: 0;
 }
 
-/* Reduce card title bottom border and padding when collapsed */
+/* Reduce card title padding when collapsed */
 .card-wrapper.collapsed .card-title {
-  border-bottom: 1px solid #e1e5e9;
-  padding-bottom: 5px;
-  margin-bottom: 5px;
+  padding-bottom: 2px;
+  margin-bottom: 2px;
+}
+
+/* Reduce card padding when collapsed */
+.card-wrapper.collapsed .card {
+  padding: 8px 12px;
 }
 
 /* Reduce card wrapper margin when collapsed */
 .card-wrapper.collapsed {
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .card-section {
