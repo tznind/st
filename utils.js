@@ -222,6 +222,49 @@ window.Utils = (function() {
         return Object.keys(window.availableMap).filter(role => role !== 'Everyone');
     }
 
+    /**
+     * Get description for a specific role
+     * @param {string} roleName - The name of the role to get description for
+     * @returns {string|null} The role description or null if not found
+     */
+    function getRoleDescription(roleName) {
+        if (!window.availableMap || !roleName) return null;
+        const roleData = window.availableMap[roleName];
+        return roleData ? (roleData.description || null) : null;
+    }
+
+    /**
+     * Show loading indicator in top right
+     * @param {string} message - Optional custom loading message
+     */
+    function showLoading(message = 'Loading...') {
+        const indicator = document.getElementById('loading-indicator');
+        if (indicator) {
+            const textSpan = indicator.querySelector('span');
+            if (textSpan) {
+                textSpan.textContent = message;
+            }
+            indicator.classList.add('show');
+        }
+    }
+
+    /**
+     * Hide loading indicator
+     * @param {number} delay - Optional delay in ms before hiding
+     */
+    function hideLoading(delay = 0) {
+        const indicator = document.getElementById('loading-indicator');
+        if (indicator) {
+            if (delay > 0) {
+                setTimeout(() => {
+                    indicator.classList.remove('show');
+                }, delay);
+            } else {
+                indicator.classList.remove('show');
+            }
+        }
+    }
+
     // Public API
     return {
         debounce,
@@ -231,6 +274,9 @@ window.Utils = (function() {
         mergeRoleAvailability,
         roleMatchesPattern,
         getMatchingRoles,
-        getAllAvailableRoles
+        getAllAvailableRoles,
+        getRoleDescription,
+        showLoading,
+        hideLoading
     };
 })();

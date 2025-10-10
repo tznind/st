@@ -56,7 +56,13 @@ window.Persistence = (function() {
             // Handle checkboxes differently - use checked state
             if (input.type === 'checkbox') {
                 if (input.checked) {
-                    params.set(input.id, '1');
+                    // Skip persisting checkboxes marked with data-no-persist (default true moves)
+                    if (!input.hasAttribute('data-no-persist')) {
+                        params.set(input.id, '1');
+                    } else {
+                        // Remove from URL to save space (it's true by default)
+                        params.delete(input.id);
+                    }
                 } else {
                     // Remove unchecked checkboxes to keep URL clean
                     params.delete(input.id);

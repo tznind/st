@@ -12,7 +12,12 @@ window.Layout = (function() {
      */
     async function layoutApplication() {
         console.log('Layout: Starting application layout...');
-        
+
+        // Show loading indicator
+        if (window.Utils) {
+            window.Utils.showLoading('Loading...');
+        }
+
         try {
             // Preserve scroll position to prevent jumping
             const scrollY = window.scrollY;
@@ -35,6 +40,11 @@ window.Layout = (function() {
                 console.log('Layout: No roles selected, keeping containers empty');
                 // Restore scroll position
                 window.scrollTo(0, scrollY);
+
+                // Hide loading indicator
+                if (window.Utils) {
+                    window.Utils.hideLoading();
+                }
                 return;
             }
             
@@ -69,12 +79,22 @@ window.Layout = (function() {
             setTimeout(() => {
                 window.scrollTo(0, scrollY);
             }, 50);
-            
+
             console.log('Layout: Application layout complete');
-            
+
+            // Hide loading indicator with a small delay to ensure everything is rendered
+            if (window.Utils) {
+                window.Utils.hideLoading(100);
+            }
+
         } catch (error) {
             console.error('Layout: Error during application layout:', error);
             showErrorMessage('Failed to render application. Please refresh the page.');
+
+            // Hide loading indicator on error
+            if (window.Utils) {
+                window.Utils.hideLoading();
+            }
         }
     }
     
@@ -189,45 +209,65 @@ window.Layout = (function() {
      */
     async function quickLayoutUpdate(changeType, ...args) {
         console.log('Layout: Quick update requested:', changeType);
-        
-        switch (changeType) {
-            case 'hide-untaken-toggle':
-                // Store current collapse state before re-rendering
-                const moveCollapseState = window.MovesCore ? window.MovesCore.getCurrentCollapseState() : null;
-                const cardCollapseState = window.Cards ? window.Cards.getCurrentCollapseState() : null;
-                
-                // Just re-render moves section with scroll preservation
-                const scrollY = window.scrollY;
-                const selectedRoles = window.Utils.getCurrentRoles();
-                if (selectedRoles.length > 0) {
-                    const mergedAvailability = window.Utils.mergeRoleAvailability(selectedRoles);
-                    const urlParams = new URLSearchParams(location.search);
-                    await renderMoves(selectedRoles, mergedAvailability, urlParams);
-                    
-                    // Initialize track counters after moves are rendered
-                    if (window.Track) {
-                        window.Track.initializeTrackCounters();
+
+        // Show loading indicator
+        if (window.Utils) {
+            window.Utils.showLoading('Loading...');
+        }
+
+        try {
+            switch (changeType) {
+                case 'hide-untaken-toggle':
+                    // Store current collapse state before re-rendering
+                    const moveCollapseState = window.MovesCore ? window.MovesCore.getCurrentCollapseState() : null;
+                    const cardCollapseState = window.Cards ? window.Cards.getCurrentCollapseState() : null;
+
+                    // Just re-render moves section with scroll preservation
+                    const scrollY = window.scrollY;
+                    const selectedRoles = window.Utils.getCurrentRoles();
+                    if (selectedRoles.length > 0) {
+                        const mergedAvailability = window.Utils.mergeRoleAvailability(selectedRoles);
+                        const urlParams = new URLSearchParams(location.search);
+                        await renderMoves(selectedRoles, mergedAvailability, urlParams);
+
+                        // Initialize track counters after moves are rendered
+                        if (window.Track) {
+                            window.Track.initializeTrackCounters();
+                        }
+
+                        applyPersistenceState(urlParams);
+
+                        // Restore collapse state instead of expanding all
+                        if (window.MovesCore && moveCollapseState) {
+                            window.MovesCore.restoreCollapseState(moveCollapseState);
+                        }
+                        if (window.Cards && cardCollapseState) {
+                            window.Cards.restoreCollapseState(cardCollapseState);
+                        }
+
+                        // Restore scroll position
+                        setTimeout(() => window.scrollTo(0, scrollY), 25);
                     }
-                    
-                    applyPersistenceState(urlParams);
-                    
-                    // Restore collapse state instead of expanding all
-                    if (window.MovesCore && moveCollapseState) {
-                        window.MovesCore.restoreCollapseState(moveCollapseState);
-                    }
-                    if (window.Cards && cardCollapseState) {
-                        window.Cards.restoreCollapseState(cardCollapseState);
-                    }
-                    
-                    // Restore scroll position
-                    setTimeout(() => window.scrollTo(0, scrollY), 25);
-                }
-                break;
-                
-            default:
-                // For any other changes, do full layout
-                await layoutApplication();
-                break;
+                    break;
+
+                default:
+                    // For any other changes, do full layout
+                    await layoutApplication();
+                    break;
+            }
+
+            // Hide loading indicator
+            if (window.Utils) {
+                window.Utils.hideLoading(100);
+            }
+
+        } catch (error) {
+            console.error('Layout: Error during quick update:', error);
+
+            // Hide loading indicator on error
+            if (window.Utils) {
+                window.Utils.hideLoading();
+            }
         }
     }
     

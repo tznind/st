@@ -44,6 +44,8 @@ window.MovesCore = (function() {
                 checkbox.disabled = true;
                 checkbox.checked = true; // Always ensure disabled checkboxes are checked
                 checkbox.setAttribute('title', 'This move is always available for this role');
+                // Mark as no-persist to save URL space (it's true by default)
+                checkbox.setAttribute('data-no-persist', 'true');
             }
             
             checkboxes.push(checkbox);

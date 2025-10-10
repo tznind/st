@@ -14,6 +14,10 @@
           "description": "Path to the JSON file containing moves for this role",
           "pattern": "^data/moves/.+\\.json$"
         },
+        "description": {
+          "type": "string",
+          "description": "Description of the role"
+        },
         "cards": {
           "type": "array",
           "description": "Array of card IDs automatically assigned to this role (not granted by moves)",
@@ -31,7 +35,7 @@
           "description": "Move ID mapped to its initial checked state (true = initially checked, false = initially unchecked)"
         }
       },
-      "required": ["_movesFile"],
+      "required": ["_movesFile", "description"],
       "additionalProperties": false
     }
   },

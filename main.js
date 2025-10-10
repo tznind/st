@@ -112,22 +112,78 @@
         try {
             const url = await window.Persistence.copyURLToClipboard();
             const charCount = url.length;
-            
+
             // Show success state
             button.classList.add('success');
-            
+
             // Create and show character count flash
             showCharacterCountFlash(button, charCount);
-            
+
             // Reset after 2 seconds
             setTimeout(() => {
                 button.classList.remove('success');
             }, 2000);
-            
+
         } catch (error) {
             console.error('Failed to copy URL:', error);
             alert('Failed to copy URL to clipboard');
         }
+    }
+
+    /**
+     * Show role description modal
+     * @param {string} roleSelectId - The ID of the role selector element
+     */
+    function showRoleDescription(roleSelectId) {
+        const roleSelect = document.getElementById(roleSelectId);
+        if (!roleSelect || !roleSelect.value) {
+            alert('Please select a role first');
+            return;
+        }
+
+        const roleName = roleSelect.value;
+        const description = window.Utils.getRoleDescription(roleName);
+
+        if (!description) {
+            alert('No description available for this role');
+            return;
+        }
+
+        // Create modal
+        const modal = document.createElement('div');
+        modal.className = 'role-description-modal';
+        modal.innerHTML = `
+            <div class="role-description-content">
+                <button class="role-description-close" aria-label="Close">&times;</button>
+                <h3>${roleName}</h3>
+                <p>${description}</p>
+            </div>
+        `;
+
+        // Close on background click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.remove();
+            }
+        });
+
+        // Close on close button click
+        const closeBtn = modal.querySelector('.role-description-close');
+        closeBtn.addEventListener('click', () => {
+            modal.remove();
+        });
+
+        // Close on Escape key
+        const escapeHandler = (e) => {
+            if (e.key === 'Escape') {
+                modal.remove();
+                document.removeEventListener('keydown', escapeHandler);
+            }
+        };
+        document.addEventListener('keydown', escapeHandler);
+
+        // Add to DOM
+        document.body.appendChild(modal);
     }
 
     /**
@@ -189,7 +245,16 @@
         if (copyButton) {
             copyButton.addEventListener('click', copyURLWithFeedback);
         }
-        
+
+        // Role help buttons - dynamically attach to all role selectors
+        const roleSelectors = window.Utils.getRoleSelectors();
+        roleSelectors.forEach(selector => {
+            const helpButton = document.getElementById(`${selector.id}-help-button`);
+            if (helpButton) {
+                helpButton.addEventListener('click', () => showRoleDescription(selector.id));
+            }
+        });
+
         // Collapse all moves button
         const collapseAllButton = document.getElementById('collapse-all-moves');
         if (collapseAllButton) {
@@ -202,7 +267,7 @@
                 }
             });
         }
-        
+
         // Expand all moves button
         const expandAllButton = document.getElementById('expand-all-moves');
         if (expandAllButton) {
@@ -216,7 +281,7 @@
             });
         }
 
-        // Note: Other event handlers (role changes, checkbox changes, etc.) 
+        // Note: Other event handlers (role changes, checkbox changes, etc.)
         // are now handled automatically by the persistence system
     }
 
