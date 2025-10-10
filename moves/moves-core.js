@@ -650,9 +650,10 @@ window.MovesCore = (function() {
     }
     
     /**
-     * Collapse all moves
+     * Collapse all moves and categories
      */
     function collapseAllMoves() {
+        // Collapse all individual moves
         const allMoves = document.querySelectorAll('.move');
         allMoves.forEach(moveDiv => {
             const contentContainer = moveDiv.querySelector('.move-content');
@@ -667,12 +668,65 @@ window.MovesCore = (function() {
                 if (titleEl) titleEl.setAttribute('aria-expanded', 'false');
             }
         });
+        
+        // Collapse all categories
+        const allCategories = document.querySelectorAll('.category-header.tree-node');
+        allCategories.forEach(headerElement => {
+            const triangle = headerElement.querySelector('.tree-triangle');
+            if (!triangle) return;
+            
+            // Find all moves in this category (next siblings until next header or end)
+            const categoryMoves = [];
+            let nextElement = headerElement.nextElementSibling;
+            
+            while (nextElement && !nextElement.classList.contains('category-header')) {
+                if (nextElement.classList.contains('move')) {
+                    categoryMoves.push(nextElement);
+                }
+                nextElement = nextElement.nextElementSibling;
+            }
+            
+            // Collapse category
+            headerElement.classList.add('collapsed');
+            triangle.textContent = "▶"; // Right arrow
+            headerElement.setAttribute('aria-expanded', 'false');
+            categoryMoves.forEach(move => {
+                move.style.display = 'none';
+            });
+        });
     }
     
     /**
-     * Expand all moves
+     * Expand all moves and categories
      */
     function expandAllMoves() {
+        // Expand all categories first so moves become visible
+        const allCategories = document.querySelectorAll('.category-header.tree-node');
+        allCategories.forEach(headerElement => {
+            const triangle = headerElement.querySelector('.tree-triangle');
+            if (!triangle) return;
+            
+            // Find all moves in this category (next siblings until next header or end)
+            const categoryMoves = [];
+            let nextElement = headerElement.nextElementSibling;
+            
+            while (nextElement && !nextElement.classList.contains('category-header')) {
+                if (nextElement.classList.contains('move')) {
+                    categoryMoves.push(nextElement);
+                }
+                nextElement = nextElement.nextElementSibling;
+            }
+            
+            // Expand category
+            headerElement.classList.remove('collapsed');
+            triangle.textContent = "▼"; // Down arrow
+            headerElement.setAttribute('aria-expanded', 'true');
+            categoryMoves.forEach(move => {
+                move.style.display = '';
+            });
+        });
+        
+        // Then expand all individual moves
         const allMoves = document.querySelectorAll('.move');
         allMoves.forEach(moveDiv => {
             const contentContainer = moveDiv.querySelector('.move-content');
@@ -686,6 +740,66 @@ window.MovesCore = (function() {
                 const titleEl = moveDiv.querySelector('.move-title');
                 if (titleEl) titleEl.setAttribute('aria-expanded', 'true');
             }
+        });
+    }
+    
+    /**
+     * Collapse all categories
+     */
+    function collapseAllCategories() {
+        const allCategories = document.querySelectorAll('.category-header.tree-node');
+        allCategories.forEach(headerElement => {
+            const triangle = headerElement.querySelector('.tree-triangle');
+            if (!triangle) return;
+            
+            // Find all moves in this category (next siblings until next header or end)
+            const categoryMoves = [];
+            let nextElement = headerElement.nextElementSibling;
+            
+            while (nextElement && !nextElement.classList.contains('category-header')) {
+                if (nextElement.classList.contains('move')) {
+                    categoryMoves.push(nextElement);
+                }
+                nextElement = nextElement.nextElementSibling;
+            }
+            
+            // Collapse category
+            headerElement.classList.add('collapsed');
+            triangle.textContent = "▶"; // Right arrow
+            headerElement.setAttribute('aria-expanded', 'false');
+            categoryMoves.forEach(move => {
+                move.style.display = 'none';
+            });
+        });
+    }
+    
+    /**
+     * Expand all categories
+     */
+    function expandAllCategories() {
+        const allCategories = document.querySelectorAll('.category-header.tree-node');
+        allCategories.forEach(headerElement => {
+            const triangle = headerElement.querySelector('.tree-triangle');
+            if (!triangle) return;
+            
+            // Find all moves in this category (next siblings until next header or end)
+            const categoryMoves = [];
+            let nextElement = headerElement.nextElementSibling;
+            
+            while (nextElement && !nextElement.classList.contains('category-header')) {
+                if (nextElement.classList.contains('move')) {
+                    categoryMoves.push(nextElement);
+                }
+                nextElement = nextElement.nextElementSibling;
+            }
+            
+            // Expand category
+            headerElement.classList.remove('collapsed');
+            triangle.textContent = "▼"; // Down arrow
+            headerElement.setAttribute('aria-expanded', 'true');
+            categoryMoves.forEach(move => {
+                move.style.display = '';
+            });
         });
     }
     
@@ -963,6 +1077,8 @@ window.MovesCore = (function() {
         toggleCategoryCollapse,
         collapseAllMoves,
         expandAllMoves,
+        collapseAllCategories,
+        expandAllCategories,
         getCurrentCollapseState,
         restoreCollapseState
     };
