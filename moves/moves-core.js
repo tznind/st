@@ -196,17 +196,16 @@ window.MovesCore = (function() {
     /**
      * Create granted card section
      */
-    function createGrantedCardSection(move, urlParams) {
+    function createGrantedCardSection(move, urlParams, available) {
         if (!move.grantsCard || !window.InlineCards) {
             return null;
         }
-        
+
         const containerId = `granted_card_${move.id}`;
         const cardSection = window.InlineCards.createCardContainer(containerId, "Grants:");
-        
-        // Use the existing isMoveTaken function to check if move is selected
-        const isTaken = isMoveTaken(move, urlParams);
-        
+
+        const isTaken = isMoveTaken(move, urlParams, available);
+
         if (isTaken) {
             // Show the card immediately if taken
             window.InlineCards.displayCard(containerId, move.grantsCard);
@@ -214,7 +213,7 @@ window.MovesCore = (function() {
             // Hide initially
             cardSection.style.display = 'none';
         }
-        
+
         return cardSection;
     }
 
@@ -504,7 +503,7 @@ window.MovesCore = (function() {
         
         // Add granted card section if move grants a card
         if (move.grantsCard) {
-            const grantedCardSection = createGrantedCardSection(move, urlParams);
+            const grantedCardSection = createGrantedCardSection(move, urlParams, available);
             if (grantedCardSection) {
                 contentContainer.appendChild(grantedCardSection);
             }
@@ -877,14 +876,24 @@ window.MovesCore = (function() {
 
     /**
      * Check if a move is "taken" based on URL parameters
+     * Note: This function needs access to the available map to check for default moves
+     * @param {Object} move - The move to check
+     * @param {URLSearchParams} urlParams - URL parameters
+     * @param {Object} available - Optional availability map to check for default moves
      */
-    function isMoveTaken(move, urlParams) {
+    function isMoveTaken(move, urlParams, available = null) {
+        // Check if this is a default/free move (always available with data-no-persist="true")
+        // These moves should be considered "taken" even if not in URL
+        if (available && available[move.id] === true) {
+            return true;
+        }
+
         // Check main move checkboxes
         const moveCheckboxId = `move_${move.id}`;
         if (urlParams.get(moveCheckboxId) === '1') {
             return true;
         }
-        
+
         // Check multiple move checkboxes if they exist
         if (move.multiple) {
             for (let i = 1; i <= move.multiple; i++) {
@@ -893,7 +902,7 @@ window.MovesCore = (function() {
                 }
             }
         }
-        
+
         // Check pick option checkboxes if they exist (_p1, _p2, etc. and _p1_c2, _p1_c3, etc.)
         if (move.pick && Array.isArray(move.pick)) {
             const multiplePick = move.multiplePick || 1;
@@ -910,7 +919,7 @@ window.MovesCore = (function() {
                 }
             }
         }
-        
+
         // Check pickOne option radio buttons if they exist (_o1, _o2, etc. and _o1_c2, _o1_c3, etc.)
         if (move.pickOne && Array.isArray(move.pickOne)) {
             const multiplePick = move.multiplePick || 1;
@@ -927,7 +936,7 @@ window.MovesCore = (function() {
                 }
             }
         }
-        
+
         return false;
     }
 
@@ -998,7 +1007,7 @@ window.MovesCore = (function() {
                 }
                 
                 // Skip untaken moves if hideUntaken is true
-                if (hideUntaken && urlParams && !isMoveTaken(move, urlParams)) {
+                if (hideUntaken && urlParams && !isMoveTaken(move, urlParams, available)) {
                     return;
                 }
                 
