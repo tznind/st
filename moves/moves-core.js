@@ -455,7 +455,24 @@ window.MovesCore = (function() {
     function renderMove(move, available, urlParams, isNestedInCard = false) {
         const moveDiv = document.createElement("div");
         moveDiv.className = "move";
-        
+
+        // Find which roles grant this move (for styling purposes)
+        const grantingRoles = [];
+        const currentRoles = window.Utils ? window.Utils.getCurrentRoles() : [];
+        if (window.availableMap && currentRoles.length > 0) {
+            currentRoles.forEach(role => {
+                const roleData = window.availableMap[role];
+                if (roleData) {
+                    grantingRoles.push(role);
+                }
+            });
+        }
+
+        // Add data attribute for styling based on granting roles
+        if (grantingRoles.length > 0) {
+            moveDiv.setAttribute('data-granting-roles', grantingRoles.join(','));
+        }
+
         // Create checkboxes and title
         const checkboxes = createMoveCheckboxes(move, available, urlParams);
         const titleContainer = createMoveTitle(move, checkboxes, urlParams, isNestedInCard);

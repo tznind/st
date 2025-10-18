@@ -25,3 +25,21 @@ You can get around this in a number of ways:
 - Share with tiny url e.g. https://tinyurl.com/4v8a9fxd (above 8,000 char url)
 - Share as file attachment
 - Create a gist and share link to gist
+
+## Github Pages Hosting
+
+The tool uses only text and SVG paths for current images (e.g., stats hexagons). The images for custom cards are actually just emoji — i.e., text. As a result, a whole site is typically < 1MB.
+
+It is purely static HTML/CSS/JS with all processing client-side. No backend, no database calls — just files delivered to the browser, where everything runs locally.
+
+GitHub Pages has a soft 100 GB/month bandwidth limit, which works out to roughly 200 K page loads per month or about 7,000 daily visitors.
+
+The full fair use policy for GitHub Pages is here:
+
+https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits
+
+When creating custom cards especially with images you may want to consider
+
+- using emoji
+- using svg images (typically very small file size)
+- or, externally hosting of images and linking in img src attribute 
