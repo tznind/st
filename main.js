@@ -187,6 +187,49 @@
     }
 
     /**
+     * Show generic help modal
+     * @param {string} title - The title for the modal
+     * @param {string} text - The description text
+     */
+    function showHelpModal(title, text) {
+        // Create modal
+        const modal = document.createElement('div');
+        modal.className = 'role-description-modal';
+        modal.innerHTML = `
+            <div class="role-description-content">
+                <button class="role-description-close" aria-label="Close">&times;</button>
+                <h3>${title}</h3>
+                <p>${text}</p>
+            </div>
+        `;
+
+        // Close on background click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.remove();
+            }
+        });
+
+        // Close on close button click
+        const closeBtn = modal.querySelector('.role-description-close');
+        closeBtn.addEventListener('click', () => {
+            modal.remove();
+        });
+
+        // Close on Escape key
+        const escapeHandler = (e) => {
+            if (e.key === 'Escape') {
+                modal.remove();
+                document.removeEventListener('keydown', escapeHandler);
+            }
+        };
+        document.addEventListener('keydown', escapeHandler);
+
+        // Add to DOM
+        document.body.appendChild(modal);
+    }
+
+    /**
      * Show character count flash with color coding
      */
     function showCharacterCountFlash(button, charCount) {
@@ -280,6 +323,22 @@
                 }
             });
         }
+
+        // Generic help button handler - automatically handles any .help-icon with data attributes
+        // Usage: <button class="help-icon" data-help-title="Title" data-help-text="Description">?</button>
+        document.addEventListener('click', function(e) {
+            const helpButton = e.target.closest('.help-icon');
+            if (!helpButton) return;
+
+            const title = helpButton.getAttribute('data-help-title');
+            const text = helpButton.getAttribute('data-help-text');
+
+            if (title && text) {
+                showHelpModal(title, text);
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        });
 
         // Note: Other event handlers (role changes, checkbox changes, etc.)
         // are now handled automatically by the persistence system
