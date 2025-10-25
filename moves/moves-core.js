@@ -206,11 +206,25 @@ window.MovesCore = (function() {
 
         const isTaken = isMoveTaken(move, urlParams, available);
 
+        console.log(`createGrantedCardSection for move ${move.id}:`, {
+            moveId: move.id,
+            grantsCard: move.grantsCard,
+            isTaken: isTaken,
+            availableValue: available[move.id],
+            urlParam: urlParams.get(`move_${move.id}`)
+        });
+
         if (isTaken) {
-            // Show the card immediately if taken
-            window.InlineCards.displayCard(containerId, move.grantsCard);
+            // Show the card after the container is added to the DOM
+            console.log(`Move ${move.id} is taken, scheduling displayCard for ${move.grantsCard}`);
+            // Use setTimeout to ensure the container is in the DOM before calling displayCard
+            setTimeout(() => {
+                console.log(`Move ${move.id}: Now calling displayCard for ${move.grantsCard}`);
+                window.InlineCards.displayCard(containerId, move.grantsCard);
+            }, 0);
         } else {
             // Hide initially
+            console.log(`Move ${move.id} is NOT taken, hiding card section`);
             cardSection.style.display = 'none';
         }
 
@@ -453,6 +467,7 @@ window.MovesCore = (function() {
      * @param {boolean} isNestedInCard - Whether this move is nested inside a granted card
      */
     function renderMove(move, available, urlParams, isNestedInCard = false) {
+        console.log(`renderMove called for move: ${move.id}, grantsCard: ${move.grantsCard}`);
         const moveDiv = document.createElement("div");
         moveDiv.className = "move";
 
@@ -520,9 +535,12 @@ window.MovesCore = (function() {
         
         // Add granted card section if move grants a card
         if (move.grantsCard) {
+            console.log(`renderMove: Move ${move.id} has grantsCard: ${move.grantsCard}`);
             const grantedCardSection = createGrantedCardSection(move, urlParams, available);
             if (grantedCardSection) {
                 contentContainer.appendChild(grantedCardSection);
+            } else {
+                console.warn(`renderMove: createGrantedCardSection returned null for move ${move.id}`);
             }
         }
         

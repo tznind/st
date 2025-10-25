@@ -13,30 +13,54 @@ window.InlineCards = (function() {
      * @param {string} className - CSS class for the card wrapper (optional)
      */
     async function displayCard(containerId, cardId, className = 'granted-card') {
+        console.log(`InlineCards.displayCard called: containerId=${containerId}, cardId=${cardId}`);
         const container = document.getElementById(containerId);
-        if (!container || !cardId) return;
+        if (!container) {
+            console.error(`InlineCards.displayCard: Container not found: ${containerId}`);
+            return;
+        }
+        if (!cardId) {
+            console.error(`InlineCards.displayCard: No cardId provided`);
+            return;
+        }
+
+        console.log(`InlineCards.displayCard: Container found, attempting to load card ${cardId}`);
 
         try {
             if (window.Cards) {
+                console.log(`InlineCards.displayCard: Calling window.Cards.loadCard for ${cardId}`);
                 const cardData = await window.Cards.loadCard(cardId);
-                
+                console.log(`InlineCards.displayCard: Card data loaded for ${cardId}`, cardData);
+
                 container.innerHTML = '';
                 const cardDiv = document.createElement("div");
                 cardDiv.className = className;
                 cardDiv.setAttribute('data-card-id', cardId);
                 cardDiv.innerHTML = cardData.html;
                 container.appendChild(cardDiv);
-                
+
                 // Make sure the parent granted-card-options container is visible
                 const parentContainer = container.closest('.granted-card-options');
                 if (parentContainer) {
+                    console.log(`InlineCards.displayCard: Setting parent container display to block`);
                     parentContainer.style.display = 'block';
                 }
-                
+
                 // Try to initialize card-specific functionality
                 initializeCardFunctionality(cardId);
-                
+
+                // Refresh persistence to restore URL parameters for the newly added card inputs
+                setTimeout(() => {
+                    const form = document.querySelector('form');
+                    if (form && window.Persistence) {
+                        console.log(`InlineCards.displayCard: Refreshing persistence for card ${cardId}`);
+                        window.Persistence.refreshPersistence(form);
+                    }
+                }, 50);
+
                 console.log(`Displayed card '${cardId}' inline in container '${containerId}'`);
+            } else {
+                console.error(`InlineCards.displayCard: window.Cards not available`);
             }
         } catch (error) {
             console.error(`Error loading inline card '${cardId}':`, error);
