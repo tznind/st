@@ -7,7 +7,8 @@
     "tracks": [{
       "name": "Stock",
       "max": 16,
-      "shape": "circle"
+      "shape": "circle",
+      "dynamic": true
 
     }],
     "outcomes": [
