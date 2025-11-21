@@ -373,6 +373,7 @@ window.TakeFrom = (function() {
                     
                     const option = document.createElement("option");
                     option.value = move.id;
+                    // Options don't support HTML, so strip formatting for dropdowns
                     option.textContent = move.title;
                     moveSelect.appendChild(option);
                 }

@@ -36,6 +36,11 @@
                 await window.Layout.layoutApplication();
             }
 
+            // Initialize clocks after layout is complete
+            if (window.Clock) {
+                window.Clock.initializeClocks();
+            }
+
             console.log('Application initialized successfully');
 
         } catch (error) {
@@ -152,11 +157,12 @@
         // Create modal
         const modal = document.createElement('div');
         modal.className = 'role-description-modal';
+        const formattedDescription = window.TextFormatter ? window.TextFormatter.format(description) : description;
         modal.innerHTML = `
             <div class="role-description-content">
                 <button class="role-description-close" aria-label="Close">&times;</button>
                 <h3>${roleName}</h3>
-                <p>${description}</p>
+                <p>${formattedDescription}</p>
             </div>
         `;
 
@@ -195,11 +201,12 @@
         // Create modal
         const modal = document.createElement('div');
         modal.className = 'role-description-modal';
+        const formattedText = window.TextFormatter ? window.TextFormatter.format(text) : text;
         modal.innerHTML = `
             <div class="role-description-content">
                 <button class="role-description-close" aria-label="Close">&times;</button>
                 <h3>${title}</h3>
-                <p>${text}</p>
+                <p>${formattedText}</p>
             </div>
         `;
 

@@ -16,6 +16,31 @@
         "type": "string",
         "description": "Display title of the stat (usually uppercase)"
       },
+      "shape": {
+        "type": "string",
+        "description": "Visual shape for the stat input container",
+        "enum": ["hexagon", "square", "clock"],
+        "default": "hexagon"
+      },
+      "clock": {
+        "type": "object",
+        "description": "Clock configuration (required when shape is 'clock')",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Folder name in clocks/ directory containing the SVG faces",
+            "examples": ["quarter_twelfths", "doom_clock"]
+          },
+          "faces": {
+            "type": "integer",
+            "description": "Number of clock faces (0.svg through N.svg)",
+            "minimum": 1,
+            "maximum": 24
+          }
+        },
+        "required": ["type", "faces"],
+        "additionalProperties": false
+      },
       "max": {
         "type": "integer",
         "description": "Maximum value for this stat",
@@ -29,9 +54,46 @@
         "minimum": -3,
         "maximum": 0,
         "default": -2
+      },
+      "tracks": {
+        "type": "array",
+        "description": "Array of tracking configurations for resources associated with this stat",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Display name for the tracked resource",
+              "examples": ["Wounds", "Armor", "Focus"]
+            },
+            "max": {
+              "type": "integer",
+              "description": "Maximum number of points that can be tracked",
+              "maximum": 10
+            },
+            "shape": {
+              "type": "string",
+              "description": "Visual shape for the track counters",
+              "enum": ["square", "circle", "triangle", "hexagon"],
+              "default": "square"
+            },
+            "endLabel": {
+              "type": "string",
+              "description": "Optional small text label shown after the shapes (e.g., 'doomed', 'corrupted')",
+              "examples": ["doomed", "corrupted", "exhausted"]
+            },
+            "dynamic": {
+              "type": "boolean",
+              "description": "If true, shows a 'max...' button to let user set custom max value",
+              "default": false
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        }
       }
     },
-    "required": ["id", "title"],
+    "required": ["id"],
     "additionalProperties": false
   }
 }
