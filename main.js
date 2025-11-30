@@ -260,9 +260,14 @@
         // Get merged availability for current roles
         const mergedAvailability = window.Utils ? window.Utils.mergeRoleAvailability(currentRoles) : {};
 
+        // Check if hiding untaken moves
+        const hideUntakenCheckbox = document.getElementById('hide_untaken');
+        const hideUntaken = hideUntakenCheckbox && hideUntakenCheckbox.checked;
+        const urlParams = new URLSearchParams(location.search);
+
         // Group moves by category (similar to how they're rendered)
         const categorized = window.MovesCore ?
-            window.MovesCore.groupMovesByCategory(window.moves, mergedAvailability) :
+            window.MovesCore.groupMovesByCategory(window.moves, mergedAvailability, hideUntaken, urlParams) :
             new Map();
 
         if (categorized.size === 0) {
