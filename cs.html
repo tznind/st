@@ -120,13 +120,22 @@
     
     <!-- UI Control -->
     <div class="ui-control">
-      <label>
-        <input type="checkbox" id="hide_untaken" name="hide_untaken">
-        Hide untaken moves
-      </label>
+      <div class="hide-options">
+        <span class="hide-label">Hide:</span>
+        <label>
+          <input type="checkbox" id="hide_untaken" name="hide_untaken">
+          untaken moves
+        </label>
+        <span class="separator">|</span>
+        <label>
+          <input type="checkbox" id="hide_help" name="hide_help">
+          help
+        </label>
+      </div>
       <div class="collapse-controls">
         <button type="button" id="collapse-all-moves">Collapse All</button>
         <button type="button" id="expand-all-moves">Expand All</button>
+        <button type="button" id="show-contents" class="burger-menu" title="Table of Contents" aria-label="Show table of contents">☰</button>
       </div>
     </div>
 

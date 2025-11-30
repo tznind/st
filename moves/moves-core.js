@@ -61,6 +61,7 @@ window.MovesCore = (function() {
      * @param {URLSearchParams} urlParams - URL parameters
      * @param {boolean} isNestedInCard - Whether this move is nested inside a granted card
      * @param {Object} available - Available moves map (needed for hideCheckbox logic)
+     * @returns {Object} Object with titleContainer and optional trackDisplay (for grid mode)
      */
     function createMoveTitle(move, checkboxes, urlParams, isNestedInCard = false, available = null) {
         const titleContainer = document.createElement("div");
@@ -78,7 +79,7 @@ window.MovesCore = (function() {
             
             const titleText = document.createElement("span");
             titleText.className = "move-title-text";
-            titleText.textContent = move.title;
+            titleText.innerHTML = window.TextFormatter ? window.TextFormatter.format(move.title) : move.title;
             
             // Hide checkbox if hideCheckbox is true AND move is force-ticked
             const shouldHideCheckbox = move.hideCheckbox === true && available && available[move.id] === true;
@@ -98,7 +99,7 @@ window.MovesCore = (function() {
             
             const titleText = document.createElement("span");
             titleText.className = "move-title-text";
-            titleText.textContent = move.title;
+            titleText.innerHTML = window.TextFormatter ? window.TextFormatter.format(move.title) : move.title;
             
             // Hide checkboxes if hideCheckbox is true AND move is force-ticked
             const shouldHideCheckbox = move.hideCheckbox === true && available && available[move.id] === true;
@@ -109,13 +110,24 @@ window.MovesCore = (function() {
             titleContainer.appendChild(titleText);
         }
         
+        // Determine if we need to handle track display
+        let trackDisplayForGrid = null;
+        const useGridLayout = move.tracks && move.tracks.length > 3;
+        
         // Add track display if move has tracking (support both single track and multiple tracks)
         if ((move.track || move.tracks) && window.Track) {
             console.log('MovesCore: Found track/tracks for move:', move.id, 'calling createTrackDisplay');
             const trackDisplay = window.Track.createTrackDisplay(move, urlParams);
             if (trackDisplay) {
-                console.log('MovesCore: Adding track display to title container for move:', move.id);
-                titleContainer.appendChild(trackDisplay);
+                if (useGridLayout) {
+                    // For grid layout (many tracks), return separately to be placed after title
+                    console.log('MovesCore: Storing track display for grid layout for move:', move.id);
+                    trackDisplayForGrid = trackDisplay;
+                } else {
+                    // For normal layout (few tracks), add to title as before
+                    console.log('MovesCore: Adding track display to title container for move:', move.id);
+                    titleContainer.appendChild(trackDisplay);
+                }
             } else {
                 console.log('MovesCore: createTrackDisplay returned null for move:', move.id);
             }
@@ -155,7 +167,11 @@ window.MovesCore = (function() {
         
         titleContainer.appendChild(collapseToggle);
         
-        return titleContainer;
+        // Return both title container and optional track display for grid mode
+        return {
+            titleContainer: titleContainer,
+            trackDisplayForGrid: trackDisplayForGrid
+        };
     }
 
     /**
@@ -267,21 +283,34 @@ window.MovesCore = (function() {
         label.setAttribute('for', `move_${move.id}_dtl`);
         label.textContent = "Details:";
         
-        const input = document.createElement("input");
-        input.type = "text";
-        input.id = `move_${move.id}_dtl`;
-        input.name = `move_${move.id}_dtl`;
-        input.placeholder = "Add additional details...";
-        input.setAttribute('aria-label', `Details for ${move.title}`);
-        input.setAttribute('data-move-id', move.id);
+        const textarea = document.createElement("textarea");
+        textarea.id = `move_${move.id}_dtl`;
+        textarea.name = `move_${move.id}_dtl`;
+        textarea.placeholder = "Add additional details...";
+        textarea.setAttribute('aria-label', `Details for ${move.title}`);
+        textarea.setAttribute('data-move-id', move.id);
+        textarea.rows = 2; // Start with 2 rows
         
         // Restore value from URL if exists
-        if (urlParams.has(input.id)) {
-            input.value = urlParams.get(input.id);
+        if (urlParams.has(textarea.id)) {
+            textarea.value = urlParams.get(textarea.id);
         }
         
+        // Auto-grow functionality
+        const autoGrow = function() {
+            this.style.height = 'auto';
+            this.style.height = this.scrollHeight + 'px';
+        };
+        
+        textarea.addEventListener('input', autoGrow);
+        
+        // Apply initial height after a short delay to ensure proper sizing
+        setTimeout(() => {
+            autoGrow.call(textarea);
+        }, 0);
+        
         detailsDiv.appendChild(label);
-        detailsDiv.appendChild(input);
+        detailsDiv.appendChild(textarea);
         
         return detailsDiv;
     }
@@ -519,8 +548,13 @@ window.MovesCore = (function() {
 
         // Create checkboxes and title
         const checkboxes = createMoveCheckboxes(move, available, urlParams);
-        const titleContainer = createMoveTitle(move, checkboxes, urlParams, isNestedInCard, available);
-        moveDiv.appendChild(titleContainer);
+        const titleResult = createMoveTitle(move, checkboxes, urlParams, isNestedInCard, available);
+        moveDiv.appendChild(titleResult.titleContainer);
+        
+        // If there's a grid-mode track display, add it after the title but before content
+        if (titleResult.trackDisplayForGrid) {
+            moveDiv.appendChild(titleResult.trackDisplayForGrid);
+        }
         
         // Create collapsible content container
         const contentContainer = document.createElement("div");

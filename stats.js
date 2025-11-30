@@ -62,6 +62,66 @@ window.renderStats = function(containerSelector, hexStats) {
         title.textContent = stat.title;
         hexContainer.appendChild(title);
       }
+    } else if (shape === "double-up") {
+      // Handle double-up shape (two half-height rectangles stacked)
+      if (!stat.id || !stat.title) {
+        console.warn('Invalid stat data (missing id or title):', stat);
+        return;
+      }
+
+      // Split the title by comma
+      const titles = stat.title.split(',').map(t => t.trim());
+      if (titles.length !== 2) {
+        console.warn('Double-up stat requires exactly 2 comma-delimited titles:', stat);
+        return;
+      }
+
+      const wrapper = document.createElement("div");
+      wrapper.className = "hex-input-wrapper shape-double-up";
+      
+      // Create top half container
+      const topHalf = document.createElement("div");
+      topHalf.className = "double-up-half double-up-top-half";
+      
+      const topInput = document.createElement("input");
+      topInput.type = "text";
+      topInput.id = stat.id + "_top";
+      topInput.name = stat.id + "_top";
+      topInput.placeholder = titles[0];
+      topInput.setAttribute('aria-label', titles[0]);
+      topInput.className = "double-up-input double-up-top";
+      
+      topHalf.appendChild(topInput);
+      
+      // Create middle title (top stat name)
+      const middleTitle = document.createElement("div");
+      middleTitle.className = "double-up-middle-title";
+      middleTitle.textContent = titles[0];
+      
+      // Create bottom half container
+      const bottomHalf = document.createElement("div");
+      bottomHalf.className = "double-up-half double-up-bottom-half";
+      
+      const bottomInput = document.createElement("input");
+      bottomInput.type = "text";
+      bottomInput.id = stat.id + "_bottom";
+      bottomInput.name = stat.id + "_bottom";
+      bottomInput.placeholder = titles[1];
+      bottomInput.setAttribute('aria-label', titles[1]);
+      bottomInput.className = "double-up-input double-up-bottom";
+      
+      bottomHalf.appendChild(bottomInput);
+      
+      // Create bottom title (bottom stat name)
+      const bottomTitle = document.createElement("div");
+      bottomTitle.className = "double-up-bottom-title";
+      bottomTitle.textContent = titles[1];
+      
+      wrapper.appendChild(topHalf);
+      wrapper.appendChild(middleTitle);
+      wrapper.appendChild(bottomHalf);
+      wrapper.appendChild(bottomTitle);
+      hexContainer.appendChild(wrapper);
     } else {
       // Standard stat (hexagon/square)
       if (!stat.id || !stat.title) {

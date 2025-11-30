@@ -129,6 +129,14 @@ window.JsonLoader = (function() {
         return loadJsonData('data/categories.json', 'categoriesConfig');
     }
 
+    /**
+     * Load terms glossary
+     * @returns {Promise} Promise that resolves when terms data is loaded
+     */
+    async function loadTermsData() {
+        return loadJsonData('data/terms.json', 'termsGlossary');
+    }
+
 
     /**
      * Load all game data (stats, availability map, and moves)
@@ -136,16 +144,17 @@ window.JsonLoader = (function() {
      */
     async function loadAllGameData() {
         try {
-            // Load stats, availability, and categories data first
+            // Load stats, availability, categories, and terms data first
             await Promise.all([
                 loadStatsData(),
                 loadAvailabilityMap(),
-                loadCategoriesData()
+                loadCategoriesData(),
+                loadTermsData()
             ]);
 
             // Load all role moves and return the combined array
             const allMoves = await loadAllRoleMoves();
-            
+
             console.log('All game data loaded successfully');
             return allMoves;
         } catch (error) {
@@ -162,6 +171,7 @@ window.JsonLoader = (function() {
         loadStatsData,
         loadAvailabilityMap,
         loadCategoriesData,
+        loadTermsData,
         loadAllGameData
     };
 })();

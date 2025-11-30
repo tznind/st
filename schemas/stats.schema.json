@@ -19,7 +19,7 @@
       "shape": {
         "type": "string",
         "description": "Visual shape for the stat input container",
-        "enum": ["hexagon", "square", "clock"],
+        "enum": ["hexagon", "square", "clock", "double-up"],
         "default": "hexagon"
       },
       "clock": {

@@ -18,8 +18,11 @@ window.Track = (function() {
         const trackConfigs = move.tracks;
         console.log('Track system: Using track configs:', trackConfigs);
         
+        // Determine if we should use grid layout (more than 3 tracks)
+        const useGridLayout = trackConfigs.length > 3;
+        
         const trackContainer = document.createElement('div');
-        trackContainer.className = 'track-counter';
+        trackContainer.className = useGridLayout ? 'track-counter-grid' : 'track-counter';
         trackContainer.id = `track_${move.id}`;
         
         // Prevent any clicks in the track area from bubbling up

@@ -39,6 +39,12 @@
             // Initialize clocks after layout is complete
             if (window.Clock) {
                 window.Clock.initializeClocks();
+
+                // IMPORTANT: Clock initialization creates hidden inputs for persistence
+                // We need to reload from URL to populate these newly created inputs
+                // and then refresh the visual displays
+                window.Persistence.loadFromURL(form);
+                window.Clock.refreshClockDisplays();
             }
 
             console.log('Application initialized successfully');
@@ -206,9 +212,107 @@
             <div class="role-description-content">
                 <button class="role-description-close" aria-label="Close">&times;</button>
                 <h3>${title}</h3>
-                <p>${formattedText}</p>
+                <div class="help-text"></div>
             </div>
         `;
+
+        // Insert formatted HTML separately to avoid escaping
+        const textContainer = modal.querySelector('.help-text');
+        textContainer.innerHTML = formattedText;
+
+        // Close on background click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.remove();
+            }
+        });
+
+        // Close on close button click
+        const closeBtn = modal.querySelector('.role-description-close');
+        closeBtn.addEventListener('click', () => {
+            modal.remove();
+        });
+
+        // Close on Escape key
+        const escapeHandler = (e) => {
+            if (e.key === 'Escape') {
+                modal.remove();
+                document.removeEventListener('keydown', escapeHandler);
+            }
+        };
+        document.addEventListener('keydown', escapeHandler);
+
+        // Add to DOM
+        document.body.appendChild(modal);
+    }
+
+    /**
+     * Show table of contents modal with all available moves
+     */
+    function showContentsModal() {
+        // Get current roles and their available moves
+        const currentRoles = window.Utils ? window.Utils.getCurrentRoles() : [];
+        if (!currentRoles || currentRoles.length === 0 || !window.moves) {
+            alert('Please select a role first');
+            return;
+        }
+
+        // Get merged availability for current roles
+        const mergedAvailability = window.Utils ? window.Utils.mergeRoleAvailability(currentRoles) : {};
+
+        // Group moves by category (similar to how they're rendered)
+        const categorized = window.MovesCore ?
+            window.MovesCore.groupMovesByCategory(window.moves, mergedAvailability) :
+            new Map();
+
+        if (categorized.size === 0) {
+            alert('No moves available');
+            return;
+        }
+
+        // Sort categories
+        const sortedCategories = window.MovesCore ?
+            window.MovesCore.sortCategories(Array.from(categorized.keys())) :
+            Array.from(categorized.keys()).sort();
+
+        // Build the contents HTML
+        let contentsHTML = '<div class="contents-list">';
+        sortedCategories.forEach(categoryName => {
+            const moves = categorized.get(categoryName);
+            contentsHTML += `<div class="contents-category">`;
+            contentsHTML += `<h4>${categoryName}</h4>`;
+            contentsHTML += `<ul>`;
+            moves.forEach(move => {
+                // Strip HTML tags from title for display
+                const displayTitle = move.title.replace(/<[^>]*>/g, '');
+                contentsHTML += `<li><a href="#" class="contents-move-link" data-move-id="${move.id}" data-move-category="${categoryName}">${displayTitle}</a></li>`;
+            });
+            contentsHTML += `</ul>`;
+            contentsHTML += `</div>`;
+        });
+        contentsHTML += '</div>';
+
+        // Create modal
+        const modal = document.createElement('div');
+        modal.className = 'role-description-modal contents-modal';
+        modal.innerHTML = `
+            <div class="role-description-content contents-content">
+                <button class="role-description-close" aria-label="Close">&times;</button>
+                <h3>Table of Contents</h3>
+                ${contentsHTML}
+            </div>
+        `;
+
+        // Add click handlers for move links
+        modal.querySelectorAll('.contents-move-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const moveId = link.getAttribute('data-move-id');
+                const categoryName = link.getAttribute('data-move-category');
+                modal.remove();
+                navigateToMove(moveId, categoryName);
+            });
+        });
 
         // Close on background click
         modal.addEventListener('click', (e) => {
@@ -331,6 +435,12 @@
             });
         }
 
+        // Show contents button
+        const showContentsButton = document.getElementById('show-contents');
+        if (showContentsButton) {
+            showContentsButton.addEventListener('click', showContentsModal);
+        }
+
         // Generic help button handler - automatically handles any .help-icon with data attributes
         // Usage: <button class="help-icon" data-help-title="Title" data-help-text="Description">?</button>
         document.addEventListener('click', function(e) {
@@ -347,8 +457,102 @@
             }
         });
 
+        // Glossary term handler - automatically handles any .glossary-term with data attributes
+        // Terms are automatically generated by TextFormatter when formatting bold/italic text
+        document.addEventListener('click', function(e) {
+            const glossaryTerm = e.target.closest('.glossary-term');
+            if (!glossaryTerm) return;
+
+            const title = glossaryTerm.getAttribute('data-term-title');
+            const text = glossaryTerm.getAttribute('data-term-text');
+
+            if (title && text) {
+                // Close any existing modals before opening a new one
+                document.querySelectorAll('.role-description-modal').forEach(modal => modal.remove());
+
+                showHelpModal(title, text);
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        });
+
+        // Hide help checkbox handler
+        const hideHelpCheckbox = document.getElementById('hide_help');
+        if (hideHelpCheckbox) {
+            // Set initial state from checkbox
+            document.body.classList.toggle('hide-help', hideHelpCheckbox.checked);
+
+            // Toggle class when checkbox changes
+            hideHelpCheckbox.addEventListener('change', function() {
+                document.body.classList.toggle('hide-help', this.checked);
+            });
+        }
+
+        // Move reference handler - automatically handles clicking on move references
+        // Move references are automatically generated by TextFormatter when formatting bold text that matches a move title
+        document.addEventListener('click', function(e) {
+            const moveReference = e.target.closest('.move-reference');
+            if (!moveReference) return;
+
+            const moveId = moveReference.getAttribute('data-move-id');
+            const categoryName = moveReference.getAttribute('data-move-category');
+
+            if (moveId && categoryName) {
+                // Close any existing modals before navigating
+                document.querySelectorAll('.role-description-modal').forEach(modal => modal.remove());
+
+                // Navigate to the move
+                navigateToMove(moveId, categoryName);
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        });
+
         // Note: Other event handlers (role changes, checkbox changes, etc.)
         // are now handled automatically by the persistence system
+    }
+
+    /**
+     * Navigate to a specific move by expanding its category and scrolling to it
+     * @param {string} moveId - The ID of the move to navigate to
+     * @param {string} categoryName - The category containing the move
+     */
+    function navigateToMove(moveId, categoryName) {
+        const movesContainer = document.getElementById('moves');
+        if (!movesContainer) {
+            console.warn('Moves container not found');
+            return;
+        }
+
+        // Find the category header
+        const categoryHeaders = Array.from(movesContainer.querySelectorAll('.category-header'));
+        const categoryHeader = categoryHeaders.find(header => {
+            const headerText = header.querySelector('.category-header-text');
+            return headerText && headerText.textContent.trim() === categoryName;
+        });
+
+        // Expand the category if it's collapsed
+        if (categoryHeader && categoryHeader.classList.contains('collapsed')) {
+            if (window.MovesCore) {
+                window.MovesCore.toggleCategoryCollapse(categoryHeader);
+            }
+        }
+
+        // Find the move element by looking for checkboxes with data-move-id attribute
+        const moveElement = movesContainer.querySelector(`.move input[data-move-id="${moveId}"]`)?.closest('.move');
+
+        if (moveElement) {
+            // Scroll to the move with smooth animation
+            moveElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // Add a brief highlight effect
+            moveElement.classList.add('highlight-move');
+            setTimeout(() => {
+                moveElement.classList.remove('highlight-move');
+            }, 2000);
+        } else {
+            console.warn(`Move with ID "${moveId}" not found in category "${categoryName}"`);
+        }
     }
 
     /**
