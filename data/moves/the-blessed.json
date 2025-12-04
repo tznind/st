@@ -9,8 +9,14 @@
       "max": 16,
       "shape": "circle",
       "dynamic": true
-
+    },
+    {
+      "name": "Curses",
+      "max": 3,
+      "shape": "square",
+      "dynamic": true
     }],
+    "details": true,
     "outcomes": [
       {
         "text": "It can hold up to 3 Stock (sacred herbs, powders, stones, pigments, chalks, clay, and so forth).",
