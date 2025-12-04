@@ -46,6 +46,51 @@
           "additionalProperties": false
         }
       },
+      "submoves": {
+        "type": "array",
+        "description": "Array of submoves, each with its own title, description, and outcomes. When present, these are rendered instead of the main move's description/outcomes.",
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "Display title of the submove (e.g., 'Give an order')"
+            },
+            "description": {
+              "type": "string",
+              "description": "Description of when and how to use this submove"
+            },
+            "outcomes": {
+              "type": "array",
+              "description": "Array of possible outcomes for this submove",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "range": {
+                    "type": "string",
+                    "description": "Dice roll range (e.g., '≥ 10', '7–9', '≤ 6')"
+                  },
+                  "text": {
+                    "type": "string",
+                    "description": "Description of what happens on this outcome"
+                  },
+                  "bullets": {
+                    "type": "array",
+                    "description": "Optional bullet points for choices or effects",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": ["text"],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": ["title"],
+          "additionalProperties": false
+        }
+      },
       "pick": {
         "type": "array",
         "description": "Array of options for pick moves (multiple selections allowed)",
@@ -91,6 +136,11 @@
       "category": {
         "type": "string",
         "description": "Optional category for grouping moves (moves without a category appear first under 'Moves')"
+      },
+      "weight": {
+        "type": "number",
+        "description": "Optional numeric value to control move ordering within a category. Moves are sorted by weight (lower values first), while preserving the original order for moves with the same weight. Default is 0.",
+        "default": 0
       },
       "grantsCard": {
         "type": "string",

@@ -21,6 +21,21 @@ window.TextFormatter = (function() {
             });
         }
 
+        // Add aliases for terms
+        if (window.aliasesConfig && Array.isArray(window.aliasesConfig)) {
+            window.aliasesConfig.forEach(aliasDef => {
+                if (aliasDef.alias && aliasDef.term) {
+                    // Find the actual term definition
+                    const actualTerm = window.termsGlossary?.find(
+                        t => t.term.toLowerCase() === aliasDef.term.toLowerCase()
+                    );
+                    if (actualTerm) {
+                        lookup.set(aliasDef.alias.toLowerCase(), actualTerm);
+                    }
+                }
+            });
+        }
+
         return lookup;
     }
 
@@ -48,6 +63,27 @@ window.TextFormatter = (function() {
                     const titleWithoutStats = move.title.replace(/\s*\([^)]+\)\s*$/, '').trim();
                     if (titleWithoutStats !== move.title) {
                         lookup.set(titleWithoutStats.toLowerCase(), moveData);
+                    }
+                }
+            });
+        }
+
+        // Add aliases for moves
+        if (window.aliasesConfig && Array.isArray(window.aliasesConfig)) {
+            window.aliasesConfig.forEach(aliasDef => {
+                if (aliasDef.alias && aliasDef.move) {
+                    // Find the actual move
+                    const actualMove = window.moves?.find(
+                        m => m.title.toLowerCase() === aliasDef.move.toLowerCase() ||
+                             m.title.replace(/\s*\([^)]+\)\s*$/, '').trim().toLowerCase() === aliasDef.move.toLowerCase()
+                    );
+                    if (actualMove) {
+                        const moveData = {
+                            id: actualMove.id,
+                            title: actualMove.title,
+                            category: actualMove.category || "Moves"
+                        };
+                        lookup.set(aliasDef.alias.toLowerCase(), moveData);
                     }
                 }
             });
@@ -201,8 +237,37 @@ window.TextFormatter = (function() {
         return formatted;
     }
 
+    /**
+     * Auto-format all elements with data-format-text attribute
+     * Elements can either have text in the attribute value or in their textContent
+     * After formatting, the attribute is set to "formatted" to avoid re-processing
+     * @param {string} selector - CSS selector for elements to format (default: '[data-format-text]:not([data-format-text="formatted"])')
+     */
+    function formatElements(selector = '[data-format-text]:not([data-format-text="formatted"])') {
+        const elements = document.querySelectorAll(selector);
+
+        elements.forEach(el => {
+            // Get source text from attribute value or element's text content
+            const sourceAttr = el.getAttribute('data-format-text');
+            const sourceText = sourceAttr && sourceAttr !== '' && sourceAttr !== 'formatted'
+                ? sourceAttr
+                : el.textContent;
+
+            // Format and update innerHTML
+            if (sourceText) {
+                el.innerHTML = format(sourceText);
+            }
+
+            // Mark as formatted to avoid re-processing
+            el.setAttribute('data-format-text', 'formatted');
+        });
+
+        console.log(`TextFormatter: Formatted ${elements.length} elements`);
+    }
+
     // Public API
     return {
-        format
+        format,
+        formatElements
     };
 })();

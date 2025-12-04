@@ -1197,6 +1197,30 @@ button:focus {
   cursor: pointer;
 }
 
+/* === SUBMOVES === */
+.submove {
+  margin: 15px 0;
+}
+
+.submove-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+.submove-description {
+  background: #f8f9fa;
+  border-left: 3px solid #6c757d;
+  padding: 8px 12px;
+  margin: 8px 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.submove-description p {
+  margin: 0;
+}
+
 /* === MOVE DESCRIPTIONS === */
 .move-description {
   background: #f8f9fa;

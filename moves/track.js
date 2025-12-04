@@ -49,7 +49,10 @@ window.Track = (function() {
             // Create shapes container
             const shapesContainer = document.createElement('div');
             shapesContainer.className = 'track-shapes';
-            
+            shapesContainer.setAttribute('data-track-id', trackId);
+            shapesContainer.setAttribute('data-shape', shape);
+            shapesContainer.setAttribute('data-track-name', trackConfig.name || '');
+
             // Create individual shapes
             for (let i = 1; i <= maxValue; i++) {
                 const shapeElement = document.createElement('div');
@@ -210,27 +213,91 @@ window.Track = (function() {
     }
     
     /**
-     * Set track max value in URL and trigger re-render
+     * Set track max value in URL and update display dynamically
      */
     function setTrackMaxValue(trackId, maxValue) {
         const params = new URLSearchParams(location.search);
         const paramName = `track_${trackId}_max`;
-        
+
         params.set(paramName, maxValue.toString());
-        
+
         // Also clamp current value if it exceeds new max
         const currentParamName = `track_${trackId}`;
-        const currentValue = params.get(currentParamName);
-        if (currentValue && parseInt(currentValue, 10) > maxValue) {
+        let currentValue = params.get(currentParamName);
+        currentValue = currentValue ? parseInt(currentValue, 10) : 0;
+
+        if (currentValue > maxValue) {
+            currentValue = maxValue;
             params.set(currentParamName, maxValue.toString());
         }
-        
+
         const newUrl = params.toString() ? '?' + params.toString() : location.pathname;
         history.replaceState({}, '', newUrl);
-        
-        // Trigger re-render
-        if (window.Layout && window.Layout.layoutApplication) {
-            window.Layout.layoutApplication();
+
+        // Update just this track's shapes without re-rendering entire app
+        rebuildTrackShapes(trackId, currentValue, maxValue);
+    }
+
+    /**
+     * Rebuild track shapes when max value changes (without re-rendering entire app)
+     */
+    function rebuildTrackShapes(trackId, currentValue, maxValue) {
+        // Find the shapes container for this track
+        const shapesContainer = document.querySelector(`.track-shapes[data-track-id="${trackId}"]`);
+        if (!shapesContainer) return;
+
+        const shape = shapesContainer.getAttribute('data-shape') || 'square';
+        const trackName = shapesContainer.getAttribute('data-track-name') || '';
+
+        // Clear existing shapes
+        shapesContainer.innerHTML = '';
+
+        // Rebuild shapes with new max
+        for (let i = 1; i <= maxValue; i++) {
+            const shapeElement = document.createElement('div');
+            shapeElement.className = `track-shape track-${shape}`;
+            shapeElement.dataset.value = i;
+            shapeElement.setAttribute('data-track-id', trackId);
+
+            // Make focusable and accessible
+            shapeElement.setAttribute('tabindex', '0');
+            shapeElement.setAttribute('role', 'button');
+            shapeElement.setAttribute('aria-label', `${trackName} - Set to ${i} of ${maxValue}`);
+
+            if (i <= currentValue) {
+                shapeElement.classList.add('filled');
+            }
+
+            // Add click handler
+            shapeElement.addEventListener('click', (event) => {
+                event.stopPropagation();
+                handleShapeClick(trackId, i, maxValue);
+            });
+
+            // Add keyboard handler
+            shapeElement.addEventListener('keydown', (event) => {
+                if (event.key === ' ' || event.key === 'Enter') {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    handleShapeClick(trackId, i, maxValue);
+                }
+            });
+
+            shapesContainer.appendChild(shapeElement);
+        }
+
+        // Update the label
+        const individualTrackContainer = shapesContainer.closest('.individual-track');
+        const trackLabel = individualTrackContainer?.querySelector('.track-label');
+        if (trackLabel) {
+            const existingButton = trackLabel.querySelector('.track-max-button');
+            trackLabel.textContent = `${trackName}: ${currentValue}/${maxValue}`;
+
+            // Re-append the button if it existed
+            if (existingButton) {
+                trackLabel.appendChild(document.createTextNode(' '));
+                trackLabel.appendChild(existingButton);
+            }
         }
     }
 

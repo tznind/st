@@ -200,17 +200,17 @@ window.MovesCore = (function() {
         outcomeDiv.className = "outcome";
 
         const formattedText = window.TextFormatter ? window.TextFormatter.format(outcome.text) : outcome.text;
-        
+
         if (outcome.range && outcome.range.trim() !== "") {
             // Create a container div to handle range + text with better line break support
             const rangeSpan = document.createElement("strong");
             rangeSpan.className = "outcome-range";
             rangeSpan.textContent = outcome.range + ":";
-            
+
             const textSpan = document.createElement("span");
             textSpan.className = "outcome-text";
             textSpan.innerHTML = " " + formattedText;
-            
+
             outcomeDiv.appendChild(rangeSpan);
             outcomeDiv.appendChild(textSpan);
         } else {
@@ -232,6 +232,42 @@ window.MovesCore = (function() {
         }
 
         return outcomeDiv;
+    }
+
+    /**
+     * Create submove section
+     */
+    function createSubmove(submove) {
+        const submoveDiv = document.createElement("div");
+        submoveDiv.className = "submove";
+
+        // Submove title
+        const submoveTitle = document.createElement("div");
+        submoveTitle.className = "submove-title";
+        submoveTitle.innerHTML = window.TextFormatter ? window.TextFormatter.format(submove.title) : submove.title;
+        submoveDiv.appendChild(submoveTitle);
+
+        // Submove description (if exists)
+        if (submove.description && submove.description.trim() !== "") {
+            const submoveDesc = document.createElement("div");
+            submoveDesc.className = "submove-description";
+            const p = document.createElement("p");
+            p.innerHTML = window.TextFormatter ? window.TextFormatter.format(submove.description) : submove.description;
+            submoveDesc.appendChild(p);
+            submoveDiv.appendChild(submoveDesc);
+        }
+
+        // Submove outcomes (if they exist)
+        if (submove.outcomes && Array.isArray(submove.outcomes) && submove.outcomes.length > 0) {
+            submove.outcomes.forEach(outcome => {
+                if (outcome) {
+                    const outcomeElement = createOutcome(outcome);
+                    submoveDiv.appendChild(outcomeElement);
+                }
+            });
+        }
+
+        return submoveDiv;
     }
 
     /**
@@ -529,6 +565,9 @@ window.MovesCore = (function() {
         const moveDiv = document.createElement("div");
         moveDiv.className = "move";
 
+        // Add data attribute to identify the move (needed for navigation)
+        moveDiv.setAttribute('data-move-id', move.id);
+
         // Find which roles grant this move (for styling purposes)
         const grantingRoles = [];
         const currentRoles = window.Utils ? window.Utils.getCurrentRoles() : [];
@@ -575,7 +614,17 @@ window.MovesCore = (function() {
                 }
             });
         }
-        
+
+        // Add submoves if they exist
+        if (move.submoves && Array.isArray(move.submoves) && move.submoves.length > 0) {
+            move.submoves.forEach(submove => {
+                if (submove) {
+                    const submoveElement = createSubmove(submove);
+                    contentContainer.appendChild(submoveElement);
+                }
+            });
+        }
+
         // Add pickOne options if they exist (render first as they're typically more fundamental)
         if (move.pickOne && Array.isArray(move.pickOne) && move.pickOne.length > 0) {
             const pickOneElement = createPickOneOptions(move, urlParams);
@@ -1153,10 +1202,19 @@ window.MovesCore = (function() {
         // Render categories in sorted order
         sortedCategories.forEach(categoryName => {
             const categoryMoves = categorized.get(categoryName);
-            const categoryHeader = createCategoryHeader(categoryName, categoryMoves.length);
+
+            // Sort moves by weight (stable sort - preserves original order for same weight)
+            // Default weight is 0 if not specified
+            const sortedMoves = categoryMoves.slice().sort((a, b) => {
+                const weightA = a.weight !== undefined ? a.weight : 0;
+                const weightB = b.weight !== undefined ? b.weight : 0;
+                return weightA - weightB;
+            });
+
+            const categoryHeader = createCategoryHeader(categoryName, sortedMoves.length);
             movesContainer.appendChild(categoryHeader);
-            
-            categoryMoves.forEach(move => {
+
+            sortedMoves.forEach(move => {
                 const moveElement = renderMove(move, mergedAvailability, urlParams);
                 // Hide moves initially since categories start collapsed
                 moveElement.style.display = 'none';
@@ -1171,6 +1229,7 @@ window.MovesCore = (function() {
         createMoveTitle,
         createDescription,
         createOutcome,
+        createSubmove,
         createDetailsInput,
         createPickOptions,
         createPickOneOptions,

@@ -137,6 +137,20 @@ window.JsonLoader = (function() {
         return loadJsonData('data/terms.json', 'termsGlossary');
     }
 
+    /**
+     * Load aliases configuration (optional - gracefully handles missing file)
+     * @returns {Promise} Promise that resolves when aliases data is loaded
+     */
+    async function loadAliasesData() {
+        try {
+            return await loadJsonData('data/aliases.json', 'aliasesConfig');
+        } catch (error) {
+            console.warn('Aliases file not found, using empty aliases');
+            window.aliasesConfig = [];
+            return [];
+        }
+    }
+
 
     /**
      * Load all game data (stats, availability map, and moves)
@@ -144,12 +158,13 @@ window.JsonLoader = (function() {
      */
     async function loadAllGameData() {
         try {
-            // Load stats, availability, categories, and terms data first
+            // Load stats, availability, categories, terms, and aliases data first
             await Promise.all([
                 loadStatsData(),
                 loadAvailabilityMap(),
                 loadCategoriesData(),
-                loadTermsData()
+                loadTermsData(),
+                loadAliasesData()
             ]);
 
             // Load all role moves and return the combined array
@@ -172,6 +187,7 @@ window.JsonLoader = (function() {
         loadAvailabilityMap,
         loadCategoriesData,
         loadTermsData,
+        loadAliasesData,
         loadAllGameData
     };
 })();

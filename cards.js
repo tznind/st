@@ -210,12 +210,17 @@ window.Cards = (function() {
 
             // Cards are now rendered and ready for persistence
             console.log(`Rendered ${cardDefs.length} cards for roles: ${roles.join(', ')}`);
-            
+
             // Initialize any cards that have initialization functions
             setTimeout(() => {
                 initializeRenderedCards(cardDefs);
+
+                // Format any elements with data-format-text attribute
+                if (window.TextFormatter && window.TextFormatter.formatElements) {
+                    window.TextFormatter.formatElements();
+                }
             }, 100);
-            
+
             // Note: Persistence refresh is handled by the caller
 
         } catch (error) {
