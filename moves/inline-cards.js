@@ -49,6 +49,13 @@ window.InlineCards = (function() {
                 // Try to initialize card-specific functionality
                 initializeCardFunctionality(cardId);
 
+                // Format any elements with data-format-text attribute
+                setTimeout(() => {
+                    if (window.TextFormatter && window.TextFormatter.formatElements) {
+                        window.TextFormatter.formatElements();
+                    }
+                }, 50);
+
                 // Refresh persistence to restore URL parameters for the newly added card inputs
                 setTimeout(() => {
                     const form = document.querySelector('form');
