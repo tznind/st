@@ -2129,6 +2129,13 @@ hr {
   align-items: center;
 }
 
+.track-dash {
+  font-size: 18px;
+  font-weight: bold;
+  color: #6c757d;
+  padding: 0 4px;
+}
+
 .track-shape {
   width: 16px;
   height: 16px;

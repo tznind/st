@@ -53,44 +53,52 @@ window.Track = (function() {
             shapesContainer.setAttribute('data-shape', shape);
             shapesContainer.setAttribute('data-track-name', trackConfig.name || '');
 
-            // Create individual shapes
-            for (let i = 1; i <= maxValue; i++) {
-                const shapeElement = document.createElement('div');
-                shapeElement.className = `track-shape track-${shape}`;
-                shapeElement.dataset.value = i;
-                shapeElement.setAttribute('data-track-id', trackId);
-                
-                // Make focusable and accessible
-                shapeElement.setAttribute('tabindex', '0');
-                shapeElement.setAttribute('role', 'button');
-                shapeElement.setAttribute('aria-label', `${trackConfig.name} - Set to ${i} of ${maxValue}`);
-                
-                if (i <= currentValue) {
-                    shapeElement.classList.add('filled');
-                }
-                
-                // Add click handler for toggling
-                shapeElement.addEventListener('click', (event) => {
-                    event.stopPropagation(); // Prevent bubbling to collapse/expand handlers
-                    handleShapeClick(trackId, i, maxValue);
-                });
-                
-                // Add keyboard handler
-                shapeElement.addEventListener('keydown', (event) => {
-                    if (event.key === ' ' || event.key === 'Enter') {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        handleShapeClick(trackId, i, maxValue);
+            // If maxValue is 0, show a dash instead of shapes
+            if (maxValue === 0) {
+                const dashElement = document.createElement('div');
+                dashElement.className = 'track-dash';
+                dashElement.textContent = '-';
+                shapesContainer.appendChild(dashElement);
+            } else {
+                // Create individual shapes
+                for (let i = 1; i <= maxValue; i++) {
+                    const shapeElement = document.createElement('div');
+                    shapeElement.className = `track-shape track-${shape}`;
+                    shapeElement.dataset.value = i;
+                    shapeElement.setAttribute('data-track-id', trackId);
+
+                    // Make focusable and accessible
+                    shapeElement.setAttribute('tabindex', '0');
+                    shapeElement.setAttribute('role', 'button');
+                    shapeElement.setAttribute('aria-label', `${trackConfig.name} - Set to ${i} of ${maxValue}`);
+
+                    if (i <= currentValue) {
+                        shapeElement.classList.add('filled');
                     }
-                });
-                
-                shapesContainer.appendChild(shapeElement);
+
+                    // Add click handler for toggling
+                    shapeElement.addEventListener('click', (event) => {
+                        event.stopPropagation(); // Prevent bubbling to collapse/expand handlers
+                        handleShapeClick(trackId, i, maxValue);
+                    });
+
+                    // Add keyboard handler
+                    shapeElement.addEventListener('keydown', (event) => {
+                        if (event.key === ' ' || event.key === 'Enter') {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            handleShapeClick(trackId, i, maxValue);
+                        }
+                    });
+
+                    shapesContainer.appendChild(shapeElement);
+                }
             }
-            
+
             // Create label showing track name and current/max
             const trackLabel = document.createElement('div');
             trackLabel.className = 'track-label';
-            trackLabel.textContent = `${trackConfig.name}: ${currentValue}/${maxValue}`;
+            trackLabel.textContent = maxValue === 0 ? `${trackConfig.name}: -` : `${trackConfig.name}: ${currentValue}/${maxValue}`;
             
             // Add dynamic max button if enabled
             if (trackConfig.dynamic) {
@@ -105,10 +113,10 @@ window.Track = (function() {
                     const newMax = prompt(`Enter new maximum for ${trackConfig.name}:`, maxValue);
                     if (newMax !== null && newMax !== '') {
                         const parsedMax = parseInt(newMax, 10);
-                        if (!isNaN(parsedMax) && parsedMax >= 1) {
+                        if (!isNaN(parsedMax) && parsedMax >= 0) {
                             setTrackMaxValue(trackId, parsedMax);
                         } else {
-                            alert('Please enter a valid number (minimum 1)');
+                            alert('Please enter a valid number (minimum 0)');
                         }
                     }
                 });
@@ -171,13 +179,13 @@ window.Track = (function() {
             // Extract track name from current label text
             const currentText = label.textContent;
             const trackName = currentText.split(':')[0];
-            
+
             // Check if there's a max button we need to preserve
             const existingButton = label.querySelector('.track-max-button');
-            
+
             // Update the text
-            label.textContent = `${trackName}: ${currentValue}/${maxValue}`;
-            
+            label.textContent = maxValue === 0 ? `${trackName}: -` : `${trackName}: ${currentValue}/${maxValue}`;
+
             // Re-append the button if it existed
             if (existingButton) {
                 label.appendChild(document.createTextNode(' '));
@@ -252,38 +260,46 @@ window.Track = (function() {
         // Clear existing shapes
         shapesContainer.innerHTML = '';
 
-        // Rebuild shapes with new max
-        for (let i = 1; i <= maxValue; i++) {
-            const shapeElement = document.createElement('div');
-            shapeElement.className = `track-shape track-${shape}`;
-            shapeElement.dataset.value = i;
-            shapeElement.setAttribute('data-track-id', trackId);
+        // If maxValue is 0, show a dash instead of shapes
+        if (maxValue === 0) {
+            const dashElement = document.createElement('div');
+            dashElement.className = 'track-dash';
+            dashElement.textContent = '-';
+            shapesContainer.appendChild(dashElement);
+        } else {
+            // Rebuild shapes with new max
+            for (let i = 1; i <= maxValue; i++) {
+                const shapeElement = document.createElement('div');
+                shapeElement.className = `track-shape track-${shape}`;
+                shapeElement.dataset.value = i;
+                shapeElement.setAttribute('data-track-id', trackId);
 
-            // Make focusable and accessible
-            shapeElement.setAttribute('tabindex', '0');
-            shapeElement.setAttribute('role', 'button');
-            shapeElement.setAttribute('aria-label', `${trackName} - Set to ${i} of ${maxValue}`);
+                // Make focusable and accessible
+                shapeElement.setAttribute('tabindex', '0');
+                shapeElement.setAttribute('role', 'button');
+                shapeElement.setAttribute('aria-label', `${trackName} - Set to ${i} of ${maxValue}`);
 
-            if (i <= currentValue) {
-                shapeElement.classList.add('filled');
-            }
+                if (i <= currentValue) {
+                    shapeElement.classList.add('filled');
+                }
 
-            // Add click handler
-            shapeElement.addEventListener('click', (event) => {
-                event.stopPropagation();
-                handleShapeClick(trackId, i, maxValue);
-            });
-
-            // Add keyboard handler
-            shapeElement.addEventListener('keydown', (event) => {
-                if (event.key === ' ' || event.key === 'Enter') {
-                    event.preventDefault();
+                // Add click handler
+                shapeElement.addEventListener('click', (event) => {
                     event.stopPropagation();
                     handleShapeClick(trackId, i, maxValue);
-                }
-            });
+                });
 
-            shapesContainer.appendChild(shapeElement);
+                // Add keyboard handler
+                shapeElement.addEventListener('keydown', (event) => {
+                    if (event.key === ' ' || event.key === 'Enter') {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        handleShapeClick(trackId, i, maxValue);
+                    }
+                });
+
+                shapesContainer.appendChild(shapeElement);
+            }
         }
 
         // Update the label
@@ -291,7 +307,7 @@ window.Track = (function() {
         const trackLabel = individualTrackContainer?.querySelector('.track-label');
         if (trackLabel) {
             const existingButton = trackLabel.querySelector('.track-max-button');
-            trackLabel.textContent = `${trackName}: ${currentValue}/${maxValue}`;
+            trackLabel.textContent = maxValue === 0 ? `${trackName}: -` : `${trackName}: ${currentValue}/${maxValue}`;
 
             // Re-append the button if it existed
             if (existingButton) {
