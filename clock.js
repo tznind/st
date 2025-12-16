@@ -115,15 +115,42 @@ window.Clock = (function() {
      */
     function updateClockDisplay(clockElement, folder, value) {
         const svgPath = `${folder}/${value}.svg`;
-        
+
+        // Show global loading indicator
+        if (window.Utils) {
+            window.Utils.showLoading('Loading clock...');
+        }
+
         // Preload image before changing display to avoid flicker
         const img = new Image();
+
         img.onload = () => {
             clockElement.style.backgroundImage = `url('${svgPath}')`;
             clockElement.style.backgroundSize = 'contain';
             clockElement.style.backgroundRepeat = 'no-repeat';
             clockElement.style.backgroundPosition = 'center';
+
+            // Hide global loading indicator
+            if (window.Utils) {
+                window.Utils.hideLoading();
+            }
         };
+
+        img.onerror = () => {
+            console.error(`Failed to load clock image: ${svgPath}`);
+
+            // Hide loading indicator
+            if (window.Utils) {
+                window.Utils.hideLoading();
+            }
+
+            // Show error state on the clock element
+            clockElement.classList.add('clock-error');
+            clockElement.style.backgroundImage = 'none';
+            clockElement.textContent = '✗';
+            clockElement.title = `Failed to load: ${svgPath}`;
+        };
+
         img.src = svgPath;
     }
 

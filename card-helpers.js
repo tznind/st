@@ -39,7 +39,8 @@ window.CardHelpers = (function() {
                                 // Initialize after a short delay to ensure DOM is fully ready
                                 setTimeout(() => {
                                     try {
-                                        initFunction();
+                                        // Pass container and null suffix (registerCard is for regular cards, not duplicates)
+                                        initFunction(cardElement, null);
                                         console.log(`Card ${cardId} initialized via CardHelpers`);
                                     } catch (error) {
                                         console.error(`Error initializing card ${cardId}:`, error);
@@ -81,15 +82,130 @@ window.CardHelpers = (function() {
 
     /**
      * Safe element selection with error handling
-     * @param {string} id - Element ID to select
+     * Supports scoped selection for duplicate cards
+     * @param {string} id - Element ID to select (base ID without suffix)
+     * @param {HTMLElement} container - Optional container to search within
+     * @param {string} suffix - Optional suffix for duplicate instances
      * @returns {Element|null} Element or null if not found
      */
-    function getElement(id) {
-        const element = document.getElementById(id);
+    function getElement(id, container = null, suffix = null) {
+        // Apply suffix if provided
+        const fullId = suffix ? `${id}_${suffix}` : id;
+
+        // Search within container if provided, otherwise use document
+        const element = container ?
+            container.querySelector(`#${fullId}`) :
+            document.getElementById(fullId);
+
         if (!element) {
-            console.warn(`Card element not found: ${id}`);
+            console.warn(`Card element not found: ${fullId}${container ? ' (in container)' : ''}`);
         }
         return element;
+    }
+
+    /**
+     * Create scoped helpers for a specific card instance
+     * This allows card JS to work with both regular and duplicate instances
+     * @param {HTMLElement} container - Container element for this card
+     * @param {string} suffix - Suffix for this instance (null for non-duplicates)
+     * @returns {Object} Scoped helper functions
+     */
+    function createScopedHelpers(container = null, suffix = null) {
+        return {
+            // Scoped getElement
+            getElement: (id) => getElement(id, container, suffix),
+
+            // Scoped addEventListener
+            addEventListener: (elementId, event, handler) => {
+                const element = getElement(elementId, container, suffix);
+                if (element) {
+                    element.addEventListener(event, handler);
+                }
+            },
+
+            // Scoped getValue
+            getValue: (id) => {
+                const el = getElement(id, container, suffix);
+                return el ? el.value : null;
+            },
+
+            // Scoped setValue
+            setValue: (id, value) => {
+                const el = getElement(id, container, suffix);
+                if (el) {
+                    el.value = value;
+                    savePersistence();
+                }
+            },
+
+            // Scoped setChecked
+            setChecked: (id, checked) => {
+                const el = getElement(id, container, suffix);
+                if (el) {
+                    el.checked = checked;
+                    savePersistence();
+                }
+            },
+
+            // Scoped isChecked
+            isChecked: (id) => {
+                const el = getElement(id, container, suffix);
+                return el ? el.checked : false;
+            },
+
+            // Expose container and suffix for advanced use
+            container,
+            suffix,
+
+            // Re-export all other helpers
+            savePersistence,
+            ValidationPatterns,
+            DependencyPatterns,
+
+            // Scoped setupAutoFill
+            setupAutoFill: (selectId, optionsMap, confirmMessage) => {
+                const scopedHelpers = createScopedHelpers(container, suffix);
+                scopedHelpers.addEventListener(selectId, 'change', function() {
+                    const selectedValue = this.value;
+                    const defaults = optionsMap[selectedValue];
+
+                    if (defaults) {
+                        const message = confirmMessage ? confirmMessage(selectedValue, defaults) :
+                                       `Auto-fill typical values for ${selectedValue.replace('_', ' ')}?`;
+
+                        if (confirm(message)) {
+                            for (const [fieldId, value] of Object.entries(defaults)) {
+                                const field = scopedHelpers.getElement(fieldId);
+                                if (field && !field.value) {
+                                    field.value = value;
+                                }
+                            }
+                            savePersistence();
+                        }
+                    }
+                });
+            },
+
+            // Scoped setupVisualValidation
+            setupVisualValidation: (inputId, validator) => {
+                const scopedHelpers = createScopedHelpers(container, suffix);
+                scopedHelpers.addEventListener(inputId, 'input', function() {
+                    const result = validator(this.value);
+
+                    if (result && result.style) {
+                        Object.assign(this.style, result.style);
+                    }
+                });
+            },
+
+            // Scoped setupDependency
+            setupDependency: (triggerFieldId, event, dependencyCheck) => {
+                const scopedHelpers = createScopedHelpers(container, suffix);
+                scopedHelpers.addEventListener(triggerFieldId, event, function() {
+                    dependencyCheck(this, scopedHelpers);
+                });
+            }
+        };
     }
 
     /**
@@ -312,6 +428,7 @@ window.CardHelpers = (function() {
         setupDependency,
         addUtilityButton,
         createButton,
+        createScopedHelpers,  // NEW: For duplicate card support
         ValidationPatterns,
         DependencyPatterns
     };

@@ -22,6 +22,12 @@
     <span>•</span>
     <span><a href="https://github.com/tznind/st" target="_blank" style="color: #007bff; text-decoration: none; display: inline-flex; align-items: center;"><img width="12" height="12" alt="GitHub logo" src="https://github.com/user-attachments/assets/d45893e9-0b26-4259-8764-a9737ee1426e" style="margin-right: 3px; background: #000; border-radius: 50%; padding: 1px;" /> Source Code</a></span>
   </div>
+  
+  <!-- Validation warning indicator (upper right, subtle) -->
+  <button type="button" id="validation-warning" class="validation-warning" style="display: none;" title="Click to view validation errors">
+    <span class="warning-icon">⚠️</span>
+    <span class="warning-count">0</span>
+  </button>
 
   <form>
     <!-- Character Info Box -->
@@ -149,6 +155,7 @@
 <script src="json-loader.js"></script>
 <script src="data-loader.js"></script>
 <script src="persistence.js"></script>
+<script src="validation.js"></script>
 <script src="stats.js"></script>
 <script src="clock.js"></script>
 <script src="text-formatter.js"></script>

@@ -5,6 +5,38 @@
 window.TakeFrom = (function() {
     'use strict';
 
+    /**
+     * Deep clone and suffix all IDs in a move for duplicate support
+     * @param {Object} move - The move to clone
+     * @param {string} suffix - The suffix to append to IDs
+     * @returns {Object} - Cloned move with suffixed IDs
+     */
+    function cloneAndSuffixMove(move, suffix) {
+        // Deep clone the move object
+        const clonedMove = JSON.parse(JSON.stringify(move));
+
+        // Suffix the main move ID
+        const originalId = clonedMove.id;
+        clonedMove.id = `${originalId}_${suffix}`;
+
+        // DON'T suffix grantsCard - it should point to the actual card definition file
+        // The card system will use the suffixed move.id for unique container IDs
+        // (e.g., learned_granted_card_ac001_1, learned_granted_card_ac001_2)
+        // This allows multiple instances of the same card type, each with unique inputs
+
+        // Note: tracks use the move ID in their persistence keys
+        // The track names themselves are display labels and don't need suffixing
+        // The persistence system will use the suffixed move.id automatically
+
+        // Note: submoves don't have their own IDs - they're part of the parent move
+        // so no suffixing needed there
+
+        // Store the original ID for reference/debugging
+        clonedMove._originalId = originalId;
+        clonedMove._suffix = suffix;
+
+        return clonedMove;
+    }
 
     /**
      * Create takeFrom section for learning moves from other roles
@@ -12,10 +44,6 @@ window.TakeFrom = (function() {
     function createTakeFromSection(move, urlParams) {
         const takeFromDiv = document.createElement("div");
         takeFromDiv.className = "takeFrom-options";
-        
-        const heading = document.createElement("strong");
-        heading.textContent = "Learn from:";
-        takeFromDiv.appendChild(heading);
         
         // Support multiple takeFrom instances
         const maxInstances = move.multiple || 1;
@@ -242,30 +270,46 @@ window.TakeFrom = (function() {
      */
     function updateLearnedMoveDisplay(moveSelect, learnedMoveContainer, urlParams) {
         const selectedMoveId = moveSelect.value;
-        
+
         // Clear previous content
         learnedMoveContainer.innerHTML = '';
-        
+
         if (!selectedMoveId) return;
-        
+
         // Find the selected move data
-        const selectedMoveData = window.moves && window.moves.find(m => m.id === selectedMoveId);
+        let selectedMoveData = window.moves && window.moves.find(m => m.id === selectedMoveId);
         if (!selectedMoveData) return;
-        
+
+        // Extract source move ID and instance from the moveSelect ID
+        // Format: takeFrom_{sourceMoveId}_move or takeFrom_{sourceMoveId}_{instance}_move
+        const moveSelectIdParts = moveSelect.id.split('_');
+        const sourceMoveId = moveSelectIdParts[1]; // The ID of the move with takeFrom property
+        const instance = moveSelectIdParts.length > 3 ? moveSelectIdParts[2] : '1';
+
+        // Get the source move to check for takeFromAllowsDuplicates
+        const sourceMove = window.moves && window.moves.find(m => m.id === sourceMoveId);
+        const allowDuplicates = sourceMove && sourceMove.takeFromAllowsDuplicates === true;
+
+        // If duplicates are allowed, clone and suffix the move
+        if (allowDuplicates) {
+            selectedMoveData = cloneAndSuffixMove(selectedMoveData, instance);
+        }
+
         // Create a mini version of the move display
         const learnedMoveDiv = document.createElement("div");
         learnedMoveDiv.className = "learned-move";
-        
+
         // Use the centralized renderMove function to avoid code duplication
         if (window.MovesCore) {
-            const renderedMove = window.MovesCore.renderMove(selectedMoveData, {[selectedMoveId]: true}, urlParams);
-            
+            const effectiveMoveId = selectedMoveData.id; // Use potentially suffixed ID
+            const renderedMove = window.MovesCore.renderMove(selectedMoveData, {[effectiveMoveId]: true}, urlParams);
+
             // The renderMove creates a full .move div, but we want the content in our .learned-move div
             // So we copy the children from the rendered move to our learned move container
             while (renderedMove.firstChild) {
                 learnedMoveDiv.appendChild(renderedMove.firstChild);
             }
-            
+
             // Replace any granted card sections with learned-specific versions
             const grantedCardSections = learnedMoveDiv.querySelectorAll('.granted-card-options');
             grantedCardSections.forEach(section => {
@@ -277,9 +321,9 @@ window.TakeFrom = (function() {
                 }
             });
         }
-        
+
         learnedMoveContainer.appendChild(learnedMoveDiv);
-        
+
         // Refresh persistence to capture any new inputs in the learned move
         setTimeout(() => {
             const form = document.querySelector('form');
@@ -322,63 +366,78 @@ window.TakeFrom = (function() {
     function updateMoveOptions(roleSelect, moveSelect, moveId, instance = 1) {
         const selectedRole = roleSelect.value;
         const currentValue = moveSelect.value; // Preserve current selection
-        
+
         // Clear existing options except default
         moveSelect.innerHTML = '';
         const defaultOption = document.createElement("option");
         defaultOption.value = "";
         defaultOption.textContent = "Select move...";
         moveSelect.appendChild(defaultOption);
-        
+
         if (selectedRole && window.availableMap && window.availableMap[selectedRole]) {
             moveSelect.disabled = false;
-            
-            // Get the source move to check for takeCategory filter
+
+            // Get the source move to check for takeCategory filter and allowDuplicates
             const sourceMove = window.moves && window.moves.find(m => m.id === moveId);
             const takeCategoryFilter = sourceMove && sourceMove.takeCategory ? sourceMove.takeCategory : null;
-            
+            const allowDuplicates = sourceMove && sourceMove.takeFromAllowsDuplicates === true;
+
             // Get available moves for selected role and current roles
             const availableMoves = window.availableMap[selectedRole];
             const currentRoles = window.Utils ? window.Utils.getCurrentRoles() : [];
-            
+
             // Get all moves available to current roles (combined)
+            // Only needed if we're NOT allowing duplicates
             const currentRolesMoves = {};
-            currentRoles.forEach(role => {
-                const roleData = window.availableMap[role];
-                if (roleData) {
-                    Object.keys(roleData).forEach(key => {
-                        if (!key.startsWith('_') && key !== 'cards' && roleData[key] === true) {
-                            currentRolesMoves[key] = true;
-                        }
-                    });
-                }
-            });
-            
-            // Filter moves to only show those available to selected role but NOT to current roles
-            window.moves.forEach(move => {
-                if (move.id !== moveId && 
-                    availableMoves.hasOwnProperty(move.id) && 
-                    !currentRolesMoves.hasOwnProperty(move.id)) {
-                    
-                    // Apply category filtering if takeCategory is specified
-                    if (takeCategoryFilter && Array.isArray(takeCategoryFilter) && takeCategoryFilter.length > 0) {
-                        // Get the move's category (default to "Moves" if not specified)
-                        const moveCategory = move.category || "Moves";
-                        
-                        // Check if this move's category is in the allowed categories
-                        if (!takeCategoryFilter.includes(moveCategory)) {
-                            return; // Skip this move as it's not in the allowed categories
-                        }
+            if (!allowDuplicates) {
+                currentRoles.forEach(role => {
+                    const roleData = window.availableMap[role];
+                    if (roleData) {
+                        Object.keys(roleData).forEach(key => {
+                            if (!key.startsWith('_') && key !== 'cards' && roleData[key] === true) {
+                                currentRolesMoves[key] = true;
+                            }
+                        });
                     }
-                    
-                    const option = document.createElement("option");
-                    option.value = move.id;
-                    // Options don't support HTML, so strip formatting for dropdowns
-                    option.textContent = move.title;
-                    moveSelect.appendChild(option);
+                });
+            }
+
+            // Filter moves based on availability and settings
+            window.moves.forEach(move => {
+                // Always exclude the source move itself
+                if (move.id === moveId) {
+                    return;
                 }
+
+                // Move must be available to the selected role
+                if (!availableMoves.hasOwnProperty(move.id)) {
+                    return;
+                }
+
+                // If NOT allowing duplicates, exclude moves already possessed by current roles
+                if (!allowDuplicates && currentRolesMoves.hasOwnProperty(move.id)) {
+                    return;
+                }
+
+                // Apply category filtering if takeCategory is specified
+                if (takeCategoryFilter && Array.isArray(takeCategoryFilter) && takeCategoryFilter.length > 0) {
+                    // Get the move's category (default to "Moves" if not specified)
+                    const moveCategory = move.category || "Moves";
+
+                    // Check if this move's category is in the allowed categories
+                    if (!takeCategoryFilter.includes(moveCategory)) {
+                        return; // Skip this move as it's not in the allowed categories
+                    }
+                }
+
+                // This move passed all filters - add it to the dropdown
+                const option = document.createElement("option");
+                option.value = move.id;
+                // Options don't support HTML, so strip formatting for dropdowns
+                option.textContent = move.title;
+                moveSelect.appendChild(option);
             });
-            
+
             // Restore the previously selected value if it's still available
             if (currentValue && moveSelect.querySelector(`option[value="${currentValue}"]`)) {
                 moveSelect.value = currentValue;

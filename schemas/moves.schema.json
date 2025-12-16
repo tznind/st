@@ -127,6 +127,11 @@
           "examples": ["Moves", "Equipment", "Advancement"]
         }
       },
+      "takeFromAllowsDuplicates": {
+        "type": "boolean",
+        "description": "If true, allows selecting the same move multiple times from takeFrom. Each selection gets a unique ID suffix to prevent conflicts. Also disables filtering of moves already possessed by current roles. Default is false for backwards compatibility.",
+        "default": false
+      },
       "multiple": {
         "type": "integer",
         "description": "Number of checkboxes to show (for moves that can be taken multiple times)",

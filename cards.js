@@ -11,6 +11,57 @@ window.Cards = (function() {
     const loadedStyles = new Set();
     const loadedScripts = new Set();
 
+    // Configuration for fetch middleware
+    const FETCH_TIMEOUT = 10000; // 10 seconds
+    const MAX_RETRIES = 2;
+    const RETRY_DELAY_BASE = 500; // Base delay for exponential backoff
+
+    // Store original fetch
+    const originalFetch = window.fetch;
+
+    /**
+     * Fetch middleware with timeout and retry support
+     * Automatically applied to all fetch calls in this module
+     */
+    const fetch = async (url, options = {}) => {
+        let lastError;
+
+        for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+            const controller = new AbortController();
+            const signal = options.signal || controller.signal;
+            const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT);
+
+            try {
+                const response = await originalFetch(url, { ...options, signal });
+                clearTimeout(timeoutId);
+                return response;
+            } catch (error) {
+                clearTimeout(timeoutId);
+                lastError = error;
+
+                // Don't retry if user explicitly aborted
+                if (options.signal?.aborted) {
+                    throw error;
+                }
+
+                if (attempt < MAX_RETRIES) {
+                    // Exponential backoff: 500ms, 1000ms, 2000ms
+                    const delay = RETRY_DELAY_BASE * Math.pow(2, attempt);
+                    console.log(`Fetch failed for ${url}, retrying in ${delay}ms (attempt ${attempt + 1}/${MAX_RETRIES})...`);
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                } else {
+                    // Final attempt failed
+                    if (error.name === 'AbortError') {
+                        throw new Error(`Request timeout after ${FETCH_TIMEOUT}ms (${MAX_RETRIES + 1} attempts)`);
+                    }
+                    throw error;
+                }
+            }
+        }
+
+        throw lastError;
+    };
+
     /**
      * Load a card's definition and files
      * @param {string} cardId - ID of the card to load
@@ -58,13 +109,33 @@ window.Cards = (function() {
             
         } catch (error) {
             console.error(`Error loading card ${cardId}:`, error);
+
+            // Determine error type and provide helpful message
+            let errorTitle = 'Card Loading Failed';
+            let errorMessage = `Failed to load card: ${cardId}`;
+            let errorHelp = '';
+
+            if (error.message.includes('timeout')) {
+                errorTitle = 'Card Loading Timeout';
+                errorMessage = `The card "${cardId}" could not be loaded within the time limit.`;
+                errorHelp = 'The remote server may be slow or unreachable. Please check your network connection and try refreshing the page.';
+            } else if (error.message.includes('NetworkError') || error.name === 'TypeError' && error.message.includes('fetch')) {
+                errorTitle = 'Network Error';
+                errorMessage = `Unable to connect to load card: ${cardId}`;
+                errorHelp = 'This may be due to a network issue or the remote server being unavailable. Please check your connection and try again.';
+            } else if (error.message.includes('Failed to load card definition')) {
+                errorMessage = `Card definition not found: ${cardId}`;
+                errorHelp = 'The card configuration file could not be found. This may indicate an issue with the card setup.';
+            }
+
             return {
                 id: cardId,
                 title: `${cardId} (Error)`,
                 html: `<div class="card card-error">
-                    <h3>Card Error</h3>
-                    <p>Failed to load card: ${cardId}</p>
-                    <p class="error-details">${error.message}</p>
+                    <h3>${errorTitle}</h3>
+                    <p><strong>${errorMessage}</strong></p>
+                    ${errorHelp ? `<p class="error-help">${errorHelp}</p>` : ''}
+                    <p class="error-details"><small>Technical details: ${error.message}</small></p>
                 </div>`
             };
         }
@@ -126,16 +197,21 @@ window.Cards = (function() {
     function initializeRenderedCards(cardDefs) {
         // Ensure CardInitializers namespace exists
         window.CardInitializers = window.CardInitializers || {};
-        
+
         cardDefs.forEach(cardDef => {
             const cardId = cardDef.id;
-            
+
+            // Find the rendered card element for this card
+            const cardWrapper = document.querySelector(`.card-wrapper[data-card-id="${cardId}"]`);
+            const cardElement = cardWrapper ? cardWrapper.querySelector('.card') : null;
+
             // Look for exported initialization function
             const initFunction = window.CardInitializers[cardId];
             if (typeof initFunction === 'function') {
                 try {
                     console.log(`Initializing card: ${cardId}`);
-                    initFunction();
+                    // Pass container and null suffix (regular cards don't have duplicates)
+                    initFunction(cardElement, null);
                     console.log(`Card ${cardId} initialized successfully`);
                 } catch (error) {
                     console.error(`Error initializing card ${cardId}:`, error);

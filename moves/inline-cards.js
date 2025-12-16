@@ -7,6 +7,49 @@ window.InlineCards = (function() {
     'use strict';
 
     /**
+     * Suffix all id and for attributes in HTML string
+     * @param {string} html - HTML string to transform
+     * @param {string} suffix - Suffix to append to IDs
+     * @returns {string} Transformed HTML
+     */
+    function suffixHTMLIds(html, suffix) {
+        if (!suffix) return html;
+
+        // Replace id="xxx" with id="xxx_suffix"
+        html = html.replace(/\bid="([^"]+)"/g, (match, id) => {
+            return `id="${id}_${suffix}"`;
+        });
+
+        // Replace for="xxx" with for="xxx_suffix" (for label elements)
+        html = html.replace(/\bfor="([^"]+)"/g, (match, forId) => {
+            return `for="${forId}_${suffix}"`;
+        });
+
+        // Also handle id='xxx' and for='xxx' (single quotes)
+        html = html.replace(/\bid='([^']+)'/g, (match, id) => {
+            return `id='${id}_${suffix}'`;
+        });
+
+        html = html.replace(/\bfor='([^']+)'/g, (match, forId) => {
+            return `for='${forId}_${suffix}'`;
+        });
+
+        return html;
+    }
+
+    /**
+     * Extract suffix from a learned move container ID
+     * @param {string} containerId - Container ID (e.g., "learned_granted_card_ac001_2")
+     * @returns {string|null} Suffix if found (e.g., "2"), null otherwise
+     */
+    function extractSuffixFromContainerId(containerId) {
+        // Pattern: learned_granted_card_{moveId}_{suffix}
+        // We want to extract the suffix at the end
+        const match = containerId.match(/^learned_granted_card_[^_]+_(\d+)$/);
+        return match ? match[1] : null;
+    }
+
+    /**
      * Display a card inline within a container
      * @param {string} containerId - ID of the container to render the card into
      * @param {string} cardId - ID of the card to display
@@ -26,6 +69,9 @@ window.InlineCards = (function() {
 
         console.log(`InlineCards.displayCard: Container found, attempting to load card ${cardId}`);
 
+        // Show loading state in the container
+        container.innerHTML = '<div class="card-loading">Loading card...</div>';
+
         try {
             if (window.Cards) {
                 console.log(`InlineCards.displayCard: Calling window.Cards.loadCard for ${cardId}`);
@@ -36,7 +82,18 @@ window.InlineCards = (function() {
                 const cardDiv = document.createElement("div");
                 cardDiv.className = className;
                 cardDiv.setAttribute('data-card-id', cardId);
-                cardDiv.innerHTML = cardData.html;
+
+                // Check if this is a learned move with a suffix
+                const suffix = extractSuffixFromContainerId(containerId);
+                let cardHTML = cardData.html;
+
+                // If we have a suffix, transform all IDs in the card HTML
+                if (suffix) {
+                    console.log(`InlineCards.displayCard: Suffixing card IDs with: ${suffix}`);
+                    cardHTML = suffixHTMLIds(cardHTML, suffix);
+                }
+
+                cardDiv.innerHTML = cardHTML;
                 container.appendChild(cardDiv);
 
                 // Make sure the parent granted-card-options container is visible
@@ -47,7 +104,8 @@ window.InlineCards = (function() {
                 }
 
                 // Try to initialize card-specific functionality
-                initializeCardFunctionality(cardId);
+                // Pass the cardDiv as container and suffix (if any) to the init function
+                initializeCardFunctionality(cardId, cardDiv, suffix);
 
                 // Format any elements with data-format-text attribute
                 setTimeout(() => {
@@ -119,39 +177,44 @@ window.InlineCards = (function() {
      * Initialize card-specific functionality after card HTML is inserted
      * Uses new CardInitializers export pattern with fallback to old convention
      * @param {string} cardId - ID of the card to initialize
+     * @param {HTMLElement} container - Container element for this card instance
+     * @param {string|null} suffix - Suffix for this instance (null for non-duplicates)
      */
-    function initializeCardFunctionality(cardId) {
+    function initializeCardFunctionality(cardId, container, suffix = null) {
         // Use a short timeout to ensure DOM is fully ready
         setTimeout(function() {
-            console.log(`Inline Cards: Attempting to initialize card functionality for: ${cardId}`);
-            
+            console.log(`Inline Cards: Attempting to initialize card functionality for: ${cardId} (suffix: ${suffix})`);
+
             // Ensure CardInitializers namespace exists
             window.CardInitializers = window.CardInitializers || {};
-            
+
             // Look for exported initialization function (new pattern)
             const initFunction = window.CardInitializers[cardId];
             if (typeof initFunction === 'function') {
                 try {
-                    console.log(`Inline Cards: Calling CardInitializers['${cardId}']()...`);
-                    initFunction();
+                    console.log(`Inline Cards: Calling CardInitializers['${cardId}'](container, suffix)...`);
+                    // Pass container and suffix to the init function
+                    // This allows the card JS to scope its queries and handle duplicates
+                    initFunction(container, suffix);
                     console.log(`Inline Cards: Card ${cardId} initialized successfully`);
                 } catch (error) {
                     console.error(`Inline Cards: Error initializing card ${cardId}:`, error);
                 }
             } else {
                 console.log(`Inline Cards: No new-style initialization function found for card: ${cardId}`);
-                
+
                 // Fallback to old convention-based approach for backwards compatibility
                 const functionName = 'initialize' + cardId
                     .split('-')
                     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
                     .join('');
-                
+
                 console.log(`Inline Cards: Looking for old-style function: ${functionName}`);
-                
+
                 if (typeof window[functionName] === 'function') {
-                    console.log(`Inline Cards: Falling back to old convention: ${functionName}()`);
-                    window[functionName]();
+                    console.log(`Inline Cards: Falling back to old convention: ${functionName}(container, suffix)`);
+                    // Pass parameters for backwards compatibility
+                    window[functionName](container, suffix);
                 } else {
                     console.log(`Inline Cards: No initialization needed for ${cardId}`);
                 }

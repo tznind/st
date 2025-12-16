@@ -564,6 +564,69 @@ button:focus {
   margin-top: -2px;
 }
 
+/* === VALIDATION WARNING BUTTON === */
+/* Positioned in upper right, subtle styling similar to loading indicator */
+/* Offset to the left to avoid overlapping with loading indicator */
+.validation-warning {
+  position: fixed;
+  top: 8px;
+  right: 120px;
+  background: hsla(37, 100%, 96%, 0.85);
+  color: white;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 999;
+  transition: all 0.2s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.validation-warning:hover {
+  background: rgba(255, 152, 0, 0.95);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.validation-warning:active {
+  transform: translateY(0);
+}
+
+.validation-warning:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 152, 0, 0.4);
+}
+
+.validation-warning .warning-icon {
+  font-size: 12px;
+  line-height: 1;
+}
+
+.validation-warning .warning-count {
+  background: rgba(203, 44, 44, 1);
+  padding: 1px 5px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: bold;
+  min-width: 16px;
+  text-align: center;
+}
+
+/* Pulse animation for warning button */
+@keyframes pulse-warning {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(220, 53, 69, 0);
+  }
+}
+
 /* Character count flash */
 .char-count-flash {
   position: absolute;
@@ -991,6 +1054,18 @@ button:focus {
   background-position: center;
 }
 
+/* Clock error state */
+.clock-error,
+.stat-clock.clock-error {
+  border: 2px solid #d9534f;
+  background-color: #f8d7da;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: #721c24;
+}
+
 /* === STAT TRACK COUNTER STYLES === */
 .stat-track-counter {
   display: flex;
@@ -1411,42 +1486,40 @@ button:focus {
 
 /* === TAKEFROM OPTIONS === */
 .takeFrom-options {
-  background: #e3f2fd;
-  border: 1px solid #bbdefb;
-  border-radius: 4px;
-  padding: 10px;
+  /* Minimal container - no background or border */
   margin-top: 10px;
 }
 
 .takeFrom-controls {
   display: flex;
-  gap: 20px;
+  gap: 12px;
   align-items: center;
-  margin-top: 10px;
+  margin-bottom: 8px;
   flex-wrap: wrap;
 }
 
 .takeFrom-controls label {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-weight: 600;
-  color: #1976d2;
+  gap: 6px;
+  font-weight: 500;
+  color: #555;
+  font-size: 13px;
 }
 
 .takeFrom-controls select {
-  min-width: 150px;
-  padding: 6px 10px;
-  border: 2px solid #90caf9;
-  border-radius: 4px;
+  min-width: 140px;
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
   background: white;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .takeFrom-controls select:focus {
   border-color: #1976d2;
   outline: none;
-  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.1);
 }
 
 .takeFrom-controls select:disabled {
@@ -1459,18 +1532,19 @@ button:focus {
 .takeFrom-instances {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 8px;
 }
 
 .takeFrom-instance {
-  background: #f8f9fa;
-  border: 1px solid #90caf9;
-  border-radius: 4px;
-  padding: 12px;
+  /* Minimal - just a subtle left border */
+  border-left: 3px solid #e0e0e0;
+  padding-left: 10px;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 .takeFrom-instance:first-child {
-  background: #e3f2fd;
+  /* No special styling */
 }
 
 .learned-moves-container {
@@ -1487,40 +1561,30 @@ button:focus {
 
 /* === GRANTED CARD DISPLAY === */
 .granted-card-options {
-  background: #e0f2fe;
-  border: 1px solid #0369a1;
-  border-radius: 4px;
-  padding: 15px;
-  margin-top: 15px;
+  /* Minimal - just a label, no heavy borders */
+  margin-top: 10px;
+  padding-left: 5px;
+}
+
+.granted-card-options strong {
+  font-size: 12px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .granted-card-container {
-  margin-top: 15px;
+  margin-top: 8px;
 }
 
 .granted-card {
-  background: #f8fafc;
-  border: 2px solid #0369a1;
-  border-radius: 6px;
-  padding: 15px;
-  position: relative;
-}
-
-.granted-card::before {
-  content: "Granted:";
-  position: absolute;
-  top: -10px;
-  left: 10px;
-  background: #e0f2fe;
-  padding: 0 8px;
-  font-size: 12px;
-  font-weight: bold;
-  color: #0369a1;
+  /* No extra wrapper styling - let the card speak for itself */
+  margin: 0;
 }
 
 .granted-card .card {
   background: #ffffff;
-  border: 1px solid #cbd5e1;
+  border: 1px solid #ddd;
   margin: 0;
 }
 
@@ -1530,42 +1594,35 @@ button:focus {
 
 /* === LEARNED MOVE DISPLAY === */
 .learned-move-container {
-  margin-top: 15px;
+  margin-top: 8px;
 }
 
 .learned-move {
-  background: #f0f8ff;
-  border: 2px solid #1976d2;
-  border-radius: 6px;
-  padding: 15px;
-  position: relative;
+  /* Minimal - no heavy background or border */
+  border-left: 3px solid #1976d2;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .learned-move::before {
-  content: "Learned Move:";
-  position: absolute;
-  top: -10px;
-  left: 10px;
-  background: #f0f8ff;
-  padding: 0 8px;
-  font-size: 12px;
-  font-weight: bold;
-  color: #1976d2;
+  /* Remove the "Learned Move:" label for cleaner look */
+  display: none;
 }
 
 .learned-move .move-title {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .learned-move .outcome {
-  background: #ffffff;
-  border-left: 4px solid #1976d2;
-  margin: 8px 0;
+  background: #fafafa;
+  border-left: 3px solid #1976d2;
+  margin: 6px 0;
 }
 
 .learned-move .pick-options {
-  background: #e3f2fd;
-  border: 1px solid #1976d2;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
 }
 
 .card-wrapper {
@@ -1726,6 +1783,34 @@ button:focus {
 .card-error p {
   margin: 0;
   font-weight: normal;
+}
+
+.card-error .error-help {
+  margin-top: 10px;
+  padding: 10px;
+  background: #fff3cd;
+  border-left: 3px solid #856404;
+  font-size: 0.9em;
+}
+
+.card-error .error-details {
+  margin-top: 10px;
+  opacity: 0.7;
+  font-size: 0.85em;
+}
+
+/* Loading state */
+.card-loading {
+  padding: 20px;
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
 }
 
 /* === SECTION STYLING === */

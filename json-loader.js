@@ -86,12 +86,23 @@ window.JsonLoader = (function() {
         
         // Combine all move arrays into a single array and normalize categories
         const allMoves = [];
+        const moveSourceMap = {}; // Track which file each move comes from
+
         roleConfigs.forEach(config => {
             const moves = window[config.variableName];
             if (Array.isArray(moves)) {
                 console.log(`${config.variableName} contains:`, moves.map(m => m.id));
                 // Normalize moves: set category to "Moves" if not specified
                 const normalizedMoves = moves.map(move => {
+                    // Track source file for validation
+                    if (!moveSourceMap[move.id]) {
+                        moveSourceMap[move.id] = [];
+                    }
+                    moveSourceMap[move.id].push({
+                        file: config.filePath,
+                        role: config.roleName
+                    });
+
                     if (!move.category) {
                         return { ...move, category: "Moves" };
                     }
@@ -100,6 +111,9 @@ window.JsonLoader = (function() {
                 allMoves.push(...normalizedMoves);
             }
         });
+
+        // Store the source map globally for validation
+        window.moveSourceMap = moveSourceMap;
         
         console.log(`Combined ${allMoves.length} total moves`);
         return allMoves;

@@ -238,31 +238,91 @@ window.TextFormatter = (function() {
     }
 
     /**
+     * Visitor function that walks the DOM tree and formats text nodes in-place
+     * This preserves all element structure including nested inputs, spans, divs, etc.
+     * @param {Node} node - The node to visit and format
+     */
+    function visitAndFormatNode(node) {
+        // Skip if this is an element that shouldn't be formatted
+        if (node.nodeType === Node.ELEMENT_NODE) {
+            const tagName = node.tagName.toLowerCase();
+            // Don't format inside code, pre, script, style elements
+            if (['code', 'pre', 'script', 'style'].includes(tagName)) {
+                return;
+            }
+        }
+
+        if (node.nodeType === Node.TEXT_NODE) {
+            const originalText = node.textContent;
+
+            // Skip whitespace-only text nodes (newlines, spaces, tabs)
+            if (originalText.trim() === '') {
+                return;
+            }
+
+            // Trim the text to remove leading/trailing whitespace (including newlines)
+            // This prevents source HTML formatting from being converted to <br> tags
+            const trimmedText = originalText.trim();
+
+            // Format the trimmed text
+            const formattedHTML = format(trimmedText);
+
+            // Only replace if formatting actually changed something
+            if (formattedHTML !== trimmedText && formattedHTML.includes('<')) {
+                // Create a temporary container to parse the formatted HTML
+                const temp = document.createElement('span');
+                temp.innerHTML = formattedHTML;
+
+                // Replace the text node with the formatted content
+                const parent = node.parentNode;
+                const nextSibling = node.nextSibling;
+
+                // Insert all formatted nodes before the original text node
+                while (temp.firstChild) {
+                    parent.insertBefore(temp.firstChild, nextSibling);
+                }
+
+                // Remove the original text node
+                parent.removeChild(node);
+            } else if (trimmedText !== originalText) {
+                // Text was trimmed but not formatted - just update the text content
+                node.textContent = trimmedText;
+            }
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+            // Recursively visit child nodes
+            // Use Array.from to create a static copy since we may modify the DOM
+            const children = Array.from(node.childNodes);
+            children.forEach(child => visitAndFormatNode(child));
+        }
+    }
+
+    /**
      * Auto-format all elements with data-format-text attribute
-     * Elements can either have text in the attribute value or in their textContent
-     * After formatting, the attribute is set to "formatted" to avoid re-processing
+     * Uses a visitor pattern to walk the DOM tree and format text nodes in-place
+     * Preserves all element structure including inputs, spans, divs, etc.
      * @param {string} selector - CSS selector for elements to format (default: '[data-format-text]:not([data-format-text="formatted"])')
      */
     function formatElements(selector = '[data-format-text]:not([data-format-text="formatted"])') {
         const elements = document.querySelectorAll(selector);
 
         elements.forEach(el => {
-            // Get source text from attribute value or element's text content
+            // Get source text from attribute value
             const sourceAttr = el.getAttribute('data-format-text');
-            const sourceText = sourceAttr && sourceAttr !== '' && sourceAttr !== 'formatted'
-                ? sourceAttr
-                : el.textContent;
 
-            // Format and update innerHTML
-            if (sourceText) {
-                el.innerHTML = format(sourceText);
+            if (sourceAttr && sourceAttr !== '' && sourceAttr !== 'formatted') {
+                // If there's text in the attribute, set it as innerHTML first
+                el.innerHTML = sourceAttr;
             }
+
+            // Now use the visitor pattern to format all text nodes in the tree
+            // This preserves all element structure
+            visitAndFormatNode(el);
 
             // Mark as formatted to avoid re-processing
             el.setAttribute('data-format-text', 'formatted');
         });
 
-        console.log(`TextFormatter: Formatted ${elements.length} elements`);
+        console.log(`TextFormatter: Formatted ${elements.length} elements using visitor pattern`);
     }
 
     // Public API

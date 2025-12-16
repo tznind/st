@@ -1,0 +1,12 @@
+{
+  "id": "dribble",
+  "title": "A Dribble",
+  "path": "data/cards/dribble",
+  "description": "A small fast-breeding alien creature which makes soft cooing noises",
+  "version": "1.0.0",
+  "author": "Core System",
+  "files": {
+    "html": "card.html",
+    "js": "card.js"
+  }
+}
