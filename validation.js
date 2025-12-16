@@ -68,22 +68,33 @@ window.Validation = (function() {
             return errors; // Data not loaded yet
         }
 
-        // Find moves that appear in multiple files
+        // Find moves that appear in multiple DIFFERENT files
         Object.entries(window.moveSourceMap).forEach(([moveId, sources]) => {
-            if (sources.length > 1) {
-                // This move ID appears in multiple files
-                const fileList = sources.map(s => `${s.role} (${s.file})`).join('\n  ');
+            // Get unique files for this move ID
+            const uniqueFiles = [...new Set(sources.map(s => s.file))];
+
+            if (uniqueFiles.length > 1) {
+                // This move ID appears in multiple different files - that's a real problem
+                const fileList = uniqueFiles.map(file => {
+                    const rolesInFile = sources
+                        .filter(s => s.file === file)
+                        .map(s => s.role)
+                        .join(', ');
+                    return `${file} (${rolesInFile})`;
+                }).join('\n  ');
 
                 errors.push({
                     type: 'duplicate_move_id',
                     severity: 'error',
                     moveId: moveId,
                     sources: sources,
-                    count: sources.length,
-                    message: `Move ID "${moveId}" defined in ${sources.length} different files`,
+                    count: uniqueFiles.length,
+                    message: `Move ID "${moveId}" defined in ${uniqueFiles.length} different files`,
                     details: `Move "${moveId}" appears in:\n  ${fileList}\n\nThis will cause unpredictable behavior. Each move should have a unique ID across all files.`
                 });
             }
+            // Note: If a move appears in multiple roles within the SAME file, that's fine
+            // (e.g., a move granted by multiple classes in the same expansion)
         });
 
         return errors;
