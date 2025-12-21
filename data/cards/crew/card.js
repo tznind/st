@@ -202,10 +202,6 @@
       }
       
       function removeMember(index) {
-        // Remove the specific row
-        const row = document.querySelector(`#m${index}n`).closest('.member-row');
-        if (row) row.remove();
-
         // Collect all remaining member data before re-indexing
         const remainingMembers = [];
         for (let i = 0; i < memberCount; i++) {
@@ -240,27 +236,56 @@
         // Update member count
         memberCount = remainingMembers.length;
 
-        // If no members left, remove headers and reset count
+        // Clear the container
+        membersContainer.innerHTML = '';
+
+        // If no members left, just remove from URL
         if (memberCount === 0) {
-          const headers = membersContainer.querySelector('.member-headers');
-          if (headers) headers.remove();
           params.delete('cr_cnt');
         } else {
+          // Re-add headers
+          const headers = document.createElement('div');
+          headers.className = 'member-headers';
+          headers.innerHTML = `
+            <div class="member-name">Name</div>
+            <div class="member-tag">Tag</div>
+            <div class="member-traits">Traits</div>
+            <div class="member-hp">HP</div>
+            <div class="member-maxhp">Max</div>
+            <div class="remove-spacer"></div>
+          `;
+          membersContainer.appendChild(headers);
+
           // Re-add members with sequential indices
           params.set('cr_cnt', memberCount.toString());
           remainingMembers.forEach((member, newIndex) => {
+            // Add to URL
             if (member.name) params.set(`m${newIndex}n`, member.name);
             if (member.tag) params.set(`m${newIndex}t`, member.tag);
             if (member.traits) params.set(`m${newIndex}r`, member.traits);
             if (member.hp) params.set(`m${newIndex}h`, member.hp);
+
+            // Create the row in DOM
+            const row = createMemberRow(newIndex);
+            membersContainer.appendChild(row);
+
+            // Populate values
+            const nameInput = document.getElementById(`m${newIndex}n`);
+            const tagInput = document.getElementById(`m${newIndex}t`);
+            const traitsInput = document.getElementById(`m${newIndex}r`);
+            const hpInput = document.getElementById(`m${newIndex}h`);
+            const maxHpInput = document.getElementById(`m${newIndex}m`);
+
+            if (nameInput) nameInput.value = member.name;
+            if (tagInput) tagInput.value = member.tag;
+            if (traitsInput) traitsInput.value = member.traits;
+            if (hpInput) hpInput.value = member.hp;
+            if (maxHpInput) maxHpInput.value = calculateHP();
           });
         }
 
         const newUrl = params.toString() ? '?' + params.toString() : window.location.pathname;
         window.history.replaceState({}, '', newUrl);
-
-        // Reload the page to re-render with correct indices
-        window.location.reload();
       }
       
       // Make removeMember globally accessible
