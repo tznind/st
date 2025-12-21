@@ -205,25 +205,62 @@
         // Remove the specific row
         const row = document.querySelector(`#m${index}n`).closest('.member-row');
         if (row) row.remove();
-        
-        // Clean up URL params for this member
+
+        // Collect all remaining member data before re-indexing
+        const remainingMembers = [];
+        for (let i = 0; i < memberCount; i++) {
+          if (i === index) continue; // Skip the deleted member
+
+          const nameInput = document.getElementById(`m${i}n`);
+          const tagInput = document.getElementById(`m${i}t`);
+          const traitsInput = document.getElementById(`m${i}r`);
+          const hpInput = document.getElementById(`m${i}h`);
+
+          // Only include if the row still exists in DOM
+          if (nameInput) {
+            remainingMembers.push({
+              name: nameInput.value || '',
+              tag: tagInput ? tagInput.value || '' : '',
+              traits: traitsInput ? traitsInput.value || '' : '',
+              hp: hpInput ? hpInput.value || '' : ''
+            });
+          }
+        }
+
+        // Clean up all old member URL params
         const params = new URLSearchParams(window.location.search);
-        params.delete(`m${index}n`);
-        params.delete(`m${index}t`);
-        params.delete(`m${index}r`);
-        params.delete(`m${index}h`); // Current HP
-        params.delete(`m${index}m`); // Max HP (calculated)
-        
+        for (let i = 0; i < memberCount; i++) {
+          params.delete(`m${i}n`);
+          params.delete(`m${i}t`);
+          params.delete(`m${i}r`);
+          params.delete(`m${i}h`);
+          params.delete(`m${i}m`);
+        }
+
+        // Update member count
+        memberCount = remainingMembers.length;
+
         // If no members left, remove headers and reset count
-        if (membersContainer.querySelectorAll('.member-row').length === 0) {
+        if (memberCount === 0) {
           const headers = membersContainer.querySelector('.member-headers');
           if (headers) headers.remove();
-          memberCount = 0;
           params.delete('cr_cnt');
+        } else {
+          // Re-add members with sequential indices
+          params.set('cr_cnt', memberCount.toString());
+          remainingMembers.forEach((member, newIndex) => {
+            if (member.name) params.set(`m${newIndex}n`, member.name);
+            if (member.tag) params.set(`m${newIndex}t`, member.tag);
+            if (member.traits) params.set(`m${newIndex}r`, member.traits);
+            if (member.hp) params.set(`m${newIndex}h`, member.hp);
+          });
         }
-        
+
         const newUrl = params.toString() ? '?' + params.toString() : window.location.pathname;
         window.history.replaceState({}, '', newUrl);
+
+        // Reload the page to re-render with correct indices
+        window.location.reload();
       }
       
       // Make removeMember globally accessible
