@@ -277,8 +277,11 @@
           shape.setAttribute('data-cr-loyalty-listener', 'true');
         }
       });
-      
+
       // Load existing members from URL
+      // Clear container first to prevent doubling if initialized multiple times
+      membersContainer.innerHTML = '';
+
       for (let i = 0; i < memberCount; i++) {
         if (i === 0) {
           // Add headers
