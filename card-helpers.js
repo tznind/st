@@ -204,6 +204,56 @@ window.CardHelpers = (function() {
                 scopedHelpers.addEventListener(triggerFieldId, event, function() {
                     dependencyCheck(this, scopedHelpers);
                 });
+            },
+
+            // Dynamic Table Helpers
+
+            /**
+             * Add a row to a dynamic table with optional values
+             * @param {string} tableId - Base table ID (without suffix)
+             * @param {Object} values - Optional object with field values {fieldName: value}
+             */
+            addTableRow: (tableId, values = {}) => {
+                const fullTableId = suffix ? `${tableId}_${suffix}` : tableId;
+                if (window.DynamicTable && window.DynamicTable.addRow) {
+                    window.DynamicTable.addRow(fullTableId, values);
+                }
+            },
+
+            /**
+             * Clear all rows from a dynamic table
+             * @param {string} tableId - Base table ID (without suffix)
+             */
+            clearTable: (tableId) => {
+                const fullTableId = suffix ? `${tableId}_${suffix}` : tableId;
+                if (window.DynamicTable && window.DynamicTable.clearTable) {
+                    window.DynamicTable.clearTable(fullTableId);
+                }
+            },
+
+            /**
+             * Get all data from a dynamic table
+             * @param {string} tableId - Base table ID (without suffix)
+             * @returns {Array} Array of row objects
+             */
+            getTableData: (tableId) => {
+                const fullTableId = suffix ? `${tableId}_${suffix}` : tableId;
+                if (window.DynamicTable && window.DynamicTable.getTableData) {
+                    return window.DynamicTable.getTableData(fullTableId);
+                }
+                return [];
+            },
+
+            /**
+             * Set table data from an array of objects
+             * @param {string} tableId - Base table ID (without suffix)
+             * @param {Array} data - Array of row objects {fieldName: value}
+             */
+            setTableData: (tableId, data) => {
+                const fullTableId = suffix ? `${tableId}_${suffix}` : tableId;
+                if (window.DynamicTable && window.DynamicTable.setTableData) {
+                    window.DynamicTable.setTableData(fullTableId, data);
+                }
             }
         };
     }

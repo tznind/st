@@ -39,21 +39,57 @@ window.renderStats = function(containerSelector, hexStats) {
       const clockFaces = stat.clock.faces;
       const clockFolder = `data/clocks/${clockType}`;
       
+      // Create wrapper for clock with relative positioning (for floating inputs)
+      const clockWrapper = document.createElement("div");
+      clockWrapper.className = "clock-wrapper";
+
       const clockDiv = document.createElement("div");
       clockDiv.className = "clock stat-clock";
       clockDiv.id = stat.id || `clock_${Date.now()}`;
       clockDiv.setAttribute('data-clock-folder', clockFolder);
       clockDiv.setAttribute('data-clock-faces', clockFaces);
-      
+
       // Create hidden input for persistence
       const input = document.createElement("input");
       input.type = "hidden";
       input.id = clockDiv.id + "-value";
       // Read initial value from URL params (same pattern as tracks)
       input.value = urlParams.get(input.id) || "0";
-      
-      hexContainer.appendChild(clockDiv);
-      hexContainer.appendChild(input);
+
+      clockWrapper.appendChild(clockDiv);
+      clockWrapper.appendChild(input);
+
+      // Add floating inputs if configured
+      if (stat.clock.floatingInputs && Array.isArray(stat.clock.floatingInputs)) {
+        stat.clock.floatingInputs.forEach(floatingInput => {
+          if (!floatingInput.id || !floatingInput.position || !floatingInput.size) {
+            console.warn('Invalid floating input configuration:', floatingInput);
+            return;
+          }
+
+          const floatingInputEl = document.createElement("input");
+          floatingInputEl.type = "text";
+          floatingInputEl.className = "clock-floating-input";
+          floatingInputEl.id = `${clockDiv.id}_${floatingInput.id}`;
+          floatingInputEl.setAttribute('aria-label', floatingInput.id);
+
+          // Position and size from config
+          const [x, y] = floatingInput.position;
+          const [width, height] = floatingInput.size;
+
+          floatingInputEl.style.left = `${x}px`;
+          floatingInputEl.style.top = `${y}px`;
+          floatingInputEl.style.width = `${width}px`;
+          floatingInputEl.style.height = `${height}px`;
+
+          // Load persisted value from URL
+          floatingInputEl.value = urlParams.get(floatingInputEl.id) || "";
+
+          clockWrapper.appendChild(floatingInputEl);
+        });
+      }
+
+      hexContainer.appendChild(clockWrapper);
       
       // Add title if provided
       if (stat.title) {

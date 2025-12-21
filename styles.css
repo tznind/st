@@ -1045,6 +1045,11 @@ button:focus {
 }
 
 /* === CLOCK STYLES === */
+.clock-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
 .stat-clock {
   width: 130px;
   height: 130px;
@@ -1052,6 +1057,26 @@ button:focus {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+/* Clock floating inputs */
+input.clock-floating-input {
+  position: absolute;
+  border: 1px solid #ccc;
+  background: rgba(255, 255, 255, 0.9);
+  container-type: size;
+  font-size: clamp(6px, 50cqh, 16px);
+  padding: 1px;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input.clock-floating-input:focus {
+  outline: 1px solid #007bff;
+  background: rgba(255, 255, 255, 1);
 }
 
 /* Clock error state */
@@ -1944,12 +1969,13 @@ hr {
   .hex-container:has(.stat-clock) {
     margin-top: 4px;
   }
-  
-  .stat-clock {
-    width: 110px;
-    height: 110px;
+
+  /* Scale clock wrapper to maintain floating input positions - ratio 110/130 = 0.846 */
+  .clock-wrapper {
+    transform: scale(0.846);
+    transform-origin: center center;
   }
-  
+
   .move {
     padding: 15px;
   }
@@ -2039,12 +2065,13 @@ hr {
   .hex-title {
     font-size: 11px;
   }
-  
-  .stat-clock {
-    width: 90px;
-    height: 90px;
+
+  /* Scale clock wrapper for narrow screens to maintain floating input positions - ratio 90/130 = 0.692 */
+  .clock-wrapper {
+    transform: scale(0.692);
+    transform-origin: center center;
   }
-  
+
   /* Reduce various section margins */
   .card-section {
     margin-bottom: 15px;

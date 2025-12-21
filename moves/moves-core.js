@@ -272,40 +272,66 @@ window.MovesCore = (function() {
 
     /**
      * Create granted card section
+     * Supports multiple card instances when grantsCardAllowsDuplicates: true
      */
     function createGrantedCardSection(move, urlParams, available) {
         if (!move.grantsCard || !window.InlineCards) {
             return null;
         }
 
-        const containerId = `granted_card_${move.id}`;
-        const cardSection = window.InlineCards.createCardContainer(containerId, "Grants:");
+        // Check if this move should create multiple card instances
+        const allowsDuplicates = move.grantsCardAllowsDuplicates === true;
+        const instanceCount = (allowsDuplicates && move.multiple) ? move.multiple : 1;
 
-        const isTaken = isMoveTaken(move, urlParams, available);
+        // Container to hold all card sections
+        const wrapper = document.createElement('div');
+        wrapper.className = 'granted-cards-wrapper';
 
-        console.log(`createGrantedCardSection for move ${move.id}:`, {
-            moveId: move.id,
-            grantsCard: move.grantsCard,
-            isTaken: isTaken,
-            availableValue: available[move.id],
-            urlParam: urlParams.get(`move_${move.id}`)
-        });
+        for (let i = 0; i < instanceCount; i++) {
+            const instance = i + 1;
+            const suffix = (instanceCount > 1) ? instance.toString() : null;
+            const containerId = suffix
+                ? `granted_card_${move.id}_${suffix}`
+                : `granted_card_${move.id}`;
 
-        if (isTaken) {
-            // Show the card after the container is added to the DOM
-            console.log(`Move ${move.id} is taken, scheduling displayCard for ${move.grantsCard}`);
-            // Use setTimeout to ensure the container is in the DOM before calling displayCard
-            setTimeout(() => {
-                console.log(`Move ${move.id}: Now calling displayCard for ${move.grantsCard}`);
-                window.InlineCards.displayCard(containerId, move.grantsCard);
-            }, 0);
-        } else {
-            // Hide initially
-            console.log(`Move ${move.id} is NOT taken, hiding card section`);
-            cardSection.style.display = 'none';
+            const checkboxId = suffix
+                ? `move_${move.id}_${suffix}`
+                : `move_${move.id}`;
+
+            const cardSection = window.InlineCards.createCardContainer(
+                containerId,
+                instanceCount > 1 ? `Grants (${instance}/${instanceCount}):` : "Grants:"
+            );
+
+            // Check if this specific instance is taken
+            const isChecked = urlParams.has(checkboxId)
+                ? urlParams.get(checkboxId) === '1'
+                : (i === 0 && available[move.id]); // Only first instance default-checked
+
+            console.log(`createGrantedCardSection for move ${move.id} instance ${instance}:`, {
+                moveId: move.id,
+                grantsCard: move.grantsCard,
+                suffix: suffix,
+                isChecked: isChecked,
+                containerId: containerId,
+                checkboxId: checkboxId
+            });
+
+            if (isChecked) {
+                // Show the card after the container is added to the DOM
+                setTimeout(() => {
+                    console.log(`Move ${move.id} instance ${instance}: Displaying card ${move.grantsCard}`);
+                    window.InlineCards.displayCard(containerId, move.grantsCard);
+                }, 0);
+            } else {
+                // Hide initially
+                cardSection.style.display = 'none';
+            }
+
+            wrapper.appendChild(cardSection);
         }
 
-        return cardSection;
+        return wrapper;
     }
 
     /**
