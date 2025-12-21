@@ -26,10 +26,20 @@
   <!-- Crew Members -->
   <div class="form-field">
     <strong>Crew Members:</strong>
-    <div class="members-section">
-      <button type="button" id="add-member" class="add-member">+ Add Member</button>
-      <div id="crew-members"></div>
-    </div>
+    <table id="cr_members" data-dynamic-table data-table-max="10">
+      <thead>
+        <tr>
+          <th data-field="name">Name</th>
+          <th data-field="tag">Tag</th>
+          <th data-field="traits">Traits</th>
+          <th data-field="hp" data-type="number">HP</th>
+          <th data-field="maxhp" data-type="number" data-readonly>Max HP</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <button type="button" data-table-add="cr_members" class="add-member">+ Add Member</button>
   </div>
   
   <!-- Stats -->
