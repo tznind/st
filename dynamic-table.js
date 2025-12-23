@@ -41,9 +41,15 @@ window.DynamicTable = (function() {
             // Create unique key for this table instance
             const instanceKey = suffix ? `${tableId}_${suffix}` : tableId;
 
-            // Skip if already initialized
-            if (initializedTables.has(instanceKey)) {
+            // Check if already initialized and still in DOM
+            const existingManager = initializedTables.get(instanceKey);
+            if (existingManager && document.body.contains(existingManager.table)) {
+                // Table is already initialized and still in DOM, skip
                 return;
+            } else if (existingManager) {
+                // Table was initialized but no longer in DOM, clean up old reference
+                console.log(`Cleaning up stale table manager for: ${instanceKey}`);
+                initializedTables.delete(instanceKey);
             }
 
             console.log(`Initializing dynamic table: ${instanceKey}`);

@@ -25,12 +25,22 @@ window.InlineCards = (function() {
             return `for="${forId}_${suffix}"`;
         });
 
+        // Replace name="xxx" with name="xxx_suffix" (for form controls, especially radio buttons)
+        html = html.replace(/\bname="([^"]+)"/g, (match, name) => {
+            return `name="${name}_${suffix}"`;
+        });
+
         // Replace data-table-add="xxx" with data-table-add="xxx_suffix" (for dynamic tables)
         html = html.replace(/\bdata-table-add="([^"]+)"/g, (match, tableId) => {
             return `data-table-add="${tableId}_${suffix}"`;
         });
 
-        // Also handle id='xxx' and for='xxx' (single quotes)
+        // Replace data-hide-when-untaken="xxx" with data-hide-when-untaken="xxx_suffix"
+        html = html.replace(/\bdata-hide-when-untaken="([^"]+)"/g, (match, checkboxId) => {
+            return `data-hide-when-untaken="${checkboxId}_${suffix}"`;
+        });
+
+        // Also handle id='xxx', for='xxx', and name='xxx' (single quotes)
         html = html.replace(/\bid='([^']+)'/g, (match, id) => {
             return `id='${id}_${suffix}'`;
         });
@@ -39,9 +49,17 @@ window.InlineCards = (function() {
             return `for='${forId}_${suffix}'`;
         });
 
-        // Also handle data-table-add='xxx' (single quotes)
+        html = html.replace(/\bname='([^']+)'/g, (match, name) => {
+            return `name='${name}_${suffix}'`;
+        });
+
+        // Also handle data-table-add='xxx' and data-hide-when-untaken='xxx' (single quotes)
         html = html.replace(/\bdata-table-add='([^']+)'/g, (match, tableId) => {
             return `data-table-add='${tableId}_${suffix}'`;
+        });
+
+        html = html.replace(/\bdata-hide-when-untaken='([^']+)'/g, (match, checkboxId) => {
+            return `data-hide-when-untaken='${checkboxId}_${suffix}'`;
         });
 
         return html;

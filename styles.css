@@ -2146,6 +2146,13 @@ hr {
   z-index: 200;
 }
 
+/* Override absolute positioning for tracks inside cards */
+.card .track-counter {
+  position: static;
+  margin: 8px 0;
+  justify-content: flex-start;
+}
+
 /* Grid layout for many tracks (>3) - using flex flow */
 .track-counter-grid {
   position: relative;

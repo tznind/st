@@ -254,6 +254,47 @@ window.CardHelpers = (function() {
                 if (window.DynamicTable && window.DynamicTable.setTableData) {
                     window.DynamicTable.setTableData(fullTableId, data);
                 }
+            },
+
+            /**
+             * Add a track counter to the card
+             * @param {string} containerId - ID of container element to add track to
+             * @param {Array} trackConfigs - Array of track configs (same format as moves/stats)
+             * @returns {HTMLElement} The created track container
+             *
+             * Example:
+             * helpers.addTrack('loyalty-container', [
+             *   { name: 'Loyalty', max: 3, shape: 'circle' }
+             * ]);
+             */
+            addTrack: (containerId, trackConfigs) => {
+                if (!window.Track || !trackConfigs || !Array.isArray(trackConfigs)) {
+                    console.warn('addTrack: Invalid parameters or Track module not available');
+                    return null;
+                }
+
+                const containerElement = getElement(containerId, container, suffix);
+                if (!containerElement) {
+                    console.warn(`addTrack: Container not found: ${containerId}`);
+                    return null;
+                }
+
+                // Create a pseudo-move object for the Track system
+                const fullContainerId = suffix ? `${containerId}_${suffix}` : containerId;
+                const pseudoMove = {
+                    id: fullContainerId,
+                    tracks: trackConfigs
+                };
+
+                const urlParams = new URLSearchParams(location.search);
+                const trackDisplay = window.Track.createTrackDisplay(pseudoMove, urlParams);
+
+                if (trackDisplay) {
+                    containerElement.appendChild(trackDisplay);
+                    // Track display is fully initialized with event handlers - no need to call initializeTrackCounters
+                }
+
+                return trackDisplay;
             }
         };
     }
@@ -428,6 +469,69 @@ window.CardHelpers = (function() {
         }
     };
 
+    // Track if hide-when-untaken has been initialized to prevent duplicate listeners
+    let hideWhenUntakenInitialized = false;
+
+    /**
+     * Initialize hide-when-untaken functionality
+     * Automatically hides/shows elements based on data-hide-when-untaken attribute
+     *
+     * Usage in card HTML:
+     * <div data-hide-when-untaken="checkbox_id">
+     *   This element will be hidden when checkbox_id is unchecked and "hide untaken moves" is enabled
+     * </div>
+     */
+    function initializeHideWhenUntaken() {
+        // Find the global hide_untaken checkbox
+        const hideUntakenCheckbox = document.getElementById('hide_untaken');
+        if (!hideUntakenCheckbox) return;
+
+        // Function to update visibility of all elements with data-hide-when-untaken
+        function updateHideWhenUntaken() {
+            const hideUntaken = hideUntakenCheckbox.checked;
+            const elementsToToggle = document.querySelectorAll('[data-hide-when-untaken]');
+
+            elementsToToggle.forEach(element => {
+                const checkboxId = element.getAttribute('data-hide-when-untaken');
+                const checkbox = document.getElementById(checkboxId);
+
+                if (checkbox) {
+                    // Hide if: hide_untaken is checked AND the referenced checkbox is unchecked
+                    if (hideUntaken && !checkbox.checked) {
+                        element.style.display = 'none';
+                    } else {
+                        element.style.display = '';
+                    }
+                } else {
+                    console.warn(`Hide-when-untaken: Checkbox not found: ${checkboxId}`);
+                }
+            });
+        }
+
+        // Only add event listeners once
+        if (!hideWhenUntakenInitialized) {
+            // Listen for changes to hide_untaken checkbox
+            hideUntakenCheckbox.addEventListener('change', updateHideWhenUntaken);
+
+            // Listen for changes to any checkbox that might be referenced
+            document.addEventListener('change', (event) => {
+                const target = event.target;
+                if (target.type === 'checkbox' && target.id) {
+                    // Check if any element references this checkbox
+                    const referencingElements = document.querySelectorAll(`[data-hide-when-untaken="${target.id}"]`);
+                    if (referencingElements.length > 0) {
+                        updateHideWhenUntaken();
+                    }
+                }
+            });
+
+            hideWhenUntakenInitialized = true;
+        }
+
+        // Always run update when called (to handle newly rendered elements)
+        updateHideWhenUntaken();
+    }
+
     /**
      * Common dependency patterns
      */
@@ -479,6 +583,7 @@ window.CardHelpers = (function() {
         addUtilityButton,
         createButton,
         createScopedHelpers,  // NEW: For duplicate card support
+        initializeHideWhenUntaken,  // NEW: Auto hide-when-untaken functionality
         ValidationPatterns,
         DependencyPatterns
     };

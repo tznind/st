@@ -240,6 +240,11 @@ window.Cards = (function() {
                 if (window.TextFormatter && window.TextFormatter.formatElements) {
                     window.TextFormatter.formatElements();
                 }
+
+                // Initialize hide-when-untaken functionality
+                if (window.CardHelpers && window.CardHelpers.initializeHideWhenUntaken) {
+                    window.CardHelpers.initializeHideWhenUntaken();
+                }
             }, 100);
 
             // Note: Persistence refresh is handled by the caller
