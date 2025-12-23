@@ -473,37 +473,117 @@ window.CardHelpers = (function() {
     let hideWhenUntakenInitialized = false;
 
     /**
-     * Initialize hide-when-untaken functionality
-     * Automatically hides/shows elements based on data-hide-when-untaken attribute
+     * Check if a field is "taken" (has a meaningful value)
+     * Works flexibly for all input types
+     * @param {HTMLElement} field - The field to check
+     * @param {boolean} checkIndividualRadio - For radios, check if THIS radio is selected (not just if group has selection)
+     */
+    function isFieldTaken(field, checkIndividualRadio = false) {
+        if (!field) return false;
+
+        const type = field.type?.toLowerCase();
+
+        switch (type) {
+            case 'checkbox':
+                return field.checked;
+
+            case 'radio':
+                // For hide-if-untaken on individual radios, check THIS radio specifically
+                // Otherwise, check if ANY radio in the group is checked (for group validation)
+                if (checkIndividualRadio) {
+                    return field.checked;
+                }
+                if (field.name) {
+                    const radioGroup = document.querySelectorAll(`input[type="radio"][name="${field.name}"]`);
+                    return Array.from(radioGroup).some(radio => radio.checked);
+                }
+                return field.checked;
+
+            case 'text':
+            case 'textarea':
+            case 'email':
+            case 'url':
+            case 'tel':
+            case 'search':
+            case 'password':
+                return field.value && field.value.trim() !== '';
+
+            case 'number':
+            case 'range':
+                return field.value !== '';
+
+            case 'select-one':
+            case 'select-multiple':
+                return field.value && field.value !== '';
+
+            case 'date':
+            case 'time':
+            case 'datetime-local':
+            case 'month':
+            case 'week':
+                return field.value !== '';
+
+            default:
+                // For unknown types, check if it has a value or is checked
+                if ('checked' in field) {
+                    return field.checked;
+                }
+                if ('value' in field) {
+                    return field.value && field.value !== '';
+                }
+                return false;
+        }
+    }
+
+    /**
+     * Initialize hide-if-untaken functionality
+     * Automatically hides/shows elements based on data-hide-if-untaken attribute
+     *
+     * Works with any input type: checkbox, radio, text, select, etc.
      *
      * Usage in card HTML:
-     * <div data-hide-when-untaken="checkbox_id">
-     *   This element will be hidden when checkbox_id is unchecked and "hide untaken moves" is enabled
-     * </div>
+     * <input type="checkbox" id="option1" data-hide-if-untaken>
+     * <label for="option1" data-hide-if-untaken>Option 1</label>
+     *
+     * When "Hide untaken moves" is checked, any element with data-hide-if-untaken
+     * will be hidden if it's untaken (unchecked/empty).
      */
     function initializeHideWhenUntaken() {
         // Find the global hide_untaken checkbox
         const hideUntakenCheckbox = document.getElementById('hide_untaken');
         if (!hideUntakenCheckbox) return;
 
-        // Function to update visibility of all elements with data-hide-when-untaken
+        // Function to update visibility of all elements with data-hide-if-untaken
         function updateHideWhenUntaken() {
             const hideUntaken = hideUntakenCheckbox.checked;
-            const elementsToToggle = document.querySelectorAll('[data-hide-when-untaken]');
+            const elementsToToggle = document.querySelectorAll('[data-hide-if-untaken]');
 
             elementsToToggle.forEach(element => {
-                const checkboxId = element.getAttribute('data-hide-when-untaken');
-                const checkbox = document.getElementById(checkboxId);
+                let isTaken = false;
 
-                if (checkbox) {
-                    // Hide if: hide_untaken is checked AND the referenced checkbox is unchecked
-                    if (hideUntaken && !checkbox.checked) {
-                        element.style.display = 'none';
-                    } else {
-                        element.style.display = '';
+                // If this is a label, check its associated input instead
+                if (element.tagName === 'LABEL' && element.hasAttribute('for')) {
+                    const inputId = element.getAttribute('for');
+                    const input = document.getElementById(inputId);
+                    if (input) {
+                        isTaken = isFieldTaken(input, true);
                     }
+                }
+                // If this is an input/select/textarea, check it directly
+                else if (element.tagName === 'INPUT' || element.tagName === 'SELECT' || element.tagName === 'TEXTAREA') {
+                    isTaken = isFieldTaken(element, true);
+                }
+                // If this is a wrapper element (div, span, etc.), check if ANY input inside is taken
+                else {
+                    const inputs = element.querySelectorAll('input, select, textarea');
+                    isTaken = Array.from(inputs).some(input => isFieldTaken(input, true));
+                }
+
+                // Hide if: hide_untaken is checked AND this element is not taken
+                if (hideUntaken && !isTaken) {
+                    element.style.display = 'none';
                 } else {
-                    console.warn(`Hide-when-untaken: Checkbox not found: ${checkboxId}`);
+                    element.style.display = '';
                 }
             });
         }
@@ -513,15 +593,17 @@ window.CardHelpers = (function() {
             // Listen for changes to hide_untaken checkbox
             hideUntakenCheckbox.addEventListener('change', updateHideWhenUntaken);
 
-            // Listen for changes to any checkbox that might be referenced
+            // Listen for changes to any element with data-hide-if-untaken
             document.addEventListener('change', (event) => {
-                const target = event.target;
-                if (target.type === 'checkbox' && target.id) {
-                    // Check if any element references this checkbox
-                    const referencingElements = document.querySelectorAll(`[data-hide-when-untaken="${target.id}"]`);
-                    if (referencingElements.length > 0) {
-                        updateHideWhenUntaken();
-                    }
+                if (event.target.hasAttribute('data-hide-if-untaken')) {
+                    updateHideWhenUntaken();
+                }
+            });
+
+            // Also listen for input events (for text fields that update as you type)
+            document.addEventListener('input', (event) => {
+                if (event.target.hasAttribute('data-hide-if-untaken')) {
+                    updateHideWhenUntaken();
                 }
             });
 
@@ -530,6 +612,150 @@ window.CardHelpers = (function() {
 
         // Always run update when called (to handle newly rendered elements)
         updateHideWhenUntaken();
+    }
+
+    /**
+     * Initialize tracks from data attributes
+     *
+     * Automatically finds and initializes track counters defined with data attributes.
+     *
+     * Usage in HTML:
+     * <div id="loyalty_track"
+     *      data-track
+     *      data-track-name="Loyalty"
+     *      data-track-max="3"
+     *      data-track-shape="circle"
+     *      data-track-dynamic="true">
+     * </div>
+     *
+     * Attributes:
+     * - data-track: Marks element as a track container (required)
+     * - data-track-name: Display name for the track (required)
+     * - data-track-max: Maximum value (default: 5)
+     * - data-track-shape: Shape of markers - "circle" or "square" (default: square)
+     * - data-track-dynamic: Allow changing max value (default: false)
+     */
+    function initializeTracks(container = document) {
+        console.log('initializeTracks: Starting initialization', { container, hasTrackModule: !!window.Track });
+
+        if (!window.Track) {
+            console.warn('initializeTracks: Track module not available');
+            return;
+        }
+
+        const trackContainers = container.querySelectorAll('[data-track]');
+        console.log(`initializeTracks: Found ${trackContainers.length} track containers`, trackContainers);
+        const urlParams = new URLSearchParams(location.search);
+
+        trackContainers.forEach(containerElement => {
+            const trackId = containerElement.id;
+            if (!trackId) {
+                console.warn('initializeTracks: Track container missing id attribute:', containerElement);
+                return;
+            }
+
+            // Skip if already initialized (check if it already has track display)
+            if (containerElement.querySelector('.track-counter, .track-counter-grid')) {
+                return;
+            }
+
+            // Read track configuration from data attributes
+            const trackName = containerElement.getAttribute('data-track-name');
+            console.log(`initializeTracks: Read trackName="${trackName}" from element ${trackId}`);
+
+            if (!trackName) {
+                console.warn(`initializeTracks: Track container ${trackId} missing data-track-name`);
+                return;
+            }
+
+            const trackConfig = {
+                name: trackName,
+                max: parseInt(containerElement.getAttribute('data-track-max')) || 5,
+                shape: containerElement.getAttribute('data-track-shape') || 'square',
+                dynamic: containerElement.getAttribute('data-track-dynamic') === 'true'
+            };
+
+            console.log(`initializeTracks: Creating track for ${trackId}`, trackConfig);
+            console.log(`initializeTracks: trackConfig.name = "${trackConfig.name}"`);
+
+            // Create a pseudo-move object for the Track system
+            const pseudoMove = {
+                id: trackId,
+                tracks: [trackConfig]
+            };
+
+            // Create and append track display
+            const trackDisplay = window.Track.createTrackDisplay(pseudoMove, urlParams);
+            console.log(`initializeTracks: Track display created for ${trackId}:`, trackDisplay);
+
+            if (trackDisplay) {
+                containerElement.appendChild(trackDisplay);
+                console.log(`initializeTracks: Track display appended to ${trackId}`);
+            } else {
+                console.warn(`initializeTracks: createTrackDisplay returned null for ${trackId}`);
+            }
+        });
+    }
+
+    /**
+     * Shared card initialization logic for both regular and inline cards
+     * Consolidates: tracks, tables, CardInitializers lookup, old convention fallback
+     *
+     * @param {string} cardId - ID of the card
+     * @param {HTMLElement} container - Container element for this card
+     * @param {string|null} suffix - Suffix for duplicates (null for regular cards)
+     */
+    function initializeCard(cardId, container, suffix = null) {
+        if (!container) {
+            console.warn(`initializeCard: No container provided for ${cardId}`);
+            return;
+        }
+
+        console.log(`CardHelpers.initializeCard: ${cardId} (suffix: ${suffix})`);
+
+        // Initialize dynamic tables
+        if (window.DynamicTable && window.DynamicTable.initializeInContainer) {
+            window.DynamicTable.initializeInContainer(container);
+        }
+
+        // Initialize tracks from data attributes
+        if (window.CardHelpers && window.CardHelpers.initializeTracks) {
+            window.CardHelpers.initializeTracks(container);
+        }
+
+        // Ensure CardInitializers namespace exists
+        window.CardInitializers = window.CardInitializers || {};
+
+        // Look for exported initialization function (new pattern)
+        const initFunction = window.CardInitializers[cardId];
+        if (typeof initFunction === 'function') {
+            try {
+                console.log(`CardHelpers.initializeCard: Calling CardInitializers['${cardId}'](container, suffix)`);
+                initFunction(container, suffix);
+                console.log(`CardHelpers.initializeCard: ${cardId} initialized successfully`);
+            } catch (error) {
+                console.error(`CardHelpers.initializeCard: Error initializing ${cardId}:`, error);
+            }
+        } else {
+            console.log(`CardHelpers.initializeCard: No CardInitializers function for ${cardId}`);
+
+            // Fallback to old convention-based approach for backwards compatibility
+            const functionName = 'initialize' + cardId
+                .split('-')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join('');
+
+            if (typeof window[functionName] === 'function') {
+                console.log(`CardHelpers.initializeCard: Falling back to ${functionName}(container, suffix)`);
+                try {
+                    window[functionName](container, suffix);
+                } catch (error) {
+                    console.error(`CardHelpers.initializeCard: Error in ${functionName}:`, error);
+                }
+            } else {
+                console.log(`CardHelpers.initializeCard: No initialization needed for ${cardId}`);
+            }
+        }
     }
 
     /**
@@ -584,6 +810,8 @@ window.CardHelpers = (function() {
         createButton,
         createScopedHelpers,  // NEW: For duplicate card support
         initializeHideWhenUntaken,  // NEW: Auto hide-when-untaken functionality
+        initializeTracks,  // NEW: Auto track initialization from data attributes
+        initializeCard,  // NEW: Shared card initialization (tracks + tables + CardInitializers)
         ValidationPatterns,
         DependencyPatterns
     };

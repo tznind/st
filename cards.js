@@ -150,20 +150,9 @@ window.Cards = (function() {
             const cardWrapper = document.querySelector(`.card-wrapper[data-card-id="${cardId}"]`);
             const cardElement = cardWrapper ? cardWrapper.querySelector('.card') : null;
 
-            // Look for exported initialization function
-            const initFunction = window.CardInitializers[cardId];
-            if (typeof initFunction === 'function') {
-                try {
-                    console.log(`Initializing card: ${cardId}`);
-                    // Pass container and null suffix (regular cards don't have duplicates)
-                    initFunction(cardElement, null);
-                    console.log(`Card ${cardId} initialized successfully`);
-                } catch (error) {
-                    console.error(`Error initializing card ${cardId}:`, error);
-                }
-            } else {
-                // No initialization function found - that's okay, not all cards need one
-                console.log(`No initialization function found for card: ${cardId} (this is fine if the card doesn't need custom logic)`);
+            // Use shared initialization function (handles tracks, tables, CardInitializers)
+            if (cardElement && window.CardHelpers && window.CardHelpers.initializeCard) {
+                window.CardHelpers.initializeCard(cardId, cardElement, null);
             }
         });
     }
@@ -234,6 +223,7 @@ window.Cards = (function() {
 
             // Initialize any cards that have initialization functions
             setTimeout(() => {
+                // Initialize each card (this handles tables, tracks, CardInitializers for each card)
                 initializeRenderedCards(cardDefs);
 
                 // Format any elements with data-format-text attribute
@@ -245,6 +235,8 @@ window.Cards = (function() {
                 if (window.CardHelpers && window.CardHelpers.initializeHideWhenUntaken) {
                     window.CardHelpers.initializeHideWhenUntaken();
                 }
+
+                // Note: Dynamic tables are initialized per-card in initializeRenderedCards
             }, 100);
 
             // Note: Persistence refresh is handled by the caller
