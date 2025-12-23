@@ -6,7 +6,7 @@
   </div>
   
   <!-- Enfys -->
-  <div class="initiate-row" id="enfys-row">
+  <div class="initiate-row" id="enfys-row" data-hide-when-untaken="enfys_selected">
     <div class="initiate-header">
       <div class="initiate-title">
         <input type="checkbox" id="enfys_selected" class="initiate-selector">
@@ -19,7 +19,7 @@
         <span>Damage: bronze knife d4 (hand)</span> | <span>Armor: 0</span> | <span>Max HP: 6</span>
       </div>
     </div>
-    
+
     <div class="tracking-section">
       <div class="hp-loyalty">
         <div class="stat-group">
@@ -28,12 +28,7 @@
         </div>
         <div class="loyalty-group">
           <label>Loyalty:</label>
-          <div class="loyalty-track" data-initiate="enfys">
-            <div class="loyalty-circle" data-value="1"></div>
-            <div class="loyalty-circle" data-value="2"></div>
-            <div class="loyalty-circle" data-value="3"></div>
-          </div>
-          <input type="hidden" id="enfys_loyalty" class="loyalty-value">
+          <div id="enfys_loyalty_track"></div>
         </div>
       </div>
     </div>
@@ -60,7 +55,7 @@
   </div>
 
   <!-- Afon -->
-  <div class="initiate-row" id="afon-row">
+  <div class="initiate-row" id="afon-row" data-hide-when-untaken="afon_selected">
     <div class="initiate-header">
       <div class="initiate-title">
         <input type="checkbox" id="afon_selected" class="initiate-selector">
@@ -73,7 +68,7 @@
         <span>Damage: bronze hatchet d6 (hand)</span> | <span>Armor: 2 (0 vs. iron)</span> | <span>Max HP: 8</span>
       </div>
     </div>
-    
+
     <div class="tracking-section">
       <div class="hp-loyalty">
         <div class="stat-group">
@@ -82,12 +77,7 @@
         </div>
         <div class="loyalty-group">
           <label>Loyalty:</label>
-          <div class="loyalty-track" data-initiate="afon">
-            <div class="loyalty-circle" data-value="1"></div>
-            <div class="loyalty-circle" data-value="2"></div>
-            <div class="loyalty-circle" data-value="3"></div>
-          </div>
-          <input type="hidden" id="afon_loyalty" class="loyalty-value">
+          <div id="afon_loyalty_track"></div>
         </div>
       </div>
     </div>
@@ -114,7 +104,7 @@
   </div>
 
   <!-- Gwendyl -->
-  <div class="initiate-row" id="gwendyl-row">
+  <div class="initiate-row" id="gwendyl-row" data-hide-when-untaken="gwendyl_selected">
     <div class="initiate-header">
       <div class="initiate-title">
         <input type="checkbox" id="gwendyl_selected" class="initiate-selector">
@@ -127,7 +117,7 @@
         <span>Damage: iron knife d6 (hand)</span> | <span>Armor: 0</span> | <span>Max HP: 6</span>
       </div>
     </div>
-    
+
     <div class="tracking-section">
       <div class="hp-loyalty">
         <div class="stat-group">
@@ -136,12 +126,7 @@
         </div>
         <div class="loyalty-group">
           <label>Loyalty:</label>
-          <div class="loyalty-track" data-initiate="gwendyl">
-            <div class="loyalty-circle" data-value="1"></div>
-            <div class="loyalty-circle" data-value="2"></div>
-            <div class="loyalty-circle" data-value="3"></div>
-          </div>
-          <input type="hidden" id="gwendyl_loyalty" class="loyalty-value">
+          <div id="gwendyl_loyalty_track"></div>
         </div>
       </div>
     </div>
@@ -168,7 +153,7 @@
   </div>
 
   <!-- Olwin -->
-  <div class="initiate-row" id="olwin-row">
+  <div class="initiate-row" id="olwin-row" data-hide-when-untaken="olwin_selected">
     <div class="initiate-header">
       <div class="initiate-title">
         <input type="checkbox" id="olwin_selected" class="initiate-selector">
@@ -181,7 +166,7 @@
         <span>Damage: iron spear d6 (close, thrown)</span> | <span>Armor: 1 (shield)</span> | <span>Max HP: 6</span>
       </div>
     </div>
-    
+
     <div class="tracking-section">
       <div class="hp-loyalty">
         <div class="stat-group">
@@ -190,12 +175,7 @@
         </div>
         <div class="loyalty-group">
           <label>Loyalty:</label>
-          <div class="loyalty-track" data-initiate="olwin">
-            <div class="loyalty-circle" data-value="1"></div>
-            <div class="loyalty-circle" data-value="2"></div>
-            <div class="loyalty-circle" data-value="3"></div>
-          </div>
-          <input type="hidden" id="olwin_loyalty" class="loyalty-value">
+          <div id="olwin_loyalty_track"></div>
         </div>
       </div>
     </div>
@@ -222,7 +202,7 @@
   </div>
 
   <!-- Seren -->
-  <div class="initiate-row" id="seren-row">
+  <div class="initiate-row" id="seren-row" data-hide-when-untaken="seren_selected">
     <div class="initiate-header">
       <div class="initiate-title">
         <input type="checkbox" id="seren_selected" class="initiate-selector">
@@ -235,7 +215,7 @@
         <span>Damage: walking stick d4 (close)</span> | <span>Armor: 0</span> | <span>Max HP: 3</span>
       </div>
     </div>
-    
+
     <div class="tracking-section">
       <div class="hp-loyalty">
         <div class="stat-group">
@@ -244,12 +224,7 @@
         </div>
         <div class="loyalty-group">
           <label>Loyalty:</label>
-          <div class="loyalty-track" data-initiate="seren">
-            <div class="loyalty-circle" data-value="1"></div>
-            <div class="loyalty-circle" data-value="2"></div>
-            <div class="loyalty-circle" data-value="3"></div>
-          </div>
-          <input type="hidden" id="seren_loyalty" class="loyalty-value">
+          <div id="seren_loyalty_track"></div>
         </div>
       </div>
     </div>

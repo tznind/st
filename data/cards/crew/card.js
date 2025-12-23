@@ -1,4 +1,4 @@
-// Crew loyalty tracking and member management functionality
+// Crew card initialization and member management functionality
 (function() {
   'use strict';
 
@@ -10,38 +10,20 @@
     // Create scoped helpers
     const helpers = window.CardHelpers.createScopedHelpers(container, suffix);
 
-    // Initialize dynamic table
-    if (window.DynamicTable) {
-      window.DynamicTable.initializeInContainer(container, suffix);
-      console.log('Dynamic table initialized for crew');
-    }
-
-    // Get loyalty elements
-    const loyaltyShapes = container.querySelectorAll('[data-track-id="cr_loyalty"]');
-    const loyaltyLabel = container.querySelector('.track-label');
-
-    // Get initial values from URL
-    const urlParams = new URLSearchParams(window.location.search);
-    let currentLoyalty = parseInt(urlParams.get('cr_loyalty')) || 0;
-
-    console.log('Initial loyalty value:', currentLoyalty);
-
-    /**
-     * Update loyalty display
-     */
-    function updateLoyaltyDisplay(value) {
-      loyaltyShapes.forEach((shape) => {
-        const shapeValue = parseInt(shape.dataset.value);
-        if (shapeValue <= value) {
-          shape.classList.add('filled');
-        } else {
-          shape.classList.remove('filled');
-        }
-      });
-
-      if (loyaltyLabel) {
-        loyaltyLabel.textContent = `Loyalty: ${value}/3`;
+    // Add loyalty track with 3 circles using the new helper function
+    helpers.addTrack('cr_loyalty_track', [
+      {
+        name: 'Loyalty',
+        max: 3,
+        shape: 'circle'
       }
+    ]);
+
+    // Initialize dynamic table
+    // IMPORTANT: Don't pass suffix - the table ID is already auto-suffixed in the HTML
+    if (window.DynamicTable) {
+      window.DynamicTable.initializeInContainer(container);
+      console.log('Dynamic table initialized for crew');
     }
 
     /**
@@ -109,47 +91,6 @@
       console.log('Updated calculated fields - HP:', hp, 'Damage:', damage);
     }
 
-    /**
-     * Update URL with loyalty value
-     */
-    function updateURL() {
-      const params = new URLSearchParams(window.location.search);
-
-      if (currentLoyalty > 0) {
-        params.set('cr_loyalty', currentLoyalty.toString());
-      } else {
-        params.delete('cr_loyalty');
-      }
-
-      const newUrl = params.toString() ? '?' + params.toString() : window.location.pathname;
-      window.history.replaceState({}, '', newUrl);
-    }
-
-    // Set up loyalty click handlers
-    loyaltyShapes.forEach((shape) => {
-      if (!shape.hasAttribute('data-cr-loyalty-listener')) {
-        shape.addEventListener('click', function(event) {
-          event.preventDefault();
-          event.stopPropagation();
-
-          const clickedValue = parseInt(this.dataset.value);
-          let newValue;
-
-          if (clickedValue <= currentLoyalty) {
-            newValue = clickedValue - 1;
-          } else {
-            newValue = clickedValue;
-          }
-
-          newValue = Math.max(0, Math.min(newValue, 3));
-          currentLoyalty = newValue;
-          updateLoyaltyDisplay(newValue);
-          updateURL();
-        });
-        shape.setAttribute('data-cr-loyalty-listener', 'true');
-      }
-    });
-
     // Add checkbox event listeners for auto-calculation
     const checkboxes = ['cr_vet2', 'cr_vet3', 'cr_her3', 'cr_her4'];
     checkboxes.forEach(checkboxId => {
@@ -166,9 +107,6 @@
         }, 50);
       });
     }
-
-    // Initialize loyalty display
-    updateLoyaltyDisplay(currentLoyalty);
 
     // Initialize calculated fields (damage and member Max HP)
     setTimeout(() => {
