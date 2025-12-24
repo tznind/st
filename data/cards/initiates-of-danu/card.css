@@ -37,17 +37,6 @@
   border-radius: 8px;
   margin-bottom: 15px;
   padding: 12px;
-  transition: opacity 0.3s ease, background-color 0.3s ease;
-}
-
-.initiate-row:not(.selected) {
-  opacity: 0.6;
-  background: rgba(255,255,255,0.7);
-}
-
-.initiate-row:not(.selected) .tracking-section,
-.initiate-row:not(.selected) .custom-picks {
-  pointer-events: none;
 }
 
 .initiate-title {
