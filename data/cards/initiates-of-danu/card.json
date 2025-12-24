@@ -7,7 +7,6 @@
   "author": "Stonetop System",
   "files": {
     "html": "card.html",
-    "css": "card.css",
-    "js": "card.js"
+    "css": "card.css"
   }
 }
