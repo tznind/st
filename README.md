@@ -22,7 +22,7 @@ It is online at https://tznind.github.io/st/cs.html
   </tr>
   <tr>
     <td width="25%">
-      🧙&nbsp;<a title="Twymor - The Seeker" href="https://tznind.github.io/st/cs.html?name=Twymor+The+Younger&player=J&role=The+Seeker&strength=-1&dexterity=0&intelligence=%2B2&wisdom=%2B0&constitution=%2B2&charisma=%2B1&move_sk001_p3=1&move_sk001=1&move_ssp_p1=1&move_ssp_p5=1&track_ssp_1=1&move_ae0121_1=1&move_ae0121_pickone=3&move_si_pickone=2&move_sk007=1&move_ssp_p4=1&move_sk004=1&move_sk005_p4=1&move_sk005_p6=1&move_sk005_p1=1&move_sk005_2=1&move_sk003=1&move_sk022=1&move_sk005_p7=1&level=6&hide_untaken=1&damage=d6&hp=16&armor=0&xp=21">Twymor&nbsp;The<&nbsp;Younger/a>
+      🧙&nbsp;<a title="Twymor - The Seeker" href="https://tznind.github.io/st/cs.html?name=Twymor+The+Younger&player=J&role=The+Seeker&strength=-1&dexterity=0&intelligence=%2B2&wisdom=%2B0&constitution=%2B2&charisma=%2B1&move_sk001_p3=1&move_sk001=1&move_ssp_p1=1&move_ssp_p5=1&track_ssp_1=1&move_ae0121_1=1&move_ae0121_pickone=3&move_si_pickone=2&move_sk007=1&move_ssp_p4=1&move_sk004=1&move_sk005_p4=1&move_sk005_p6=1&move_sk005_p1=1&move_sk005_2=1&move_sk003=1&move_sk022=1&move_sk005_p7=1&level=6&hide_untaken=1&damage=d6&hp=16&armor=0&xp=21">Twymor&nbsp;The&nbsp;Younger</a>
     </td>
     <td width="25%">
     </td>
