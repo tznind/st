@@ -2144,6 +2144,7 @@ hr {
   font-size: 12px;
   color: #555;
   z-index: 200;
+  pointer-events: auto; /* Re-enable clicks even when parent has pointer-events: none */
 }
 
 /* Override absolute positioning for tracks inside cards */
@@ -2403,4 +2404,187 @@ hr {
 *:focus:not(.hex-input-wrapper input) {
   outline: 2px solid #007bff;
   outline-offset: 2px;
+}
+
+/* === WIZARD MODAL === */
+.wizard-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.wizard-content {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.wizard-content h3 {
+  margin: 0 0 20px 0;
+  color: #2c3e50;
+  font-size: 22px;
+}
+
+.wizard-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #6c757d;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.wizard-close:hover {
+  color: #2c3e50;
+}
+
+.wizard-auto-items {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.wizard-auto-items h4 {
+  margin: 0 0 12px 0;
+  color: #495057;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.wizard-auto-items ul {
+  margin: 0;
+  padding-left: 24px;
+  list-style-type: disc;
+}
+
+.wizard-auto-items li {
+  color: #495057;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+.wizard-choices {
+  margin-bottom: 20px;
+}
+
+.wizard-choice-group {
+  margin-bottom: 20px;
+  padding: 16px;
+  background: #ffffff;
+  border: 2px solid #e1e5e9;
+  border-radius: 6px;
+}
+
+.wizard-choice-group h4 {
+  margin: 0 0 12px 0;
+  color: #2c3e50;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.wizard-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wizard-option {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.wizard-option:hover {
+  background: #f8f9fa;
+  border-color: #007bff;
+}
+
+.wizard-option input[type="radio"],
+.wizard-option input[type="checkbox"] {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.wizard-option label {
+  flex: 1;
+  cursor: pointer;
+  margin: 0;
+}
+
+.wizard-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #e9ecef;
+}
+
+.wizard-actions button {
+  padding: 10px 20px;
+  border-radius: 4px;
+  border: none;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.wizard-cancel {
+  background: #6c757d;
+  color: white;
+}
+
+.wizard-cancel:hover {
+  background: #5a6268;
+}
+
+.wizard-ok {
+  background: #28a745;
+  color: white;
+}
+
+.wizard-ok:hover {
+  background: #218838;
+}
+
+@media (max-width: 640px) {
+  .wizard-content {
+    padding: 16px;
+    max-height: 90vh;
+  }
+
+  .wizard-content h3 {
+    font-size: 18px;
+  }
+
+  .wizard-option {
+    padding: 8px 10px;
+  }
 }

@@ -146,7 +146,7 @@ window.MovesCore = (function() {
         // Clicking the title background or text (but not inputs/buttons) toggles expand/collapse
         titleContainer.addEventListener('click', function(e) {
             // Ignore clicks on interactive elements to preserve their behavior
-            if (e.target.closest('input, button, select, textarea, a, label')) {
+            if (e.target.closest('input, button, select, textarea, a, label, .track-shape')) {
                 return;
             }
             toggleMoveCollapse(collapseToggle);
