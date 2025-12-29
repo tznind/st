@@ -1,6 +1,6 @@
 # ST
 
-This is a [stonetop](https://www.kickstarter.com/projects/1735046512/stonetop) implementation of [PbtA-style](https://en.wikipedia.org/wiki/Powered_by_the_Apocalypse?utm_source=chatgpt.com) character sheets.
+This is a [stonetop](https://www.kickstarter.com/projects/1735046512/stonetop) implementation of [LC Character Sheets](https://github.com/tznind/lc?tab=readme-ov-file#live-character-sheet).
 
 It is online at https://tznind.github.io/st/cs.html
 
