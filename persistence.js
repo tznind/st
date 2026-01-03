@@ -135,7 +135,7 @@ window.Persistence = (function() {
      */
     function clearState(form) {
         const inputs = getPersistableInputs(form);
-        
+
         // Clear form inputs
         inputs.forEach(input => {
             if (input.type === 'checkbox' || input.type === 'radio') {
@@ -144,9 +144,12 @@ window.Persistence = (function() {
                 input.value = '';
             }
         });
-        
-        // Clear URL parameters
-        history.replaceState({}, '', location.pathname);
+
+        // Clear URL parameters but preserve 'lang' if present
+        const params = new URLSearchParams(location.search);
+        const lang = params.get('lang');
+        const newUrl = lang ? `${location.pathname}?lang=${lang}` : location.pathname;
+        history.replaceState({}, '', newUrl);
     }
 
     // Track if we've already set up delegation

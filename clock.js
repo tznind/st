@@ -108,13 +108,16 @@ window.Clock = (function() {
     }
 
     /**
-     * Update the clock display to show the correct SVG
+     * Update the clock display to show the correct SVG (with translation support)
      * @param {HTMLElement} clockElement - The clock div element
      * @param {string} folder - Path to the clock SVG folder
      * @param {number} value - Current clock value (0-faces)
      */
     function updateClockDisplay(clockElement, folder, value) {
-        const svgPath = `${folder}/${value}.svg`;
+        // Get current language and construct paths
+        const currentLang = window.JsonLoader ? window.JsonLoader.getCurrentLanguage() : 'en';
+        const basePath = `${folder}/${value}.svg`;
+        const translatedPath = currentLang !== 'en' ? basePath.replace(/^data\//, `data/${currentLang}/`) : basePath;
 
         // Show global loading indicator
         if (window.Utils) {
@@ -125,7 +128,7 @@ window.Clock = (function() {
         const img = new Image();
 
         img.onload = () => {
-            clockElement.style.backgroundImage = `url('${svgPath}')`;
+            clockElement.style.backgroundImage = `url('${img.src}')`;
             clockElement.style.backgroundSize = 'contain';
             clockElement.style.backgroundRepeat = 'no-repeat';
             clockElement.style.backgroundPosition = 'center';
@@ -137,21 +140,28 @@ window.Clock = (function() {
         };
 
         img.onerror = () => {
-            console.error(`Failed to load clock image: ${svgPath}`);
+            // If translated version failed and we haven't tried base yet, try base
+            if (img.src.includes(`data/${currentLang}/`) && currentLang !== 'en') {
+                console.log(`Translation not found: ${translatedPath}, trying base: ${basePath}`);
+                img.src = basePath; // This will trigger another load attempt
+            } else {
+                console.error(`Failed to load clock image: ${img.src}`);
 
-            // Hide loading indicator
-            if (window.Utils) {
-                window.Utils.hideLoading();
+                // Hide loading indicator
+                if (window.Utils) {
+                    window.Utils.hideLoading();
+                }
+
+                // Show error state on the clock element
+                clockElement.classList.add('clock-error');
+                clockElement.style.backgroundImage = 'none';
+                clockElement.textContent = '✗';
+                clockElement.title = `Failed to load: ${img.src}`;
             }
-
-            // Show error state on the clock element
-            clockElement.classList.add('clock-error');
-            clockElement.style.backgroundImage = 'none';
-            clockElement.textContent = '✗';
-            clockElement.title = `Failed to load: ${svgPath}`;
         };
 
-        img.src = svgPath;
+        // Start with translated path (or base if language is English)
+        img.src = translatedPath;
     }
 
     /**

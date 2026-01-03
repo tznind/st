@@ -66,6 +66,11 @@
 
             console.log('Application initialized successfully');
 
+            // Trigger initialization complete event for other modules
+            if (window.AppEvents) {
+                window.AppEvents.trigger('initializationComplete');
+            }
+
         } catch (error) {
             console.error('Failed to initialize application:', error);
             throw error;
@@ -108,7 +113,8 @@
             rolesToAdd.forEach(role => {
                 const option = document.createElement('option');
                 option.value = role;
-                option.textContent = role;
+                // Use 'name' field if present, otherwise use role key (backwards compatible)
+                option.textContent = window.availableMap[role].name || role;
                 selector.appendChild(option);
             });
         });

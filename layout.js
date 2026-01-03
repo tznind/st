@@ -116,15 +116,23 @@ window.Layout = (function() {
     
     /**
      * Render stats section
+     * Only renders if stats don't already exist (idempotent)
      */
     function renderStats() {
         if (window.renderStats && window.hexStats) {
-            // Clear existing stats first to prevent doubling
             const statsContainer = document.querySelector('#stats-container');
             if (statsContainer) {
+                // Check if stats already exist - if so, reuse them
+                const existingHexRow = statsContainer.querySelector('.hex-row');
+                if (existingHexRow && existingHexRow.children.length > 0) {
+                    console.log('Layout: Stats already exist, reusing existing DOM elements');
+                    return;
+                }
+
+                // Stats don't exist yet, create them
                 statsContainer.innerHTML = '';
+                window.renderStats('#stats-container', window.hexStats);
             }
-            window.renderStats('#stats-container', window.hexStats);
         }
     }
     

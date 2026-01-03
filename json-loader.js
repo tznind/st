@@ -7,6 +7,105 @@ window.JsonLoader = (function() {
     'use strict';
 
     /**
+     * Get current language (from URL parameter ?lang= or default to 'en')
+     * @returns {string} Language code (e.g., 'en', 'es', 'fr')
+     */
+    function getCurrentLanguage() {
+        // Check URL parameter (?lang=es)
+        const params = new URLSearchParams(window.location.search);
+        const langParam = params.get('lang');
+
+        // Return language from URL or default to English
+        return langParam || 'en';
+    }
+
+    /**
+     * Deep merge two objects recursively
+     * @param {Object} base - Base object
+     * @param {Object} override - Override object
+     * @returns {Object} Merged object
+     */
+    function deepMerge(base, override) {
+        if (!override) return base;
+        if (Array.isArray(base) && Array.isArray(override)) {
+            // For arrays, merge by index
+            return base.map((item, idx) => {
+                if (typeof item === 'object' && typeof override[idx] === 'object') {
+                    return deepMerge(item, override[idx]);
+                }
+                return override[idx] !== undefined ? override[idx] : item;
+            });
+        }
+        if (typeof base === 'object' && typeof override === 'object') {
+            const result = { ...base };
+            Object.keys(override).forEach(key => {
+                if (typeof base[key] === 'object' && typeof override[key] === 'object') {
+                    result[key] = deepMerge(base[key], override[key]);
+                } else {
+                    result[key] = override[key];
+                }
+            });
+            return result;
+        }
+        return override;
+    }
+
+    /**
+     * Merge translation data into base data by ID
+     * @param {Array} baseData - Base data (English)
+     * @param {Array} translationData - Translation data
+     * @returns {Array} Merged data with translations applied
+     */
+    function mergeTranslations(baseData, translationData) {
+        if (!translationData || !Array.isArray(translationData)) {
+            return baseData;
+        }
+
+        // Create a map of translations by ID for quick lookup
+        const translationMap = {};
+        translationData.forEach(item => {
+            if (item.id) {
+                translationMap[item.id] = item;
+            }
+        });
+
+        // Merge translations into base data
+        return baseData.map(baseItem => {
+            const translation = translationMap[baseItem.id];
+            return translation ? deepMerge(baseItem, translation) : baseItem;
+        });
+    }
+
+    /**
+     * Fetch a file with translation fallback support
+     * Automatically detects if path is already translated and normalizes it
+     * Tries translated path first (data/{lang}/...), then falls back to base path (data/...)
+     * @param {string} path - File path (can be base like "data/cards/ship/card.json" or already translated like "data/es/cards/ship/card.css")
+     * @returns {Promise<Response>} Fetch response
+     */
+    async function fetchWithTranslations(path) {
+        // Normalize to base path (remove any existing language prefix)
+        const basePath = path.replace(/^data\/[a-z]{2}\//, 'data/');
+        const currentLang = getCurrentLanguage();
+
+        // If not English, try translated version first
+        if (currentLang !== 'en') {
+            const translatedPath = basePath.replace(/^data\//, `data/${currentLang}/`);
+            const response = await fetch(translatedPath);
+
+            if (response.ok) {
+                console.log(`Loaded translation: ${translatedPath}`);
+                return response;
+            }
+
+            console.log(`Translation not found: ${translatedPath} (using base)`);
+        }
+
+        // Fall back to base path (English)
+        return fetch(basePath);
+    }
+
+    /**
      * Load a JSON file and assign it to a window variable
      * @param {string} filePath - Path to the JSON file
      * @param {string} variableName - Name of the window variable to assign to
@@ -17,13 +116,13 @@ window.JsonLoader = (function() {
         if (location.protocol === 'file:') {
             throw new Error(`Cannot use fetch with file:// protocol for ${filePath}. Use embedded data instead.`);
         }
-        
+
         try {
             const response = await fetch(filePath);
             if (!response.ok) {
                 throw new Error(`Failed to load ${filePath}: ${response.status} ${response.statusText}`);
             }
-            
+
             const data = await response.json();
             window[variableName] = data;
             console.log(`Loaded ${variableName} from ${filePath}:`, data.length || 'object', typeof data === 'object' ? 'loaded' : 'items');
@@ -32,6 +131,48 @@ window.JsonLoader = (function() {
             console.error(`Error loading ${filePath}:`, error);
             throw error;
         }
+    }
+
+    /**
+     * Load a JSON file with optional translation support
+     * @param {string} filePath - Path to the base JSON file
+     * @param {string} variableName - Name of the window variable to assign to
+     * @param {boolean} mergeById - If true, merge arrays by ID; if false, replace entirely (default: true)
+     * @returns {Promise} Promise that resolves when the JSON is loaded (with translations if available)
+     */
+    async function loadJsonDataWithTranslations(filePath, variableName, mergeById = true) {
+        // Load base data first
+        let data = await loadJsonData(filePath, variableName);
+
+        // Load translations if language is not English
+        const currentLang = getCurrentLanguage();
+        if (currentLang !== 'en') {
+            // Convert path like "data/stats.json" to "data/es/stats.json"
+            const translationPath = filePath.replace(/^data\//, `data/${currentLang}/`);
+
+            try {
+                const response = await fetch(translationPath);
+                if (response.ok) {
+                    const translationData = await response.json();
+
+                    // Merge by ID or replace entirely based on parameter
+                    if (mergeById && Array.isArray(data) && Array.isArray(translationData)) {
+                        data = mergeTranslations(data, translationData);
+                    } else {
+                        data = translationData;
+                    }
+
+                    window[variableName] = data;
+                    console.log(`Loaded translation: ${translationPath}`);
+                } else {
+                    console.log(`Translation not found: ${translationPath} (using English)`);
+                }
+            } catch (error) {
+                console.log(`Translation not available: ${translationPath} (using English)`);
+            }
+        }
+
+        return data;
     }
 
     /**
@@ -80,10 +221,37 @@ window.JsonLoader = (function() {
         }
         
         console.log(`Loading ${roleConfigs.length} move files from availability map`);
-        
+
         // Load all move files and combine them
         const loadedData = await loadMultipleJsonData(roleConfigs);
-        
+
+        // Load translations if language is not English
+        const currentLang = getCurrentLanguage();
+        if (currentLang !== 'en') {
+            console.log(`Loading translations for language: ${currentLang}`);
+
+            // Try to load translation files for each role
+            for (const config of roleConfigs) {
+                // Convert path like "data/moves/lord-commander.json" to "data/es/moves/lord-commander.json"
+                const translationPath = config.filePath.replace(/^data\//, `data/${currentLang}/`);
+
+                try {
+                    const response = await fetch(translationPath);
+                    if (response.ok) {
+                        const translationData = await response.json();
+                        // Merge translations into the loaded moves
+                        const baseMoves = window[config.variableName];
+                        window[config.variableName] = mergeTranslations(baseMoves, translationData);
+                        console.log(`Loaded translation: ${translationPath}`);
+                    } else {
+                        console.log(`Translation not found: ${translationPath} (using English)`);
+                    }
+                } catch (error) {
+                    console.log(`Translation not available: ${translationPath} (using English)`);
+                }
+            }
+        }
+
         // Combine all move arrays into a single array and normalize categories
         const allMoves = [];
         const moveSourceMap = {}; // Track which file each move comes from
@@ -120,44 +288,44 @@ window.JsonLoader = (function() {
     }
 
     /**
-     * Load stats configuration
+     * Load stats configuration (with translations - merge by ID)
      * @returns {Promise} Promise that resolves when stats data is loaded
      */
     async function loadStatsData() {
-        return loadJsonData('data/stats.json', 'hexStats');
+        return loadJsonDataWithTranslations('data/stats.json', 'hexStats', true);
     }
 
     /**
-     * Load role availability map
+     * Load role availability map (with translation support - complete replacement)
      * @returns {Promise} Promise that resolves when availability map is loaded
      */
     async function loadAvailabilityMap() {
-        return loadJsonData('data/availability.json', 'availableMap');
+        return loadJsonDataWithTranslations('data/availability.json', 'availableMap', false);
     }
 
     /**
-     * Load categories configuration
+     * Load categories configuration (with translation support - complete replacement)
      * @returns {Promise} Promise that resolves when categories data is loaded
      */
     async function loadCategoriesData() {
-        return loadJsonData('data/categories.json', 'categoriesConfig');
+        return loadJsonDataWithTranslations('data/categories.json', 'categoriesConfig', false);
     }
 
     /**
-     * Load terms glossary
+     * Load terms glossary (with translation support - complete replacement)
      * @returns {Promise} Promise that resolves when terms data is loaded
      */
     async function loadTermsData() {
-        return loadJsonData('data/terms.json', 'termsGlossary');
+        return loadJsonDataWithTranslations('data/terms.json', 'termsGlossary', false);
     }
 
     /**
-     * Load aliases configuration (optional - gracefully handles missing file)
+     * Load aliases configuration (optional - gracefully handles missing file, with translation support)
      * @returns {Promise} Promise that resolves when aliases data is loaded
      */
     async function loadAliasesData() {
         try {
-            return await loadJsonData('data/aliases.json', 'aliasesConfig');
+            return await loadJsonDataWithTranslations('data/aliases.json', 'aliasesConfig', false);
         } catch (error) {
             console.warn('Aliases file not found, using empty aliases');
             window.aliasesConfig = [];
@@ -194,6 +362,8 @@ window.JsonLoader = (function() {
 
     // Public API
     return {
+        getCurrentLanguage,
+        fetchWithTranslations,
         loadJsonData,
         loadMultipleJsonData,
         loadAllRoleMoves,

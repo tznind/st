@@ -127,6 +127,11 @@ label {
   transform: scale(1.1);
   cursor: pointer;
 }
+#language-selector {
+  min-width: 90px;
+  max-width: 100px;
+}
+
 /* === HELP ICON BUTTON === */
 .help-icon {
   background: #6c757d;
