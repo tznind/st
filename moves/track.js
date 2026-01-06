@@ -99,7 +99,7 @@ window.Track = (function() {
             const trackLabel = document.createElement('div');
             trackLabel.className = 'track-label';
             trackLabel.textContent = maxValue === 0 ? `${trackConfig.name}: -` : `${trackConfig.name}: ${currentValue}/${maxValue}`;
-            
+
             // Add dynamic max button if enabled
             if (trackConfig.dynamic) {
                 console.log(`Track: Creating max button for ${trackId}`);
@@ -123,9 +123,32 @@ window.Track = (function() {
                 trackLabel.appendChild(document.createTextNode(' '));
                 trackLabel.appendChild(maxButton);
             }
-            
+
             individualTrackContainer.appendChild(trackLabel);
-            individualTrackContainer.appendChild(shapesContainer);
+
+            // Create shapes wrapper to include start/end labels
+            const shapesWrapper = document.createElement('div');
+            shapesWrapper.className = 'track-shapes-wrapper';
+
+            // Add start label if provided
+            if (trackConfig.startLabel) {
+                const startLabel = document.createElement('span');
+                startLabel.className = 'track-start-label';
+                startLabel.textContent = trackConfig.startLabel;
+                shapesWrapper.appendChild(startLabel);
+            }
+
+            shapesWrapper.appendChild(shapesContainer);
+
+            // Add end label if provided
+            if (trackConfig.endLabel) {
+                const endLabel = document.createElement('span');
+                endLabel.className = 'track-end-label';
+                endLabel.textContent = trackConfig.endLabel;
+                shapesWrapper.appendChild(endLabel);
+            }
+
+            individualTrackContainer.appendChild(shapesWrapper);
             trackContainer.appendChild(individualTrackContainer);
         });
         

@@ -19,7 +19,7 @@
       "shape": {
         "type": "string",
         "description": "Visual shape for the stat input container",
-        "enum": ["hexagon", "square", "clock", "double-up"],
+        "enum": ["hexagon", "square", "circle", "clock", "double-up"],
         "default": "hexagon"
       },
       "clock": {
@@ -112,10 +112,15 @@
               "enum": ["square", "circle", "triangle", "hexagon"],
               "default": "square"
             },
+            "startLabel": {
+              "type": "string",
+              "description": "Optional small text label shown before the shapes (e.g., '0', 'weak', 'calm')",
+              "examples": ["0", "weak", "calm", "safe"]
+            },
             "endLabel": {
               "type": "string",
-              "description": "Optional small text label shown after the shapes (e.g., 'doomed', 'corrupted')",
-              "examples": ["doomed", "corrupted", "exhausted"]
+              "description": "Optional small text label shown after the shapes (e.g., 'max', 'strong', 'breaking')",
+              "examples": ["max", "strong", "breaking", "doomed"]
             },
             "dynamic": {
               "type": "boolean",

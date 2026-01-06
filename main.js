@@ -47,6 +47,11 @@
                 window.Clock.refreshClockDisplays();
             }
 
+            // Initialize tracks from data-track attributes in main document
+            if (window.CardHelpers) {
+                window.CardHelpers.initializeTracks(document);
+            }
+
             // Handle initial navigation from URL hash (e.g., shared links with #move-xxx)
             if (window.location.hash.startsWith('#move-')) {
                 const moveId = window.location.hash.substring(6); // Remove '#move-' prefix

@@ -19,6 +19,8 @@ This document lists all `data-*` attributes used in the Rogue Trader character s
 | `data-track-max` | Maximum value for track (default: 5) | No | Track configuration |
 | `data-track-shape` | Shape of track markers: `"circle"`, `"square"`, `"triangle"`, `"hexagon"` | No | Track configuration |
 | `data-track-dynamic` | Allow user to change max value (`"true"` or `"false"`) | No | Track configuration |
+| `data-track-start-label` | Label text displayed before track shapes (e.g., "0") | No | Track configuration |
+| `data-track-end-label` | Label text displayed after track shapes (e.g., "max", "pts") | No | Track configuration |
 | **Cards: Dynamic Tables** |
 | `data-dynamic-table` | Marks table as dynamic (marker attribute) | No | Required to auto-initialize tables |
 | `data-table-max` | Maximum number of rows allowed (default: unlimited) | No | Table configuration |

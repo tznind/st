@@ -167,9 +167,11 @@ window.renderStats = function(containerSelector, hexStats) {
 
       const wrapper = document.createElement("div");
       wrapper.className = "hex-input-wrapper";
-      
+
       if (shape === "square") {
         wrapper.classList.add("shape-square");
+      } else if (shape === "circle") {
+        wrapper.classList.add("shape-circle");
       }
 
       const input = document.createElement("input");
@@ -317,11 +319,20 @@ function createStatTrackDisplay(stat, urlParams) {
       individualTrackContainer.appendChild(trackLabel);
     }
     
-    // Create shapes container wrapper to include end label
+    // Create shapes container wrapper to include start/end labels
     const shapesWrapper = document.createElement('div');
     shapesWrapper.className = 'stat-track-shapes-wrapper';
+
+    // Add start label if provided (before the shapes)
+    if (trackConfig.startLabel) {
+      const startLabel = document.createElement('span');
+      startLabel.className = 'stat-track-start-label';
+      startLabel.textContent = trackConfig.startLabel;
+      shapesWrapper.appendChild(startLabel);
+    }
+
     shapesWrapper.appendChild(shapesContainer);
-    
+
     // Add end label if provided (after the shapes)
     if (trackConfig.endLabel) {
       const endLabel = document.createElement('span');

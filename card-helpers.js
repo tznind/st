@@ -672,7 +672,9 @@ window.CardHelpers = (function() {
                 name: trackName,
                 max: parseInt(containerElement.getAttribute('data-track-max')) || 5,
                 shape: containerElement.getAttribute('data-track-shape') || 'square',
-                dynamic: containerElement.getAttribute('data-track-dynamic') === 'true'
+                dynamic: containerElement.getAttribute('data-track-dynamic') === 'true',
+                startLabel: containerElement.getAttribute('data-track-start-label') || undefined,
+                endLabel: containerElement.getAttribute('data-track-end-label') || undefined
             };
 
             console.log(`initializeTracks: Creating track for ${trackId}`, trackConfig);

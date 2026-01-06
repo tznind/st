@@ -723,6 +723,16 @@ button:focus {
   margin-top: 15px;
 }
 
+/* Push circle containers down to align with hexagons */
+.hex-container:has(.shape-circle) {
+  margin-top: 20px;
+}
+
+/* Adjust title spacing for circle shapes */
+.hex-container:has(.shape-circle) .hex-title {
+  margin-top: 15px;
+}
+
 /* Push double-up containers down to align with hexagons */
 .hex-container:has(.shape-double-up) {
   margin-top: 20px;
@@ -819,6 +829,34 @@ button:focus {
 }
 
 .hex-input-wrapper.shape-square:focus-within::before {
+  border-color: #007bff;
+}
+
+/* Circle shape variant */
+.hex-input-wrapper.shape-circle {
+  width: 100px;
+  height: 100px;
+  background: white;
+  border: none;
+  position: relative;
+  padding: 8px;
+  border-radius: 50%;
+}
+
+.hex-input-wrapper.shape-circle::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid #000000;
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow:
+    inset 1px 1px 0 rgba(0,0,0,0.1),
+    inset -1px -1px 0 rgba(0,0,0,0.1),
+    0 0 0 1px rgba(0,0,0,0.05);
+}
+
+.hex-input-wrapper.shape-circle:focus-within::before {
   border-color: #007bff;
 }
 
@@ -1028,6 +1066,13 @@ button:focus {
 
 /* Less restrictive placeholder for square */
 .hex-input-wrapper.shape-square input::placeholder {
+  font-size: clamp(7px, 1.2vw, 9px);
+  max-width: none;
+  letter-spacing: 0.2px;
+}
+
+/* Less restrictive placeholder for circle */
+.hex-input-wrapper.shape-circle input::placeholder {
   font-size: clamp(7px, 1.2vw, 9px);
   max-width: none;
   letter-spacing: 0.2px;
@@ -1962,12 +2007,25 @@ hr {
     width: 83px;
     height: 83px;
   }
-  
+
+  .hex-input-wrapper.shape-circle {
+    width: 83px;
+    height: 83px;
+  }
+
   .hex-container:has(.shape-square) {
     margin-top: 16px;
   }
-  
+
+  .hex-container:has(.shape-circle) {
+    margin-top: 16px;
+  }
+
   .hex-container:has(.shape-square) .hex-title {
+    margin-top: 12px;
+  }
+
+  .hex-container:has(.shape-circle) .hex-title {
     margin-top: 12px;
   }
   
@@ -2054,12 +2112,25 @@ hr {
     width: 70px;
     height: 70px;
   }
-  
+
+  .hex-input-wrapper.shape-circle {
+    width: 70px;
+    height: 70px;
+  }
+
   .hex-container:has(.shape-square) {
     margin-top: 14px;
   }
-  
+
+  .hex-container:has(.shape-circle) {
+    margin-top: 14px;
+  }
+
   .hex-container:has(.shape-square) .hex-title {
+    margin-top: 10px;
+  }
+
+  .hex-container:has(.shape-circle) .hex-title {
     margin-top: 10px;
   }
   
@@ -2159,6 +2230,15 @@ hr {
   justify-content: flex-start;
 }
 
+/* Override absolute positioning for tracks in main document (outside moves) */
+form > .track-counter,
+form > div > .track-counter,
+body > .track-counter {
+  position: static;
+  margin: 8px 0;
+  justify-content: flex-start;
+}
+
 /* Grid layout for many tracks (>3) - using flex flow */
 .track-counter-grid {
   position: relative;
@@ -2252,6 +2332,25 @@ hr {
   display: flex;
   gap: 2px;
   align-items: center;
+}
+
+/* Wrapper for shapes with start/end labels */
+.track-shapes-wrapper,
+.stat-track-shapes-wrapper {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+/* Start and end labels for tracks */
+.track-start-label,
+.track-end-label,
+.stat-track-start-label,
+.stat-track-end-label {
+  font-size: 11px;
+  color: #6c757d;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
 .track-dash {

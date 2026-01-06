@@ -185,6 +185,16 @@
               "enum": ["square", "circle", "triangle", "hexagon"],
               "default": "square"
             },
+            "startLabel": {
+              "type": "string",
+              "description": "Optional small text label shown before the shapes (e.g., '0', 'weak', 'calm')",
+              "examples": ["0", "weak", "calm", "none"]
+            },
+            "endLabel": {
+              "type": "string",
+              "description": "Optional small text label shown after the shapes (e.g., 'max', 'strong', 'breaking')",
+              "examples": ["max", "strong", "breaking", "full"]
+            },
             "dynamic": {
               "type": "boolean",
               "description": "If true, shows a 'max...' button to let user set custom max value",
