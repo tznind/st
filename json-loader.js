@@ -77,7 +77,47 @@ window.JsonLoader = (function() {
     }
 
     /**
-     * Fetch a file with translation fallback support
+     * Fetch with retry logic using exponential backoff
+     * @param {string} url - URL to fetch
+     * @param {number} retryCount - Current retry attempt number
+     * @param {number} maxRetries - Maximum number of retries (default: 3)
+     * @returns {Promise<Response>} Fetch response
+     */
+    async function fetchWithRetry(url, retryCount = 0, maxRetries = 3) {
+        try {
+            const response = await fetch(url);
+
+            // If successful, return the response
+            if (response.ok) {
+                return response;
+            }
+
+            // If 404, don't retry (file doesn't exist)
+            if (response.status === 404) {
+                return response;
+            }
+
+            // For other errors (500, 503, network issues), retry
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        } catch (error) {
+            if (retryCount < maxRetries) {
+                // Retry with exponential backoff (1s, 2s, 4s)
+                const delay = Math.pow(2, retryCount) * 1000;
+                console.log(`Retrying fetch (attempt ${retryCount + 1}/${maxRetries}) after ${delay}ms: ${url}`);
+
+                // Non-blocking retry using setTimeout wrapped in Promise
+                await new Promise(resolve => setTimeout(resolve, delay));
+                return fetchWithRetry(url, retryCount + 1, maxRetries);
+            } else {
+                // All retries exhausted, throw the error
+                console.error(`Failed to fetch after ${maxRetries} retries: ${url}`, error);
+                throw error;
+            }
+        }
+    }
+
+    /**
+     * Fetch a file with translation fallback support and retry logic
      * Automatically detects if path is already translated and normalizes it
      * Tries translated path first (data/{lang}/...), then falls back to base path (data/...)
      * @param {string} path - File path (can be base like "data/cards/ship/card.json" or already translated like "data/es/cards/ship/card.css")
@@ -91,7 +131,7 @@ window.JsonLoader = (function() {
         // If not English, try translated version first
         if (currentLang !== 'en') {
             const translatedPath = basePath.replace(/^data\//, `data/${currentLang}/`);
-            const response = await fetch(translatedPath);
+            const response = await fetchWithRetry(translatedPath);
 
             if (response.ok) {
                 console.log(`Loaded translation: ${translatedPath}`);
@@ -101,8 +141,8 @@ window.JsonLoader = (function() {
             console.log(`Translation not found: ${translatedPath} (using base)`);
         }
 
-        // Fall back to base path (English)
-        return fetch(basePath);
+        // Fall back to base path (English) with retry
+        return fetchWithRetry(basePath);
     }
 
     /**
@@ -118,7 +158,7 @@ window.JsonLoader = (function() {
         }
 
         try {
-            const response = await fetch(filePath);
+            const response = await fetchWithRetry(filePath);
             if (!response.ok) {
                 throw new Error(`Failed to load ${filePath}: ${response.status} ${response.statusText}`);
             }
@@ -151,7 +191,7 @@ window.JsonLoader = (function() {
             const translationPath = filePath.replace(/^data\//, `data/${currentLang}/`);
 
             try {
-                const response = await fetch(translationPath);
+                const response = await fetchWithRetry(translationPath);
                 if (response.ok) {
                     const translationData = await response.json();
 
@@ -236,7 +276,7 @@ window.JsonLoader = (function() {
                 const translationPath = config.filePath.replace(/^data\//, `data/${currentLang}/`);
 
                 try {
-                    const response = await fetch(translationPath);
+                    const response = await fetchWithRetry(translationPath);
                     if (response.ok) {
                         const translationData = await response.json();
                         // Merge translations into the loaded moves

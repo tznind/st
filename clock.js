@@ -119,33 +119,36 @@ window.Clock = (function() {
         const basePath = `${folder}/${value}.svg`;
         const translatedPath = currentLang !== 'en' ? basePath.replace(/^data\//, `data/${currentLang}/`) : basePath;
 
+        // Clear error state when loading a new image
+        clockElement.classList.remove('clock-error');
+        clockElement.textContent = '';
+        clockElement.title = '';
+
         // Show global loading indicator
         if (window.Utils) {
             window.Utils.showLoading('Loading clock...');
         }
 
-        // Preload image before changing display to avoid flicker
-        const img = new Image();
+        // Load image with retry logic
+        loadImageWithRetry(translatedPath, basePath, currentLang, 0)
+            .then(imgSrc => {
+                // Clear error state on successful load
+                clockElement.classList.remove('clock-error');
+                clockElement.textContent = '';
+                clockElement.title = '';
 
-        img.onload = () => {
-            clockElement.style.backgroundImage = `url('${img.src}')`;
-            clockElement.style.backgroundSize = 'contain';
-            clockElement.style.backgroundRepeat = 'no-repeat';
-            clockElement.style.backgroundPosition = 'center';
+                clockElement.style.backgroundImage = `url('${imgSrc}')`;
+                clockElement.style.backgroundSize = 'contain';
+                clockElement.style.backgroundRepeat = 'no-repeat';
+                clockElement.style.backgroundPosition = 'center';
 
-            // Hide global loading indicator
-            if (window.Utils) {
-                window.Utils.hideLoading();
-            }
-        };
-
-        img.onerror = () => {
-            // If translated version failed and we haven't tried base yet, try base
-            if (img.src.includes(`data/${currentLang}/`) && currentLang !== 'en') {
-                console.log(`Translation not found: ${translatedPath}, trying base: ${basePath}`);
-                img.src = basePath; // This will trigger another load attempt
-            } else {
-                console.error(`Failed to load clock image: ${img.src}`);
+                // Hide global loading indicator
+                if (window.Utils) {
+                    window.Utils.hideLoading();
+                }
+            })
+            .catch(errorSrc => {
+                console.error(`Failed to load clock image after retries: ${errorSrc}`);
 
                 // Hide loading indicator
                 if (window.Utils) {
@@ -156,12 +159,56 @@ window.Clock = (function() {
                 clockElement.classList.add('clock-error');
                 clockElement.style.backgroundImage = 'none';
                 clockElement.textContent = '✗';
-                clockElement.title = `Failed to load: ${img.src}`;
-            }
-        };
+                clockElement.title = `Failed to load: ${errorSrc}`;
+            });
+    }
 
-        // Start with translated path (or base if language is English)
-        img.src = translatedPath;
+    /**
+     * Load an image with retry logic using exponential backoff
+     * @param {string} primaryPath - Primary image path to try
+     * @param {string} fallbackPath - Fallback path if primary fails
+     * @param {string} currentLang - Current language code
+     * @param {number} retryCount - Current retry attempt number
+     * @param {number} maxRetries - Maximum number of retries (default: 3)
+     * @returns {Promise<string>} Promise resolving to successful image src or rejecting with error src
+     */
+    function loadImageWithRetry(primaryPath, fallbackPath, currentLang, retryCount = 0, maxRetries = 3) {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+
+            img.onload = () => {
+                resolve(img.src);
+            };
+
+            img.onerror = () => {
+                // If translated version failed and we haven't tried base yet, try base
+                if (img.src.includes(`data/${currentLang}/`) && currentLang !== 'en') {
+                    console.log(`Translation not found: ${primaryPath}, trying base: ${fallbackPath}`);
+
+                    // Try fallback path without retry
+                    loadImageWithRetry(fallbackPath, fallbackPath, 'en', 0, maxRetries)
+                        .then(resolve)
+                        .catch(reject);
+                } else if (retryCount < maxRetries) {
+                    // Retry with exponential backoff (1s, 2s, 4s)
+                    const delay = Math.pow(2, retryCount) * 1000;
+                    console.log(`Retrying image load (attempt ${retryCount + 1}/${maxRetries}) after ${delay}ms: ${img.src}`);
+
+                    // Non-blocking retry using setTimeout
+                    setTimeout(() => {
+                        loadImageWithRetry(img.src, fallbackPath, currentLang, retryCount + 1, maxRetries)
+                            .then(resolve)
+                            .catch(reject);
+                    }, delay);
+                } else {
+                    // All retries exhausted
+                    reject(img.src);
+                }
+            };
+
+            // Start loading the image
+            img.src = primaryPath;
+        });
     }
 
     /**
