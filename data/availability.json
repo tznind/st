@@ -331,7 +331,7 @@
   },
   "Everyone":{
     "_movesFile": "data/moves/everyone.json",
-    "cards": [],
+    "cards": ["outfit"],
     "ev1":true,
     "ev2":true,
     "ev3":true,

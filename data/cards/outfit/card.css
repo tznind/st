@@ -1,0 +1,56 @@
+.outfit-card {
+    padding: 1rem;
+}
+
+.outfit-card .load-section {
+    margin-bottom: 1rem;
+}
+
+.outfit-card .load-section label {
+    margin-right: 1rem;
+}
+
+.outfit-card table {
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+.outfit-card table th,
+.outfit-card table td {
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+}
+
+.outfit-card table th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+.outfit-card .weight-table,
+.outfit-card .prosperity-table,
+.outfit-card .supplies-table {
+    display: inline-table;
+    margin-right: 1rem;
+    vertical-align: top;
+}
+
+.outfit-card .items-section {
+    margin-top: 1rem;
+}
+
+.outfit-card .items-section fieldset {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+}
+
+.outfit-card .items-section hr {
+    margin: 0.5rem 0;
+}
+
+.outfit-card #outfit_other_items {
+    width: 100%;
+}
+
+.outfit-card button[data-table-add] {
+    margin-top: 0.5rem;
+}

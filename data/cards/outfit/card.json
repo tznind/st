@@ -1,0 +1,13 @@
+{
+  "id": "outfit",
+  "title": "Outfit",
+  "path": "data/cards/outfit",
+  "description": "Character outfit and appearance",
+  "version": "1.0.0",
+  "author": "Core System",
+  "files": {
+    "html": "card.html",
+    "css": "card.css",
+    "js": "card.js"
+  }
+}
