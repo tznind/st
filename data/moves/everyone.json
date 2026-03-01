@@ -3,6 +3,7 @@
     "id": "ev1",
     "title": "Aid",
     "category": "Basic Moves",
+    "hideCheckbox": true,
     "description": "When you **help someone who has not yet rolled**",
     "outcomes": [
       {
@@ -18,6 +19,8 @@
   {
     "id": "ev2",
     "title": "Clash (+Strength)",
+    "hideCheckbox": true,
+    "category": "Basic Moves",
     "description": "When you **fight in melee or close quarters**, roll +STR:",
     "outcomes": [
       {
@@ -31,6 +34,175 @@
       {
         "range":"7-9",
         "text": "Your maneuver works, mostly (deal your damage) but you suffer your enemy's attack"
+      }
+    ]
+  },
+   {
+    "id": "ev3",
+    "title": "Defend (+Constitution)",
+    "category": "Basic Moves",
+    "hideCheckbox": true,
+    "description": "When you **take up a defensive stance or jump in to protect others**, roll +CON:",
+    "tracks": [
+      {
+        "name": "Readiness",
+        "max": 4,
+        "shape": "hexagon",
+        "dynamic": true
+      }
+    ],
+    "outcomes": [
+      {
+        "range": "10+",
+        "text": "Hold 3 Readiness (or 4 if you bear a shield)."
+      },
+      {
+        "range": "7-9",
+        "text": "Hold 1 Readiness (or 2 if you bear a shield)."
+      },
+      {
+        "text": "Spend your Readiness 1-for-1 to:",
+        "bullets": [
+          "Suffer an attack's damage/effects instead of your ward.",
+          "Halve an attack's effect or damage.",
+          "Draw all attention from your ward to yourself.",
+          "Strike back at an attacker (deal your damage, with disadvantage)."
+        ]
+      },
+      {
+        "text": "When you go on the offense, cease to focus on defense, or the threat passes, lose any Readiness you hold."
+      }
+    ]
+  },
+  {
+    "id": "ev4",
+    "title": "Interfere",
+    "category": "Basic Moves",
+    "hideCheckbox": true,
+    "description": "When you **try to foil another PC's action and neither of you back down**, roll:",
+    "outcomes": [
+      {
+        "text": "Roll +STR to power through or test your might; +DEX to employ speed, agility, or finesse; +CON to endure or hold steady; +INT to apply expertise or enact a clever plan; +WIS to exert willpower or rely on your senses; +CHA to charm, bluff, impress, or fit in."
+      },
+      {
+        "range": "10+",
+        "text": "They pick 1 from the list below:"
+      },
+      {
+        "range": "7-9",
+        "text": "They pick 1 from the list below, but you are left off balance, exposed, or otherwise vulnerable."
+      },
+      {
+        "text": "Options:",
+        "bullets": [
+          "Do it anyway, but with disadvantage on their (next) roll.",
+          "Relent, change course, or otherwise allow their move to be foiled."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev5",
+    "title": "Know Things (+Intelligence)",
+    "category": "Basic Moves",
+    "hideCheckbox": true,
+    "description": "When you **consult your accumulated knowledge**, roll +INT:",
+    "outcomes": [
+      {
+        "range": "10+",
+        "text": "The GM will tell you something interesting **and** useful about the topic at hand."
+      },
+      {
+        "range": "7-9",
+        "text": "The GM will tell you something interesting—it's on you to make it useful."
+      },
+      {
+        "text": "Either way, the GM might ask, \"How do you know this?\""
+      }
+    ]
+  },
+  {
+    "id": "ev6",
+    "title": "Let Fly (+Dexterity)",
+    "category": "Basic Moves",
+    "hideCheckbox": true,
+    "description": "When you **calmly take an easy shot with a ranged weapon**, deal your damage. If the shot **is tricky or you're under pressure**, roll +DEX:",
+    "outcomes": [
+      {
+        "range": "10+",
+        "text": "You have a clear shot—deal your damage."
+      },
+      {
+        "range": "7-9",
+        "text": "Pick 1:",
+        "bullets": [
+          "Deal your damage, but deplete your ammo (mark the next status by your weapon; don't pick this if your weapon lacks such statuses).",
+          "Hold steady and wait for a clear shot; when the moment arrives (GM's call), deal your damage.",
+          "Move to get a clear shot—exposing yourself to danger or giving up some advantage (GM says how)—then deal your damage.",
+          "Rush the shot and deal your damage, leading to a cost or complication of the GM's choice."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev7",
+    "title": "Persuade (vs. NPCs) (+Charisma)",
+    "category": "Basic Moves",
+    "hideCheckbox": true,
+    "description": "When you **press or entice an NPC**, say what you want them to do (or not do). If they **have reason to resist**, roll +CHA:",
+    "outcomes": [
+      {
+        "range": "10+",
+        "text": "They either do as you want or reveal the easiest way to convince them."
+      },
+      {
+        "range": "7-9",
+        "text": "They reveal something you can do to convince them, though it'll likely be costly, tricky, or distasteful."
+      }
+    ]
+  },
+  {
+    "id": "ev8",
+    "title": "Persuade (vs. PCs) (+Charisma)",
+    "category": "Basic Moves",
+    "hideCheckbox": true,
+    "description": "When you **press or entice a PC and they resist**, ask their player: \"Could I possibly get you to do this, yes or no?\" If \"No,\" let it drop. If \"Yes,\" roll +CHA:",
+    "outcomes": [
+      {
+        "range": "10+",
+        "text": "They mark XP if they do what you want. If they don't, they must reveal how you could convince them."
+      },
+      {
+        "range": "7-9",
+        "text": "They mark XP if they do what you want (but can refuse or make a counter-offer if they like)."
+      }
+    ]
+  },
+  {
+    "id": "ev9",
+    "title": "Seek Insight (+Wisdom)",
+    "category": "Basic Moves",
+    "hideCheckbox": true,
+    "description": "When you **study a situation or person, looking to the GM for insight**, roll +WIS:",
+    "outcomes": [
+      {
+        "range": "10+",
+        "text": "Ask the GM 3 questions from the list below and gain advantage on your next move that acts on the answers."
+      },
+      {
+        "range": "7-9",
+        "text": "Ask 1 question from the list below and gain advantage on your next move that acts on the answer."
+      },
+      {
+        "text": "Questions:",
+        "bullets": [
+          "What happened here?",
+          "What is about to happen?",
+          "What should I be on the lookout for?",
+          "What here is useful or valuable to me?",
+          "Who or what is really in control here?",
+          "What here is not what it appears to be?"
+        ]
       }
     ]
   }

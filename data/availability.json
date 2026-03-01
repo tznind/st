@@ -333,6 +333,13 @@
     "_movesFile": "data/moves/everyone.json",
     "cards": [],
     "ev1":true,
-    "ev2":true
+    "ev2":true,
+    "ev3":true,
+    "ev4":true,
+    "ev5":true,
+    "ev6":true,
+    "ev7":true,
+    "ev8":true,
+    "ev9":true
   }
 }
