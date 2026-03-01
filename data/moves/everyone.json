@@ -14,5 +14,24 @@
         ]
       }
     ]
+  },
+  {
+    "id": "ev2",
+    "title": "Clash (+Strength)",
+    "description": "When you **fight in melee or close quarters**, roll +STR:",
+    "outcomes": [
+      {
+        "range": "10+",
+        "text": "Your maneuver works as expected (deal your damage) and pick 1:",
+        "bullets": [
+          "Avoid, prevent, or counter your enemy's attack",
+          "Strike hard and fast, for 1d6 extra damage, but suffer your enemy's attack"
+        ]
+      },
+      {
+        "range":"7-9",
+        "text": "Your maneuver works, mostly (deal your damage) but you suffer your enemy's attack"
+      }
+    ]
   }
 ]
