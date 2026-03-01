@@ -28,16 +28,21 @@ window.CardInitializers.outfit = function(container, suffix) {
             return;
         }
 
+        // Check for Pack Horse move (increases capacity by 1)
+        const hasPackHorse = document.getElementById('move_rg013')?.checked || false;
+        const bonus = hasPackHorse ? 1 : 0;
+
         // Allowed weight
         console.log('Radio states:', {
             light: helpers.isChecked('outfit_light'),
             medium: helpers.isChecked('outfit_medium'),
-            heavy: helpers.isChecked('outfit_heavy')
+            heavy: helpers.isChecked('outfit_heavy'),
+            packHorse: hasPackHorse
         });
 
-        if (helpers.isChecked('outfit_light')) allowedSpan.textContent = 3;
-        else if (helpers.isChecked('outfit_medium')) allowedSpan.textContent = 6;
-        else if (helpers.isChecked('outfit_heavy')) allowedSpan.textContent = 9;
+        if (helpers.isChecked('outfit_light')) allowedSpan.textContent = 3 + bonus;
+        else if (helpers.isChecked('outfit_medium')) allowedSpan.textContent = 6 + bonus;
+        else if (helpers.isChecked('outfit_heavy')) allowedSpan.textContent = 9 + bonus;
         else allowedSpan.textContent = 0;
 
         // Weight used from checkboxes
@@ -104,6 +109,12 @@ window.CardInitializers.outfit = function(container, suffix) {
         input.addEventListener('change', recompute);
         input.addEventListener('input', recompute);
     });
+
+    // Listen to Pack Horse move changes (outside the card)
+    const packHorseMove = document.getElementById('move_rg013');
+    if (packHorseMove) {
+        packHorseMove.addEventListener('change', recompute);
+    }
 
     // Handle add item button
     helpers.addEventListener('outfit_add_item_btn', 'click', () => {
