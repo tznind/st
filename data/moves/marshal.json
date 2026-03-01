@@ -169,7 +169,7 @@
   {
     "id": "ms010",
     "title": "Shake it Off (+Charisma)",
-    "description": "When you order an ally to overcome fear, pain, doubt, or delusion, roll +CHA: on a 10+, they do it; on a 7-9, a PC gets advantage to do it; an NPC will do it, but they'll need time, they'll resent you, or they'll feel humiliated (GM decides).",
+    "description": "When you order an ally to overcome fear, pain, doubt, or delusion, roll +CHA:",
     "outcomes": [
       {
         "range": "≥ 10",
@@ -184,11 +184,26 @@
   {
     "id": "ms011",
     "title": "Shield Wall",
-    "description": "When you have your crew form a shield wall, they Defend with advantage and on a 7+ they hold +2 Readiness (instead of the usual +1 for shields). As long as they maintain formation, they can go on the offensive without losing Readiness.",
+    "description": "When you _have your crew form a shield wall_",
+    "tracks": [
+      {
+        "name": "Readiness",
+        "max": 5,
+        "shape": "hexagon"
+      }
+    ],
     "outcomes": [
       {
         "range": "",
-        "text": "Your crew Defends with advantage and on a 7+ holds +2 Readiness (instead of +1). They can go offensive without losing Readiness while in formation."
+        "text": "They Defend with advantage."
+      },
+      {
+        "range": "",
+        "text": "On a 7+ holds +2 Readiness (instead of the usual +1 for shields)."
+      },
+      {
+        "range": "",
+        "text": "_As long as they maintain formation_, they can go offensive without losing Readiness."
       }
     ]
   },
