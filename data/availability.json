@@ -328,5 +328,10 @@
     "h021": false,
     "h022": false,
     "hi": true
+  },
+  "Everyone":{
+    "_movesFile": "data/moves/everyone.json",
+    "cards": [],
+    "ev1":true
   }
 }

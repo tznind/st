@@ -1,12 +1,17 @@
 [
   {
-    "id": "universal",
-    "title": "Universal Access - Available to all characters",
-    "description": "This demonstrates the Everyone role functionality - this move appears for any selected role combination.",
+    "id": "ev1",
+    "title": "Aid",
+    "category": "Basic Moves",
+    "description": "When you **help someone who has not yet rolled**",
     "outcomes": [
       {
         "range": "",
-        "text": "This move is always available to demonstrate how the Everyone system works."
+        "text": "The GM picks 1. Regardless, you are exposed to any risk, cost, or consequence associated with their roll",
+        "bullets": [
+          "They can accomplish more than they could alone.",
+          "They gain advantage on their roll."
+        ]
       }
     ]
   }
