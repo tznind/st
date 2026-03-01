@@ -205,5 +205,25 @@
         ]
       }
     ]
-  }
+  },
+  {
+  "id": "ev10",
+  "title": "Defy Danger",
+  "category": "Basic Moves",
+  "hideCheckbox": true,
+  "description": "When **danger looms, the stakes are high, and you do something chancy**, check if another move applies. If not, roll:",
+  "outcomes": [
+    {
+      "text": "Roll +STR to power through or test your might; +DEX to employ speed, agility, or finesse; +CON to endure or hold steady; +INT to apply expertise or enact a clever plan; +WIS to exert willpower or rely on your senses; +CHA to charm, bluff, impress, or fit in."
+    },
+    {
+      "range": "10+",
+      "text": "You pull it off as well as one could hope."
+    },
+    {
+      "range": "7-9",
+      "text": "You can do it, but the GM will present a lesser success, a cost, or a consequence (possibly offering a choice between them or a chance to back down)."
+    }
+  ]
+}
 ]
