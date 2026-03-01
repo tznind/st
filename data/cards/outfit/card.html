@@ -7,28 +7,30 @@
         <label><input type="radio" name="outfit_weight" id="outfit_heavy"> Heavy</label>
     </div>
 
-    <table class="weight-table">
-        <tr><th>Weight Used</th><th>Allowed</th></tr>
-        <tr>
-            <td><span id="outfit_weightused">0</span></td>
-            <td><span id="outfit_weightallowed">0</span></td>
-        </tr>
-    </table>
+    <div class="tables-container">
+        <table class="weight-table">
+            <tr><th>Weight Used</th><th>Allowed</th></tr>
+            <tr>
+                <td><span id="outfit_weightused">0</span></td>
+                <td><span id="outfit_weightallowed">0</span></td>
+            </tr>
+        </table>
 
-    <table class="prosperity-table">
-        <tr><th>Prosperity</th></tr>
-        <tr>
-            <td><input id="outfit_prosperity" type="number" min="0" step="1"></td>
-        </tr>
-    </table>
+        <table class="prosperity-table">
+            <tr><th>Prosperity</th></tr>
+            <tr>
+                <td><input id="outfit_prosperity" type="number" min="0" step="1"></td>
+            </tr>
+        </table>
 
-    <table class="supplies-table">
-        <tr><th>Supplies Used</th><th>Available</th></tr>
-        <tr>
-            <td><input type="number" id="outfit_suppliesused" min="0" step="1"></td>
-            <td><span id="outfit_suppliesavailable">0</span></td>
-        </tr>
-    </table>
+        <table class="supplies-table">
+            <tr><th>Supplies Used</th><th>Available</th></tr>
+            <tr>
+                <td><input type="number" id="outfit_suppliesused" min="0" step="1"></td>
+                <td><span id="outfit_suppliesavailable">0</span></td>
+            </tr>
+        </table>
+    </div>
 
     <div class="items-section">
         <fieldset>
@@ -38,34 +40,34 @@
             <label><input type="checkbox" id="outfit_cbSupplies3"> Even more supplies</label>
         </fieldset>
 
-        <label><input type="checkbox" id="outfit_Mess_kit"> Mess kit</label><br>
-        <label><input type="checkbox" id="outfit_Bedroll"> Bedroll</label><br>
-        <label><input type="checkbox" id="outfit_Blanket"> Blanket</label><br>
-        <label><input type="checkbox" id="outfit_Change_of_clothes"> Change of clothes</label><br>
-        <label><input type="checkbox" id="outfit_Rope"> Rope</label><br>
-        <label><input type="checkbox" id="outfit_Shovel"> Shovel</label><br>
-        <label><input type="checkbox" id="outfit_Sledge_litter"> Sledge/litter (2 weight)</label><br>
-        <label><input type="checkbox" id="outfit_Snow_shoes"> Snow-shoes</label><br>
+        <label><input type="checkbox" id="outfit_Mess_kit"> Mess kit</label>
+        <label><input type="checkbox" id="outfit_Bedroll"> Bedroll</label>
+        <label><input type="checkbox" id="outfit_Blanket"> Blanket</label>
+        <label><input type="checkbox" id="outfit_Change_of_clothes"> Change of clothes</label>
+        <label><input type="checkbox" id="outfit_Rope"> Rope</label>
+        <label><input type="checkbox" id="outfit_Shovel"> Shovel</label>
+        <label><input type="checkbox" id="outfit_Sledge_litter"> Sledge/litter (2)</label>
+        <label><input type="checkbox" id="outfit_Snow_shoes"> Snow-shoes</label>
         <hr>
-        <label><input type="checkbox" id="outfit_Torch"> Torch</label><br>
-        <label><input type="checkbox" id="outfit_Oil_lamp"> Oil lamp</label><br>
-        <label><input type="checkbox" id="outfit_Extra_oil"> Extra oil</label><br>
-        <label><input type="checkbox" id="outfit_Firewood"> Firewood (2 weight)</label><br>
+        <label><input type="checkbox" id="outfit_Torch"> Torch</label>
+        <label><input type="checkbox" id="outfit_Oil_lamp"> Oil lamp</label>
+        <label><input type="checkbox" id="outfit_Extra_oil"> Extra oil</label>
+        <label><input type="checkbox" id="outfit_Firewood"> Firewood (2)</label>
         <hr>
-        <label><input type="checkbox" id="outfit_Hatchet"> Hatchet</label><br>
-        <label><input type="checkbox" id="outfit_Mallet"> Mallet</label><br>
-        <label><input type="checkbox" id="outfit_Mattock"> Mattock</label><br>
-        <label><input type="checkbox" id="outfit_Maul"> Maul</label><br>
-        <label><input type="checkbox" id="outfit_Staff"> Staff</label><br>
-        <label><input type="checkbox" id="outfit_Spear"> Spear</label><br>
-        <label><input type="checkbox" id="outfit_Long_spear"> Long spear (2 weight)</label><br>
-        <label><input type="checkbox" id="outfit_Bow_and_iron_arrows"> Bow & iron arrows</label><br>
-        <label><input type="checkbox" id="outfit_Extra_arrows"> Extra arrows</label><br>
+        <label><input type="checkbox" id="outfit_Hatchet"> Hatchet</label>
+        <label><input type="checkbox" id="outfit_Mallet"> Mallet</label>
+        <label><input type="checkbox" id="outfit_Mattock"> Mattock</label>
+        <label><input type="checkbox" id="outfit_Maul"> Maul</label>
+        <label><input type="checkbox" id="outfit_Staff"> Staff</label>
+        <label><input type="checkbox" id="outfit_Spear"> Spear</label>
+        <label><input type="checkbox" id="outfit_Long_spear"> Long spear (2)</label>
+        <label><input type="checkbox" id="outfit_Bow_and_iron_arrows"> Bow & iron arrows</label>
+        <label><input type="checkbox" id="outfit_Extra_arrows"> Extra arrows</label>
         <hr>
-        <label><input type="checkbox" id="outfit_Javelins"> Javelins</label><br>
-        <label><input type="checkbox" id="outfit_Shield"> Shield (2 weight)</label><br>
-        <label><input type="checkbox" id="outfit_Thick_hides"> Thick hides (2 weight)</label><br>
-        <label><input type="checkbox" id="outfit_Cloak"> Cloak</label><br>
+        <label><input type="checkbox" id="outfit_Javelins"> Javelins</label>
+        <label><input type="checkbox" id="outfit_Shield"> Shield (2)</label>
+        <label><input type="checkbox" id="outfit_Thick_hides"> Thick hides (2)</label>
+        <label><input type="checkbox" id="outfit_Cloak"> Cloak</label>
 
         <fieldset>
             <legend>Other</legend>
