@@ -133,10 +133,20 @@
         if (form && window.Persistence) {
             // Clear URL parameters first
             window.Persistence.clearState(form);
-            
+
+            // Remove all existing track displays so they can be re-initialized from cleared URL
+            document.querySelectorAll('.track-counter, .track-counter-grid').forEach(trackDisplay => {
+                trackDisplay.remove();
+            });
+
             // Then refresh the entire layout
             if (window.Layout) {
                 window.Layout.layoutApplication();
+            }
+
+            // Re-initialize tracks in the main document after layout is complete
+            if (window.CardHelpers) {
+                window.CardHelpers.initializeTracks(document);
             }
         }
     }

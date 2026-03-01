@@ -6,6 +6,9 @@
 window.JsonLoader = (function() {
     'use strict';
 
+    // Cache for loaded modules config
+    let modulesConfig = null;
+
     /**
      * Get current language (from URL parameter ?lang= or default to 'en')
      * @returns {string} Language code (e.g., 'en', 'es', 'fr')
@@ -17,6 +20,119 @@ window.JsonLoader = (function() {
 
         // Return language from URL or default to English
         return langParam || 'en';
+    }
+
+    /**
+     * Get enabled module IDs from URL parameters
+     * Supports both formats:
+     *   - Checkbox style: &module_example-module=1
+     *   - Legacy style: &module=moduleid or &module=id1,id2,id3
+     * @returns {Array<string>} Array of enabled module IDs
+     */
+    function getEnabledModules() {
+        const params = new URLSearchParams(window.location.search);
+        const enabledModules = [];
+
+        // Check for checkbox-style params (module_{id}=1)
+        for (const [key, value] of params.entries()) {
+            if (key.startsWith('module_') && value === '1') {
+                const moduleId = key.substring(7); // Remove 'module_' prefix
+                if (moduleId && !enabledModules.includes(moduleId)) {
+                    enabledModules.push(moduleId);
+                }
+            }
+        }
+
+        // Also support legacy &module= param for backwards compatibility
+        const moduleParam = params.get('module');
+        if (moduleParam) {
+            const legacyModules = moduleParam.split(',').map(id => id.trim()).filter(id => id);
+            legacyModules.forEach(id => {
+                if (!enabledModules.includes(id)) {
+                    enabledModules.push(id);
+                }
+            });
+        }
+
+        return enabledModules;
+    }
+
+    /**
+     * Load modules configuration from data/modules.json (with translation support)
+     * @returns {Promise<Object>} Modules configuration object
+     */
+    async function loadModulesConfig() {
+        if (modulesConfig) {
+            return modulesConfig;
+        }
+
+        try {
+            const response = await fetchWithTranslations('data/modules.json');
+            if (response.ok) {
+                modulesConfig = await response.json();
+                console.log('Loaded modules config:', modulesConfig);
+                return modulesConfig;
+            }
+        } catch (error) {
+            console.log('No modules.json found or failed to load:', error.message);
+        }
+
+        modulesConfig = { modules: [] };
+        return modulesConfig;
+    }
+
+    /**
+     * Merge module availability data into base availability map
+     * Module data is merged per-role, with module moves and settings added to existing roles
+     * @param {Object} baseMap - Base availability map
+     * @param {Object} moduleMap - Module's availability data
+     * @param {string} moduleId - Module ID for logging
+     * @returns {Object} Merged availability map
+     */
+    function mergeModuleAvailability(baseMap, moduleMap, moduleId) {
+        const result = { ...baseMap };
+
+        for (const [roleName, roleData] of Object.entries(moduleMap)) {
+            if (result[roleName]) {
+                // Role exists - merge module data into it
+                // Track additional moves files from modules
+                const existingMovesFiles = result[roleName]._movesFiles || [];
+                if (result[roleName]._movesFile && !existingMovesFiles.includes(result[roleName]._movesFile)) {
+                    existingMovesFiles.push(result[roleName]._movesFile);
+                }
+
+                // Add module's moves file
+                if (roleData._movesFile) {
+                    existingMovesFiles.push(roleData._movesFile);
+                }
+
+                // Merge cards arrays
+                const existingCards = result[roleName].cards || [];
+                const moduleCards = roleData.cards || [];
+                const mergedCards = [...existingCards, ...moduleCards.filter(c => !existingCards.includes(c))];
+
+                // Merge all properties
+                result[roleName] = {
+                    ...result[roleName],
+                    ...roleData,
+                    _movesFiles: existingMovesFiles.length > 0 ? existingMovesFiles : undefined,
+                    cards: mergedCards.length > 0 ? mergedCards : undefined
+                };
+
+                // Keep original _movesFile for backwards compatibility
+                if (baseMap[roleName]._movesFile) {
+                    result[roleName]._movesFile = baseMap[roleName]._movesFile;
+                }
+
+                console.log(`Merged module ${moduleId} into role ${roleName}`);
+            } else {
+                // New role from module - add it directly
+                result[roleName] = roleData;
+                console.log(`Added new role ${roleName} from module ${moduleId}`);
+            }
+        }
+
+        return result;
     }
 
     /**
@@ -239,18 +355,40 @@ window.JsonLoader = (function() {
         
         const roleConfigs = [];
         
+        const loadedPaths = new Set(); // Avoid loading same file twice
+
         for (const [roleName, roleData] of Object.entries(window.availableMap)) {
-            if (roleData._movesFile) {
-                // Convert role name to variable name (e.g., "Mech Adept" -> "MechAdeptMoves")
+            // Load primary moves file
+            if (roleData._movesFile && !loadedPaths.has(roleData._movesFile)) {
                 const variableName = roleName
                     .split(' ')
                     .map(part => part.charAt(0).toUpperCase() + part.slice(1))
                     .join('') + 'Moves';
-                
+
                 roleConfigs.push({
                     filePath: roleData._movesFile,
                     variableName: variableName,
                     roleName: roleName
+                });
+                loadedPaths.add(roleData._movesFile);
+            }
+
+            // Load additional moves files from modules (_movesFiles array)
+            if (roleData._movesFiles && Array.isArray(roleData._movesFiles)) {
+                roleData._movesFiles.forEach((filePath, i) => {
+                    if (!loadedPaths.has(filePath)) {
+                        const variableName = roleName
+                            .split(' ')
+                            .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+                            .join('') + 'ModuleMoves' + i;
+
+                        roleConfigs.push({
+                            filePath: filePath,
+                            variableName: variableName,
+                            roleName: roleName
+                        });
+                        loadedPaths.add(filePath);
+                    }
                 });
             }
         }
@@ -337,10 +475,53 @@ window.JsonLoader = (function() {
 
     /**
      * Load role availability map (with translation support - complete replacement)
+     * Also loads and merges any enabled modules
      * @returns {Promise} Promise that resolves when availability map is loaded
      */
     async function loadAvailabilityMap() {
-        return loadJsonDataWithTranslations('data/availability.json', 'availableMap', false);
+        // Load base availability map
+        let data = await loadJsonDataWithTranslations('data/availability.json', 'availableMap', false);
+
+        // Check for enabled modules
+        const enabledModuleIds = getEnabledModules();
+        if (enabledModuleIds.length === 0) {
+            return data;
+        }
+
+        // Load modules config
+        const config = await loadModulesConfig();
+        if (!config.modules || config.modules.length === 0) {
+            console.warn('Modules requested but no modules.json found');
+            return data;
+        }
+
+        // Load and merge each enabled module
+        for (const moduleId of enabledModuleIds) {
+            const moduleInfo = config.modules.find(m => m.id === moduleId);
+            if (!moduleInfo) {
+                console.warn(`Module not found: ${moduleId}`);
+                continue;
+            }
+
+            // Use fetchWithTranslations to load module availability with language support
+            const availabilityPath = `${moduleInfo.path}/availability.json`;
+            try {
+                const response = await fetchWithTranslations(availabilityPath);
+                if (response.ok) {
+                    const moduleData = await response.json();
+                    data = mergeModuleAvailability(data, moduleData, moduleId);
+                    console.log(`Loaded module: ${moduleId}`);
+                } else {
+                    console.warn(`Failed to load module ${moduleId}: ${response.status}`);
+                }
+            } catch (error) {
+                console.error(`Error loading module ${moduleId}:`, error);
+            }
+        }
+
+        // Update the global variable with merged data
+        window.availableMap = data;
+        return data;
     }
 
     /**
@@ -403,6 +584,8 @@ window.JsonLoader = (function() {
     // Public API
     return {
         getCurrentLanguage,
+        getEnabledModules,
+        loadModulesConfig,
         fetchWithTranslations,
         loadJsonData,
         loadMultipleJsonData,

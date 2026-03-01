@@ -16,11 +16,11 @@ window.Wizard = {
     });
   },
 
-  // Utility: Escape HTML
+  // Utility: Escape HTML and quotes for use in attributes
   _escapeHtml: function(text) {
     const div = document.createElement('div');
     div.textContent = text;
-    return div.innerHTML;
+    return div.innerHTML.replace(/"/g, '&quot;');
   },
 
   // Build modal HTML

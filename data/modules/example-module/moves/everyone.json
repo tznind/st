@@ -1,0 +1,27 @@
+[
+  {
+    "id": "module-test-move",
+    "title": "Module Test Move (+Mettle)",
+    "description": "This is a test move added by the example module. When you use this move, roll +Mettle.",
+    "category": "Module Moves",
+    "outcomes": [
+      {
+        "range": "\u2265 10",
+        "text": "Full success! The module system works perfectly.",
+        "bullets": []
+      },
+      {
+        "range": "7\u20139",
+        "text": "Partial success. Choose one:",
+        "bullets": [
+          "The module loads but with warnings",
+          "The move appears but looks different"
+        ]
+      },
+      {
+        "range": "\u2264 6",
+        "text": "The module fails to load. Check the console for errors."
+      }
+    ]
+  }
+]

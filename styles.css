@@ -243,6 +243,35 @@ body.hide-help .move-reference {
   cursor: default;
 }
 
+/* === FORMAT TEXT INPUT BOXES === */
+.format-text-input {
+  display: inline-block;
+  min-width: 60px;
+  max-width: 200px;
+  height: 1.2em !important;
+  padding: 0 4px !important;
+  margin: 0 2px;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1.2 !important;
+  vertical-align: baseline;
+  border: 1px solid #d1d5db;
+  border-radius: 3px;
+  background-color: #f9fafb;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.format-text-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background-color: #ffffff;
+}
+
+.format-text-input::placeholder {
+  color: #9ca3af;
+  font-style: italic;
+}
+
 /* === BURGER MENU BUTTON === */
 .burger-menu {
   font-size: 1.5em;
@@ -379,6 +408,126 @@ body.hide-help .move-reference {
     width: 24px;
     height: 24px;
     font-size: 14px;
+  }
+}
+
+/* === MODULES MODAL === */
+.modules-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modules-content {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.modules-content h3 {
+  margin: 0 0 8px 0;
+  color: #2c3e50;
+  font-size: 20px;
+}
+
+.modules-description {
+  margin: 0 0 16px 0;
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.modules-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #6c757d;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.modules-close:hover {
+  color: #2c3e50;
+}
+
+#modules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.module-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background: #f9fafb;
+}
+
+.module-item:hover {
+  background: #f3f4f6;
+}
+
+.module-item input[type="checkbox"] {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.module-item label {
+  flex: 1;
+  cursor: pointer;
+}
+
+.module-item .module-name {
+  font-weight: 600;
+  color: #374151;
+  display: block;
+}
+
+.module-item .module-desc {
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 2px;
+  display: block;
+}
+
+.modules-empty {
+  color: #6b7280;
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+}
+
+.modules-note {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+@media (max-width: 480px) {
+  .modules-content {
+    padding: 20px;
+    max-width: calc(100vw - 32px);
   }
 }
 

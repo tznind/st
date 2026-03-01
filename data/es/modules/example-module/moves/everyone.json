@@ -1,0 +1,27 @@
+[
+  {
+    "id": "module-test-move",
+    "title": "Movimiento de Prueba del Módulo (+Temple)",
+    "description": "Este es un movimiento de prueba añadido por el módulo de ejemplo. Cuando uses este movimiento, tira +Temple.",
+    "category": "Movimientos del Módulo",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "¡Éxito total! El sistema de módulos funciona perfectamente.",
+        "bullets": []
+      },
+      {
+        "range": "7–9",
+        "text": "Éxito parcial. Elige uno:",
+        "bullets": [
+          "El módulo se carga pero con advertencias",
+          "El movimiento aparece pero se ve diferente"
+        ]
+      },
+      {
+        "range": "≤ 6",
+        "text": "El módulo no se carga. Revisa la consola para ver los errores."
+      }
+    ]
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "modules": [
+    {
+      "id": "example-module",
+      "name": "Example Module",
+      "description": "An example module that adds new moves to Everyone role",
+      "path": "data/modules/example-module"
+    }
+  ]
+}

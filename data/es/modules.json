@@ -1,0 +1,10 @@
+{
+  "modules": [
+    {
+      "id": "example-module",
+      "name": "Módulo de Ejemplo",
+      "description": "Un módulo de ejemplo que añade nuevos movimientos al rol de Todos",
+      "path": "data/modules/example-module"
+    }
+  ]
+}

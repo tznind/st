@@ -199,8 +199,38 @@ window.TextFormatter = (function() {
     }
 
     /**
+     * Replace text box patterns (__id__) with input elements
+     * Syntax: __cn1__ creates <input type="text" id="cn1">
+     * Syntax: __cn1:Placeholder__ creates input with placeholder="Placeholder"
+     * @param {string} text - Text with potential __id__ or __id:placeholder__ patterns
+     * @returns {string} Text with text boxes replaced by input elements
+     */
+    function replaceTextBoxes(text) {
+        // Match pattern: __id__ or __id:placeholder__
+        // id is alphanumeric, dash, or underscore
+        // placeholder is optional and can contain any text (non-greedy match)
+        const pattern = /__([a-zA-Z0-9_-]+)(?::(.+?))?__/g;
+
+        return text.replace(pattern, function(match, id, placeholder) {
+            // Escape placeholder text for HTML attribute
+            const escapedId = id.replace(/"/g, '&quot;');
+            let inputHtml = `<input type="text" id="${escapedId}" class="format-text-input" data-textbox-id="${escapedId}"`;
+
+            if (placeholder) {
+                const escapedPlaceholder = placeholder
+                    .replace(/&/g, '&amp;')
+                    .replace(/"/g, '&quot;');
+                inputHtml += ` placeholder="${escapedPlaceholder}"`;
+            }
+
+            inputHtml += ' />';
+            return inputHtml;
+        });
+    }
+
+    /**
      * Format text with basic markdown-style syntax
-     * Supports: **bold**, *italic*, and bullet lists
+     * Supports: **bold**, *italic*, bullet lists, and text boxes (__id__)
      * @param {string} text - The text to format
      * @returns {string} HTML string with formatting applied
      */
@@ -210,6 +240,10 @@ window.TextFormatter = (function() {
         }
 
         let formatted = text;
+
+        // Replace text box patterns first (before bold/italic processing)
+        // This prevents __id__ from being confused with italic syntax
+        formatted = replaceTextBoxes(formatted);
 
         // Apply bold (**text**) first
         formatted = formatted.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');

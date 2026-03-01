@@ -142,6 +142,17 @@
         <button type="button" id="collapse-all-moves">Collapse All</button>
         <button type="button" id="expand-all-moves">Expand All</button>
         <button type="button" id="show-contents" class="burger-menu" title="Table of Contents" aria-label="Show table of contents">☰</button>
+        <button type="button" id="show-modules" class="burger-menu" title="Modules" aria-label="Show modules">🧩</button>
+      </div>
+    </div>
+
+    <!-- Modules Modal -->
+    <div id="modules-modal" class="modules-modal" style="display: none;">
+      <div class="modules-content">
+        <button type="button" class="modules-close" aria-label="Close">&times;</button>
+        <h3>Modules</h3>
+        <p class="modules-description">Enable optional content modules:</p>
+        <div id="modules-list"></div>
       </div>
     </div>
 
@@ -180,6 +191,9 @@
 
 <!-- Language selector -->
 <script src="language-selector.js"></script>
+
+<!-- Modules UI -->
+<script src="modules.js"></script>
 
 </body>
 </html>
