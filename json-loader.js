@@ -92,7 +92,16 @@ window.JsonLoader = (function() {
     function mergeModuleAvailability(baseMap, moduleMap, moduleId) {
         const result = { ...baseMap };
 
+        // Collect top-level _removes from module (union with any existing)
+        if (moduleMap._removes && Array.isArray(moduleMap._removes)) {
+            const existingRemoves = result._removes || [];
+            result._removes = [...new Set([...existingRemoves, ...moduleMap._removes])];
+        }
+
         for (const [roleName, roleData] of Object.entries(moduleMap)) {
+            // Skip special top-level keys (e.g. _removes)
+            if (roleName.startsWith('_')) continue;
+
             if (result[roleName]) {
                 // Role exists - merge module data into it
                 // Track additional moves files from modules

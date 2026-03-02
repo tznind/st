@@ -96,6 +96,22 @@ Define entirely new roles that only appear when the module is enabled:
 }
 ```
 
+### Removing Moves
+
+Modules can remove base moves (or moves from other modules) by specifying a top-level `_removes` array. Moves listed here are discarded after all selected roles are unioned, regardless of which role granted them:
+
+```json
+{
+  "_removes": ["old-move-id", "another-move-id"],
+  "Navigator": {
+    "_movesFile": "data/modules/my-module/moves/navigator.json",
+    "replacement-move": false
+  }
+}
+```
+
+This is useful when a module replaces a base move with an improved version — you can add the new move and suppress the old one in the same file. If multiple enabled modules each specify `_removes`, the lists are unioned together.
+
 ### New Cards
 
 Add cards to existing or new roles:
@@ -152,12 +168,15 @@ Here's a complete example module that adds a test move to all characters:
 **data/modules/example-module/availability.json:**
 ```json
 {
+  "_removes": ["universal"],
   "Everyone": {
     "_movesFile": "data/modules/example-module/moves/everyone.json",
     "module-test-move": false
   }
 }
 ```
+
+The `_removes` array demonstrates suppressing a base move (`universal`) when this module is active. This is useful when a module replaces existing content — add your new move and remove the old one in the same file.
 
 **data/modules/example-module/moves/everyone.json:**
 ```json
@@ -202,6 +221,8 @@ When a module is loaded:
 2. **Move files** are loaded from both base `_movesFile` and module `_movesFiles`
 
 3. **Move availability flags** (true/false) are merged - module can add new move IDs
+
+4. **`_removes` lists** are unioned across all enabled modules, then applied after the full role union — those move IDs are dropped from the final availability regardless of which role granted them
 
 ### URL Parameter Format
 

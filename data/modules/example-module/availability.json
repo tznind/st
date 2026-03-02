@@ -1,4 +1,5 @@
 {
+  "_removes": ["universal"],
   "Everyone": {
     "_movesFile": "data/modules/example-module/moves/everyone.json",
     "module-test-move": false
