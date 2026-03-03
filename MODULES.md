@@ -24,11 +24,19 @@ Add your module to `data/modules.json`:
       "id": "my-module",
       "name": "My Module",
       "description": "Adds new moves and features",
-      "path": "data/modules/my-module"
+      "path": "data/modules/my-module",
+      "attribution": {
+        "url": "https://example.com/my-module",
+        "statement": "written by Author Name in City, Country.",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
     }
   ]
 }
 ```
+
+The optional `attribution` object causes a credit line to appear in the page banner whenever the module is enabled. `url` (optional) links the module name; `statement` is the plain-text attribution; `license` and `licenseUrl` link to the license. Omit `attribution` entirely if no credit line is needed.
 
 ### 2. Create the Module Folder
 
