@@ -4,7 +4,13 @@
       "id": "example-module",
       "name": "Example Module",
       "description": "An example module that adds new moves to Everyone role",
-      "path": "data/modules/example-module"
+      "path": "data/modules/example-module",
+      "attribution": {
+        "url": "https://github.com/tznind/lc",
+        "statement": "written by Author Name in City, Country.",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
     }
   ]
 }
