@@ -114,17 +114,44 @@ This is useful when a module replaces a base move with an improved version — y
 
 ### New Cards
 
-Add cards to existing or new roles:
+Module cards live inside the module folder and are referenced with a path-based ID using `/` as a separator. The card system detects the `/` and resolves the definition relative to `data/` instead of the default `data/cards/` location.
 
+**Folder structure:**
+```
+data/modules/my-module/
+├── availability.json
+├── moves/
+└── cards/
+    └── my-card/
+        ├── card.json
+        ├── card.html
+        └── card.css       (optional)
+```
+
+**`data/modules/my-module/cards/my-card/card.json`:**
 ```json
 {
-  "Lord Commander": {
-    "cards": ["module-special-card"]
+  "id": "modules/my-module/my-card",
+  "title": "My Card",
+  "path": "data/modules/my-module/cards/my-card",
+  "version": "1.0.0",
+  "files": {
+    "html": "card.html",
+    "css": "card.css"
   }
 }
 ```
 
-Cards are merged with existing cards - if the base role has `cards: ["ship"]` and your module adds `cards: ["new-card"]`, the result is `cards: ["ship", "new-card"]`.
+**`data/modules/my-module/availability.json`:**
+```json
+{
+  "Everyone": {
+    "cards": ["modules/my-module/my-card"]
+  }
+}
+```
+
+The `id` in `card.json` must match the string used in `cards` exactly. Cards are merged with existing cards — if the base role has `cards: ["ship"]` and your module adds `cards: ["modules/my-module/my-card"]`, the result is both cards showing.
 
 ## Multi-Language Support
 
