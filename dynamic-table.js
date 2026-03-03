@@ -121,7 +121,10 @@ window.DynamicTable = (function() {
                     type: th.getAttribute('data-type') || 'text',
                     readonly: th.hasAttribute('data-readonly'),
                     options: th.getAttribute('data-options'), // For select fields
-                    label: th.textContent.trim()
+                    label: th.textContent.trim(),
+                    min: th.getAttribute('data-min'),
+                    max: th.getAttribute('data-max'),
+                    defaultValue: th.getAttribute('data-default')
                 };
                 fields.push(field);
             });
@@ -179,6 +182,10 @@ window.DynamicTable = (function() {
                 if (field.type === 'number') {
                     input.style.width = '60px';
                 }
+
+                if (field.min !== null) input.min = field.min;
+                if (field.max !== null) input.max = field.max;
+                if (field.defaultValue !== null) input.value = field.defaultValue;
             }
 
             if (field.readonly) {

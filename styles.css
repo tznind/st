@@ -2684,6 +2684,21 @@ body > .track-counter {
   font-weight: 600;
 }
 
+.wizard-text-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 10px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.wizard-text-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
 .wizard-options {
   display: flex;
   flex-direction: column;
