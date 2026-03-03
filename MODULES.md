@@ -131,7 +131,7 @@ data/modules/my-module/
 **`data/modules/my-module/cards/my-card/card.json`:**
 ```json
 {
-  "id": "modules/my-module/my-card",
+  "id": "modules/my-module/cards/my-card",
   "title": "My Card",
   "path": "data/modules/my-module/cards/my-card",
   "version": "1.0.0",
@@ -146,12 +146,12 @@ data/modules/my-module/
 ```json
 {
   "Everyone": {
-    "cards": ["modules/my-module/my-card"]
+    "cards": ["modules/my-module/cards/my-card"]
   }
 }
 ```
 
-The `id` in `card.json` must match the string used in `cards` exactly. Cards are merged with existing cards — if the base role has `cards: ["ship"]` and your module adds `cards: ["modules/my-module/my-card"]`, the result is both cards showing.
+The `id` in `card.json` must match the string used in `cards` exactly, and must reflect the full path from `data/` — so a card at `data/modules/my-module/cards/my-card/card.json` has id `modules/my-module/cards/my-card`. Cards are merged with existing cards — if the base role has `cards: ["ship"]` and your module adds `cards: ["modules/my-module/cards/my-card"]`, the result is both cards showing.
 
 ## Multi-Language Support
 
