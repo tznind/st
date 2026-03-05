@@ -20,6 +20,9 @@ window.ModulesUI = (function() {
             return;
         }
 
+        // Disable button if no modules are available
+        checkModulesAvailable(showButton);
+
         // Show modal on button click
         showButton.addEventListener('click', async () => {
             await loadModulesList();
@@ -44,6 +47,22 @@ window.ModulesUI = (function() {
                 modal.style.display = 'none';
             }
         });
+    }
+
+    /**
+     * Check if modules are available and disable the button if not
+     */
+    async function checkModulesAvailable(button) {
+        try {
+            const config = await window.JsonLoader.loadModulesConfig();
+            const modules = config.modules || [];
+            if (modules.length === 0) {
+                button.disabled = true;
+                button.title = 'No modules available';
+            }
+        } catch (error) {
+            // If check fails, leave button enabled
+        }
     }
 
     /**

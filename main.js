@@ -349,7 +349,7 @@
         modal.innerHTML = `
             <div class="role-description-content contents-content">
                 <button class="role-description-close" aria-label="Close">&times;</button>
-                <h3>Table of Contents</h3>
+                <h3>Navigate</h3>
                 ${contentsHTML}
             </div>
         `;
@@ -459,32 +459,6 @@
                 helpButton.addEventListener('click', () => showRoleDescription(selector.id));
             }
         });
-
-        // Collapse all moves button
-        const collapseAllButton = document.getElementById('collapse-all-moves');
-        if (collapseAllButton) {
-            collapseAllButton.addEventListener('click', function() {
-                if (window.MovesCore) {
-                    window.MovesCore.collapseAllMoves();
-                }
-                if (window.Cards) {
-                    window.Cards.collapseAllCards();
-                }
-            });
-        }
-
-        // Expand all moves button
-        const expandAllButton = document.getElementById('expand-all-moves');
-        if (expandAllButton) {
-            expandAllButton.addEventListener('click', function() {
-                if (window.MovesCore) {
-                    window.MovesCore.expandAllMoves();
-                }
-                if (window.Cards) {
-                    window.Cards.expandAllCards();
-                }
-            });
-        }
 
         // Show contents button
         const showContentsButton = document.getElementById('show-contents');
