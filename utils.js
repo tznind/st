@@ -134,7 +134,14 @@ window.Utils = (function() {
                 });
             }
         });
-        
+
+        // Apply global removes: discard moves listed in _removes after full union
+        if (window.availableMap._removes && Array.isArray(window.availableMap._removes)) {
+            window.availableMap._removes.forEach(moveId => {
+                delete merged[moveId];
+            });
+        }
+
         return merged;
     }
 

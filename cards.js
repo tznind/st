@@ -23,7 +23,9 @@ window.Cards = (function() {
 
         try {
             // Load card definition (with translation fallback)
-            const definitionResponse = await window.JsonLoader.fetchWithTranslations(`data/cards/${cardId}/card.json`);
+            // Card IDs containing '/' are treated as paths relative to data/ (e.g. module cards)
+            const cardPath = cardId.includes('/') ? `data/${cardId}` : `data/cards/${cardId}`;
+            const definitionResponse = await window.JsonLoader.fetchWithTranslations(`${cardPath}/card.json`);
             if (!definitionResponse.ok) {
                 throw new Error(`Failed to load card definition: ${cardId}`);
             }

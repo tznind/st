@@ -4,6 +4,16 @@
   "title": "Stonetop Availability Map",
   "description": "Schema for mapping roles to move IDs and their initial checked state",
   "type": "object",
+  "properties": {
+    "_removes": {
+      "type": "array",
+      "description": "Move IDs to discard after unioning all role moves. Useful in module availability files to remove base moves.",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-zA-Z0-9]+$"
+      }
+    }
+  },
   "patternProperties": {
     "^[A-Za-z ]+$": {
       "type": "object",

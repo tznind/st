@@ -205,6 +205,8 @@ window.TextFormatter = (function() {
      * @param {string} text - Text with potential __id__ or __id:placeholder__ patterns
      * @returns {string} Text with text boxes replaced by input elements
      */
+    let textboxCounter = 0;
+
     function replaceTextBoxes(text) {
         // Match pattern: __id__ or __id:placeholder__
         // id is alphanumeric, dash, or underscore
@@ -212,6 +214,10 @@ window.TextFormatter = (function() {
         const pattern = /__([a-zA-Z0-9_-]+)(?::(.+?))?__/g;
 
         return text.replace(pattern, function(match, id, placeholder) {
+            // If the id is all underscores (e.g. _____), auto-generate a unique id
+            if (/^_+$/.test(id)) {
+                id = 'tx' + (++textboxCounter);
+            }
             // Escape placeholder text for HTML attribute
             const escapedId = id.replace(/"/g, '&quot;');
             let inputHtml = `<input type="text" id="${escapedId}" class="format-text-input" data-textbox-id="${escapedId}"`;

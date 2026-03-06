@@ -92,7 +92,16 @@ window.JsonLoader = (function() {
     function mergeModuleAvailability(baseMap, moduleMap, moduleId) {
         const result = { ...baseMap };
 
+        // Collect top-level _removes from module (union with any existing)
+        if (moduleMap._removes && Array.isArray(moduleMap._removes)) {
+            const existingRemoves = result._removes || [];
+            result._removes = [...new Set([...existingRemoves, ...moduleMap._removes])];
+        }
+
         for (const [roleName, roleData] of Object.entries(moduleMap)) {
+            // Skip special top-level keys (e.g. _removes)
+            if (roleName.startsWith('_')) continue;
+
             if (result[roleName]) {
                 // Role exists - merge module data into it
                 // Track additional moves files from modules
@@ -534,24 +543,89 @@ window.JsonLoader = (function() {
 
     /**
      * Load terms glossary (with translation support - complete replacement)
+     * Also loads and appends terms from any enabled modules
      * @returns {Promise} Promise that resolves when terms data is loaded
      */
     async function loadTermsData() {
-        return loadJsonDataWithTranslations('data/terms.json', 'termsGlossary', false);
+        let data = await loadJsonDataWithTranslations('data/terms.json', 'termsGlossary', false);
+
+        // Check for enabled modules
+        const enabledModuleIds = getEnabledModules();
+        if (enabledModuleIds.length === 0) {
+            return data;
+        }
+
+        const config = await loadModulesConfig();
+        if (!config.modules || config.modules.length === 0) {
+            return data;
+        }
+
+        for (const moduleId of enabledModuleIds) {
+            const moduleInfo = config.modules.find(m => m.id === moduleId);
+            if (!moduleInfo) continue;
+
+            const termsPath = `${moduleInfo.path}/terms.json`;
+            try {
+                const response = await fetchWithTranslations(termsPath);
+                if (response.ok) {
+                    const moduleTerms = await response.json();
+                    data = [...data, ...moduleTerms];
+                    window.termsGlossary = data;
+                    console.log(`Loaded terms from module: ${moduleId}`);
+                }
+            } catch (error) {
+                console.log(`No terms.json for module ${moduleId}`);
+            }
+        }
+
+        return data;
     }
 
     /**
      * Load aliases configuration (optional - gracefully handles missing file, with translation support)
+     * Also loads and appends aliases from any enabled modules
      * @returns {Promise} Promise that resolves when aliases data is loaded
      */
     async function loadAliasesData() {
+        let data;
         try {
-            return await loadJsonDataWithTranslations('data/aliases.json', 'aliasesConfig', false);
+            data = await loadJsonDataWithTranslations('data/aliases.json', 'aliasesConfig', false);
         } catch (error) {
             console.warn('Aliases file not found, using empty aliases');
-            window.aliasesConfig = [];
-            return [];
+            data = [];
+            window.aliasesConfig = data;
         }
+
+        // Check for enabled modules
+        const enabledModuleIds = getEnabledModules();
+        if (enabledModuleIds.length === 0) {
+            return data;
+        }
+
+        const config = await loadModulesConfig();
+        if (!config.modules || config.modules.length === 0) {
+            return data;
+        }
+
+        for (const moduleId of enabledModuleIds) {
+            const moduleInfo = config.modules.find(m => m.id === moduleId);
+            if (!moduleInfo) continue;
+
+            const aliasesPath = `${moduleInfo.path}/aliases.json`;
+            try {
+                const response = await fetchWithTranslations(aliasesPath);
+                if (response.ok) {
+                    const moduleAliases = await response.json();
+                    data = [...data, ...moduleAliases];
+                    window.aliasesConfig = data;
+                    console.log(`Loaded aliases from module: ${moduleId}`);
+                }
+            } catch (error) {
+                console.log(`No aliases.json for module ${moduleId}`);
+            }
+        }
+
+        return data;
     }
 
 

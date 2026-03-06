@@ -23,6 +23,9 @@
     <span><a href="https://github.com/tznind/st" target="_blank" style="color: #007bff; text-decoration: none; display: inline-flex; align-items: center;"><img width="12" height="12" alt="GitHub logo" src="https://github.com/user-attachments/assets/d45893e9-0b26-4259-8764-a9737ee1426e" style="margin-right: 3px; background: #000; border-radius: 50%; padding: 1px;" /> Source Code</a></span>
   </div>
   
+  <!-- Module attribution banner (shown when modules with attribution data are enabled) -->
+  <div id="module-attributions" style="display: none; font-size: 12px; color: #666; text-align: center; padding: 6px 10px; margin-bottom: 10px; background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 6px;"></div>
+
   <!-- Validation warning indicator (upper right, subtle) -->
   <button type="button" id="validation-warning" class="validation-warning" style="display: none;" title="Click to view validation errors">
     <span class="warning-icon">⚠️</span>
@@ -139,10 +142,8 @@
         </label>
       </div>
       <div class="collapse-controls">
-        <button type="button" id="collapse-all-moves">Collapse All</button>
-        <button type="button" id="expand-all-moves">Expand All</button>
-        <button type="button" id="show-contents" class="burger-menu" title="Table of Contents" aria-label="Show table of contents">☰</button>
-        <button type="button" id="show-modules" class="burger-menu" title="Modules" aria-label="Show modules">🧩</button>
+        <button type="button" id="show-contents" class="burger-menu" title="Navigate" aria-label="Navigate">☰ Navigate</button>
+        <button type="button" id="show-modules" class="burger-menu" title="Modules" aria-label="Show modules">🧩 Modules</button>
       </div>
     </div>
 
@@ -194,6 +195,9 @@
 
 <!-- Modules UI -->
 <script src="modules.js"></script>
+
+<!-- Module attribution banner -->
+<script src="module-attribution.js"></script>
 
 </body>
 </html>
