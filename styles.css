@@ -105,6 +105,22 @@ label {
   margin-right: 0;
 }
 
+.hp-inputs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.hp-inputs input[type="text"] {
+  width: 40px;
+}
+
+.hp-separator {
+  font-size: 16px;
+  color: #555;
+  line-height: 1;
+}
+
 /* === STATUS CONDITIONS SECTION === */
 .status-conditions {
   display: flex;

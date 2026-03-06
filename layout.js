@@ -31,7 +31,10 @@ window.Layout = (function() {
             
             // Render stats (always shown)
             renderStats();
-            
+
+            // Update max HP placeholder based on selected role
+            updateMaxHpPlaceholder(selectedRoles);
+
             // Apply persistence to stats immediately after rendering
             applyPersistenceState(urlParams);
             
@@ -114,6 +117,24 @@ window.Layout = (function() {
         }
     }
     
+    /**
+     * Update the max HP input placeholder based on the selected role(s)
+     */
+    function updateMaxHpPlaceholder(selectedRoles) {
+        const hpMaxInput = document.getElementById('hp_max');
+        if (!hpMaxInput) return;
+
+        let maxHp = null;
+        if (selectedRoles && selectedRoles.length > 0 && window.availableMap) {
+            const roleData = window.availableMap[selectedRoles[0]];
+            if (roleData && roleData.maxHp != null) {
+                maxHp = roleData.maxHp;
+            }
+        }
+
+        hpMaxInput.placeholder = maxHp != null ? String(maxHp) : 'max';
+    }
+
     /**
      * Render stats section
      * Only renders if stats don't already exist (idempotent)

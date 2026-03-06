@@ -75,9 +75,13 @@
           Damage
           <input type="text" id="damage" name="damage">
         </label>
-        <label for="hp">
+        <label>
           HP
-          <input type="text" id="hp" name="hp">
+          <span class="hp-inputs">
+            <input type="text" id="hp" name="hp" placeholder="current">
+            <span class="hp-separator">/</span>
+            <input type="text" id="hp_max" name="hp_max" placeholder="max">
+          </span>
         </label>
         <label for="armor">
           Armor
