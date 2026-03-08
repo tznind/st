@@ -5,8 +5,6 @@
 window.ModulesUI = (function() {
     'use strict';
 
-    let modulesLoaded = false;
-
     /**
      * Initialize the modules UI
      */
@@ -14,6 +12,8 @@ window.ModulesUI = (function() {
         const showButton = document.getElementById('show-modules');
         const modal = document.getElementById('modules-modal');
         const closeButton = modal?.querySelector('.modules-close');
+        const okButton = document.getElementById('modules-ok');
+        const cancelButton = document.getElementById('modules-cancel');
 
         if (!showButton || !modal) {
             console.warn('Modules UI elements not found');
@@ -23,29 +23,30 @@ window.ModulesUI = (function() {
         // Disable button if no modules are available
         checkModulesAvailable(showButton);
 
-        // Show modal on button click
+        // Show modal on button click, always rebuild list from current URL
         showButton.addEventListener('click', async () => {
             await loadModulesList();
             modal.style.display = 'flex';
         });
 
-        // Close modal on close button click
-        closeButton?.addEventListener('click', () => {
-            modal.style.display = 'none';
+        // OK: apply changes and reload
+        okButton?.addEventListener('click', () => {
+            updateURLAndReload();
         });
+
+        // Cancel/close: just close without reloading
+        const closeModal = () => { modal.style.display = 'none'; };
+        closeButton?.addEventListener('click', closeModal);
+        cancelButton?.addEventListener('click', closeModal);
 
         // Close modal on backdrop click
         modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-            }
+            if (e.target === modal) closeModal();
         });
 
         // Close modal on Escape key
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.style.display === 'flex') {
-                modal.style.display = 'none';
-            }
+            if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
         });
     }
 
@@ -69,10 +70,6 @@ window.ModulesUI = (function() {
      * Load modules list and populate the modal
      */
     async function loadModulesList() {
-        if (modulesLoaded) {
-            return;
-        }
-
         const listContainer = document.getElementById('modules-list');
         if (!listContainer) return;
 
@@ -82,7 +79,6 @@ window.ModulesUI = (function() {
 
             if (modules.length === 0) {
                 listContainer.innerHTML = '<p class="modules-empty">No modules available.</p>';
-                modulesLoaded = true;
                 return;
             }
 
@@ -104,21 +100,6 @@ window.ModulesUI = (function() {
                     </div>
                 `;
             }).join('');
-
-            // Add note about page reload
-            listContainer.innerHTML += `
-                <p class="modules-note">Changes require a page reload to take effect.</p>
-            `;
-
-            // Add change listeners to update URL and reload
-            modules.forEach(module => {
-                const checkbox = document.getElementById(`module_${module.id}`);
-                checkbox?.addEventListener('change', () => {
-                    updateURLAndReload();
-                });
-            });
-
-            modulesLoaded = true;
 
         } catch (error) {
             console.error('Failed to load modules list:', error);
