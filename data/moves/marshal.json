@@ -129,12 +129,12 @@
     ],
     "outcomes": [
       {
-        "range": "≥ 10",
-        "text": "It works as well as can be expected, and you've still got a few tricks up your sleeve—regain 1 Surprise."
-      },
-      {
-        "range": "7-9",
-        "text": "It works as well as can be expected."
+        "range": "",
+        "text": "Once battle is joined, spend 1 Surprise to reveal a prepared ploy, defense, or dirty trick and roll +INT:",
+        "bullets": [
+          "10+: It works as well as can be expected, and you've still got a few tricks up your sleeve—regain 1 Surprise",
+          "7-9: It works as well as can be expected"
+        ]
       }
     ]
   },
@@ -178,12 +178,22 @@
   {
     "id": "ms011",
     "title": "Shield Wall",
-    "description": "When you have your crew form a shield wall, they Defend with advantage and on a 7+ they hold +2 Readiness (instead of the usual +1 for shields). As long as they maintain formation, they can go on the offensive without losing Readiness.",
+    "description": "When you have your crew form a shield wall,",
     "tracks": [
       {
         "name": "Readiness",
         "max": 5,
         "shape": "hexagon"
+      }
+    ],
+    "outcomes": [
+      {
+        "range": "",
+        "text": "They Defend with advantage and on a 7+ hold +2 Readiness (instead of the usual +1 for shields)."
+      },
+      {
+        "range": "",
+        "text": "As long as they maintain formation, they can go on the offensive without losing Readiness."
       }
     ]
   },
