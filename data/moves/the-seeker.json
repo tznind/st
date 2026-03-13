@@ -69,7 +69,7 @@
   {
     "id": "sk002",
     "title": "Attuned",
-    "description": "When you Seek Insight, you can always ask, \"What here is infused with magic?\" for free, even on a ≤6"
+    "description": "When you Seek Insight, you can always ask, \"What here is infused with magic?\" for free, even on a 6-."
   },
   {
     "id": "sk003",
@@ -86,17 +86,17 @@
   {
     "id": "sk004",
     "title": "Let's Make a Deal",
-    "description": "When you Seek Insight, add \"What do they really want or need?\" to the list of questions. When you Persuade by offering them something that you know they want or need, treat a 7-9 as a 10+"
+    "description": "When you Seek Insight, add \"What do they really want or need?\" to the list of questions. When you Persuade by offering them something that you know they want or need, treat a 7-9 as a 10+."
   },
   {
     "id": "sk005",
     "title": "Well Versed",
     "multiple": 3,
-    "description": "Mark 1 topic, in addition to the one noted in your Background.  Each time you take this move, mark 2 more topics.",
+    "description": "Mark 1 topic, in addition to the one noted in your Background. Each additional time you take this move, mark 2 more topics.",
     "pick": [
       "The Last Door, death, and the undead",
       "The civilizations of humanity",
-      "The fae and their strange ways",
+      "The Fae and their strange ways",
       "The Makers and their arts",
       "The primordial powers",
       "The Things Below",
@@ -166,7 +166,7 @@
       }
     ],
     "multiple": 3,
-    "description": "You have a \"Sacred Pouch\" (3 Stock, magical), as per the Blessed, but with no extraordinary qualities. Each time you take this move, choose a Blessed move for which you otherwise qualify. (You can't take Improved Stat or Superior Stat.)",
+    "description": "You have a \"Sacred Pouch\" (3 Stock, magical), as per the Blessed, but with no remarkable traits. Each time you take this move, choose a Blessed move for which you otherwise qualify. (You can't take Improved Stat or Superior Stat.)",
     "takeFrom": ["The Blessed"],
     "takeCategory": ["Moves"]
 
@@ -174,7 +174,7 @@
   {
     "id": "sk019",
     "title": "Logbook",
-    "description": "You have a logbook (slow) that doesn't take up space in your inventory. When you (and only you) consult your logbook and expend a use, you can ignore a Know Things roll you just made and treat the result as a 10+. When the Seasons Change, reset your logbook to 2 uses.",
+    "description": "You have a logbook (2 uses, slow) that doesn't take up space in your inventory. When you (and only you) consult your logbook and expend a use, you can ignore a Know Things roll you just made and treat the result as a 10+. When the Seasons Change, reset your logbook to 2 uses.",
     "tracks": [
       {
         "name": "Logbook",
@@ -232,35 +232,35 @@
   {
     "id": "sk024",
     "title": "Safety First",
-    "description": "When you spend an hour or so preparing your mystical defenses, hold 2 Protection. When you are affected by harmful magic, spend 1 Protection to halve the damage or effect."
+    "description": "When you spend an hour or so preparing your mystical defenses, hold 2 Protection. When you are affected by harmful magic, spend 1 Protection either to gain advantage on any roll to resist it or to halve its damage/effects."
   },
   {
     "id": "sk025",
     "title": "Sage Advice",
-    "description": "When someone asks you for guidance, they get advantage on their next roll to follow your advice."
+    "description": "When another PC asks you for guidance, they get advantage on their next roll to follow your advice."
   },
   {
     "id": "sk008",
     "title": "Arcane Adept (Requires level 6+)",
-    "description": "When you wish to invent a spell or magical effect, detail its workings with the GM (using existing ar-cana for guidance). Then, Make a Plan to invent it.If you like, pick one of the GM's statements and ask them to provide an alternative: (for example \"first you must _____\" could become \"first you must _____, or it will take months\")."
+    "description": "When you wish to invent a spell or magical effect, detail its workings with the GM and Make a Plan to invent it. If you like, pick one requirement and ask the GM to provide an alternative (for example \"first you must ____\" could become \"first you must ____, or it will take months\")."
   },
   {
     "id": "sk026",
     "title": "Deep Insight (Requires level 6+ and Attuned)",
-    "description": "When you Seek Insight about a magical object, effect, or creature, you may ask one additional question, not limited to the list. Even on a 6-, you get to ask this question."
+    "description": "When you Seek Insight about something magical, you may ask one additional question, not limited to the list. Even on a 6-, you get to ask this question."
   },
   {
     "id": "sk027",
     "title": "Improvise (Requires level 6+ and Quick Study)",
-    "description": "When you attempt to use or trigger one of an arcanum's mysteries without having unlocked it, roll +INT:",
+    "description": "When you wish to use an arcanum's move or option without having unlocked it, ask the GM what fool risk(s) it requires and/or what consequence(s) you'll incur. If you go for it, roll +INT:",
     "outcomes": [
       {
         "range": "≥ 10",
-        "text": "You pull it off, at least this once, and you also unlock that mystery in the process."
+        "text": "You get it to work this once—trigger the move or use the option as if you'd unlocked it—and also mark one step towards unlocking the arcanum's mysteries."
       },
       {
         "range": "7-9",
-        "text": "You pull it off, at least this once."
+        "text": "You get it to work this once—trigger the move or use the option as if you'd unlocked it."
       }
     ]
   },

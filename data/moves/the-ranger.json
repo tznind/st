@@ -95,29 +95,29 @@
   },
   {
     "id": "rg003",
-    "title": "Alpha (Requires Wild Speech or Spirit Tongue)",
-    "description": "When you assert your dominance over a beast or spirit of the wild, roll +Wisdom",
+    "title": "Alpha (Requires level 6+, and Wild Speech or Spirit Tongue)",
+    "description": "When you assert dominance over another (beast, spirit, Fae, or person), roll +Wisdom:",
     "outcomes": [
-      
       {
         "range": "≥ 10",
-         "text": "It must choose 1 from the list below. And you gain advantage on your next roll against it",
+        "text": "They must pick 1, and you have advantage on your next roll against them:",
         "bullets": [
-          "Fight you for dominance",
+          "Accept your authority, at least for now",
           "Slink away or flee, then avoid you",
-          "Accept your authority, at least for now"
+          "Fight you for dominance"
         ]
       },
       {
-        "range": "≥ 7",
-        "text": "As above but you do not get advantage"
+        "range": "7-9",
+        "text": "They must pick 1",
+        "bullets": []
       }
     ]
   },
   {
     "id": "rg002",
     "title": "Animal Companion",
-    "description": "You have formed a bond with a wild animal. It will accompany you and aid you, but it has its own needs and instincts.",
+    "description": "You are accompanied by a beast of uncommon loyalty and cleverness. See the Animal Companion insert for details.",
     "grantsCard": "animal-companion"
   },
   {
@@ -141,7 +141,7 @@
   },
   {
     "id": "rg006",
-    "title": "Called Shot (+Dexterity)",
+    "title": "Call the Shot (+Dexterity)",
     "description": "When you take your time and calmly line up the perfect shot, either deal your damage or roll +Dexterity",
     "outcomes": [
       {
@@ -164,15 +164,15 @@
   {
     "id": "rg007",
     "title": "Expert Tracker (+Wisdom)",
-    "description": "When you Seek Insight by searching for tracks or studying the signs left by passing creatures, you can ask 'What happened here recently?' for free, even on a 6-. When you follow a creature's trail, roll +Wisdom",
+    "description": "When you Seek Insight by searching for or studying the signs left by passing creatures, you can ask \"What happened here recently?\" for free, even on a 6-. When you follow a creature's trail, roll +Wisdom:",
     "outcomes": [
       {
         "range": "≥ 10",
-        "text": "You can also ask the GM a reasonable question about your quarry and get an honest, useful answer"
+        "text": "You follow it to a significant change in terrain or activity, and you can ask the GM a reasonable question about your quarry and get a useful answer."
       },
       {
-        "range": "≥ 7",
-        "text": "You follow the trail to a significant change in direction, terrain, or mode of transport"
+        "range": "7-9",
+        "text": "You follow it to a significant change in terrain or activity."
       }
     ]
   },
@@ -190,7 +190,7 @@
   {
     "id": "rg010",
     "title": "Mental Map",
-    "description": "You can always retrace your steps and can accurately gauge distances and directions. You might not know the way forward but can always find your way back. When you think back on a place you've been to or observed, you can retroactively Seek Insight about it as if you were still there."
+    "description": "You can always retrace your steps and can accurately gauge distances and directions. You might not know the way forward but can always find your way back. When you think back on a place you've been, you can Seek Insight retroactively, as if you were still there."
   },
   {
     "id": "rg011",
@@ -200,22 +200,17 @@
   {
     "id": "rg012",
     "title": "On the Hoof",
-    "description": "When you travel through the wilderness, you can procure 1d6 uses of provisions each day (roll with disadvantage in winter or barren terrain).",
+    "description": "When you travel through the wilderness, you can procure 1d6 uses of provisions each day (roll with disadvantage in winter or barren terrain). Provisions can substitute for supplies when you Make Camp.",
     "tracks": [{
       "name": "Provisions",
       "max": 6,
       "shape": "circle"
-    }],
-    "outcomes": [
-      {
-        "text": "Each use of provisions can substitute for 1 supplies when you Make Camp."
-      }
-    ]
+    }]
   },
   {
     "id": "rg013",
     "title": "Pack Horse",
-    "description": "You can carry up to 4 with a light load, 7 with a normal load, and 10 with a heavy load."
+    "description": "You can carry up to 4 ◇◇ with a light load, 7 ◇◇ with a normal load, and 10 ◇◇ with a heavy load."
   },
   {
     "id": "rg014",
@@ -237,7 +232,7 @@
   {
     "id": "rg015",
     "title": "A Safe Place",
-    "description": "When you select and prepare the party's camp site, hold 1 Precaution, or 2 Precaution if you are well-versed with this area and its dangers",
+    "description": "When you select and prepare the party's camp site, hold 1 Precaution, or 2 Precaution if you are well versed with this area and its dangers",
     "tracks": [
       {
         "name": "Precaution",
@@ -253,8 +248,8 @@
   },
   {
     "id": "rg016",
-    "title": "Sense the Unnatural",
-    "description": "When you Seek Insight, you can always ask, 'What here is a perversion of the natural order?' for free, even on a 6-."
+    "title": "Sniff Out Corruption",
+    "description": "When you Seek Insight, you can ask, \"What here stinks of the unnatural?\" for free, even on a 6-."
   },
   {
     "id": "rg017",
@@ -269,9 +264,9 @@
   {
     "id": "rg019",
     "title": "Worldly (Requires level 2+ and the Ranger)",
-    "description": "Take a move from the Blessed, Fox, Heavy, or Seeker playbooks, for which you otherwise qualify. You can pick from a different playbook each time. You can't pick Improved Stat or Superior Stat.",
+    "description": "Take a move from the Blessed, Fox, Heavy, Marshal, or Seeker playbooks, for which you otherwise qualify. You can pick from a different playbook each time. You can't pick Improved Stat or Superior Stat.",
     "multiple": 4,
-    "takeFrom": ["The Blessed", "Fox", "The Heavy", "The Seeker"],
+    "takeFrom": ["The Blessed", "Fox", "The Heavy", "Marshal", "The Seeker"],
     "takeCategory": ["Moves"]
   },
   {
@@ -284,7 +279,8 @@
         "text": "",
         "bullets": [
           "They are exceptional (and roll +2 instead of +1)",
-          "They get +4 HP and +1 armor"
+          "They get +4 HP and +1 armor",
+          "They develop some unique ability or trait"
         ]
       }
     ]
@@ -292,11 +288,11 @@
   {
     "id": "rg021",
     "title": "Constant Vigilance (Requires level 6+)",
-    "description": "When a foe would get the drop on you, they don't—you get to act first instead. (If the GM describes an enemy taking you by surprise, even on a 6-, remind them of this move and say what you do.)"
+    "description": "Unless you're dazed, you're never caught off guard—not even when asleep or if you roll a 6-. When you intercept a sudden threat (to yourself or an ally), you have advantage on whatever move you make."
   },
   {
     "id": "rg022",
-    "title": "Giant Slayer (Requires level 6+; replaces Big Game Hunter)",
+    "title": "Giant Slayer (Requires level 6+ and Big Game Hunter)",
     "description": "When you strike at a weak spot of a large or huge creature, you deal another +2 damage (+4 total)."
   },
   {
@@ -307,7 +303,7 @@
   {
     "id": "rg024",
     "title": "Trailblazer (Requires level 6+ and Home on the Range)",
-    "description": "When a journey causes you to Defy Danger or Struggle as One, don't roll; you always get a 10+."
+    "description": "When a journey causes you to Defy Danger or Struggle as One, on a 10+ you also learn or discover something interesting and useful—ask the GM what."
   },
   {
     "id": "rg025",
@@ -323,8 +319,29 @@
   },
   {
     "id": "rg026",
-    "title": "Warden of the Wild (Requires level 6+ and Sense the Unnatural)",
-    "description": "When you deal damage to something you know to be a perversion of the natural order, deal +1d4 damage."
+    "title": "Warden of the Wild",
+    "description": "When you defeat a perversion of nature, you can ask the GM 2 of the following and get a useful answer:",
+    "outcomes": [
+      {
+        "text": "",
+        "bullets": [
+          "Will it come back? If so, how can I stop it?",
+          "Will its taint spread? If so, how can I contain it?",
+          "What useful (but grisly) bits can I harvest?",
+          "What else can I learn about it or its ilk?"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rg028",
+    "title": "Survivalist",
+    "description": "When you Forage, pick 1 extra choice (even on a 6-, pick 1) and add \"Find or fashion some useful item or supply (GM can veto)\" to the list of options."
+  },
+  {
+    "id": "rg029",
+    "title": "Pathfinder",
+    "description": "When you lead your people to Pull Together or Deploy beyond sight of home, you have advantage."
   },
   {
     "id": "ri",

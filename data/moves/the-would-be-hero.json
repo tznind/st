@@ -152,7 +152,7 @@
   {
     "id": "h001",
     "title": "Anger is a Gift",
-    "description": "When you burn with righteous anger (Fear & Anger - above), hold 2 Resolve. You can spend your Resolve 1-for-1 to:",
+    "description": "When you burn with righteous anger (see Fear & Anger on back of playbook), hold 2 Resolve. You can spend your Resolve 1-for-1 to:",
     "tracks": [
       {
         "name": "Resolve",
@@ -197,25 +197,23 @@
     "outcomes": [
       {
         "range": "",
-        "text": "Whatever you choose, the GM will describe the details.",
+        "text": "",
         "bullets": [
           "You lose something (footing, grip, etc.)",
           "Something on your person breaks",
           "You're out of it for a moment"
         ]
+      },
+      {
+        "range": "",
+        "text": "Whatever you choose, the GM will describe the details."
       }
     ]
   },
   {
     "id": "h003",
     "title": "But I Get Up Again (Requires I Get Knocked Down)",
-    "description": "When you use I Get Knocked Down, you have advantage on your next roll against whatever dealt the damage.",
-    "outcomes": [
-      {
-        "range": "",
-        "text": "Your next blow against them does +1d4 damage."
-      }
-    ]
+    "description": "When you use I Get Knocked Down, you have advantage on your next roll against whatever dealt the damage and your next blow against them does +1d4 damage."
   },
   {
     "id": "h006",
@@ -246,37 +244,25 @@
     "outcomes": [
       {
         "range": "",
-        "text": "Once per session, when you are at Death's Door, you can mark Death's Door Triumph instead of rolling. You get a 10+. Clear this mark at the start of each session."
+        "text": "Once per session, when you are at Death's Door, don't roll. You get a 10+."
       }
     ]
   },
   {
     "id": "h010",
     "title": "Potential for Greatness",
-    "description": "(Requires the Would-Be Hero) Once per level, when you roll a stat and get a 10+, mark one of the options on your Potential for Greatness card. You don't have to mark them in order",
+    "description": "(Requires the Would-be Hero) Once per level, when you roll a stat and get a 10+, mark one of the following (note the level during which you marked it). You don't have to mark them in order.",
     "grantsCard": "potential-greatness"
   },
   {
     "id": "h011",
     "title": "Resourceful",
-    "description": "When you Defy Danger and roll a 6-, ask the GM a question from Seek Insight after they describe what happens.",
-    "outcomes": [
-      {
-        "range": "",
-        "text": "Gain advantage on your next roll to act on the answer."
-      }
-    ]
+    "description": "When you Defy Danger and roll a 6-, ask the GM a question from Seek Insight after they describe what happens. Gain advantage on your next roll to act on the answer."
   },
   {
     "id": "h012",
     "title": "Something to Remember Me By",
-    "description": "When you spend Readiness (from Defend) to strike back at an attacker, you deal +1d4 damage.",
-    "outcomes": [
-      {
-        "range": "",
-        "text": "You also scar, mark, or diminish them in some way (the GM will say how, or ask you to)."
-      }
-    ]
+    "description": "When you spend Readiness (from Defend) to strike back at an attacker, you deal +1d4 damage and scar, mark, or diminish them in some way (the GM will say how, or ask you to)."
   },
   {
     "id": "h014",

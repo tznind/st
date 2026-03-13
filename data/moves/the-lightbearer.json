@@ -116,7 +116,7 @@
   {
     "id": "lb002",
     "title": "A Candle Against the Dark",
-    "description": "When you wield a holy light but go otherwise un-armed, you have 2 Armor."
+    "description": "When you wield a holy light but go otherwise unarmed, you have 2 Armor."
   },
   {
     "id": "lb013",
@@ -125,17 +125,15 @@
     "outcomes": [
       {
         "range": "≥ 10",
-        "text": "Pick 2:",
-        "bullets": [
-          "The attack is deflected, doing no harm",
-          "The attacker, if in range of your light, is briefly blinded",
-          "Your holy light is not extinguished"
-        ]
+        "text": "The attack is deflected and, if the attacker is in range of your light, they are briefly blinded."
       },
       {
         "range": "7-9",
-        "text": "Pick 1",
-        "bullets": []
+        "text": "The attack is deflected but your holy light flickers and dims, threatening to go out."
+      },
+      {
+        "range": "≤ 6",
+        "text": "Your light snuffs out and the attack is unimpeded."
       }
     ]
   },
@@ -174,7 +172,7 @@
   {
     "id": "lb005",
     "title": "Purifying Flames (+Wisdom)",
-    "description": "When you wield a holy light against a creature of darkness, it counts as a weapon (d10 damage, ignores armor, range equal to your light source) and you can use Wisdom to Clash or Let Fly."
+    "description": "When you wield a holy light against a creature of darkness, it counts as a weapon (d10 damage, hand, close, area, 2 piercing) and you can choose to roll +WIS to Clash."
   },
   {
     "id": "lb006",
@@ -220,17 +218,12 @@
   {
     "id": "lb016",
     "title": "Keep the Home-fires Burning",
-    "description": "When you build a camp fire and sprinkle it with ash from your own hearth, anyone who Makes Camp with you is free from nightmares or bad dreams.",
-    "outcomes": [
-      {
-        "text": "They also recover (extra) HP equal to your CHA."
-      }
-    ]
+    "description": "When you build a camp fire and sprinkle it with ash from your own hearth, anyone who Makes Camp with you is free from nightmares or bad dreams and recovers (extra) HP equal to your CHA."
   },
   {
     "id": "lb007",
     "title": "Lamplighter",
-    "description": "When you whisper to a flammable object (torch, wick, kindling, etc.), it ignites in moments."
+    "description": "When you whisper to a flammable object (a torch, a wick, kindling, etc.), it ignites in moments."
   },
   {
     "id": "lb017",
@@ -277,11 +270,11 @@
   {
     "id": "lb008",
     "title": "Spring's First Thaw (+Charisma)",
-    "description": "When you spend time (an hour at least, maybe more) seeking to stir hope, kindness or mercy in an NPC, Roll +Charisma",
+    "description": "When you spend time (an hour at least, maybe more) seeking to stir hope, kindness, or mercy in an NPC, roll +CHA:",
     "outcomes": [
       {
         "range": "≥ 10",
-        "text": "You light a fire deep within them and affect a lasting change"
+        "text": "You light a fire deep within them and effect a lasting change"
       },
       {
         "range": "7-9",

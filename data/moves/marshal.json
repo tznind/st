@@ -92,7 +92,7 @@
   {
     "id": "ms003",
     "title": "Crew",
-    "description": "You've got a crew of stalwarts, six or so residents of Stonetop with some steel to them.",
+    "description": "You've got a crew of stalwarts, six or so residents of Stonetop with some steel to them. See the Crew insert for details.",
     "grantsCard": "crew"
   },
   {
@@ -129,12 +129,12 @@
     ],
     "outcomes": [
       {
-        "range": "",
-        "text": "Hold 1 Surprise if rushed or 2 Surprises if you have time. Once battle is joined, spend 1 Surprise to reveal a prepared ploy, defense, or dirty trick and roll +INT:",
-        "bullets": [
-          "10+: It works as expected, and you regain 1 Surprise",
-          "7-9: It works as expected"
-        ]
+        "range": "≥ 10",
+        "text": "It works as well as can be expected, and you've still got a few tricks up your sleeve—regain 1 Surprise."
+      },
+      {
+        "range": "7-9",
+        "text": "It works as well as can be expected."
       }
     ]
   },
@@ -158,13 +158,7 @@
   {
     "id": "ms009",
     "title": "Set-up Strike",
-    "description": "When you Clash and get a 7+, you can choose to deal damage with disadvantage. If you do, you create an opening for an ally to act on, as if you provided Aid. Describe it!",
-    "outcomes": [
-      {
-        "range": "",
-        "text": "When you Clash and get a 7+, you can choose to deal damage with disadvantage to create an opening for an ally (as if you provided Aid)."
-      }
-    ]
+    "description": "When you Clash and get a 7+, you can choose to deal damage with disadvantage. If you do, you create an opening for an ally to act on, as if you provided Aid. Describe it!"
   },
   {
     "id": "ms010",
@@ -173,50 +167,30 @@
     "outcomes": [
       {
         "range": "≥ 10",
-        "text": "They overcome it."
+        "text": "They do it."
       },
       {
         "range": "7-9",
-        "text": "A PC gets advantage to do it; an NPC will do it, but they'll need time, resent you, or feel humiliated (GM decides)."
+        "text": "A PC gets advantage to do it; an NPC will do it, but they'll need time, they'll resent you, or they'll feel humiliated (GM decides)."
       }
     ]
   },
   {
     "id": "ms011",
     "title": "Shield Wall",
-    "description": "When you _have your crew form a shield wall_",
+    "description": "When you have your crew form a shield wall, they Defend with advantage and on a 7+ they hold +2 Readiness (instead of the usual +1 for shields). As long as they maintain formation, they can go on the offensive without losing Readiness.",
     "tracks": [
       {
         "name": "Readiness",
         "max": 5,
         "shape": "hexagon"
       }
-    ],
-    "outcomes": [
-      {
-        "range": "",
-        "text": "They Defend with advantage."
-      },
-      {
-        "range": "",
-        "text": "On a 7+ holds +2 Readiness (instead of the usual +1 for shields)."
-      },
-      {
-        "range": "",
-        "text": "_As long as they maintain formation_, they can go offensive without losing Readiness."
-      }
     ]
   },
   {
     "id": "ms012",
     "title": "Sir, Permission to Die, Sir",
-    "description": "When one of your followers would die",
-    "outcomes": [
-      {
-        "range": "",
-        "text": "Spend 1 of their Loyalty to have them survive (out of action, but alive). If you let them go, mark XP."
-      }
-    ]
+    "description": "When one of your followers would die, you can spend 1 of their Loyalty to have them survive (out of the action, but alive). If you let them go, mark XP."
   },
   {
     "id": "ms013",
@@ -285,8 +259,8 @@
   },
   {
     "id": "ms001",
-    "title": "Stenorian",
-    "description": "When you raise your voice, it carries far and cuts through even the din of battle",
+    "title": "Stentorian",
+    "description": "When you raise your voice, it carries far and cuts through even the din of battle. When you go into battle, hold 2 Command. Spend 1 Command to shout an order or warning and pick 1:",
     "tracks": [
       {
         "name": "Command",
@@ -297,9 +271,10 @@
     "outcomes": [
       {
         "range": "",
-        "text": "When you go into battle, hold 2 Command, spend to:",
+        "text": "",
         "bullets": [
-          "shout an order or warning to an ally; they gain advantage on their next roll to do as you say"
+          "PCs get advantage on their next roll to do as you say",
+          "You have advantage to Order Followers or Deploy"
         ]
       }
     ]

@@ -144,7 +144,7 @@
   {
     "id": "bl013",
     "title": "Barkskin",
-    "description": "When you are touching the ground, you have 2 armor. When you mark another with 1 Stock, they gain this benefit so long as the mark remains."
+    "description": "When you are touching the earth, you have 2 armor. When you mark another with 1 Stock, they gain this benefit so long as the mark remains."
   },
   {
     "id": "bl014",
@@ -155,26 +155,24 @@
   {
     "id": "bl005",
     "title": "Call the Spirits",
-    "description": "When you perform a short ritual and invoke the spirit(s) of a place or object, spend 1 Stock. The spirit(s) manifest before you and will hear what you have to say. What they do next is up to them."
+    "description": "When you spend 1 Stock and perform a short rite, the spirit(s) of a place or object manifest and hear you out. What they do next is up to them."
   },
   {
     "id": "bl002",
     "title": "Danu's Grasp (+Wisdom)",
-    "description": "When you call on the world itself to bind a spirit or a perversion of nature, spend 1 stock and roll +Wisdom.",
+    "description": "When you call on the world itself to bind a spirit or a perversion of nature, spend 1 Stock and roll +Wisdom.",
      "outcomes": [
       {
         "range": "≥ 10",
-        "text": "Choose 2 from:",
+        "text": "Roots, vines, and earth pull at them; both apply:",
         "bullets": [
-          "You avoid or prevent their counterattack",
-          "Roots, vines, and earth restrain them",
+          "They're restrained, unable to act freely until your focus slips or they tear their way free",
           "They take 2d4 damage (ignores armor)"
         ]
       },
       {
         "range": "7-9",
-        "text": "Choose 1",
-        "bullets": []
+        "text": "As above, but they pick 1"
       },
       {
         "range": "",
@@ -195,12 +193,12 @@
   {
     "id": "bl022",
     "title": "Into the Lion's Den",
-    "description": "When you approach a beast calmly and show no fear, it will not harm you—though it may well threaten you and test your nerve. When you lay your hand gently upon a beast, it will calm to your touch."
+    "description": "When you approach a beast calmly and show no fear, it will not harm you (though it may threaten you and test your nerve). When you lay your hand gently upon a beast, it calms to your touch."
   },
   {
     "id": "bl007",
     "title": "Lightning Rod",
-    "description": "When you Defend while touching the ground, you can spend 1 Readiness to intercept a nearby magical attack and redirect it harmlessly into the ground"
+    "description": "When you Defend while touching the earth, you can spend 1 Readiness to intercept a nearby magical attack and redirect it harmlessly into the ground."
   },
   {
     "id": "bl023",
@@ -215,14 +213,14 @@
     ],
     "outcomes": [
       {
-        "text": "At any time, when you sacrifice a thing much-loved, clear a steading debility or increase Fortunes by 1."
+        "text": "When you publicly sacrifice something or someone much-loved, either clear a steading debility or gain advantage when the steading next rolls +Fortunes."
       }
     ]
   },
   {
     "id": "bl003",
     "title": "Spirit Tongue",
-    "description": "You can speak with natural beasts and spirits of the wild. You can always ask the GM \"what spirits are active here?\" and get an honest answer."
+    "description": "You can speak with beasts and spirits. You can always ask the GM, \"What spirits are active here?\" and get an honest answer."
   },
   {
     "id": "bl004",

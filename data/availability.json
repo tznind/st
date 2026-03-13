@@ -38,6 +38,7 @@
     "maxHp": 20,
     "cards": [],
     "mbg1": false,
+    "hv001": false,
     "mbg2": false,
     "mbg3": false,
     "ms002": false,
@@ -137,6 +138,8 @@
     "rg027": false,
     "ae0121": false,
     "ae0122": false,
+    "rg028": false,
+    "rg029": false,
     "ri": true
   },
   "The Lightbearer": {
