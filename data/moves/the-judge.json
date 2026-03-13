@@ -119,7 +119,7 @@
   {
     "id": "j001",
     "title": "Aegis of Faith",
-    "description": "When you bear a shield, it can turn away spells, magical effects, and insubstantial attacks as if they were physical blows."
+    "description": "When you wield a shield, it can turn away spells, magical effects, and insubstantial attacks as if they were physical blows."
   },
   {
     "id": "j003",
@@ -129,7 +129,7 @@
   {
     "id": "j005",
     "title": "Break Bread",
-    "description": "When you share a proper meal with someone and each of you eats their fill, each of you recovers 1d8 (extra) hit points."
+    "description": "When you share a proper meal with someone and each of you eats their fill, each of you recovers 1d8 (extra) HP."
   },
   {
     "id": "j007",
@@ -139,27 +139,24 @@
   {
     "id": "j009",
     "title": "Censure",
-    "description": "When you first denounce someone (or thing) as an agent of chaos or anathema to civilization, pick 1:",
+    "description": "When you first denounce an individual in your presence as an agent of chaos or anathema to civilization, they pick 1:",
     "outcomes": [
       {
         "range": "",
         "text": "",
         "bullets": [
-          "You/your allies deal +1 damage against them",
-          "They deal -1 damage",
-          "They recoil and might be momentarily stunned"
+          "They are ashamed, and act accordingly",
+          "They are doubtful, and hesitate, pause",
+          "They are afraid, and seek to escape",
+          "They are enraged, and lash out predictably (the next roll against them has advantage)"
         ]
-      },
-      {
-        "range": "",
-        "text": "The bonus/penalty ends if you use this move again."
       }
     ]
   },
   {
     "id": "j008",
     "title": "Castigate (Requires level 2+, Censure)",
-    "description": "When you Censure someone (or thing), pick 2 effects instead of 1."
+    "description": "When you Censure someone, your voice deals 1d4 damage to them (near, loud, ignores armor)."
   },
   {
     "id": "j010",

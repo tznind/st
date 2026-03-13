@@ -68,7 +68,7 @@
   {
     "id": "d4e5f6",
     "title": "Dabbler - (Requires level 2+ and the Fox)",
-    "description": "Each time you take this move, learn a new skill from Heavy, Marshal, Ranger, or Seeker",
+    "description": "Each time you take this move, choose a move from the Heavy, Marshal, Ranger, or Seeker playbooks for which you otherwise qualify. (You can't take Improved Stat or Superior Stat.)",
     "takeFrom": ["Marshal", "The Heavy","The Ranger","The Seeker"],
     "takeCategory": ["Moves"],
     "multiple": 3
@@ -80,7 +80,7 @@
     "outcomes": [
       {
         "range": "≥ 10",
-        "text": "Ask the GM both of the questions below.  Gain advantage on your next roll to act on the answers.",
+        "text": "Ask the GM both of the questions below. Gain advantage on your next roll to act on the answers.",
         "bullets": [
           "What will trigger the ambush or trap?",
           "What will happen once it's triggered?"
@@ -147,7 +147,7 @@
         "bullets": [
           "Attack, doing +1d4 damage if they hit but giving you advantage on your next roll against them",
           "Stoop to your level and respond in kind",
-          "Spend a few moments fuming, sputtering or controlling their temper"
+          "Spend a few moments fuming, sputtering, or controlling their temper"
         ]
       }
     ]
@@ -171,7 +171,7 @@
   {
     "id": "ae0121",
     "title": "Improved Stat",
-    "description": "Increase one of your stats by +1 (to a max of +2)",
+    "description": "Each time you take this move, increase one of your stats by +1 (to a max of +2)",
     "multiplePick": 2,
     "multiple": 2,
     "pickOne": ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]
@@ -206,12 +206,12 @@
   {
     "id": "fx01",
     "title": "All in the Wrist",
-    "description": "Any knife or dagger gets the thrown tag in your hands. Also, you keep a number of iron throwing blades (near) on you; they don't take up space in your inventory. Your ammo replenishes whenever you Outfit."
+    "description": "Any knife or dagger gets the thrown tag in your hands. Also, you keep a few iron throwing blades (near) on you; they don't take up space in your inventory. Reset your ammo whenever you Outfit."
   },
   {
     "id": "fx02",
     "title": "Ambush (+Dexterity)",
-    "description": "When you attack someone up close and they don't see it coming, deal your damage or roll +Dexterity.",
+    "description": "When you get the drop on a nearby foe, you can deal your damage or opt to roll +Dexterity.",
     "outcomes": [
       {
         "range": "≥ 10",
@@ -233,29 +233,33 @@
   {
     "id": "fx03",
     "title": "Burgle (+Intelligence)",
-    "description": "When you break into a place or thing, roll +Intelligence.",
+    "description": "When you sneak off on your own into a dangerous place, roll +Intelligence.",
     "outcomes": [
       {
         "range": "≥ 10",
-        "text": "You're in, but pick 1",
+        "text": "You make it back; the GM says where you got to and what you learned. Also pick 2:",
         "bullets": [
-          "It took a fair bit of time/effort",
-          "You made a lot of noise",
-          "You broke something on your way in",
-          "You had to use up 1d4 small items (say what)"
+          "You got away clean, rousing no suspicion",
+          "You swiped something valuable (GM's choice)",
+          "You set something up to exploit on your return",
+          "Ask a Seek Insight question about what you saw"
         ]
       },
       {
         "range": "7-9",
-        "text": "You're in, but pick 2",
+        "text": "As above, but pick 1",
         "bullets": []
+      },
+      {
+        "range": "≤ 6",
+        "text": "You either make it back but with trouble in tow, or you're missing in action (your call)."
       }
     ]
   },
   {
     "id": "fx04",
     "title": "Catlike",
-    "description": "When you carry a light load and move with care, you make no noise. When you keep still in shadows or darkness, you remain unseen until you draw attention to yourself, move positions, or attack."
+    "description": "When you carry a light load and act with care, you move silently. When you hide in shadows or darkness, you remain unseen until you draw attention to yourself, move positions, or attack."
   },
   {
     "id": "fx05",
@@ -275,7 +279,7 @@
   {
     "id": "fx08",
     "title": "Cheap Shot (Requires level 6+ and Ambush)",
-    "description": "When you Ambush with a hand or precise weapon, you have advantage on your damage roll."
+    "description": "When you Ambush with a hand weapon, you have advantage on your damage roll."
   },
   {
     "id": "fx09",

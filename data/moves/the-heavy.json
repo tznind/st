@@ -100,7 +100,7 @@
   {
     "id": "hv00a",
     "title": "Seasoned Warrior (Requires level 2+ and the Heavy)",
-    "description": "Take a move from the Fox, Marshal, Ranger or Seeker playbooks",
+    "description": "Take a move from the Fox, Marshal, Ranger, or Seeker playbooks, for which you otherwise qualify. You can pick from a different playbook each time. (You can't pick Improved Stat or Superior Stat.)",
     "takeFrom": ["Fox", "Marshal","The Ranger","The Seeker"],
     "multiple": 3,
     "takeCategory": ["Moves"]
@@ -233,7 +233,7 @@
   {
     "id": "hv019",
     "title": "Unstoppable (Requires Hard to Kill)",
-    "description": "When you are reduced to 0 HP in battle, you can keep fighting. Each time you take damage while at 0 HP, mark 1. If something would heal you while you keep fighting, clear one mark instead. When you stop fighting, roll for Death's Door with a -1 penalty for each circle marked. If you survive, clear all your circles.",
+    "description": "When you are reduced to 0 HP in battle, you can keep fighting. Each time you take damage while at 0 HP, mark 1. If you would regain HP while fighting, clear one mark instead. When you stop fighting, roll for Death's Door with a -1 penalty for each circle marked. If you survive, clear all your circles.",
     "tracks": [
       {
         "name": "Fighting at 0 HP",
@@ -255,7 +255,7 @@
   {
     "id": "hv022",
     "title": "Mighty Thews (Requires level 6+ and Musclebound)",
-    "description": "When you perform a feat of extraordinary strength (bursting chains, smashing through a wall, heaving a boulder, etc.), pick 1 from the list below and do it.",
+    "description": "When you perform a feat of extraordinary strength (bursting chains, smashing through a wall, heaving a boulder, etc.), you do it (OH YEAH!) but pick 1:",
     "outcomes": [
       {
         "text": "",
@@ -275,7 +275,7 @@
   {
     "id": "hv024",
     "title": "Steadfast Guardian (Requires level 6+ and Guardian)",
-    "description": "When you hold Readiness (from Defend), you can always suffer the damage/effects of an attack instead of your ward; no need to spend Readiness, you can just do it."
+    "description": "While you hold Readiness (from Defend), you can always suffer the damage/effects of an attack instead of your ward; no need to spend Readiness, you can just do it."
   },
   {
     "id": "hv025",
