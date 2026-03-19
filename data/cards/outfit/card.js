@@ -103,12 +103,9 @@ window.CardInitializers.outfit = function(container, suffix) {
         }
     });
 
-    // Listen to all other input changes
-    const allInputs = container.querySelectorAll('input');
-    allInputs.forEach(input => {
-        input.addEventListener('change', recompute);
-        input.addEventListener('input', recompute);
-    });
+    // Listen to all input changes via delegation (catches dynamically added rows too)
+    container.addEventListener('change', recompute);
+    container.addEventListener('input', recompute);
 
     // Listen to Pack Horse move changes (outside the card)
     const packHorseMove = document.getElementById('move_rg013');
