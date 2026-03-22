@@ -298,7 +298,8 @@
   {
     "id": "bl010",
     "title": "Nature's Wrath (Requires level 6+ and Danu's Grasp)",
-    "description": "Danu's Grasp gains the area tag and can affect any creature. A mortal reduced to 0 HP is subdued or killed (your choice) rather than bound in stone."
+    "description": "Danu's Grasp gains the area tag and can affect any creature. A mortal reduced to 0 HP is subdued or killed (your choice) rather than bound in stone.",
+    "weight": 1
   },
   {
     "id": "bl019",
@@ -312,12 +313,14 @@
           "On a 10+, the charm retains its potency"
         ]
       }
-    ]
+    ],
+    "weight": 1
   },
   {
     "id": "bl020",
     "title": "Shared Souls (Requires level 6+ and Into the Lion's Den)",
-    "description": "When you mark a beast with 1 Stock, you can direct its actions and perceive through its senses no matter the distance between you. Treat it as a follower with 3 Loyalty; when you spend its last Loyalty, the effect ends."
+    "description": "When you mark a beast with 1 Stock, you can direct its actions and perceive through its senses no matter the distance between you. Treat it as a follower with 3 Loyalty; when you spend its last Loyalty, the effect ends.",
+    "weight": 1
   },
   {
     "id": "bl008",
@@ -337,12 +340,14 @@
           "It will be harmful and dangerous to discard"
         ]
       }
-  ]
+  ],
+    "weight": 1
   },
   {
     "id": "bl021",
     "title": "Voice of the Earth Mother (Requires level 6+ and Spirit Tongue)",
-    "description": "When you speak on behalf of Danu, natural beasts and spirits of the wild respect your authority. All but the most headstrong will do as you command, even against their instincts."
+    "description": "When you speak on behalf of Danu, natural beasts and spirits of the wild respect your authority. All but the most headstrong will do as you command, even against their instincts.",
+    "weight": 1
   },
   {
     "id": "bi",

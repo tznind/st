@@ -242,12 +242,14 @@
   {
     "id": "sk008",
     "title": "Arcane Adept (Requires level 6+)",
-    "description": "When you wish to invent a spell or magical effect, detail its workings with the GM and Make a Plan to invent it. If you like, pick one requirement and ask the GM to provide an alternative (for example \"first you must _____\" could become \"first you must _____, or it will take months\")."
+    "description": "When you wish to invent a spell or magical effect, detail its workings with the GM and Make a Plan to invent it. If you like, pick one requirement and ask the GM to provide an alternative (for example \"first you must _____\" could become \"first you must _____, or it will take months\").",
+    "weight": 1
   },
   {
     "id": "sk026",
     "title": "Deep Insight (Requires level 6+ and Attuned)",
-    "description": "When you Seek Insight about something magical, you may ask one additional question, not limited to the list. Even on a 6-, you get to ask this question."
+    "description": "When you Seek Insight about something magical, you may ask one additional question, not limited to the list. Even on a 6-, you get to ask this question.",
+    "weight": 1
   },
   {
     "id": "sk027",
@@ -262,22 +264,26 @@
         "range": "7-9",
         "text": "You get it to work this once—trigger the move or use the option as if you'd unlocked it."
       }
-    ]
+    ],
+    "weight": 1
   },
   {
     "id": "sk028",
     "title": "Mind Over Magic (Requires level 6+)",
-    "description": "When you roll to study or use an arcanum, you can roll +INT instead of whatever stat you would normally roll."
+    "description": "When you roll to study or use an arcanum, you can roll +INT instead of whatever stat you would normally roll.",
+    "weight": 1
   },
   {
     "id": "sk009",
     "title": "Overchannel (Requires level 6+ and Conduit of Power)",
-    "description": "When you would mark a Consequence from a major arcanum, you may mark a debility instead."
+    "description": "When you would mark a Consequence from a major arcanum, you may mark a debility instead.",
+    "weight": 1
   },
   {
     "id": "sk029",
     "title": "Proof Against Detection (Requires level 6+ and Safety First)",
-    "description": "When you hold Protection, you can't be scried upon or sensed by magical means, and have advantage to Defy Danger by being stealthy."
+    "description": "When you hold Protection, you can't be scried upon or sensed by magical means, and have advantage to Defy Danger by being stealthy.",
+    "weight": 1
   },
   {
     "id": "si",

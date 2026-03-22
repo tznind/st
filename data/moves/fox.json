@@ -180,16 +180,19 @@
     "id": "ae0122",
     "title": "Superior Stat (Requires level 6+)",
     "description": "Increase one of your stats by +1 (to a max of +3)",
-    "pickOne": ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]
+    "pickOne": ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"],
+    "weight": 1
   },
   {
     "id": "de0122",
     "title": "Pants on Fire (Requires level 6+)",
-    "description": "When you Defy Danger, Persuade or Interfere by being deceitful, you have advantage.  When another move (like Seek Insight) allows a player to ask you a question, you can opt not to answer."
+    "description": "When you Defy Danger, Persuade or Interfere by being deceitful, you have advantage.  When another move (like Seek Insight) allows a player to ask you a question, you can opt not to answer.",
+    "weight": 1
   },
   {
     "id":"fox001",
     "title":"Eye on the door (+Intelligence, Requires level 6+)",
+    "weight": 1,
     "description":"When you and your allies need to get out of here, name your escape route and roll +Intelligence",
     "outcomes": [
       {
@@ -274,22 +277,26 @@
   {
     "id": "fx07",
     "title": "Battle Dancer (Requires level 6+ and Skill at Arms)",
-    "description": "When you roll +Dexterity to Clash, on a 12+ you deal your damage, avoid your enemy's attack, and impress/embarrass/overawe your foes."
+    "description": "When you roll +Dexterity to Clash, on a 12+ you deal your damage, avoid your enemy's attack, and impress/embarrass/overawe your foes.",
+    "weight": 1
   },
   {
     "id": "fx08",
     "title": "Cheap Shot (Requires level 6+ and Ambush)",
-    "description": "When you Ambush with a hand weapon, you have advantage on your damage roll."
+    "description": "When you Ambush with a hand weapon, you have advantage on your damage roll.",
+    "weight": 1
   },
   {
     "id": "fx09",
     "title": "Second Intent (Requires level 6+, Parry & Riposte, and Ambush)",
-    "description": "When you Defend and spend 1 Readiness to Parry & Riposte, also pick 1 option from the Ambush list."
+    "description": "When you Defend and spend 1 Readiness to Parry & Riposte, also pick 1 option from the Ambush list.",
+    "weight": 1
   },
   {
     "id": "fx10",
     "title": "Slippery (Requires level 6+)",
-    "description": "When you roll to escape being caught or controlled, treat a 6- as a 7-9. On a 12+, say how you turn the tables or use the circumstances to your advantage."
+    "description": "When you roll to escape being caught or controlled, treat a 6- as a 7-9. On a 12+, say how you turn the tables or use the circumstances to your advantage.",
+    "weight": 1
   },
   {
     "id": "fx11",

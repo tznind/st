@@ -112,7 +112,8 @@
         "text": "They must pick 1",
         "bullets": []
       }
-    ]
+    ],
+    "weight": 1
   },
   {
     "id": "rg002",
@@ -283,27 +284,32 @@
           "They develop some unique ability or trait"
         ]
       }
-    ]
+    ],
+    "weight": 1
   },
   {
     "id": "rg021",
     "title": "Constant Vigilance (Requires level 6+)",
-    "description": "Unless you're dazed, you're never caught off guard—not even when asleep or if you roll a 6-. When you intercept a sudden threat (to yourself or an ally), you have advantage on whatever move you make."
+    "description": "Unless you're dazed, you're never caught off guard—not even when asleep or if you roll a 6-. When you intercept a sudden threat (to yourself or an ally), you have advantage on whatever move you make.",
+    "weight": 1
   },
   {
     "id": "rg022",
     "title": "Giant Slayer (Requires level 6+ and Big Game Hunter)",
-    "description": "When you strike at a weak spot of a large or huge creature, you deal another +2 damage (+4 total)."
+    "description": "When you strike at a weak spot of a large or huge creature, you deal another +2 damage (+4 total).",
+    "weight": 1
   },
   {
     "id": "rg023",
     "title": "Master Tracker (Requires level 6+ and Expert Tracker)",
-    "description": "When you even briefly scan for tracks or other signs left by passing creatures, you can ask the GM, 'What happened here recently?' and get an honest answer—no need to Seek Insight."
+    "description": "When you even briefly scan for tracks or other signs left by passing creatures, you can ask the GM, 'What happened here recently?' and get an honest answer—no need to Seek Insight.",
+    "weight": 1
   },
   {
     "id": "rg024",
     "title": "Trailblazer (Requires level 6+ and Home on the Range)",
-    "description": "When a journey causes you to Defy Danger or Struggle as One, on a 10+ you also learn or discover something interesting and useful—ask the GM what."
+    "description": "When a journey causes you to Defy Danger or Struggle as One, on a 10+ you also learn or discover something interesting and useful—ask the GM what.",
+    "weight": 1
   },
   {
     "id": "rg025",
@@ -315,7 +321,8 @@
         "max": 1,
         "shape": "square"
       }
-    ]
+    ],
+    "weight": 1
   },
   {
     "id": "rg026",

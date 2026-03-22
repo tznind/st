@@ -263,12 +263,14 @@
   {
     "id": "j021",
     "title": "A Mighty Rampart (Requires level 6+; replaces Bulwark)",
-    "description": "When you hold Readiness (from Defend), you cannot be forced from your position. Also, you can spend 1 Readiness to completely ignore the effects/damage of an attack that you suffer."
+    "description": "When you hold Readiness (from Defend), you cannot be forced from your position. Also, you can spend 1 Readiness to completely ignore the effects/damage of an attack that you suffer.",
+    "weight": 1
   },
   {
     "id": "j022",
     "title": "Armistice (Requires level 6+ and Bear Witness)",
-    "description": "When you approach an enemy to negotiate in good faith, they will at least hear you out. Even the most debased and savage foe will delay violence until you've had your say."
+    "description": "When you approach an enemy to negotiate in good faith, they will at least hear you out. Even the most debased and savage foe will delay violence until you've had your say.",
+    "weight": 1
   },
   {
     "id": "j023",
@@ -277,22 +279,26 @@
     "outcomes": [
         {"text": "They are marked with a mystical brand that cannot be removed or hidden until you dismiss it."},
         {"text": "Any intelligent creature who sees the mark recognizes the bearer as an agent of chaos and anathema to civilization"}
-    ]
+    ],
+    "weight": 1
   },
   {
     "id": "j025",
     "title": "Proclamation (Requires level 6+ and Condemn)",
-    "description": "When you Censure, you may denounce a group or faction as long as you can clearly identify them. Apply the effects of Censure to every member of that group, regardless of distance."
+    "description": "When you Censure, you may denounce a group or faction as long as you can clearly identify them. Apply the effects of Censure to every member of that group, regardless of distance.",
+    "weight": 1
   },
   {
     "id": "j024",
     "title": "Mirrorshield (Requires level 6+ and Aegis of Faith)",
-    "description": "When you Defend with a shield, you can spend 1 Readiness to intercept a magical force and redirect it to a different target (or none)."
+    "description": "When you Defend with a shield, you can spend 1 Readiness to intercept a magical force and redirect it to a different target (or none).",
+    "weight": 1
   },
   {
     "id": "j027",
     "title": "The Tower Eternal (Requires level 6+)",
-    "description": "When you Defy Danger against magic, treat a result of 6- as a 7-9."
+    "description": "When you Defy Danger against magic, treat a result of 6- as a 7-9.",
+    "weight": 1
   },
   {
     "id": "ji",

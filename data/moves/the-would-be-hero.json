@@ -320,7 +320,8 @@
       {
         "text": "When you Defy Danger against something trying to harm or constrain you, on a 12+ you turn the tables on them (the GM will say how, or ask you to)."
       }
-    ]
+    ],
+    "weight": 1
   },
   {
     "id": "h019",
@@ -329,7 +330,8 @@
     "outcomes": [
         {"range": "",
         "text": "When you Defend, you can spend 1 Readiness to lock eyes with an attacker; they have disadvantage on damage rolls against you and your ward for the rest of the fight."}
-    ]
+    ],
+    "weight": 1
   },
   {
     "id": "h020",
@@ -340,7 +342,8 @@
   {
     "id": "h021",
     "title": "Undaunted (Requires level 6+; replaces Better Part of Valor)",
-    "description": "When you are outnumbered or facing a foe bigger than you, you get +1 armor and deal +1d6 damage."
+    "description": "When you are outnumbered or facing a foe bigger than you, you get +1 armor and deal +1d6 damage.",
+    "weight": 1
   },
   {
     "id": "h022",
@@ -351,7 +354,8 @@
         "range": "",
         "text": "When you Seek Insight, you can always ask, 'What is about to happen?' for free, even on a 6-."
       }
-    ]
+    ],
+    "weight": 1
   },
   {
     "id": "hi",

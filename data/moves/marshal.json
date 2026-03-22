@@ -292,12 +292,14 @@
   {
     "id": "ms016",
     "title": "Battlefield Grace (Requires level 6+ and Front Line Leader)",
-    "description": "When you take damage while leading your allies in battle, the damage roll has disadvantage."
+    "description": "When you take damage while leading your allies in battle, the damage roll has disadvantage.",
+    "weight": 1
   },
   {
     "id": "ms017",
     "title": "Focus Fire (Requires level 6+, Stentorian)",
-    "description": "You can spend 1 Command to order your allies to bring down a foe. If you do, each ally has advantage on their next damage roll against that foe."
+    "description": "You can spend 1 Command to order your allies to bring down a foe. If you do, each ally has advantage on their next damage roll against that foe.",
+    "weight": 1
   },
   {
     "id": "ms018",
@@ -309,22 +311,26 @@
           "They are inured to terror & horror",
           "Increase their max HP by 4 each",
           "Increase their damage die one size (max d10)"
-    ]
+    ],
+    "weight": 1
   },
   {
     "id": "ms019",
     "title": "Like an Open Book (Requires level 6+ and Take the Measure)",
-    "description": "When you Take the Measure of someone who fears or respects you, your second question can be anything you want. The GM might ask how you could possibly know this; tell them or ask something else."
+    "description": "When you Take the Measure of someone who fears or respects you, your second question can be anything you want. The GM might ask how you could possibly know this; tell them or ask something else.",
+    "weight": 1
   },
   {
     "id": "ms020",
     "title": "Noble Mien (Requires level 6+)",
-    "description": "When you lead an NPC through danger and return them to safety, if they aren't part of your crew they will either offer to join your crew or pledge their future aid and support."
+    "description": "When you lead an NPC through danger and return them to safety, if they aren't part of your crew they will either offer to join your crew or pledge their future aid and support.",
+    "weight": 1
   },
   {
     "id": "ms021",
     "title": "Peace Through Strength (Requires level 6+ and Speak Softly)",
-    "description": "When you stand ready to fight alongside like-minded allies, anything capable of fear recognizes you as a serious threat and treats you accordingly."
+    "description": "When you stand ready to fight alongside like-minded allies, anything capable of fear recognizes you as a serious threat and treats you accordingly.",
+    "weight": 1
   },
   {
     "id": "mi",

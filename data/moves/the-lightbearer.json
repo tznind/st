@@ -291,27 +291,32 @@
    {
     "id": "lb009",
     "title": "Burn Twice as Bright (Requires level 6+ and Invoke the Sun God)",
-    "description": "When you Invoke the Sun God, you may mark a debility to use 2 Invocations at once. Roll once, and apply any consequences to both Invocations."
+    "description": "When you Invoke the Sun God, you may mark a debility to use 2 Invocations at once. Roll once, and apply any consequences to both Invocations.",
+    "weight": 1
    },
    {
     "id": "lb020",
     "title": "Empowered Invocations (Requires level 6+ and Invoke the Sun God)",
-    "description": "When you Invoke the Sun God, you can choose an extra consequence before you roll. If you do, the Invocation has its empowered effect."
+    "description": "When you Invoke the Sun God, you can choose an extra consequence before you roll. If you do, the Invocation has its empowered effect.",
+    "weight": 1
    },
    {
     "id": "lb021",
     "title": "Glorious Servant (Requires level 6+ and Invoke the Sun God)",
-    "description": "When you Invoke the Sun God and roll a 10+, you need not choose a consequence; on a 7-9, you choose a consequence but the GM does not."
+    "description": "When you Invoke the Sun God and roll a 10+, you need not choose a consequence; on a 7-9, you choose a consequence but the GM does not.",
+    "weight": 1
    },
    {
     "id": "lb022",
     "title": "Hungry Flames (Requires level 6+ and Purifying Flames)",
-    "description": "When you deal damage with a holy light, you deal +1d6 damage and your target is engulfed in holy light and flames."
+    "description": "When you deal damage with a holy light, you deal +1d6 damage and your target is engulfed in holy light and flames.",
+    "weight": 1
    },
    {
     "id": "lb010",
     "title": "Light, More Light (Requires level 6+ and Consecrated Flame)",
-    "description": "When you consecrate a flame, it burns brighter than normal. A rushlight or candle illuminates to reach range, an oil lamp, lantern, or torch out to near range, and a bullseye lantern out to far range."
+    "description": "When you consecrate a flame, it burns brighter than normal. A rushlight or candle illuminates to reach range, an oil lamp, lantern, or torch out to near range, and a bullseye lantern out to far range.",
+    "weight": 1
    },
    {
     "id": "lb023",
@@ -326,7 +331,8 @@
         "range": "7-9",
         "text": "It ignites with a white flame that casts a holy light (reach, area) and burns neither you nor the object."
       }
-    ]
+    ],
+    "weight": 1
    },
   {
     "id": "iv001",
