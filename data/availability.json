@@ -2,6 +2,7 @@
   "Fox": {
     "_movesFile": "data/moves/fox.json",
     "maxHp": 16,
+    "damage": "d8",
     "cards": [],
     "fbg1": false,
     "fbg2": false,
@@ -36,6 +37,7 @@
   "Marshal": {
     "_movesFile": "data/moves/marshal.json",
     "maxHp": 20,
+    "damage": "d8",
     "cards": [],
     "mbg1": false,
     "hv001": false,
@@ -70,6 +72,7 @@
   "The Blessed": {
     "_movesFile": "data/moves/the-blessed.json",
     "maxHp": 18,
+    "damage": "d6",
     "cards": [],
     "bl000": true,
     "bl001": false,
@@ -105,6 +108,7 @@
   "The Ranger": {
     "_movesFile": "data/moves/the-ranger.json",
     "maxHp": 18,
+    "damage": "d8",
     "cards": [],
     "rbg1": false,
     "rbg2": false,
@@ -145,6 +149,7 @@
   "The Lightbearer": {
     "_movesFile": "data/moves/the-lightbearer.json",
     "maxHp": 18,
+    "damage": "d4",
     "cards": [],
     "lbg1":false,
     "lb001": false,
@@ -189,6 +194,7 @@
   "The Seeker": {
     "_movesFile": "data/moves/the-seeker.json",
     "maxHp": 16,
+    "damage": "d6",
     "cards": [],
     "sk001": false,
     "skbg2": false,
@@ -229,6 +235,7 @@
   "The Heavy": {
     "_movesFile": "data/moves/the-heavy.json",
     "maxHp": 20,
+    "damage": "d10",
     "cards": [],
     "hvbg1": false,
     "hvbg2": false,
@@ -268,6 +275,7 @@
   "The Judge":{
     "_movesFile": "data/moves/the-judge.json",
     "maxHp": 20,
+    "damage": "d6",
     "cards": [],
     "jbg1":false,
     "jbg2":false,
@@ -308,6 +316,7 @@
   "The Would Be Hero":{
     "_movesFile": "data/moves/the-would-be-hero.json",
     "maxHp": 16,
+    "damage": "d6",
     "cards": [],
     "hbg1": false,
     "hbg2": false,

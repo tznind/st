@@ -32,8 +32,9 @@ window.Layout = (function() {
             // Render stats (always shown)
             renderStats();
 
-            // Update max HP placeholder based on selected role
+            // Update max HP and damage placeholders based on selected role
             updateMaxHpPlaceholder(selectedRoles);
+            updateDamagePlaceholder(selectedRoles);
 
             // Apply persistence to stats immediately after rendering
             applyPersistenceState(urlParams);
@@ -133,6 +134,24 @@ window.Layout = (function() {
         }
 
         hpMaxInput.placeholder = maxHp != null ? String(maxHp) : 'max';
+    }
+
+    /**
+     * Update the damage input placeholder based on the selected role(s)
+     */
+    function updateDamagePlaceholder(selectedRoles) {
+        const damageInput = document.getElementById('damage');
+        if (!damageInput) return;
+
+        let damage = null;
+        if (selectedRoles && selectedRoles.length > 0 && window.availableMap) {
+            const roleData = window.availableMap[selectedRoles[0]];
+            if (roleData && roleData.damage != null) {
+                damage = roleData.damage;
+            }
+        }
+
+        damageInput.placeholder = damage != null ? String(damage) : '';
     }
 
     /**
