@@ -12,6 +12,60 @@
     {
         "id": "dd3",
         "title": "Thrall",
-        "description": "Placeholder"
+        "description": "When you die but *call on one of the Things Below by name and beseech them to intercede*, they do. Death is averted, but you gain this insert and 1 Mark",
+        "tracks": [{
+            "name": "Favor",
+            "max": 3,
+            "shape": "circle"
+        }],
+        "grantsCard": "thrall-marks",
+        "submoves": [
+            {
+                "title": "Your Master",
+                "description": "The Thing Below that you called upon? The one that plucked your soul from the Black Gates and hides you from the Pale Hunter? It owns you now.Name your master here, along with any titles that you know:\n\n____master______"
+            },
+            {
+                "title": "Instinct",
+                "description": "Loose the Instinct from your playbook, and replace it with one of these (your choice):",
+                "pickOne": [
+                    "Fascination - To explore your powers, your master, your new existence",
+                    "Resistance - To struggle against your master and cling to humanity",
+                    "Shame - To hide and deny your true nature"
+                ]
+            },
+            {
+                "title": "Favor",
+                "description": "Your favor starts at 0 and can go no higher than 3. When you *have 3 Favor and would gain another, reduce your Favor to 0 and choose 1:\n\n- Ask a question of your master and gain advantage on your next roll to act on the answer\n\n- Gain a new Mark of your choice. Then ask the GM to choose a Mark that you don't have, and cross it off - you can never gain it."
+            },
+            {
+                "title": "Impulse",
+                "description": "Ask the GM to describe an impulse that represents your master's nature and will  ______impulse______ \n\nWhen the GM compels you to act on your impulse, gain 1 Favor if you act as bidden. If you resist roll +WIS:",
+                "outcomes": [
+                    {
+                        "range": "10+",
+                        "text": "Your actions are your own"
+                    },
+                    
+                    {
+                        "range": "7-9+",
+                        "text": "Choose 1:",
+                        "bullets": [
+                            "Stand dazed, fighting for control",
+                            "Start acting as compelled, but stop yourself before you go too far",
+                            "Harm yourself (d6 damage, ignores armor) to regain control"
+                        ]
+                    },
+                    
+                    {
+                        "range": "6-",
+                        "text": "You come to your senses later, having done gods-know-what"
+                    },
+                    {
+                        "range": "",
+                        "text": "When you **act on your impulse without being compelled to do so**, and your actions cause you or your allies trouble, gain 1 Favor"
+                    }
+                ]
+            }
+        ]
     }
 ]
