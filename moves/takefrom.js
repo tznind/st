@@ -116,7 +116,14 @@ window.TakeFrom = (function() {
             option.textContent = window.availableMap[role]?.name || role;
             roleSelect.appendChild(option);
         });
-        
+
+        // If only one role available, auto-select it and hide the role dropdown
+        const isSingleRole = matchingRoles.length === 1;
+        if (isSingleRole) {
+            roleSelect.value = matchingRoles[0];
+            roleLabel.style.display = 'none';
+        }
+
         // Move selector (with instance number)
         const moveLabel = document.createElement("label");
         moveLabel.textContent = instance > 1 ? `Move ${instance}: ` : "Move: ";
@@ -135,18 +142,18 @@ window.TakeFrom = (function() {
         const roleParamKey = instance > 1 ? `takeFrom_${move.id}_${instance}_role` : `takeFrom_${move.id}_role`;
         const moveParamKey = instance > 1 ? `takeFrom_${move.id}_${instance}_move` : `takeFrom_${move.id}_move`;
         
-        if (urlParams.has(roleParamKey)) {
-            const savedRole = urlParams.get(roleParamKey);
-            const savedMove = urlParams.get(moveParamKey);
-            
+        const savedRole = urlParams.get(roleParamKey) || (isSingleRole ? matchingRoles[0] : null);
+        const savedMove = urlParams.get(moveParamKey);
+
+        if (savedRole) {
             roleSelect.value = savedRole;
             updateMoveOptions(roleSelect, moveSelect, move.id, instance);
-            
+
             // Use a delay to ensure options are populated before setting value
             setTimeout(() => {
                 if (savedMove) {
                     moveSelect.value = savedMove;
-                    
+
                     // Also update the learned move display after setting the value
                     setTimeout(() => {
                         updateAllLearnedMoveDisplays(move.id, urlParams);
