@@ -2,6 +2,7 @@
   'use strict';
 
   function initializeThrallMarks(container) {
+    // Wire up X buttons
     container.querySelectorAll('.mark-x-btn').forEach(function(btn) {
       var crossId = btn.getAttribute('data-cross');
       var checkbox = container.querySelector('#' + crossId);
@@ -15,6 +16,26 @@
         updateButton(btn, checkbox.checked);
       });
     });
+
+    // Hide untaken: only the tick checkbox determines visibility
+    var hideUntakenEl = document.getElementById('hide_untaken');
+
+    function updateVisibility() {
+      var hideUntaken = hideUntakenEl && hideUntakenEl.checked;
+      container.querySelectorAll('[data-tm-mark]').forEach(function(item) {
+        var tick = item.querySelector('.mark-tick');
+        var isTaken = tick && tick.checked;
+        item.style.display = (hideUntaken && !isTaken) ? 'none' : '';
+      });
+    }
+
+    if (hideUntakenEl) {
+      hideUntakenEl.addEventListener('change', updateVisibility);
+    }
+    container.querySelectorAll('.mark-tick').forEach(function(tick) {
+      tick.addEventListener('change', updateVisibility);
+    });
+    updateVisibility();
   }
 
   function updateButton(btn, crossed) {
