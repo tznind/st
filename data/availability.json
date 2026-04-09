@@ -353,6 +353,7 @@
   "Everyone":{
     "_movesFile": "data/moves/everyone.json",
     "cards": ["outfit"],
+    "dd":true,
     "ev1":true,
     "ev2":true,
     "ev3":true,
@@ -363,5 +364,11 @@
     "ev8":true,
     "ev9":true,
     "ev10":true
+  },
+  "DeathsDoorInserts":{
+    "_movesFile": "data/moves/deaths-door.json",
+    "dd1":false,
+    "dd2":false,
+    "dd3":false
   }
 }
