@@ -1,0 +1,118 @@
+<!-- Revenant Consequences Card -->
+<div class="card revenant-consequences-card">
+  <h3 class="card-title">💀 Revenant Consequences</h3>
+
+  <div class="marks-list">
+
+    <!-- Breakdown -->
+    <div class="mark-item" data-rc-mark>
+      <input type="checkbox" id="rc_brkd_t" class="mark-tick">
+      <div class="mark-content">
+        <div class="mark-title">Breakdown</div>
+        <p>You lash out in an unthinking, unfeeling rage that lasts until the next sunrise. Ask the GM what snippets you remember.</p>
+      </div>
+      <input type="checkbox" id="rc_brkd_x" class="mark-cross">
+      <button type="button" class="mark-x-btn" data-cross="rc_brkd_x">✕</button>
+    </div>
+
+    <!-- Unstable -->
+    <div class="mark-item" data-rc-mark>
+      <input type="checkbox" id="rc_unst_t" class="mark-tick">
+      <div class="mark-content">
+        <div class="mark-title">Unstable <em>(Requires Breakdown)</em></div>
+        <p>You are prone to episodes of unthinking, unfeeling rage (as per Breakdown). When you roll a 6–, the GM can choose to have you enter such a rage.</p>
+      </div>
+      <input type="checkbox" id="rc_unst_x" class="mark-cross">
+      <button type="button" class="mark-x-btn" data-cross="rc_unst_x">✕</button>
+    </div>
+
+    <!-- Carrion Stench -->
+    <div class="mark-item" data-rc-mark>
+      <input type="checkbox" id="rc_crrn_t" class="mark-tick">
+      <div class="mark-content">
+        <div class="mark-title">Carrion Stench</div>
+        <p>You are followed always by a horrible odor. Natural beasts will shun you; even predators will avoid you and your companions.</p>
+      </div>
+      <input type="checkbox" id="rc_crrn_x" class="mark-cross">
+      <button type="button" class="mark-x-btn" data-cross="rc_crrn_x">✕</button>
+    </div>
+
+    <!-- Deathly Visage -->
+    <div class="mark-item" data-rc-mark>
+      <input type="checkbox" id="rc_dvis_t" class="mark-tick">
+      <div class="mark-content">
+        <div class="mark-title">Deathly Visage</div>
+        <p>It's clear to all who look upon you that you are dead.</p>
+        <p>When you use intimidation and your sinister appearance to Persuade, you have advantage.</p>
+      </div>
+      <input type="checkbox" id="rc_dvis_x" class="mark-cross">
+      <button type="button" class="mark-x-btn" data-cross="rc_dvis_x">✕</button>
+    </div>
+
+    <!-- Home to Vermin -->
+    <div class="mark-item" data-rc-mark>
+      <input type="checkbox" id="rc_vrmn_t" class="mark-tick">
+      <div class="mark-content">
+        <div class="mark-title">Home to Vermin</div>
+        <p>Bugs, moths, and other vermin have taken up residence in your corpse. They will do you favors if you ask. Treat them as followers: group, tiny, gross, meek, stealthy; HP 1 each; Instinct: to get distracted; Cost: genuine affection.</p>
+      </div>
+      <input type="checkbox" id="rc_vrmn_x" class="mark-cross">
+      <button type="button" class="mark-x-btn" data-cross="rc_vrmn_x">✕</button>
+    </div>
+
+    <!-- Nightkin -->
+    <div class="mark-item" data-rc-mark>
+      <input type="checkbox" id="rc_ntkn_t" class="mark-tick">
+      <div class="mark-content">
+        <div class="mark-title">Nightkin</div>
+        <p>You can see clearly in even absolute darkness, though you see only in black and white and red.</p>
+        <p>Sunlight, alas, blinds you, and direct sunlight burns your skin.</p>
+      </div>
+      <input type="checkbox" id="rc_ntkn_x" class="mark-cross">
+      <button type="button" class="mark-x-btn" data-cross="rc_ntkn_x">✕</button>
+    </div>
+
+    <!-- Quarry -->
+    <div class="mark-item" data-rc-mark>
+      <input type="checkbox" id="rc_qrry_t" class="mark-tick">
+      <div class="mark-content">
+        <div class="mark-title">Quarry</div>
+        <p>The Pale Hunter has caught your scent. Expect a visit, soon.</p>
+      </div>
+      <input type="checkbox" id="rc_qrry_x" class="mark-cross">
+      <button type="button" class="mark-x-btn" data-cross="rc_qrry_x">✕</button>
+    </div>
+
+    <!-- Strange Appetites -->
+    <div class="mark-item" data-rc-mark>
+      <input type="checkbox" id="rc_stap_t" class="mark-tick">
+      <div class="mark-content">
+        <div class="mark-title">Strange Appetites</div>
+        <p>Pick 1:</p>
+        <div class="pick-one-list">
+          <label><input type="radio" id="rc_stap_blood"   name="rc_stap_pick" value="blood">   Still-warm blood</label>
+          <label><input type="radio" id="rc_stap_breaths" name="rc_stap_pick" value="breaths"> Dying breaths</label>
+          <label><input type="radio" id="rc_stap_brains"  name="rc_stap_pick" value="brains">  Brains</label>
+          <label><input type="radio" id="rc_stap_marrow"  name="rc_stap_pick" value="marrow">  Bone &amp; marrow</label>
+          <label><input type="radio" id="rc_stap_rotting" name="rc_stap_pick" value="rotting"> Rotting meat</label>
+          <label><input type="radio" id="rc_stap_eyes"    name="rc_stap_pick" value="eyes">    Eyes</label>
+        </div>
+        <p>When you consume your special fare, heal damage equal to half your max HP or clear a debility.</p>
+      </div>
+      <input type="checkbox" id="rc_stap_x" class="mark-cross">
+      <button type="button" class="mark-x-btn" data-cross="rc_stap_x">✕</button>
+    </div>
+
+    <!-- Insatiable -->
+    <div class="mark-item" data-rc-mark>
+      <input type="checkbox" id="rc_insa_t" class="mark-tick">
+      <div class="mark-content">
+        <div class="mark-title">Insatiable <em>(Requires Strange Appetites)</em></div>
+        <p>When you have the opportunity to indulge your Strange Appetites, gain advantage on your next roll if you choose to do so, or Defy Danger if you choose not to (the danger being your overwhelming desires).</p>
+      </div>
+      <input type="checkbox" id="rc_insa_x" class="mark-cross">
+      <button type="button" class="mark-x-btn" data-cross="rc_insa_x">✕</button>
+    </div>
+
+  </div>
+</div>

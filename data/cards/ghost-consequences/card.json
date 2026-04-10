@@ -1,0 +1,13 @@
+{
+  "id": "ghost-consequences",
+  "title": "Ghost Consequences",
+  "path": "data/cards/ghost-consequences",
+  "description": "Ghost Consequences",
+  "version": "1.0.0",
+  "author": "Stonetop System",
+  "files": {
+    "html": "card.html",
+    "css": "card.css",
+    "js": "card.js"
+  }
+}

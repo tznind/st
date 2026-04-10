@@ -1,0 +1,115 @@
+.ghost-consequences-card .card-title {
+  margin: 0 0 0.75rem;
+}
+
+.ghost-consequences-card .marks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ghost-consequences-card .mark-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #d0c8b8;
+  border-radius: 0.25rem;
+  background: #faf8f4;
+}
+
+.ghost-consequences-card .mark-cross {
+  display: none;
+}
+
+.ghost-consequences-card .mark-tick {
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+  cursor: pointer;
+}
+
+.ghost-consequences-card .mark-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.ghost-consequences-card .mark-title {
+  font-weight: bold;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.2rem;
+}
+
+.ghost-consequences-card .mark-content p {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #333;
+  margin: 0 0 0.3rem;
+}
+
+.ghost-consequences-card .mark-content p:last-child {
+  margin-bottom: 0;
+}
+
+.ghost-consequences-card .mark-content ul {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #333;
+  margin: 0 0 0.3rem;
+  padding-left: 1.2rem;
+}
+
+.ghost-consequences-card .mark-content ul:last-child {
+  margin-bottom: 0;
+}
+
+.ghost-consequences-card .mark-content li {
+  margin-bottom: 0.15rem;
+}
+
+.ghost-consequences-card .mark-x-btn {
+  flex-shrink: 0;
+  width: 1.6rem;
+  height: 1.6rem;
+  padding: 0;
+  border: 1px solid #bbb;
+  border-radius: 0.2rem;
+  background: #f0ece4;
+  color: #555;
+  font-size: 0.75rem;
+  cursor: pointer;
+  line-height: 1;
+  margin-top: 0.1rem;
+}
+
+.ghost-consequences-card .mark-x-btn:hover {
+  background: #e8d8c8;
+  border-color: #999;
+}
+
+.ghost-consequences-card .mark-x-btn.is-crossed {
+  background: #c44;
+  border-color: #a33;
+  color: #fff;
+}
+
+.ghost-consequences-card .mark-item:has(.mark-tick:checked) {
+  background: #eaf4ea;
+  border-color: #b0d4b0;
+}
+
+.ghost-consequences-card .mark-item:has(.mark-tick:checked) .mark-title,
+.ghost-consequences-card .mark-item:has(.mark-tick:checked) .mark-desc {
+  color: #2a4a2a;
+}
+
+.ghost-consequences-card .mark-item:has(.mark-cross:checked) .mark-content {
+  text-decoration: line-through;
+  opacity: 0.45;
+}
+
+.ghost-consequences-card .mark-item:has(.mark-cross:checked) {
+  background: #f0ece4;
+  border-color: #ccc;
+}

@@ -2,12 +2,14 @@
     {
         "id": "dd1",
         "title": "Ghost",
-        "description": "Placeholder"
+        "description": "Placeholder",
+        "grantsCard": "ghost-consequences"
     },
     {
         "id": "dd2",
         "title": "Revenant",
-        "description": "placeholder"
+        "description": "placeholder",
+        "grantsCard": "revenant-consequences"
     },
     {
         "id": "dd3",
@@ -65,6 +67,37 @@
                         "text": "When you **act on your impulse without being compelled to do so**, and your actions cause you or your allies trouble, gain 1 Favor"
                     }
                 ]
+            },
+            {
+                "title": "Dark Succor",
+                "description": "When you are dying or killed outright, your master intercedes on your behalf. You will recover, here and now or at a time and place of the GM's choosing. Then, roll +Favor:",
+                "outcomes": [
+                    {
+                        "range": "10+",
+                        "text": "Choose 1:"
+                    },
+                    {
+                        "range": "7-9",
+                        "text": "Choose 2:"
+                    },
+                    {
+                        "range": "6-",
+                        "text": "All 3 apply:"
+                    },
+                    {
+                        "range": "",
+                        "text": "Regardless, reset your Favor to 0.",
+                        "bullets": [
+                            "Gain a new Mark of the GM's choice",
+                            "Cross off a Mark that you don't have—you can never gain it",
+                            "Your master gives you a task; until you complete it, your Favor stays at 0"
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "Unholy Vessel",
+                "description": "When you would gain a Mark but there are none left to gain, your humanity is utterly lost. You become a threat in the GM's control. Make a new character."
             }
         ]
     }
