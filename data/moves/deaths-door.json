@@ -4,6 +4,7 @@
         "title": "Ghost",
         "description": "When you die but your soul lingers, *refusing to pass through the Black Gates*, you gain this insert, and choose 1 Consequence (see reverse).",
         "grantsCard": "ghost-consequences",
+        "takeFrom": ["terrible-purpose"],
         "submoves": [
             {
                 "title": "Instinct",
@@ -48,6 +49,7 @@
         "title": "Revenant",
         "description": "When you die but *cling stubbornly to your body, refusing to pass through the Black Gates*, you gain this insert, and choose 1 Consequence (see reverse).",
         "grantsCard": "revenant-consequences",
+        "takeFrom": ["terrible-purpose"],
         "submoves": [
             {
                 "title": "Instinct",

@@ -1,0 +1,53 @@
+[
+    {
+        "id": "tp1",
+        "title": "Longing",
+        "description": "Name the person or persons you refuse to let go of:\n\n____longing____",
+        "outcomes": [
+            {
+                "range": "",
+                "text": "",
+                "bullets": [
+                    "When you spend the night watching them, regain all your HP or clear all your debilities.",
+                    "When they rebuff you or recoil from you, mark a consequence (see reverse).",
+                    "When they die peacefully and pass through the Black Gates, so do you.",
+                    "Should they be taken from you violently, mark the Final Consequence (see reverse)."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "tp2",
+        "title": "Vengeance",
+        "description": "Name the person or persons who must pay:\n\n____vengeance____",
+        "outcomes": [
+            {
+                "range": "",
+                "text": "",
+                "bullets": [
+                    "When you make one of them pay and make sure they know why, regain all your HP or clear all your debilities.",
+                    "When they defeat or escape you, mark a consequence (see reverse).",
+                    "When you kill the last of them, pass through the Black Gates.",
+                    "Should they die before you're finished with them, mark the Final Consequence (see reverse)."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "tp3",
+        "title": "Duty",
+        "description": "Name the task you refuse to leave undone:\n\n____duty____",
+        "outcomes": [
+            {
+                "range": "",
+                "text": "",
+                "bullets": [
+                    "When you spend the night working on your task or reach a milestone, regain all your HP or clear all your debilities.",
+                    "When you fail to perform your task or suffer a material setback, mark a consequence (see reverse).",
+                    "When the task is finally complete, pass through the Black Gates.",
+                    "Should the task become impossible to perform, mark the Final Consequence (see reverse)."
+                ]
+            }
+        ]
+    }
+]

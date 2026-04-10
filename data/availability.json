@@ -370,5 +370,11 @@
     "dd1":false,
     "dd2":false,
     "dd3":false
+  },
+  "terrible-purpose":{
+    "_movesFile": "data/moves/terrible-purpose.json",
+    "tp1":false,
+    "tp2":false,
+    "tp3":false
   }
 }
