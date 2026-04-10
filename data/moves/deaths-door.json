@@ -2,14 +2,107 @@
     {
         "id": "dd1",
         "title": "Ghost",
-        "description": "Placeholder",
-        "grantsCard": "ghost-consequences"
+        "description": "When you die but your soul lingers, *refusing to pass through the Black Gates*, you gain this insert, and choose 1 Consequence (see reverse).",
+        "grantsCard": "ghost-consequences",
+        "submoves": [
+            {
+                "title": "Instinct",
+                "description": "Lose the Instinct from your playbook, and replace it with one of these (your choice):",
+                "pickOne": [
+                    "Denial - To refuse to accept that you are dead.",
+                    "Obsession - To pursue your Terrible Purpose no matter what.",
+                    "Ennui - To bemoan your condition, to wish for release."
+                ]
+            },
+            {
+                "title": "Unliving",
+                "description": "You do not breathe. You need not eat nor drink nor sleep. You do not heal normally. You gain no benefit from magical healing, Make Camp, Recover or Convalesce."
+            },
+            {
+                "title": "Disembodied",
+                "description": "Your body is dead and gone, but you persist as an incorporeal spirit. You can be harmed only by that which harms spirits or ghosts, and you have the barest influence on the material world.\n\nYou normally go unseen, the material world dim and distorted to you. When you manifest a ghostly presence in shadows or darkness, the world becomes clear again. For each of the following you wish to be true, lose 1d4 HP:",
+                "outcomes": [
+                    {
+                        "range": "",
+                        "text": "",
+                        "bullets": [
+                            "You appear solid and whole, much as you did in life",
+                            "You can speak clearly and intelligibly",
+                            "Your touch (or ghostly weapons) can harm the living (ignores armor)"
+                        ]
+                    },
+                    {
+                        "range": "",
+                        "text": "You remain manifest for as long as you concentrate; pain or shock or direct sunlight threaten your concentration, for sure."
+                    }
+                ]
+            },
+            {
+                "title": "Tethered",
+                "description": "Choose something to which you are bound: your mortal remains, the place where you died, an object of personal significance, etc.\n\n____tether____\n\nWhen you are reduced to 0 HP, mark a consequence (see reverse) and your essence disperses until the next sunset. You reform near your tether with half your max HP. If your tether has been destroyed, mark the Final Consequence."
+            }
+        ]
     },
     {
         "id": "dd2",
         "title": "Revenant",
-        "description": "placeholder",
-        "grantsCard": "revenant-consequences"
+        "description": "When you die but *cling stubbornly to your body, refusing to pass through the Black Gates*, you gain this insert, and choose 1 Consequence (see reverse).",
+        "grantsCard": "revenant-consequences",
+        "submoves": [
+            {
+                "title": "Instinct",
+                "description": "Lose the Instinct from your playbook, and replace it with one of these (your choice):",
+                "pickOne": [
+                    "Denial - To refuse to accept that you are dead.",
+                    "Obsession - To pursue your Terrible Purpose no matter what.",
+                    "Ennui - To bemoan your condition, to wish for release."
+                ]
+            },
+            {
+                "title": "Unliving",
+                "description": "You do not breathe. You need not eat nor drink nor sleep. You do not heal normally. You gain no benefit from magical healing, Make Camp, Recover or Convalesce."
+            },
+            {
+                "title": "Undying",
+                "description": "Neither poison nor disease do you harm. You feel little pain. When you take damage from cutting, stabbing, or crushing, take half damage (after armor, rounded up).\n\nWhen you are reduced to 0 HP, roll +CON:",
+                "outcomes": [
+                    {
+                        "range": "10+",
+                        "text": "Regain half your max HP and choose 1:"
+                    },
+                    {
+                        "range": "7-9",
+                        "text": "Regain half your max HP and choose 2:"
+                    },
+                    {
+                        "range": "6-",
+                        "text": "Either regain 1 HP and all 3 apply, or give up this insert and gain the Ghost insert instead."
+                    },
+                    {
+                        "range": "",
+                        "text": "Choices:",
+                        "bullets": [
+                            "Mark a consequence (see reverse)",
+                            "You're out of the action until the next sunset",
+                            "Your body is permanently maimed in some way of the GM's choosing"
+                        ]
+                    },
+                    {
+                        "range": "",
+                        "text": "If your body is completely destroyed (burnt to ash, ground to jelly, etc.), treat it as if you were reduced to 0 HP and rolled a 6-."
+                    }
+                ]
+            },
+            {
+                "title": "Implacable",
+                "description": "When you push the limits of your undead body, lose 1d4 HP and choose 1:",
+                "pickOne": [
+                    "Perform a feat of inhuman strength",
+                    "Act with uncanny speed and grace",
+                    "Refuse to be moved, held back, or knocked off course"
+                ]
+            }
+        ]
     },
     {
         "id": "dd3",
