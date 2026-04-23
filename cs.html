@@ -88,9 +88,10 @@
           <input type="text" id="armor" name="armor">
         </label>
         
-        <label for="xp">
+        <label for="xp" style="position:relative;">
           XP
           <input type="text" id="xp" name="xp">
+          <span id="xp-hint" style="font-size:0.75em; color:#666; position:absolute; top:100%; left:50%; transform:translateX(-50%); white-space:nowrap;"></span>
         </label>
         
         <label for="level">
@@ -206,6 +207,33 @@
 
 <!-- Module attribution banner -->
 <script src="module-attribution.js"></script>
+
+<script>
+(function () {
+  function updateXpHint() {
+    var level = parseInt(document.getElementById('level').value, 10);
+    var hint = document.getElementById('xp-hint');
+    if (!hint) return;
+    hint.textContent = 'Required: ' + (6 + 2 * (isNaN(level) || level < 0 ? 0 : level));
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    var levelInput = document.getElementById('level');
+    if (levelInput) {
+      levelInput.addEventListener('input', updateXpHint);
+      levelInput.addEventListener('change', updateXpHint);
+    }
+    // Run after persistence has restored values from URL
+    if (window.AppEvents) {
+      window.AppEvents.on('initializationComplete', updateXpHint);
+    } else {
+      // Fallback: AppEvents not yet available, wait for it
+      document.addEventListener('AppEventsReady', updateXpHint);
+      setTimeout(updateXpHint, 500);
+    }
+    updateXpHint();
+  });
+})();
+</script>
 
 </body>
 </html>
