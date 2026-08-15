@@ -66,7 +66,9 @@
     <hr>
     <div id="stats-container"></div>
     <hr>
-    
+        <div id="stats-hint"
+     style="display:none; margin-top:8px; font-size:0.9em; color:#666; text-align:center;">hi
+</div>
     <!-- Stats and Controls Box -->
     <div class="stats-controls-box">
       <!-- Combat and Progression Stats -->
@@ -215,6 +217,7 @@
     var hint = document.getElementById('xp-hint');
     if (!hint) return;
     hint.textContent = 'Required: ' + (6 + 2 * (isNaN(level) || level < 0 ? 0 : level));
+    updateStatsHint();
   }
   document.addEventListener('DOMContentLoaded', function () {
     var levelInput = document.getElementById('level');
@@ -222,6 +225,13 @@
       levelInput.addEventListener('input', updateXpHint);
       levelInput.addEventListener('change', updateXpHint);
     }
+    
+    var roleInput = document.getElementById('role');
+    if (roleInput) {
+      roleInput.addEventListener('input', updateXpHint);
+      roleInput.addEventListener('change', updateXpHint);
+    }
+
     // Run after persistence has restored values from URL
     if (window.AppEvents) {
       window.AppEvents.on('initializationComplete', updateXpHint);
@@ -233,6 +243,33 @@
     updateXpHint();
   });
 })();
+
+function updateStatsHint() {
+  var hint = document.getElementById('stats-hint');
+  if (!hint) return;
+
+  var statInputs = document.querySelectorAll('#stats-container input');
+
+  var allEmpty = Array.from(statInputs).every(function(input) {
+    return !input.value.trim();
+  });
+
+  if (!allEmpty) {
+    hint.style.display = 'none';
+    return;
+  }
+
+  var roleInput = document.getElementById('role');
+  const role = roleInput.value;
+
+  var roleHints = {
+    'Normal': 'Stats Distribution: +2, +1, +1, +0, +0, -1',
+    'Hero': 'Stats Distribution: +1, +0, +0, +0, +0, -1'
+  };
+
+  hint.textContent = role == 'The Would Be Hero' ? roleHints['Hero'] :  roleHints['Normal'];
+  hint.style.display = '';
+}
 </script>
 
 </body>
