@@ -3,19 +3,19 @@
     "id": "fbg1",
     "title": "The Natural (+Intelligence)",
     "category": "Background",
-    "description": "When you Seek Insight, you may roll +Intelligence instead of +Wisdom and add \"What opportunity does no one else see?\" to the list of possible questions."
+    "description": "When you **Seek Insight**, you may roll +Intelligence instead of +Wisdom and add \"What opportunity does no one else see?\" to the list of possible questions."
   },
    {
     "id": "fbg2",
     "title": "A Life of Crime",
     "category": "Background",
-    "description": "You start with either Burgle or Light Fingers (your choice) as an extra move and either burglar tools or a hidden stash (your choice) as an additional special possession."
+    "description": "You start with either **Burgle** or **Light Fingers** (your choice) as an extra move and either burglar tools or a hidden stash (your choice) as an additional special possessions."
   },
   {
     "id": "fbg3",
     "title": "The Prodigal Returned (+Charisma)",
     "category": "Background",
-    "description": "When you declare that you know someone outside of Stonetop, someone who can help, name them and roll.",
+    "description": "When you *declare that you know someone outside of Stonetop*, someone who can help, name them and roll.",
     "outcomes": [
       {
         "range": "≥ 10",
@@ -62,8 +62,16 @@
       "Mummer's kit: juggling balls, whirlybird seeds, motley, ribbons, bells, ◇ puppets, ◇ a fiddle etc.",
       "Scribe's tools: parchment, inks, pigments, vials, quills, ◇ a notebook, etc.",
       "Tannery (or access to it): lime, acid, salts, thick gloves, ◇ a boiled leather cuirass (1 Armor), etc.",
-      "Trading contacts: small amounts of salt, glass, silk, spice, medicinal herbs, pigments, ivory, etc"
+      "Trading contacts: small amounts of salt, glass, silk, spice, medicinal herbs, pigments, ivory, etc",
+      "Other: __fspo__ (discuss with GM)"
     ]
+  },
+  {
+    "id":"fsm",
+    "hideCheckbox": true,
+    "weight": -1,
+    "title": "Starting Moves",
+    "description": "You start with:\n\n- **Ambush** or **Skill at Arms**\n\n- **Danger Sense** or **Perceptive**\n\n- And 1 of your choice."
   },
   {
     "id": "d4e5f6",
