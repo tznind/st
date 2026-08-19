@@ -42,7 +42,7 @@
     "outcomes": [
       {
         "range": "",
-        "text": "Take the Danu's Grasp move (go mark it now)."
+        "text": "Take the **Danu's Grasp** move (go mark it now)."
       },
       {
         "range": "",
@@ -62,7 +62,7 @@
     "outcomes": [
       {
         "range": "",
-        "text": "You gain the Rites of the Land move and Initiates of Danu Followers."
+        "text": "You gain the **Rites of the Land** move and Initiates of Danu Followers."
       }
     ]
   },
@@ -74,7 +74,7 @@
     "outcomes": [
       {
         "range": "",
-        "text": "You get the Trackless Step move (go mark it now)."
+        "text": "You get the **Trackless Step** move (go mark it now)."
       },
       {
         "range": "",
@@ -112,7 +112,8 @@
       "Collected offerings: Expend a use to produce something valuable to a spirit of the wild. Restore 1 use each season",
       "Goat herd: milk, cheese, pelts, meat, blood, horn, wool, etc. Each season, 1 in 4 chance of having a bezoar (swallow it to cure poison).",
       "Herb garden: shears, mortars & pestles, herbs, seeds, remedies, mild poisons, spades, etc. Each spring, d4 uses of bendis root (reach, area, burns ~1 hr, fumes repel perversions of nature)",
-      "Mastiffs: 2-3 followers, tick the move below"
+      "Mastiffs: 2-3 followers, tick the move below",
+      "Other: __bspo__ (discuss with GM)"
     ]
   },
   {
@@ -121,6 +122,13 @@
     "description": "2-3 followers (alert, keen-nosed, fierce,overprotective); HP 6; Damage d6 (hand, grabby); Instinct: to bark & threaten; Cost: affection.",
     "category": "Special Possessions",
     "grantsCard": "mastiffs"
+  },
+  {
+    "id":"bsm",
+    "hideCheckbox": true,
+    "weight": -1,
+    "title": "Starting Moves",
+    "description": "You start with:\n\n- **Spirit Tongue** and **Call the Spirits**\n\n- 1 from your Background\n\n- And 1 of your choice."
   },
   {
     "id": "bl012",

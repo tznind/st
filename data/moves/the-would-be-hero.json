@@ -93,7 +93,8 @@
       "Husbandry tools: brushes, muzzles, collars, feed, ◇ whips, ◇ bridles, etc.  Gain advantage to Persuade domestic beasts (livestock, dogs, etc)",
       "Stoneworker's tools: chisels, drills, ◇ prybars, ◇ spikes, ◇ block & tackles, wheelbarrow, etc.",
       "Tannery (or access to it): lime, acid, salts, thick gloves, ◇ a boiled leather cuirass (1 Armor), etc.",
-      "Personal token, fraught with meaning (tick move below)"
+      "Personal token, fraught with meaning (tick move below)",
+      "Other: __hspo__ (discuss with GM)"
     ]
   },
   {
@@ -148,6 +149,13 @@
         "Violence to children, animals, the innocent",
         "Perversions of nature"
     ]
+  },
+  {
+    "id":"hsm",
+    "hideCheckbox": true,
+    "weight": -1,
+    "title": "Starting Moves",
+    "description": "You start with:\n\n- **Anger is a Gift** and **Potential for Greatness**\n\n- And 2 other moves of your choice."
   },
   {
     "id": "h001",

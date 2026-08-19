@@ -4,7 +4,7 @@
     "title": "Patriot",
     "description": "These people are family. Chaos grows all around, but you’ll be damned if you’ll let your family come to harm. Damned indeed.You have sought out and embraced dark power to protect that which you hold dear. Or perhaps that power fell upon you, and you took it up for the greater good. Either way, you seek more",
     "outcomes": [{
-      "text": "You start with the Let's Make a Deal move and are Well Versed in the Things Below (go mark them now). You've also acquired 1 major arcanum:"
+      "text": "You start with the **Let's Make a Deal** move and are **Well Versed** in the Things Below (go mark them now). You've also acquired 1 major arcanum:"
     }],
     "category": "Background",
     "pick": [
@@ -19,7 +19,7 @@
     "description": "The past has buried many secrets, and you are de-termined to dig them up. Years of study across the land have led you here, and you are convinced that this town holds the key to your greatest discoveries. What is it you hope to find? What is it that keeps you here?",
     "category": "Background",
     "outcomes": [
-      {"text": "Your travels and studies mean that you start with the Polyglot move and that you are Well Versed in the Makers and their arts (go mark them now). You've also acquired 1 major arcanum:"}
+      {"text": "Your travels and studies mean that you start with the **Polyglot** move and that you are **Well Versed** in the Makers and their arts (go mark them now). You've also acquired 1 major arcanum:"}
     ],
     "pick": [
       "◇ Noruba's Ice-Sphere",
@@ -33,7 +33,7 @@
     "description": "You’ve dedicated your life to rooting out and destroying horrors and their servants. What set you down this path? What did you sacrifice to walk it? What led you to call Stonetop home?",
     "category": "Background",
     "outcomes": [
-      {"text": "You start with the Everything Bleeds move and are Well Versed in (pick 1) the fae, the Things Below, or the Last Door and what lies beyond (go mark them now). You've also acquired 1 major arcanum:"}
+      {"text": "You start with the **Everything Bleeds** move and are **Well Versed** in (pick 1) the fae, the Things Below, or the Last Door and what lies beyond (go mark them now). You've also acquired 1 major arcanum:"}
     ],
     "pick": [
       "◇ The demonhide Cloak",
@@ -63,8 +63,16 @@
       "Engineer's tools: rulers, tapes, rods, plumb-bobs, ◇ tripods, ◇ block & tackles, wheelbarrow, etc.",
       "Laboratory: chemics, reagents, vials, measures, ◇ scales, ◇ decanters, etc. Every season,produce d4-1 uses of ◇ naphtha (thrown, area, dangerous, ignores armor)",
       "Paraphernalia: crystals, incense, talismans, blood, bone, horn, eye of newt, ◇ braziers, ◇◇ a cauldron, etc.",
-      "Trading contacts: small amounts of salt, glass, silk, spice, medicinal herbs, pigments, ivory, etc"
+      "Trading contacts: small amounts of salt, glass, silk, spice, medicinal herbs, pigments, ivory, etc",
+      "Other: __sspo__ (discuss with GM)"
     ]
+  },
+  {
+    "id":"ssm",
+    "hideCheckbox": true,
+    "weight": -1,
+    "title": "Starting Moves",
+    "description": "You start with:\n\n- **Well Versed** and **Work with What You've Got**\n\n- Plus 1 from your Background."
   },
   {
     "id": "sk002",

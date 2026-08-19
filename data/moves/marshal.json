@@ -7,7 +7,7 @@
     "outcomes": [
       {
         "range": "",
-        "text": "You start with the Veteran Crew move, in addition to your usual moves. Go mark it now."
+        "text": "You start with the **Veteran Crew** move, in addition to your usual moves. Go mark it now."
       },
       {
         "range": "",
@@ -39,7 +39,7 @@
     "outcomes": [
       {
         "range": "",
-        "text": "You start with the We Happy Few move, in addition to your usual moves. Go mark it now."
+        "text": "You start with the **We Happy Few** move, in addition to your usual moves. Go mark it now."
       },
       {
         "range": "",
@@ -64,7 +64,8 @@
        "Engineer's tools: rulers, tapes, rods, plumb-bobs, ◇ tripods, ◇ block & tackles, wheelbarrow, etc.",
        "Personal symbol (a flag, crest, marking, etc.): when you display or reveal it in a dramatic fashion, your crew holds +1 Loyalty (max 3).",
        "Scribe's tools: parchment, ink, pigments, vials, quills, ◇ a notebook, etc.",
-       "Weapons of war: Mark move below"
+       "Weapons of war: Mark move below",
+       "Other: __mspo__ (discuss with GM)"
     ]
   },
   {
@@ -80,6 +81,13 @@
        "◇ Battleaxe, iron (close, messy)",
        "◇ Compound bow (far, +1 damage, x piercing; low ammo, all out)"
     ]
+  },
+  {
+    "id":"msm",
+    "hideCheckbox": true,
+    "weight": -1,
+    "title": "Starting Moves",
+    "description": "You start with:\n\n- **Crew** and **Logistics**\n\n- Any moves from your Background\n\n- And 1 move of your choice."
   },
   {
     "id": "ms002",

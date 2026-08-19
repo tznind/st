@@ -83,8 +83,16 @@
       "Distillery: skins of fine whisky (2 uses, grants advantage to Persuade), copper tubes, malt, ◇◇ firkins, stills, barrels, etc.",
       "Glassworks: vials, charms, lenses, sand, marbles, bellows, crucible, ◇ lanterns (hours, reach, area) etc.",
       "Holy relics: if you have one in inventory when you Invoke the Sun God, you can mark a use in lieu of choosing a consequence.",
-      "Luthier's tools: chisels, files, catgut, various woods, stains, ◇ a lute, ◇ a fiddle, etc."
+      "Luthier's tools: chisels, files, catgut, various woods, stains, ◇ a lute, ◇ a fiddle, etc.",
+      "Other: __lspo__ (discuss with GM)"
     ]
+  },
+  {
+    "id":"lsm",
+    "hideCheckbox": true,
+    "weight": -1,
+    "title": "Starting Moves",
+    "description": "You start with:\n\n- **Consecrated Flame** and **Invoke the Sun God**\n\n- Plus 1 more of your choice."
   },
   {
     "id": "lb011",

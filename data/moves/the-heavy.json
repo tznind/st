@@ -32,7 +32,7 @@
       },
       {
         "range": "",
-        "text": "If you take the Formidable move, you can choose to roll +CON instead of +CHA."
+        "text": "If you take the **Formidable** move, you can choose to roll +CON instead of +CHA."
       },
       {
         "range": "",
@@ -69,7 +69,8 @@
       "Husbandry tools: brushes, muzzles, collars, feed, whips, bridles, etc. Gain advantage to Persuade domestic beasts (livestock, dogs, etc.).",
       "Smithy (or access to it): iron goods, ingots, thick gloves, ◇ tongs, ◇ bellows, an anvil, etc.",
       "Stoneworker's tools: chisels, drills, ◇ prybars, ◇ spikes, ◇ block & tackles, wheelbarrow, etc.",
-      "Weapons of war: Mark move below"
+      "Weapons of war: Mark move below",
+      "Other: __hvspo__ (discuss with GM)"
     ]
   },
   {
@@ -86,6 +87,13 @@
        "◇ Mace or Flail, iron (close, forceful)",
        "◇ Crossbow (far, +1 damage, reload, x piercing; low ammo, all out)"
     ]
+  },
+  {
+    "id":"hvsm",
+    "hideCheckbox": true,
+    "weight": -1,
+    "title": "Starting Moves",
+    "description": "You start with:\n\n- **Dangerous** and **Hard to Kill**\n\n- **Armored** or **Uncanny Reflexes**"
   },
   {
     "id": "hv001",

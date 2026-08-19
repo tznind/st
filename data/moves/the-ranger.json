@@ -6,7 +6,7 @@
     "description": "You are a hunter of the Great Wood, the best the town has seen in generations. You know every part of the Wood within a two-day march.",
     "outcomes": [
       {
-        "text": "You start with both the Expert Tracker move and the Stalker move. Go mark them now."
+        "text": "You start with both the **Expert Tracker** move and the **Stalker** move. Go mark them now."
       }
     ]
   },
@@ -27,7 +27,7 @@
         ]
       },
       {
-        "text": "You start with the Mental Map move. Mark it now. When you Know Things about the wider world, you can roll +WIS instead of +INT."
+        "text": "You start with the **Mental Map** move. Mark it now. When you Know Things about the wider world, you can roll +WIS instead of +INT."
       },
       {
         "text": "When you arrive somewhere you've visited before (your call), tell the GM when you were last here, and the GM will tell you how it's changed."
@@ -41,7 +41,7 @@
     "description": "You grew up civilized, but your soul is bound to a beast of the wild. You're closer to it than to any man or woman. How did this bond come about? How long ago?",
     "outcomes": [
       {
-        "text": "You start with the Animal Companion move. Go mark it now."
+        "text": "You start with the **Animal Companion** move. Go mark it now."
       },
       {
         "text": "When you focus on your animal companion for a few moments, you can use any of the actions you've marked below, no matter the distance between you. Mark 1 action at 1st level, then another at 3rd, 5th, 7th, and 9th."
@@ -83,7 +83,8 @@
       "Husbandry tools: brushes, muzzles, collars, feed, whips, bridles, etc. Gain advantage to Persuade domestic beasts (livestock, dogs, etc.).",
       "Hounds: 2-3 followers, tick the move below",
       "Lay of the land: expend a use to know where to find ___, without having to Know Things; GM can veto.",
-      "Trapping gear: snares, pelts, musk, bait, etc.When you Forage, get +1 use of provisions"
+      "Trapping gear: snares, pelts, musk, bait, etc.When you Forage, get +1 use of provisions",
+      "Other: __rspo__ (discuss with GM)"
     ]
   },
   {
@@ -92,6 +93,13 @@
     "category": "Special Possessions",
     "description": "2-3 followers (trackers, keen-nosed, fast); HP 6; Damage d6 (hand, grabby); Instinct: to give chase; Cost: training.",
     "grantsCard": "hounds"
+  },
+  {
+    "id":"rsm",
+    "hideCheckbox": true,
+    "weight": -1,
+    "title": "Starting Moves",
+    "description": "You start with:\n\n- **Home on the Range**\n\n- Any moves from your Background\n\n- Plus 1 of your choice."
   },
   {
     "id": "rg003",
