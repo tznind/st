@@ -46,7 +46,7 @@
       },
       {
         "range": "",
-        "text": "When you would spend 1 Stock from your **Sacred Pouch**, you may choose instead to",
+        "text": "When you would spend 1 **Stock** from your **Sacred Pouch**, you may choose instead to",
         "bullets": [
           "Lose 2d4 HP"
         ]
@@ -133,7 +133,7 @@
   {
     "id": "bl012",
     "title": "Amulets & Talismans (+Intelligence)",
-    "description": "When you craft a protective charm for someone, spend 1 Stock and name a source of harm (fire, stabbing, etc.). When they would suffer such harm while bearing your charm, roll +Intelligence. One can benefit from only 1 charm at a time, and it loses its potency after 1 use.",
+    "description": "When you craft a protective charm for someone, spend 1 **Stock** and name a source of harm (fire, stabbing, etc.). When they would suffer such harm while bearing your charm, roll +Intelligence. One can benefit from only 1 charm at a time, and it loses its potency after 1 use.",
     "outcomes": [
       {
         "range": "≥ 10",
@@ -152,24 +152,24 @@
   {
     "id": "bl013",
     "title": "Barkskin",
-    "description": "When you are touching the earth, you have 2 armor. When you mark another with 1 Stock, they gain this benefit so long as the mark remains."
+    "description": "When you are touching the earth, you have 2 armor. When you mark another with 1 **Stock**, they gain this benefit so long as the mark remains."
   },
   {
     "id": "bl014",
     "title": "Big Magic",
-    "description": "Each time you take this move, choose an additional remarkable trait for your **Sacred Pouch** and increase your max Stock by 2.",
+    "description": "Each time you take this move, choose an additional remarkable trait for your **Sacred Pouch** and increase your max **Stock** by 2.",
     "multiple": 3
   },
   {
     "id": "bl005",
     "title": "Call the Spirits",
-    "description": "When you spend 1 Stock and perform a short rite, the spirit(s) of a place or object manifest and hear you out. What they do next is up to them.",
+    "description": "When you spend 1 **Stock** and perform a short rite, the spirit(s) of a place or object manifest and hear you out. What they do next is up to them.",
     "weight": -1
   },
   {
     "id": "bl002",
     "title": "Danu's Grasp (+Wisdom)",
-    "description": "When you call on the world itself to bind a spirit or a perversion of nature, spend 1 Stock and roll +Wisdom.",
+    "description": "When you call on the world itself to bind a spirit or a perversion of nature, spend 1 **Stock** and roll +Wisdom.",
      "outcomes": [
       {
         "range": "≥ 10",
@@ -197,7 +197,7 @@
   {
     "id": "bl009",
     "title": "Healer's Arts",
-    "description": "When someone Recovers under your care, they recover (extra) HP equal to your Wisdom. If you also spend 1 Stock, they heal an extra 5 HP and their wounds/injuries are stabilized."
+    "description": "When someone Recovers under your care, they recover (extra) HP equal to your Wisdom. If you also spend 1 **Stock**, they heal an extra 5 HP and their wounds/injuries are stabilized."
   },
   {
     "id": "bl022",
@@ -212,7 +212,7 @@
   {
     "id": "bl023",
     "title": "Rites of the Land",
-    "description": "Once per season, when you oversee the sacred rites, hold 1 Favor. If you also sacrifice 1 Surplus, hold 4 Favor instead. Spend Favor in lieu of Stock, 1-for-1.",
+    "description": "Once per season, when you oversee the sacred rites, hold 1 Favor. If you also sacrifice 1 Surplus, hold 4 Favor instead. Spend Favor in lieu of **Stock**, 1-for-1.",
     "tracks": [
       {
         "name": "Favor",
@@ -235,7 +235,7 @@
   {
     "id": "bl004",
     "title": "Borrow Power (+Wisdom, Requires Spirit Tongue)",
-    "description": "When a spirit or beast loans you power, ask the GM for one of its tags or moves. Store it in your pouch in place of 1 Stock. When you use the borrowed tag or move, roll +Wisdom",
+    "description": "When a spirit or beast loans you power, ask the GM for one of its tags or moves. Store it in your pouch in place of 1 **Stock**. When you use the borrowed tag or move, roll +Wisdom",
     "outcomes": [
       {
         "range": "≥ 10",
@@ -255,14 +255,14 @@
         "text": "When you move through nature with care and patience, you make no sound, leave no trace and can ignore any hindering or treacherous terrain (briars, mire, scree, etc.)."
       },
       {
-        "text": "When you spend 1 Stock and mark others, they each gain this benefit so long as the mark remains. 1 Stock can mark a number of individuals up to your level +Intelligence."
+        "text": "When you spend 1 **Stock** and mark others, they each gain this benefit so long as the mark remains. 1 **Stock** can mark a number of individuals up to your level +Intelligence."
       }
     ]
   },
   {
     "id": "bl016",
     "title": "Veil (+Intelligence)",
-    "description": "When you wrap yourself or another in a subtle veil, spend 1 Stock and choose 1:",
+    "description": "When you wrap yourself or another in a subtle veil, spend 1 **Stock** and choose 1:",
     "outcomes": [
       {
         "text": "",
@@ -285,7 +285,7 @@
   {
     "id": "bl017",
     "title": "Wards & Bindings (+Intelligence)",
-    "description": "When you mark a boundary with sacred signs, spend 1 Stock and describe who or what they affect (using no more words than your level). Also, choose whether the affected beings are repelled or trapped by the signs. When your wards or bindings are first tested, roll +Intelligence",
+    "description": "When you mark a boundary with sacred signs, spend 1 **Stock** and describe who or what they affect (using no more words than your level). Also, choose whether the affected beings are repelled or trapped by the signs. When your wards or bindings are first tested, roll +Intelligence",
     "outcomes": [
       {
         "range": "≥ 10",
@@ -314,7 +314,7 @@
   {
     "id": "bl019",
     "title": "Potent Workings (Requires level 6+ and Amulets & Talismans)",
-    "description": "When you craft a protective charm, you may spend 1 additional Stock to choose 1:",
+    "description": "When you craft a protective charm, you may spend 1 additional **Stock** to choose 1:",
     "outcomes": [
       {
         "text": "",
@@ -329,17 +329,17 @@
   {
     "id": "bl020",
     "title": "Shared Souls (Requires level 6+ and Into the Lion's Den)",
-    "description": "When you mark a beast with 1 Stock, you can direct its actions and perceive through its senses no matter the distance between you. Treat it as a follower with 3 Loyalty; when you spend its last Loyalty, the effect ends.",
+    "description": "When you mark a beast with 1 **Stock**, you can direct its actions and perceive through its senses no matter the distance between you. Treat it as a follower with 3 Loyalty; when you spend its last Loyalty, the effect ends.",
     "weight": 1
   },
   {
     "id": "bl008",
     "title": "Suck the Poison Out (+Wisdom, Requires level 6+ and Healer's Arts)",
-    "description": "When you draw a malady from a patient's body, mind, or soul, spend 1 Stock and roll +Wisdom",
+    "description": "When you draw a malady from a patient's body, mind, or soul, spend 1 **Stock** and roll +Wisdom",
       "outcomes": [
       {
         "range": "≥ 10",
-        "text": "You remove the malady and can safely discard it or store it in your **Sacred Pouch** (taking the space of 1 Stock) to study or inflict on another"
+        "text": "You remove the malady and can safely discard it or store it in your **Sacred Pouch** (taking the space of 1 **Stock**) to study or inflict on another"
       },
       {
         "range": "7-9",
