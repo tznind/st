@@ -30,7 +30,7 @@
         "text": "Hold 3 Enigma, spend to:",
         "bullets": [
           "Return from your wandering exactly when and where you are needed, fully Outfitted",
-          "Know Things as if you rolled a 10+, drawing on what you learned while away",
+          "**Know Things** as if you rolled a 10+, drawing on what you learned while away",
           "Have What You Need to produce an oddly specific yet mundane item of Value 1 or less"
         ]
       },
@@ -52,7 +52,7 @@
     "description": "You once led a worldly life, full of fear and doubt, base pleasures and petty grudges. But something happened. Injury, illness, a brush with death. Or just a moment of such profound misery and self-loathing that you thought you could fall no further. There, in the dark, Helior's light shined upon you, igniting in your soul, lifting you and filling you with a profound sense of purpose.",
     "outcomes": [
       {
-        "text":"When you Persuade a group by preaching charity, mercy, and hope and roll a 7+, aside from the usual effect, choose 1",
+        "text":"When you **Persuade** a group by preaching charity, mercy, and hope and roll a 7+, aside from the usual effect, choose 1",
         "bullets": [
           "Your name and your message spread",
           "Someone approaches you, now or later, eager to know more"
@@ -78,9 +78,9 @@
     ],
     "pick": [
       "Apiary: beeswax, candles (last ~1 hr, close), ◇ honey, ◇ bee smokers, ◇ hats & veils, etc.",
-      "Books and Scrolls: Expend a use to consult your collection and turn a Know Things roll you just made into a 10+",
+      "Books and Scrolls: Expend a use to consult your collection and turn a **Know Things** roll you just made into a 10+",
       "Chandlery: beeswax, candles (last ~1hr, close), wicks, scented herbs, soap, lye, ash, etc.",
-      "Distillery: skins of fine whisky (2 uses, grants advantage to Persuade), copper tubes, malt, ◇◇ firkins, stills, barrels, etc.",
+      "Distillery: skins of fine whisky (2 uses, grants advantage to **Persuade**), copper tubes, malt, ◇◇ firkins, stills, barrels, etc.",
       "Glassworks: vials, charms, lenses, sand, marbles, bellows, crucible, ◇ lanterns (hours, reach, area) etc.",
       "Holy relics: if you have one in inventory when you Invoke the Sun God, you can mark a use in lieu of choosing a consequence.",
       "Luthier's tools: chisels, files, catgut, various woods, stains, ◇ a lute, ◇ a fiddle, etc.",
@@ -182,7 +182,7 @@
   {
     "id": "lb005",
     "title": "Purifying Flames (+Wisdom)",
-    "description": "When you wield a holy light against a creature of darkness, it counts as a weapon (d10 damage, hand, close, area, 2 piercing) and you can choose to roll +WIS to Clash."
+    "description": "When you wield a holy light against a creature of darkness, it counts as a weapon (d10 damage, hand, close, area, 2 piercing) and you can choose to roll +WIS to **Clash**."
   },
   {
     "id": "lb006",
@@ -255,7 +255,7 @@
   {
     "id": "lb018",
     "title": "Radiant Countenance",
-    "description": "When you give someone your fond attention, you can then Persuade them with advantage.",
+    "description": "When you give someone your fond attention, you can then **Persuade** them with advantage.",
     "outcomes": [
       {
         "text": "If they are a follower, you can instead choose to Strengthen Your Bond (as if you paid their cost)."
@@ -301,19 +301,19 @@
    {
     "id": "lb009",
     "title": "Burn Twice as Bright (Requires level 6+ and Invoke the Sun God)",
-    "description": "When you Invoke the Sun God, you may mark a debility to use 2 Invocations at once. Roll once, and apply any consequences to both Invocations.",
+    "description": "When you **Invoke the Sun God**, you may mark a debility to use 2 Invocations at once. Roll once, and apply any consequences to both Invocations.",
     "weight": 1
    },
    {
     "id": "lb020",
     "title": "Empowered Invocations (Requires level 6+ and Invoke the Sun God)",
-    "description": "When you Invoke the Sun God, you can choose an extra consequence before you roll. If you do, the Invocation has its empowered effect.",
+    "description": "When you **Invoke the Sun God**, you can choose an extra consequence before you roll. If you do, the Invocation has its empowered effect.",
     "weight": 1
    },
    {
     "id": "lb021",
     "title": "Glorious Servant (Requires level 6+ and Invoke the Sun God)",
-    "description": "When you Invoke the Sun God and roll a 10+, you need not choose a consequence; on a 7-9, you choose a consequence but the GM does not.",
+    "description": "When you **Invoke the Sun God** and roll a 10+, you need not choose a consequence; on a 7-9, you choose a consequence but the GM does not.",
     "weight": 1
    },
    {
@@ -335,7 +335,7 @@
     "outcomes": [
       {
         "range": "≥ 10",
-        "text": "It ignites with a white flame that casts a holy light (reach, area) and burns neither you nor the object, and you may Invoke the Sun God right now as if you rolled a 10+."
+        "text": "It ignites with a white flame that casts a holy light (reach, area) and burns neither you nor the object, and you may **Invoke the Sun God** right now as if you rolled a 10+."
       },
       {
         "range": "7-9",

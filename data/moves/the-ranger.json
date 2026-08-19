@@ -27,7 +27,7 @@
         ]
       },
       {
-        "text": "You start with the **Mental Map** move. Mark it now. When you Know Things about the wider world, you can roll +WIS instead of +INT."
+        "text": "You start with the **Mental Map** move. Mark it now. When you **Know Things** about the wider world, you can roll +WIS instead of +INT."
       },
       {
         "text": "When you arrive somewhere you've visited before (your call), tell the GM when you were last here, and the GM will tell you how it's changed."
@@ -78,9 +78,9 @@
   ],
     "pick": [
       "◇ Compound bow (far, +1 damage, x piercing; low ammo, all out)",
-      "Distillery: skins of fine whisky (2 uses, grants advantage to Persuade), copper tubes, malt, ◇◇ firkins, stills, barrels, etc.",
+      "Distillery: skins of fine whisky (2 uses, grants advantage to **Persuade**), copper tubes, malt, ◇◇ firkins, stills, barrels, etc.",
       "Hideouts: expend a use to have a well-stocked, safe shelter nearby; GM can veto.",
-      "Husbandry tools: brushes, muzzles, collars, feed, whips, bridles, etc. Gain advantage to Persuade domestic beasts (livestock, dogs, etc.).",
+      "Husbandry tools: brushes, muzzles, collars, feed, whips, bridles, etc. Gain advantage to **Persuade** domestic beasts (livestock, dogs, etc.).",
       "Hounds: 2-3 followers, tick the move below",
       "Lay of the land: expend a use to know where to find ___, without having to Know Things; GM can veto.",
       "Trapping gear: snares, pelts, musk, bait, etc.When you Forage, get +1 use of provisions",
@@ -137,7 +137,7 @@
   {
     "id": "rg005",
     "title": "Blot Out the Sun",
-    "description": "When you Let Fly with a bow, you can deplete your ammunition (mark the next ammo status after your weapon) before you roll. If you do, choose 1:",
+    "description": "When you **Let Fly** with a bow, you can deplete your ammunition (mark the next ammo status after your weapon) before you roll. If you do, choose 1:",
     "outcomes": [
       {
         "text": "",
@@ -173,7 +173,7 @@
   {
     "id": "rg007",
     "title": "Expert Tracker (+Wisdom)",
-    "description": "When you Seek Insight by searching for or studying the signs left by passing creatures, you can ask \"What happened here recently?\" for free, even on a 6-. When you follow a creature's trail, roll +Wisdom:",
+    "description": "When you **Seek Insight** by searching for or studying the signs left by passing creatures, you can ask \"What happened here recently?\" for free, even on a 6-. When you follow a creature's trail, roll +Wisdom:",
     "outcomes": [
       {
         "range": "≥ 10",
@@ -188,7 +188,7 @@
   {
     "id": "rg008",
     "title": "Home on the Range",
-    "description": "When a journey requires you to Defy Danger or Struggle as One, treat a 6- as a 7-9.",
+    "description": "When a journey requires you to **Defy Danger** or Struggle as One, treat a 6- as a 7-9.",
     "weight": -1
   },
   {
@@ -200,12 +200,12 @@
   {
     "id": "rg010",
     "title": "Mental Map",
-    "description": "You can always retrace your steps and can accurately gauge distances and directions. You might not know the way forward but can always find your way back. When you think back on a place you've been, you can Seek Insight retroactively, as if you were still there."
+    "description": "You can always retrace your steps and can accurately gauge distances and directions. You might not know the way forward but can always find your way back. When you think back on a place you've been, you can **Seek Insight** retroactively, as if you were still there."
   },
   {
     "id": "rg011",
     "title": "Naturalist",
-    "description": "When you Know Things about beasts, natural environs, or spirits of the wild, you have advantage."
+    "description": "When you **Know Things** about beasts, natural environs, or spirits of the wild, you have advantage."
   },
   {
     "id": "rg012",
@@ -225,7 +225,7 @@
   {
     "id": "rg014",
     "title": "Predator",
-    "description": "When you Seek Insight, add the following to the list of questions you can ask:",
+    "description": "When you **Seek Insight**, add the following to the list of questions you can ask:",
     "outcomes": [
       {
         "text": "",
@@ -259,7 +259,7 @@
   {
     "id": "rg016",
     "title": "Sniff Out Corruption",
-    "description": "When you Seek Insight, you can ask, \"What here stinks of the unnatural?\" for free, even on a 6-."
+    "description": "When you **Seek Insight**, you can ask, \"What here stinks of the unnatural?\" for free, even on a 6-."
   },
   {
     "id": "rg017",
@@ -269,7 +269,7 @@
   {
     "id": "rg018",
     "title": "Wild Speech",
-    "description": "The grunts, barks, chirps, and calls of natural beasts are as a language to you. You can understand their intentions and communicate basic ideas. When you Persuade a beast, you can choose to roll +Wisdom."
+    "description": "The grunts, barks, chirps, and calls of natural beasts are as a language to you. You can understand their intentions and communicate basic ideas. When you **Persuade** a beast, you can choose to roll +Wisdom."
   },
   {
     "id": "rg019",
@@ -311,13 +311,13 @@
   {
     "id": "rg023",
     "title": "Master Tracker (Requires level 6+ and Expert Tracker)",
-    "description": "When you even briefly scan for tracks or other signs left by passing creatures, you can ask the GM, 'What happened here recently?' and get an honest answer—no need to Seek Insight.",
+    "description": "When you even briefly scan for tracks or other signs left by passing creatures, you can ask the GM, 'What happened here recently?' and get an honest answer—no need to **Seek Insight**.",
     "weight": 1
   },
   {
     "id": "rg024",
     "title": "Trailblazer (Requires level 6+ and Home on the Range)",
-    "description": "When a journey causes you to Defy Danger or Struggle as One, on a 10+ you also learn or discover something interesting and useful—ask the GM what.",
+    "description": "When a journey causes you to **Defy Danger** or Struggle as One, on a 10+ you also learn or discover something interesting and useful—ask the GM what.",
     "weight": 1
   },
   {

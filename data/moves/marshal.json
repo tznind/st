@@ -23,7 +23,7 @@
     "outcomes": [
       {
         "range": "",
-        "text": "When you draw on your bloody past to Know Things, you may roll +STR instead of +INT. If you do, the GM will ask you who you wronged back then or who might still hold a grudge. Answer them now."
+        "text": "When you draw on your bloody past to **Know Things**, you may roll +STR instead of +INT. If you do, the GM will ask you who you wronged back then or who might still hold a grudge. Answer them now."
       },
       {
         "range": "",
@@ -60,7 +60,7 @@
     ],
     "pick": [
        "Chirurgeon's tools: catgut, straps, bandages, tubes, poultice, willow bark, ◇ bonesaws, etc.",
-       "Distillery: skins of fine whisky (2 uses, grants advantage to Persuade), copper tubes, malt, ◇◇ firkins, stills, barrels, etc.",
+       "Distillery: skins of fine whisky (2 uses, grants advantage to **Persuade**), copper tubes, malt, ◇◇ firkins, stills, barrels, etc.",
        "Engineer's tools: rulers, tapes, rods, plumb-bobs, ◇ tripods, ◇ block & tackles, wheelbarrow, etc.",
        "Personal symbol (a flag, crest, marking, etc.): when you display or reveal it in a dramatic fashion, your crew holds +1 Loyalty (max 3).",
        "Scribe's tools: parchment, ink, pigments, vials, quills, ◇ a notebook, etc.",
@@ -168,7 +168,7 @@
   {
     "id": "ms009",
     "title": "Set-up Strike",
-    "description": "When you Clash and get a 7+, you can choose to deal damage with disadvantage. If you do, you create an opening for an ally to act on, as if you provided Aid. Describe it!"
+    "description": "When you **Clash** and get a 7+, you can choose to deal damage with disadvantage. If you do, you create an opening for an ally to act on, as if you provided **Aid**. Describe it!"
   },
   {
     "id": "ms010",
@@ -199,7 +199,7 @@
     "outcomes": [
       {
         "range": "",
-        "text": "They Defend with advantage and on a 7+ hold +2 Readiness (instead of the usual +1 for shields)."
+        "text": "They **Defend** with advantage and on a 7+ hold +2 Readiness (instead of the usual +1 for shields)."
       },
       {
         "range": "",
@@ -327,7 +327,7 @@
   {
     "id": "ms019",
     "title": "Like an Open Book (Requires level 6+ and Take the Measure)",
-    "description": "When you Take the Measure of someone who fears or respects you, your second question can be anything you want. The GM might ask how you could possibly know this; tell them or ask something else.",
+    "description": "When you **Take the Measure** of someone who fears or respects you, your second question can be anything you want. The GM might ask how you could possibly know this; tell them or ask something else.",
     "weight": 1
   },
   {

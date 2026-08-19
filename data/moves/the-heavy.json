@@ -28,7 +28,7 @@
     "outcomes": [
       {
         "range": "",
-        "text": "When you Persuade using violence or threats against someone who knows your black reputation, you can roll +STR instead of +CHA."
+        "text": "When you **Persuade** using violence or threats against someone who knows your black reputation, you can roll +STR instead of +CHA."
       },
       {
         "range": "",
@@ -64,9 +64,9 @@
       }
     ],
     "pick": [
-      "Distillery: skins of fine whisky (2 uses, grants advantage to Persuade), copper tubes, malt, ◇◇ firkins, stills, barrels, etc.",
+      "Distillery: skins of fine whisky (2 uses, grants advantage to **Persuade**), copper tubes, malt, ◇◇ firkins, stills, barrels, etc.",
       "Chirurgeon's tools: catgut, straps, bandages, tubes, poultice, willow bark, ◇ bonesaws, etc.",
-      "Husbandry tools: brushes, muzzles, collars, feed, whips, bridles, etc. Gain advantage to Persuade domestic beasts (livestock, dogs, etc.).",
+      "Husbandry tools: brushes, muzzles, collars, feed, whips, bridles, etc. Gain advantage to **Persuade** domestic beasts (livestock, dogs, etc.).",
       "Smithy (or access to it): iron goods, ingots, thick gloves, ◇ tongs, ◇ bellows, an anvil, etc.",
       "Stoneworker's tools: chisels, drills, ◇ prybars, ◇ spikes, ◇ block & tackles, wheelbarrow, etc.",
       "Weapons of war: Mark move below",
@@ -136,7 +136,7 @@
   {
     "id": "hv008",
     "title": "Berserker (Requires Battle Joy)",
-    "description": "While in your Battle Joy, add the area tag to your melee attacks, lashing out at anyone nearby (friend and foe alike). Roll damage separately for each target."
+    "description": "While in your **Battle Joy**, add the area tag to your melee attacks, lashing out at anyone nearby (friend and foe alike). Roll damage separately for each target."
   },
   {
     "id": "hv009",
@@ -175,23 +175,23 @@
   {
     "id": "hv011",
     "title": "Frosty",
-    "description": "When you Defy Danger by keeping calm and carrying on, on a 10+ you can also ask the GM a question that you could ask when Seeking Insight. You have advantage on your next move to act on the answer."
+    "description": "When you **Defy Danger** by keeping calm and carrying on, on a 10+ you can also ask the GM a question that you could ask when Seeking Insight. You have advantage on your next move to act on the answer."
   },
   {
     "id": "hv012",
     "title": "Guardian",
-    "description": "When you Defend, hold 1 extra Readiness. Even on a 6-, hold 1 Readiness (plus whatever the GM says)."
+    "description": "When you **Defend**, hold 1 extra Readiness. Even on a 6-, hold 1 Readiness (plus whatever the GM says)."
   },
   {
     "id": "hv004",
     "title": "Hard to Kill (+Constitution)",
-    "description": "When you are at Death's Door, you can roll +Constitution or +nothing (your choice). On a 7-9, you can mark a debility of your choice to regain 1 HP",
+    "description": "When you are at **Death's Door**, you can roll +Constitution or +nothing (your choice). On a 7-9, you can mark a debility of your choice to regain 1 HP",
     "weight": -1
   },
   {
     "id": "hv013",
     "title": "Intimidating",
-    "description": "When you Persuade using violence or threats, you have advantage."
+    "description": "When you **Persuade** using violence or threats, you have advantage."
   },
   {
     "id": "hv006",
@@ -206,12 +206,12 @@
   {
     "id": "hv015",
     "title": "Relentless",
-    "description": "When you Clash and your foe survives, you gain advantage the next time you Clash with them."
+    "description": "When you **Clash** and your foe survives, you gain advantage the next time you **Clash** with them."
   },
   {
     "id": "hv016",
     "title": "Situational Awareness",
-    "description": "When you Seek Insight, add the following to the list of questions you can ask:",
+    "description": "When you **Seek Insight**, add the following to the list of questions you can ask:",
     "outcomes": [
       {
         "text": "",
@@ -244,7 +244,7 @@
   {
     "id": "hv019",
     "title": "Unstoppable (Requires Hard to Kill)",
-    "description": "When you are reduced to 0 HP in battle, you can keep fighting. Each time you take damage while at 0 HP, mark 1. If you would regain HP while fighting, clear one mark instead. When you stop fighting, roll for Death's Door with a -1 penalty for each circle marked. If you survive, clear all your circles.",
+    "description": "When you are reduced to 0 HP in battle, you can keep fighting. Each time you take damage while at 0 HP, mark 1. If you would regain HP while fighting, clear one mark instead. When you stop fighting, roll for **Death's Door** with a -1 penalty for each circle marked. If you survive, clear all your circles.",
     "tracks": [
       {
         "name": "Fighting at 0 HP",
@@ -256,7 +256,7 @@
   {
     "id": "hv020",
     "title": "Bringer of Ruin (Requires level 6+)",
-    "description": "When you roll a 12+ to Clash and your foe survives, name something they possess (like their sword, their position, a limb, their dignity, etc.), but nothing that would kill them outright. Whatever you name, it is broken, shattered, lost. Tell us how.",
+    "description": "When you roll a 12+ to **Clash** and your foe survives, name something they possess (like their sword, their position, a limb, their dignity, etc.), but nothing that would kill them outright. Whatever you name, it is broken, shattered, lost. Tell us how.",
     "weight": 1
   },
   {
@@ -284,19 +284,19 @@
   {
     "id": "hv023",
     "title": "Nemesis (Requires level 6+ and Relentless)",
-    "description": "When you Clash and your foe survives, all of your future attacks against them do +1d6 damage.",
+    "description": "When you **Clash** and your foe survives, all of your future attacks against them do +1d6 damage.",
     "weight": 1
   },
   {
     "id": "hv024",
     "title": "Steadfast Guardian (Requires level 6+ and Guardian)",
-    "description": "While you hold Readiness (from Defend), you can always suffer the damage/effects of an attack instead of your ward; no need to spend Readiness, you can just do it.",
+    "description": "While you hold Readiness (from **Defend**), you can always suffer the damage/effects of an attack instead of your ward; no need to spend Readiness, you can just do it.",
     "weight": 1
   },
   {
     "id": "hv025",
     "title": "Stone Cold (Requires level 6+ and Frosty)",
-    "description": "When you Defy Danger (or Struggle as One) by keeping calm and carrying on, treat a 6- as a 7-9.",
+    "description": "When you **Defy Danger** (or Struggle as One) by keeping calm and carrying on, treat a 6- as a 7-9.",
     "weight": 1
   },
   {

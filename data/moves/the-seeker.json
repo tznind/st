@@ -58,8 +58,8 @@
     }
   ],
     "pick": [
-      "Books and Scrolls: Expend a use to consult your collection and turn a Know Things roll you just made into a 10+",
-      "Distillery: skins of fine whisky (2 uses, grants advantage to Persuade), copper tubes, malt, ◇◇ firkins, stills, barrels, etc.",
+      "Books and Scrolls: Expend a use to consult your collection and turn a **Know Things** roll you just made into a 10+",
+      "Distillery: skins of fine whisky (2 uses, grants advantage to **Persuade**), copper tubes, malt, ◇◇ firkins, stills, barrels, etc.",
       "Engineer's tools: rulers, tapes, rods, plumb-bobs, ◇ tripods, ◇ block & tackles, wheelbarrow, etc.",
       "Laboratory: chemics, reagents, vials, measures, ◇ scales, ◇ decanters, etc. Every season,produce d4-1 uses of ◇ naphtha (thrown, area, dangerous, ignores armor)",
       "Paraphernalia: crystals, incense, talismans, blood, bone, horn, eye of newt, ◇ braziers, ◇◇ a cauldron, etc.",
@@ -77,7 +77,7 @@
   {
     "id": "sk002",
     "title": "Attuned",
-    "description": "When you Seek Insight, you can always ask, \"What here is infused with magic?\" for free, even on a 6-."
+    "description": "When you **Seek Insight**, you can always ask, \"What here is infused with magic?\" for free, even on a 6-."
   },
   {
     "id": "sk003",
@@ -94,7 +94,7 @@
   {
     "id": "sk004",
     "title": "Let's Make a Deal",
-    "description": "When you Seek Insight, add \"What do they really want or need?\" to the list of questions. When you Persuade by offering them something that you know they want or need, treat a 7-9 as a 10+."
+    "description": "When you **Seek Insight**, add \"What do they really want or need?\" to the list of questions. When you **Persuade** by offering them something that you know they want or need, treat a 7-9 as a 10+."
   },
   {
     "id": "sk005",
@@ -114,7 +114,7 @@
     "outcomes": [
       {
         "range": "",
-        "text": "When you Know Things about one of your topics, you can ask the GM a follow-up question of your choice (even on a 6-)"
+        "text": "When you **Know Things** about one of your topics, you can ask the GM a follow-up question of your choice (even on a 6-)"
       }
     ]
 
@@ -176,7 +176,7 @@
       }
     ],
     "multiple": 3,
-    "description": "You have a \"Sacred Pouch\" (3 Stock, magical), as per the Blessed, but with no remarkable traits. Each time you take this move, choose a Blessed move for which you otherwise qualify. (You can't take Improved Stat or Superior Stat.)",
+    "description": "You have a \"**Sacred Pouch**\" (3 **Stock**, magical), as per the Blessed, but with no remarkable traits. Each time you take this move, choose a Blessed move for which you otherwise qualify. (You can't take Improved Stat or Superior Stat.)",
     "takeFrom": ["The Blessed"],
     "takeCategory": ["Moves"]
 
@@ -184,7 +184,7 @@
   {
     "id": "sk019",
     "title": "Logbook",
-    "description": "You have a logbook (2 uses, slow) that doesn't take up space in your inventory. When you (and only you) consult your logbook and expend a use, you can ignore a Know Things roll you just made and treat the result as a 10+. When the Seasons Change, reset your logbook to 2 uses.",
+    "description": "You have a logbook (2 uses, slow) that doesn't take up space in your inventory. When you (and only you) consult your logbook and expend a use, you can ignore a **Know Things** roll you just made and treat the result as a 10+. When the Seasons Change, reset your logbook to 2 uses.",
     "tracks": [
       {
         "name": "Logbook",
@@ -212,12 +212,12 @@
   {
     "id": "sk021",
     "title": "Never at a Loss",
-    "description": "When you Know Things and roll a 6-, you may choose to not mark XP. If you don't mark XP, the worst that happens is that the GM tells you nothing interesting or useful about the subject, but instead tells you how you could learn more."
+    "description": "When you **Know Things** and roll a 6-, you may choose to not mark XP. If you don't mark XP, the worst that happens is that the GM tells you nothing interesting or useful about the subject, but instead tells you how you could learn more."
   },
   {
     "id": "sk022",
     "title": "Polyglot",
-    "description": "When you first encounter a living language in play, describe your proficiency with it (if any) and how you came to acquire it. When you Know Things about any script, text, runes or symbols that you encounter, you have advantage."
+    "description": "When you first encounter a living language in play, describe your proficiency with it (if any) and how you came to acquire it. When you **Know Things** about any script, text, runes or symbols that you encounter, you have advantage."
   },
   {
     "id": "sk023",
@@ -258,7 +258,7 @@
   {
     "id": "sk026",
     "title": "Deep Insight (Requires level 6+ and Attuned)",
-    "description": "When you Seek Insight about something magical, you may ask one additional question, not limited to the list. Even on a 6-, you get to ask this question.",
+    "description": "When you **Seek Insight** about something magical, you may ask one additional question, not limited to the list. Even on a 6-, you get to ask this question.",
     "weight": 1
   },
   {
@@ -292,7 +292,7 @@
   {
     "id": "sk029",
     "title": "Proof Against Detection (Requires level 6+ and Safety First)",
-    "description": "When you hold Protection, you can't be scried upon or sensed by magical means, and have advantage to Defy Danger by being stealthy.",
+    "description": "When you hold Protection, you can't be scried upon or sensed by magical means, and have advantage to **Defy Danger** by being stealthy.",
     "weight": 1
   },
   {

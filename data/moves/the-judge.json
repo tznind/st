@@ -142,7 +142,7 @@
   {
     "id": "j007",
     "title": "Bulwark",
-    "description": "When you Defend, you can spend 1 Readiness to stand fast, holding your position despite what befalls you."
+    "description": "When you **Defend**, you can spend 1 Readiness to stand fast, holding your position despite what befalls you."
   },
   {
     "id": "j009",
@@ -165,7 +165,7 @@
   {
     "id": "j008",
     "title": "Castigate (Requires level 2+, Censure)",
-    "description": "When you Censure someone, your voice deals 1d4 damage to them (near, loud, ignores armor)."
+    "description": "When you **Censure** someone, your voice deals 1d4 damage to them (near, loud, ignores armor)."
   },
   {
     "id": "j010",
@@ -183,7 +183,7 @@
   {
     "id": "j011",
     "title": "For the Greater Good",
-    "description": "When you Persuade someone to act in defense of their community or civilization at large, you have advantage."
+    "description": "When you **Persuade** someone to act in defense of their community or civilization at large, you have advantage."
   },
   {
     "id": "j012",
@@ -210,7 +210,7 @@
   {
     "id": "j013",
     "title": "Hound of Aratis",
-    "description": "When you Seek Insight, you can always ask \"What here is tainted by chaos?\" for free, even on a 6-."
+    "description": "When you **Seek Insight**, you can always ask \"What here is tainted by chaos?\" for free, even on a 6-."
   },
   {
     "id": "j016",
@@ -220,7 +220,7 @@
   {
     "id": "j015",
     "title": "Knowledge is Power",
-    "description": "When you roll 10+ to Know Things, you or an ally gain advantage on the next roll to act on what you learn."
+    "description": "When you roll 10+ to **Know Things**, you or an ally gain advantage on the next roll to act on what you learn."
   },
   {
     "id": "j017",
@@ -263,17 +263,17 @@
   {
     "id": "j019",
     "title": "Vision Unclouded",
-    "description": "When you Seek Insight, you can always ask \"What here is hidden by illusion or magic?\" for free, even on a 6-."
+    "description": "When you **Seek Insight**, you can always ask \"What here is hidden by illusion or magic?\" for free, even on a 6-."
   },
   {
     "id": "j020",
     "title": "Well-Read (+Wisdom)",
-    "description": "When you name the source in which you read about the matter at hand, roll +WIS to Know Things instead of +INT."
+    "description": "When you name the source in which you read about the matter at hand, roll +WIS to **Know Things** instead of +INT."
   },
   {
     "id": "j021",
     "title": "A Mighty Rampart (Requires level 6+; replaces Bulwark)",
-    "description": "When you hold Readiness (from Defend), you cannot be forced from your position. Also, you can spend 1 Readiness to completely ignore the effects/damage of an attack that you suffer.",
+    "description": "When you hold Readiness (from **Defend**), you cannot be forced from your position. Also, you can spend 1 Readiness to completely ignore the effects/damage of an attack that you suffer.",
     "weight": 1
   },
   {
@@ -285,7 +285,7 @@
   {
     "id": "j023",
     "title": "Condemn (Requires level 6+ and Censure)",
-    "description": "When you Censure someone:",
+    "description": "When you **Censure** someone:",
     "outcomes": [
         {"text": "They are marked with a mystical brand that cannot be removed or hidden until you dismiss it."},
         {"text": "Any intelligent creature who sees the mark recognizes the bearer as an agent of chaos and anathema to civilization"}
@@ -295,19 +295,19 @@
   {
     "id": "j025",
     "title": "Proclamation (Requires level 6+ and Condemn)",
-    "description": "When you Censure, you may denounce a group or faction as long as you can clearly identify them. Apply the effects of Censure to every member of that group, regardless of distance.",
+    "description": "When you **Censure**, you may denounce a group or faction as long as you can clearly identify them. Apply the effects of **Censure** to every member of that group, regardless of distance.",
     "weight": 1
   },
   {
     "id": "j024",
     "title": "Mirrorshield (Requires level 6+ and Aegis of Faith)",
-    "description": "When you Defend with a shield, you can spend 1 Readiness to intercept a magical force and redirect it to a different target (or none).",
+    "description": "When you **Defend** with a shield, you can spend 1 Readiness to intercept a magical force and redirect it to a different target (or none).",
     "weight": 1
   },
   {
     "id": "j027",
     "title": "The Tower Eternal (Requires level 6+)",
-    "description": "When you Defy Danger against magic, treat a result of 6- as a 7-9.",
+    "description": "When you **Defy Danger** against magic, treat a result of 6- as a 7-9.",
     "weight": 1
   },
   {

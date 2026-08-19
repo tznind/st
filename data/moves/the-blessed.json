@@ -192,7 +192,7 @@
   {
     "id": "bl015",
     "title": "Heed My Words",
-    "description": "When you Persuade by talking sense or warning against foolishness, you have advantage."
+    "description": "When you **Persuade** by talking sense or warning against foolishness, you have advantage."
   },
   {
     "id": "bl009",
@@ -207,7 +207,7 @@
   {
     "id": "bl007",
     "title": "Lightning Rod",
-    "description": "When you Defend while touching the earth, you can spend 1 Readiness to intercept a nearby magical attack and redirect it harmlessly into the ground."
+    "description": "When you **Defend** while touching the earth, you can spend 1 Readiness to intercept a nearby magical attack and redirect it harmlessly into the ground."
   },
   {
     "id": "bl023",
@@ -308,7 +308,7 @@
   {
     "id": "bl010",
     "title": "Nature's Wrath (Requires level 6+ and Danu's Grasp)",
-    "description": "Danu's Grasp gains the area tag and can affect any creature. A mortal reduced to 0 HP is subdued or killed (your choice) rather than bound in stone.",
+    "description": "**Danu's Grasp** gains the area tag and can affect any creature. A mortal reduced to 0 HP is subdued or killed (your choice) rather than bound in stone.",
     "weight": 1
   },
   {

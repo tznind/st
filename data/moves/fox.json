@@ -57,7 +57,7 @@
     "pick": [
       "Burglar's Kit: picks, files, snippers, wire, ◇ prybars, ◇ hacksaws, ◇ a lantern.",
       "Carpenter's tools: chisels, files, nails, pitch, ◇ prybars, ◇ saws, ◇◇ firkins, barrels, etc",
-      "Distillery: skins of fine whisky (2 uses, grants advantage to Persuade), copper tubes, malt, ◇◇ firkins, stills, barrels, etc.",
+      "Distillery: skins of fine whisky (2 uses, grants advantage to **Persuade**), copper tubes, malt, ◇◇ firkins, stills, barrels, etc.",
       "Hidden Stash: 3 uses, each use produces valuables worth a purse of silvers",
       "Mummer's kit: juggling balls, whirlybird seeds, motley, ribbons, bells, ◇ puppets, ◇ a fiddle etc.",
       "Scribe's tools: parchment, inks, pigments, vials, quills, ◇ a notebook, etc.",
@@ -109,7 +109,7 @@
   {
     "id": "1587dd",
     "title": "Skill at Arms (+Dexterity)",
-    "description": "When you wield a weapon with speed and grace, roll +Dexterity to Clash (instead of +Strength)."
+    "description": "When you wield a weapon with speed and grace, roll +Dexterity to **Clash** (instead of +Strength)."
   },
   {
     "id": "ff0011",
@@ -194,7 +194,7 @@
   {
     "id": "de0122",
     "title": "Pants on Fire (Requires level 6+)",
-    "description": "When you Defy Danger, Persuade or Interfere by being deceitful, you have advantage.  When another move (like Seek Insight) allows a player to ask you a question, you can opt not to answer.",
+    "description": "When you **Defy Danger**, **Persuade** or **Interfere** by being deceitful, you have advantage.  When another move (like **Seek Insight**) allows a player to ask you a question, you can opt not to answer.",
     "weight": 1
   },
   {
@@ -253,7 +253,7 @@
           "You got away clean, rousing no suspicion",
           "You swiped something valuable (GM's choice)",
           "You set something up to exploit on your return",
-          "Ask a Seek Insight question about what you saw"
+          "Ask a **Seek Insight** question about what you saw"
         ]
       },
       {
@@ -275,29 +275,29 @@
   {
     "id": "fx05",
     "title": "Perceptive",
-    "description": "When you Seek Insight, you may ask 1 additional question. Even on a 6-, you can ask 1 question (though you might not like how you learn the answer)."
+    "description": "When you **Seek Insight**, you may ask 1 additional question. Even on a 6-, you can ask 1 question (though you might not like how you learn the answer)."
   },
   {
     "id": "fx06",
     "title": "Parry & Riposte (Requires Skill at Arms)",
-    "description": "When you Defend with a weapon that you can wield quickly, you can spend 1 Readiness to both halve an attack's effects/damage and strike back at the attacker (deal your damage with disadvantage), instead of spending 1 Readiness for each."
+    "description": "When you **Defend** with a weapon that you can wield quickly, you can spend 1 Readiness to both halve an attack's effects/damage and strike back at the attacker (deal your damage with disadvantage), instead of spending 1 Readiness for each."
   },
   {
     "id": "fx07",
     "title": "Battle Dancer (Requires level 6+ and Skill at Arms)",
-    "description": "When you roll +Dexterity to Clash, on a 12+ you deal your damage, avoid your enemy's attack, and impress/embarrass/overawe your foes.",
+    "description": "When you roll +Dexterity to **Clash**, on a 12+ you deal your damage, avoid your enemy's attack, and impress/embarrass/overawe your foes.",
     "weight": 1
   },
   {
     "id": "fx08",
     "title": "Cheap Shot (Requires level 6+ and Ambush)",
-    "description": "When you Ambush with a hand weapon, you have advantage on your damage roll.",
+    "description": "When you **Ambush** with a hand weapon, you have advantage on your damage roll.",
     "weight": 1
   },
   {
     "id": "fx09",
     "title": "Second Intent (Requires level 6+, Parry & Riposte, and Ambush)",
-    "description": "When you Defend and spend 1 Readiness to Parry & Riposte, also pick 1 option from the Ambush list.",
+    "description": "When you **Defend** and spend 1 Readiness to **Parry & Riposte**, also pick 1 option from the **Ambush** list.",
     "weight": 1
   },
   {
@@ -314,7 +314,7 @@
   {
     "id": "fx12",
     "title": "Irresistible",
-    "description": "When you interact with someone, you can ask their player if they find you attractive and get an honest answer (usually 'yes'). When you Persuade by using your considerable charms as leverage, you have advantage."
+    "description": "When you interact with someone, you can ask their player if they find you attractive and get an honest answer (usually 'yes'). When you **Persuade** by using your considerable charms as leverage, you have advantage."
   },
   {
     "id": "fx13",

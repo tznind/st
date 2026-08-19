@@ -2,5 +2,9 @@
   {
     "alias": "Stock",
     "move": "Sacred Pouch"
+  },
+  {
+    "alias": "Death's Door",
+    "move": "💀 Death's Door"
   }
 ]
