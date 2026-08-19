@@ -91,7 +91,7 @@
   {
     "id":"hvsm",
     "hideCheckbox": true,
-    "weight": -1,
+    "weight": -2,
     "title": "Starting Moves",
     "description": "You start with:\n\n- **Dangerous** and **Hard to Kill**\n\n- **Armored** or **Uncanny Reflexes**"
   },
@@ -146,7 +146,8 @@
   {
     "id": "hv003",
     "title": "Dangerous (Requires the Heavy)",
-    "description": "When you deal your damage, you have advantage."
+    "description": "When you deal your damage, you have advantage.",
+    "weight": -1
   },
   {
     "id": "hv010",
@@ -184,7 +185,8 @@
   {
     "id": "hv004",
     "title": "Hard to Kill (+Constitution)",
-    "description": "When you are at Death's Door, you can roll +Constitution or +nothing (your choice). On a 7-9, you can mark a debility of your choice to regain 1 HP"
+    "description": "When you are at Death's Door, you can roll +Constitution or +nothing (your choice). On a 7-9, you can mark a debility of your choice to regain 1 HP",
+    "weight": -1
   },
   {
     "id": "hv013",

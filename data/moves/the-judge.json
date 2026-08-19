@@ -120,7 +120,7 @@
   {
     "id":"jsm",
     "hideCheckbox": true,
-    "weight": -1,
+    "weight": -2,
     "title": "Starting Moves",
     "description": "You start with:\n\n- **Censure** and **Chronicler of Stonetop**\n\n- Plus 2 more of your choice."
   },
@@ -159,7 +159,8 @@
           "They are enraged, and lash out predictably (the next roll against them has advantage)"
         ]
       }
-    ]
+    ],
+    "weight": -1
   },
   {
     "id": "j008",
@@ -176,7 +177,8 @@
         "max": 3,
         "shape": "circle"
       }
-    ]
+    ],
+    "weight": -1
   },
   {
     "id": "j011",

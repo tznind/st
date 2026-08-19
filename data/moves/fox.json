@@ -69,7 +69,7 @@
   {
     "id":"fsm",
     "hideCheckbox": true,
-    "weight": -1,
+    "weight": -2,
     "title": "Starting Moves",
     "description": "You start with:\n\n- **Ambush** or **Skill at Arms**\n\n- **Danger Sense** or **Perceptive**\n\n- And 1 of your choice."
   },

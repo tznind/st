@@ -90,7 +90,7 @@
   {
     "id":"lsm",
     "hideCheckbox": true,
-    "weight": -1,
+    "weight": -2,
     "title": "Starting Moves",
     "description": "You start with:\n\n- **Consecrated Flame** and **Invoke the Sun God**\n\n- Plus 1 more of your choice."
   },
@@ -153,7 +153,8 @@
       {
         "text": "The holy light lasts until the flame goes out or until you consecrate another flame, whichever comes first."
       }
-    ]
+    ],
+    "weight": -1
   },
   {
     "id": "lb004",
@@ -175,7 +176,8 @@
         "text": "It works as described, but you and the GM each choose 1",
         "bullets": []
       }
-    ]
+    ],
+    "weight": -1
   },
   {
     "id": "lb005",

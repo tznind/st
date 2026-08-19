@@ -85,7 +85,7 @@
   {
     "id":"msm",
     "hideCheckbox": true,
-    "weight": -1,
+    "weight": -2,
     "title": "Starting Moves",
     "description": "You start with:\n\n- **Crew** and **Logistics**\n\n- Any moves from your Background\n\n- And 1 move of your choice."
   },
@@ -101,7 +101,8 @@
     "id": "ms003",
     "title": "Crew",
     "description": "You've got a crew of stalwarts, six or so residents of Stonetop with some steel to them. See the Crew insert for details.",
-    "grantsCard": "crew"
+    "grantsCard": "crew",
+    "weight": -1
   },
   {
     "id": "ms004",
@@ -122,7 +123,8 @@
   {
     "id": "ms006",
     "title": "Logistics",
-    "description": "When you have a steading Muster or Pull Together, or when you Requisition, you have advantage."
+    "description": "When you have a steading Muster or Pull Together, or when you Requisition, you have advantage.",
+    "weight": -1
   },
   {
     "id": "ms007",

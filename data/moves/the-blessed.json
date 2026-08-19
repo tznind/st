@@ -46,7 +46,7 @@
       },
       {
         "range": "",
-        "text": "When you would spend 1 Stock from your sacred pouch, you may choose instead to",
+        "text": "When you would spend 1 Stock from your **Sacred Pouch**, you may choose instead to",
         "bullets": [
           "Lose 2d4 HP"
         ]
@@ -126,7 +126,7 @@
   {
     "id":"bsm",
     "hideCheckbox": true,
-    "weight": -1,
+    "weight": -2,
     "title": "Starting Moves",
     "description": "You start with:\n\n- **Spirit Tongue** and **Call the Spirits**\n\n- 1 from your Background\n\n- And 1 of your choice."
   },
@@ -157,13 +157,14 @@
   {
     "id": "bl014",
     "title": "Big Magic",
-    "description": "Each time you take this move, choose an additional remarkable trait for your sacred pouch and increase your max Stock by 2.",
+    "description": "Each time you take this move, choose an additional remarkable trait for your **Sacred Pouch** and increase your max Stock by 2.",
     "multiple": 3
   },
   {
     "id": "bl005",
     "title": "Call the Spirits",
-    "description": "When you spend 1 Stock and perform a short rite, the spirit(s) of a place or object manifest and hear you out. What they do next is up to them."
+    "description": "When you spend 1 Stock and perform a short rite, the spirit(s) of a place or object manifest and hear you out. What they do next is up to them.",
+    "weight": -1
   },
   {
     "id": "bl002",
@@ -228,7 +229,8 @@
   {
     "id": "bl003",
     "title": "Spirit Tongue",
-    "description": "You can speak with beasts and spirits. You can always ask the GM, \"What spirits are active here?\" and get an honest answer."
+    "description": "You can speak with beasts and spirits. You can always ask the GM, \"What spirits are active here?\" and get an honest answer.",
+    "weight": -1
   },
   {
     "id": "bl004",
@@ -337,7 +339,7 @@
       "outcomes": [
       {
         "range": "≥ 10",
-        "text": "You remove the malady and can safely discard it or store it in your sacred pouch (taking the space of 1 Stock) to study or inflict on another"
+        "text": "You remove the malady and can safely discard it or store it in your **Sacred Pouch** (taking the space of 1 Stock) to study or inflict on another"
       },
       {
         "range": "7-9",

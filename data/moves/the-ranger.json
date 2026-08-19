@@ -97,7 +97,7 @@
   {
     "id":"rsm",
     "hideCheckbox": true,
-    "weight": -1,
+    "weight": -2,
     "title": "Starting Moves",
     "description": "You start with:\n\n- **Home on the Range**\n\n- Any moves from your Background\n\n- Plus 1 of your choice."
   },
@@ -188,7 +188,8 @@
   {
     "id": "rg008",
     "title": "Home on the Range",
-    "description": "When a journey requires you to Defy Danger or Struggle as One, treat a 6- as a 7-9."
+    "description": "When a journey requires you to Defy Danger or Struggle as One, treat a 6- as a 7-9.",
+    "weight": -1
   },
   {
     "id": "rg009",

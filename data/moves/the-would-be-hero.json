@@ -153,7 +153,7 @@
   {
     "id":"hsm",
     "hideCheckbox": true,
-    "weight": -1,
+    "weight": -2,
     "title": "Starting Moves",
     "description": "You start with:\n\n- **Anger is a Gift** and **Potential for Greatness**\n\n- And 2 other moves of your choice."
   },
@@ -180,7 +180,8 @@
           "Keep your footing, position, and/or your course despite what befalls you"
         ]
       }
-    ]
+    ],
+    "weight": -1
   },
   {
     "id": "h013",
@@ -260,7 +261,8 @@
     "id": "h010",
     "title": "Potential for Greatness",
     "description": "(Requires the Would-be Hero) Once per level, when you roll a stat and get a 10+, mark one of the following (note the level during which you marked it). You don't have to mark them in order.",
-    "grantsCard": "potential-greatness"
+    "grantsCard": "potential-greatness",
+    "weight": -1
   },
   {
     "id": "h011",

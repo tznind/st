@@ -70,7 +70,7 @@
   {
     "id":"ssm",
     "hideCheckbox": true,
-    "weight": -1,
+    "weight": -2,
     "title": "Starting Moves",
     "description": "You start with:\n\n- **Well Versed** and **Work with What You've Got**\n\n- Plus 1 from your Background."
   },
@@ -101,6 +101,7 @@
     "title": "Well Versed",
     "multiple": 3,
     "description": "Mark 1 topic, in addition to the one noted in your Background. Each additional time you take this move, mark 2 more topics.",
+    "weight": -1,
     "pick": [
       "The Last Door, death, and the undead",
       "The civilizations of humanity",
@@ -136,7 +137,8 @@
         "range": "7-9",
         "text": "Pick 1"
       }
-    ]
+    ],
+    "weight": -1
   },
   {
     "id": "sk015",
