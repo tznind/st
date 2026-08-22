@@ -459,42 +459,104 @@ window.MovesCore = (function() {
             
             pickDiv.appendChild(pickList);
         } else {
-            // Single column layout (original behavior) or 2-column layout for large lists
+            // Single column layout (original behavior) or 2-column layout for large lists.
+            // Options whose text is repeated verbatim elsewhere in the list are collapsed
+            // onto a single line with one checkbox per occurrence, each retaining the
+            // unique id tied to its original position in move.pick (move_{id}_p{index}).
             const pickList = document.createElement("ul");
             if (useColumns) {
                 pickList.className = "pick-list-columns";
             }
-            
-            move.pick.forEach((option, index) => {
+
+            const groups = groupDuplicatePickOptions(move.pick);
+
+            groups.forEach(group => {
                 const li = document.createElement("li");
-                const checkbox = document.createElement("input");
-                checkbox.type = "checkbox";
-                
-                checkbox.id = `move_${move.id}_p${index + 1}`;
-                checkbox.name = `move_${move.id}_p${index + 1}`;
-                checkbox.setAttribute('aria-label', `Pick ${option}`);
-                checkbox.setAttribute('data-move-id', move.id);
-                
-                // Restore from URL if exists
-                if (urlParams.has(checkbox.id)) {
-                    checkbox.checked = urlParams.get(checkbox.id) === '1';
+
+                if (group.indices.length > 1) {
+                    // Repeated option: one line, one checkbox per occurrence
+                    li.className = "pick-option-item";
+
+                    const checkboxContainer = document.createElement("div");
+                    checkboxContainer.className = "pick-checkboxes";
+
+                    group.indices.forEach((optionIndex, col) => {
+                        const checkbox = document.createElement("input");
+                        checkbox.type = "checkbox";
+
+                        checkbox.id = `move_${move.id}_p${optionIndex + 1}`;
+                        checkbox.name = checkbox.id;
+                        checkbox.setAttribute('aria-label', `Pick ${group.option} (Instance ${col + 1})`);
+                        checkbox.setAttribute('data-move-id', move.id);
+
+                        // Restore from URL if exists
+                        if (urlParams.has(checkbox.id)) {
+                            checkbox.checked = urlParams.get(checkbox.id) === '1';
+                        }
+
+                        checkboxContainer.appendChild(checkbox);
+                    });
+
+                    const optionText = document.createElement("span");
+                    optionText.className = "pick-option-text";
+                    optionText.innerHTML = window.TextFormatter ? window.TextFormatter.format(group.option) : group.option;
+
+                    li.appendChild(checkboxContainer);
+                    li.appendChild(optionText);
+                } else {
+                    const index = group.indices[0];
+                    const checkbox = document.createElement("input");
+                    checkbox.type = "checkbox";
+
+                    checkbox.id = `move_${move.id}_p${index + 1}`;
+                    checkbox.name = `move_${move.id}_p${index + 1}`;
+                    checkbox.setAttribute('aria-label', `Pick ${group.option}`);
+                    checkbox.setAttribute('data-move-id', move.id);
+
+                    // Restore from URL if exists
+                    if (urlParams.has(checkbox.id)) {
+                        checkbox.checked = urlParams.get(checkbox.id) === '1';
+                    }
+
+                    const label = document.createElement("label");
+                    label.setAttribute('for', checkbox.id);
+                    label.appendChild(checkbox);
+                    const textSpan = document.createElement("span");
+                    textSpan.innerHTML = window.TextFormatter ? window.TextFormatter.format(group.option) : group.option;
+                    label.appendChild(textSpan);
+
+                    li.appendChild(label);
                 }
-                
-                const label = document.createElement("label");
-                label.setAttribute('for', checkbox.id);
-                label.appendChild(checkbox);
-                const textSpan = document.createElement("span");
-                textSpan.innerHTML = window.TextFormatter ? window.TextFormatter.format(option) : option;
-                label.appendChild(textSpan);
-                
-                li.appendChild(label);
+
                 pickList.appendChild(li);
             });
-            
+
             pickDiv.appendChild(pickList);
         }
-        
+
         return pickDiv;
+    }
+
+    /**
+     * Group pick option strings by exact text match, preserving the order each
+     * distinct option first appears in. Each group records the original array
+     * indices of every occurrence so callers can keep id numbering (p1, p2, ...)
+     * stable regardless of how occurrences are visually collapsed together.
+     */
+    function groupDuplicatePickOptions(options) {
+        const groups = [];
+        const groupIndexByText = new Map();
+
+        options.forEach((option, index) => {
+            if (groupIndexByText.has(option)) {
+                groups[groupIndexByText.get(option)].indices.push(index);
+            } else {
+                groupIndexByText.set(option, groups.length);
+                groups.push({ option, indices: [index] });
+            }
+        });
+
+        return groups;
     }
 
     /**
