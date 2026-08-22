@@ -411,12 +411,20 @@ window.MovesCore = (function() {
         pickDiv.appendChild(pickTitle);
         
         const multiplePick = move.multiplePick || 1;
-        const useColumns = move.pick.length > 10;
-        
+        // Options whose text repeats verbatim collapse onto a single rendered row
+        // (see groupDuplicatePickOptions), so the 2-column threshold below is based
+        // on the number of rows that will actually be drawn, not the raw option count -
+        // duplicates only count once towards it.
+        const pickGroups = groupDuplicatePickOptions(move.pick);
+        const useColumns = pickGroups.length > 10;
+
         if (multiplePick > 1) {
-            // Create list with multiple checkboxes per option (like multiple moves)
+            // Create list with multiple checkboxes per option (like multiple moves).
+            // multiplePick applies uniformly to every option (no de-duplication here),
+            // so one row is drawn per raw entry - column threshold uses the raw count.
+            const useColumnsRaw = move.pick.length > 10;
             const pickList = document.createElement("ul");
-            if (useColumns) {
+            if (useColumnsRaw) {
                 pickList.className = "pick-list-columns";
             }
             
@@ -472,9 +480,7 @@ window.MovesCore = (function() {
                 pickList.className = "pick-list-columns";
             }
 
-            const groups = groupDuplicatePickOptions(move.pick);
-
-            groups.forEach(group => {
+            pickGroups.forEach(group => {
                 // Leave the <li> itself unclassed so it keeps its default list-item
                 // bullet, whichever branch below fills it in.
                 const li = document.createElement("li");
