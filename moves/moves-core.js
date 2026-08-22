@@ -421,39 +421,43 @@ window.MovesCore = (function() {
             }
             
             move.pick.forEach((option, optionIndex) => {
+                // Leave the <li> itself unclassed so it keeps its default list-item
+                // bullet; the flex row (checkboxes + text) lives on an inner wrapper.
                 const li = document.createElement("li");
-                li.className = "pick-option-item";
-                
+                const itemWrapper = document.createElement("div");
+                itemWrapper.className = "pick-option-item";
+
                 // Create multiple checkboxes for this option
                 const checkboxContainer = document.createElement("div");
                 checkboxContainer.className = "pick-checkboxes";
-                
+
                 for (let col = 1; col <= multiplePick; col++) {
                     const checkbox = document.createElement("input");
                     checkbox.type = "checkbox";
-                    
+
                     // ID format: first column uses _p1, _p2, etc. Additional columns use _p1_c2, _p1_c3, etc.
                     const baseId = `move_${move.id}_p${optionIndex + 1}`;
                     checkbox.id = col === 1 ? baseId : `${baseId}_c${col}`;
                     checkbox.name = checkbox.id;
                     checkbox.setAttribute('aria-label', `Pick ${option} (Instance ${col})`);
                     checkbox.setAttribute('data-move-id', move.id);
-                    
+
                     // Restore from URL if exists
                     if (urlParams.has(checkbox.id)) {
                         checkbox.checked = urlParams.get(checkbox.id) === '1';
                     }
-                    
+
                     checkboxContainer.appendChild(checkbox);
                 }
-                
+
                 // Add the option text after all checkboxes
                 const optionText = document.createElement("span");
                 optionText.className = "pick-option-text";
                 optionText.innerHTML = window.TextFormatter ? window.TextFormatter.format(option) : option;
-                
-                li.appendChild(checkboxContainer);
-                li.appendChild(optionText);
+
+                itemWrapper.appendChild(checkboxContainer);
+                itemWrapper.appendChild(optionText);
+                li.appendChild(itemWrapper);
                 pickList.appendChild(li);
             });
             
@@ -471,11 +475,14 @@ window.MovesCore = (function() {
             const groups = groupDuplicatePickOptions(move.pick);
 
             groups.forEach(group => {
+                // Leave the <li> itself unclassed so it keeps its default list-item
+                // bullet, whichever branch below fills it in.
                 const li = document.createElement("li");
 
                 if (group.indices.length > 1) {
                     // Repeated option: one line, one checkbox per occurrence
-                    li.className = "pick-option-item";
+                    const itemWrapper = document.createElement("div");
+                    itemWrapper.className = "pick-option-item";
 
                     const checkboxContainer = document.createElement("div");
                     checkboxContainer.className = "pick-checkboxes";
@@ -501,8 +508,9 @@ window.MovesCore = (function() {
                     optionText.className = "pick-option-text";
                     optionText.innerHTML = window.TextFormatter ? window.TextFormatter.format(group.option) : group.option;
 
-                    li.appendChild(checkboxContainer);
-                    li.appendChild(optionText);
+                    itemWrapper.appendChild(checkboxContainer);
+                    itemWrapper.appendChild(optionText);
+                    li.appendChild(itemWrapper);
                 } else {
                     const index = group.indices[0];
                     const checkbox = document.createElement("input");
@@ -521,7 +529,9 @@ window.MovesCore = (function() {
                     const label = document.createElement("label");
                     label.setAttribute('for', checkbox.id);
                     label.appendChild(checkbox);
+                    // Same class as the multi-checkbox text span so font weight matches.
                     const textSpan = document.createElement("span");
+                    textSpan.className = "pick-option-text";
                     textSpan.innerHTML = window.TextFormatter ? window.TextFormatter.format(group.option) : group.option;
                     label.appendChild(textSpan);
 
