@@ -275,6 +275,12 @@ window.TextFormatter = (function() {
         // Convert single newlines to line breaks
         formatted = formatted.replace(/\n/g, '<br>');
 
+        // Drop <br> tags immediately adjacent to block-level <ul> lists -
+        // these were only newline sentinels added by convertBulletLists to
+        // separate the list from surrounding text, not real line breaks
+        formatted = formatted.replace(/(?:<br>)+(<ul>)/g, '$1');
+        formatted = formatted.replace(/(<\/ul>)(?:<br>)+/g, '$1');
+
         return formatted;
     }
 
