@@ -920,6 +920,7 @@ Submoves allow you to create a single move that contains multiple sub-actions, e
 - A move can have both main outcomes **and** submoves
 - Text formatting works in all submove fields (bold, italic, bullets, etc.)
 - Perfect for moves that offer multiple tactical choices or approaches
+- Set `"useTwoColumnsForSubmoves": true` on the move to lay out its submoves in a 2-column grid instead of stacking them vertically (falls back to 1 column on narrow screens); useful when a move has many similarly-shaped submoves, e.g. a list of magic schools
 
 ### Moves That Grant Cards
 

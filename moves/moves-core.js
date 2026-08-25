@@ -780,12 +780,20 @@ window.MovesCore = (function() {
 
         // Add submoves if they exist (at the end)
         if (move.submoves && Array.isArray(move.submoves) && move.submoves.length > 0) {
+            const useTwoColumns = !!move.useTwoColumnsForSubmoves;
+            const submovesTarget = useTwoColumns ? document.createElement("div") : contentContainer;
+            if (useTwoColumns) {
+                submovesTarget.className = "submoves-grid";
+            }
             move.submoves.forEach((submove, index) => {
                 if (submove) {
                     const submoveElement = createSubmove(submove, move.id, index, urlParams);
-                    contentContainer.appendChild(submoveElement);
+                    submovesTarget.appendChild(submoveElement);
                 }
             });
+            if (useTwoColumns) {
+                contentContainer.appendChild(submovesTarget);
+            }
         }
         
         // Append content container to move div

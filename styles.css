@@ -1501,6 +1501,24 @@ input.clock-floating-input:focus {
   margin: 0;
 }
 
+/* === 2-COLUMN LAYOUT FOR SUBMOVES (move.useTwoColumnsForSubmoves) === */
+.submoves-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 20px;
+}
+
+.submoves-grid .submove {
+  margin: 15px 0;
+}
+
+/* On smaller screens, fallback to single column */
+@media (max-width: 768px) {
+  .submoves-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* === MOVE DESCRIPTIONS === */
 .move-description {
   background: #f8f9fa;
