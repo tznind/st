@@ -175,6 +175,11 @@
         "description": "If true and move is force-ticked via availability.json (set to true), the checkbox will be hidden while keeping the move content visible. Useful for moves that should look like part of the character sheet rather than selectable options, especially when combined with categories.",
         "default": false
       },
+      "useTwoColumnsForSubmoves": {
+        "type": "boolean",
+        "description": "If true, renders this move's submoves in a 2-column grid (falling back to 1 column on narrow screens) instead of stacking them vertically. Only affects submoves; the rest of the move is unaffected.",
+        "default": false
+      },
       "tracks": {
         "type": "array",
         "description": "Array of tracking configurations for multiple resources",

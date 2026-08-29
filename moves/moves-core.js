@@ -411,90 +411,168 @@ window.MovesCore = (function() {
         pickDiv.appendChild(pickTitle);
         
         const multiplePick = move.multiplePick || 1;
-        const useColumns = move.pick.length > 10;
-        
+        // Options whose text repeats verbatim collapse onto a single rendered row
+        // (see groupDuplicatePickOptions), so the 2-column threshold below is based
+        // on the number of rows that will actually be drawn, not the raw option count -
+        // duplicates only count once towards it.
+        const pickGroups = groupDuplicatePickOptions(move.pick);
+        const useColumns = pickGroups.length > 10;
+
         if (multiplePick > 1) {
-            // Create list with multiple checkboxes per option (like multiple moves)
+            // Create list with multiple checkboxes per option (like multiple moves).
+            // multiplePick applies uniformly to every option (no de-duplication here),
+            // so one row is drawn per raw entry - column threshold uses the raw count.
+            const useColumnsRaw = move.pick.length > 10;
             const pickList = document.createElement("ul");
-            if (useColumns) {
+            if (useColumnsRaw) {
                 pickList.className = "pick-list-columns";
             }
             
             move.pick.forEach((option, optionIndex) => {
+                // Leave the <li> itself unclassed so it keeps its default list-item
+                // bullet; the flex row (checkboxes + text) lives on an inner wrapper.
                 const li = document.createElement("li");
-                li.className = "pick-option-item";
-                
+                const itemWrapper = document.createElement("div");
+                itemWrapper.className = "pick-option-item";
+
                 // Create multiple checkboxes for this option
                 const checkboxContainer = document.createElement("div");
                 checkboxContainer.className = "pick-checkboxes";
-                
+
                 for (let col = 1; col <= multiplePick; col++) {
                     const checkbox = document.createElement("input");
                     checkbox.type = "checkbox";
-                    
+
                     // ID format: first column uses _p1, _p2, etc. Additional columns use _p1_c2, _p1_c3, etc.
                     const baseId = `move_${move.id}_p${optionIndex + 1}`;
                     checkbox.id = col === 1 ? baseId : `${baseId}_c${col}`;
                     checkbox.name = checkbox.id;
                     checkbox.setAttribute('aria-label', `Pick ${option} (Instance ${col})`);
                     checkbox.setAttribute('data-move-id', move.id);
-                    
+
                     // Restore from URL if exists
                     if (urlParams.has(checkbox.id)) {
                         checkbox.checked = urlParams.get(checkbox.id) === '1';
                     }
-                    
+
                     checkboxContainer.appendChild(checkbox);
                 }
-                
+
                 // Add the option text after all checkboxes
                 const optionText = document.createElement("span");
                 optionText.className = "pick-option-text";
                 optionText.innerHTML = window.TextFormatter ? window.TextFormatter.format(option) : option;
-                
-                li.appendChild(checkboxContainer);
-                li.appendChild(optionText);
+
+                itemWrapper.appendChild(checkboxContainer);
+                itemWrapper.appendChild(optionText);
+                li.appendChild(itemWrapper);
                 pickList.appendChild(li);
             });
             
             pickDiv.appendChild(pickList);
         } else {
-            // Single column layout (original behavior) or 2-column layout for large lists
+            // Single column layout (original behavior) or 2-column layout for large lists.
+            // Options whose text is repeated verbatim elsewhere in the list are collapsed
+            // onto a single line with one checkbox per occurrence, each retaining the
+            // unique id tied to its original position in move.pick (move_{id}_p{index}).
             const pickList = document.createElement("ul");
             if (useColumns) {
                 pickList.className = "pick-list-columns";
             }
-            
-            move.pick.forEach((option, index) => {
+
+            pickGroups.forEach(group => {
+                // Leave the <li> itself unclassed so it keeps its default list-item
+                // bullet, whichever branch below fills it in.
                 const li = document.createElement("li");
-                const checkbox = document.createElement("input");
-                checkbox.type = "checkbox";
-                
-                checkbox.id = `move_${move.id}_p${index + 1}`;
-                checkbox.name = `move_${move.id}_p${index + 1}`;
-                checkbox.setAttribute('aria-label', `Pick ${option}`);
-                checkbox.setAttribute('data-move-id', move.id);
-                
-                // Restore from URL if exists
-                if (urlParams.has(checkbox.id)) {
-                    checkbox.checked = urlParams.get(checkbox.id) === '1';
+
+                if (group.indices.length > 1) {
+                    // Repeated option: one line, one checkbox per occurrence
+                    const itemWrapper = document.createElement("div");
+                    itemWrapper.className = "pick-option-item";
+
+                    const checkboxContainer = document.createElement("div");
+                    checkboxContainer.className = "pick-checkboxes";
+
+                    group.indices.forEach((optionIndex, col) => {
+                        const checkbox = document.createElement("input");
+                        checkbox.type = "checkbox";
+
+                        checkbox.id = `move_${move.id}_p${optionIndex + 1}`;
+                        checkbox.name = checkbox.id;
+                        checkbox.setAttribute('aria-label', `Pick ${group.option} (Instance ${col + 1})`);
+                        checkbox.setAttribute('data-move-id', move.id);
+
+                        // Restore from URL if exists
+                        if (urlParams.has(checkbox.id)) {
+                            checkbox.checked = urlParams.get(checkbox.id) === '1';
+                        }
+
+                        checkboxContainer.appendChild(checkbox);
+                    });
+
+                    const optionText = document.createElement("span");
+                    optionText.className = "pick-option-text";
+                    optionText.innerHTML = window.TextFormatter ? window.TextFormatter.format(group.option) : group.option;
+
+                    itemWrapper.appendChild(checkboxContainer);
+                    itemWrapper.appendChild(optionText);
+                    li.appendChild(itemWrapper);
+                } else {
+                    const index = group.indices[0];
+                    const checkbox = document.createElement("input");
+                    checkbox.type = "checkbox";
+
+                    checkbox.id = `move_${move.id}_p${index + 1}`;
+                    checkbox.name = `move_${move.id}_p${index + 1}`;
+                    checkbox.setAttribute('aria-label', `Pick ${group.option}`);
+                    checkbox.setAttribute('data-move-id', move.id);
+
+                    // Restore from URL if exists
+                    if (urlParams.has(checkbox.id)) {
+                        checkbox.checked = urlParams.get(checkbox.id) === '1';
+                    }
+
+                    const label = document.createElement("label");
+                    label.setAttribute('for', checkbox.id);
+                    label.appendChild(checkbox);
+                    // Same class as the multi-checkbox text span so font weight matches.
+                    const textSpan = document.createElement("span");
+                    textSpan.className = "pick-option-text";
+                    textSpan.innerHTML = window.TextFormatter ? window.TextFormatter.format(group.option) : group.option;
+                    label.appendChild(textSpan);
+
+                    li.appendChild(label);
                 }
-                
-                const label = document.createElement("label");
-                label.setAttribute('for', checkbox.id);
-                label.appendChild(checkbox);
-                const textSpan = document.createElement("span");
-                textSpan.innerHTML = window.TextFormatter ? window.TextFormatter.format(option) : option;
-                label.appendChild(textSpan);
-                
-                li.appendChild(label);
+
                 pickList.appendChild(li);
             });
-            
+
             pickDiv.appendChild(pickList);
         }
-        
+
         return pickDiv;
+    }
+
+    /**
+     * Group pick option strings by exact text match, preserving the order each
+     * distinct option first appears in. Each group records the original array
+     * indices of every occurrence so callers can keep id numbering (p1, p2, ...)
+     * stable regardless of how occurrences are visually collapsed together.
+     */
+    function groupDuplicatePickOptions(options) {
+        const groups = [];
+        const groupIndexByText = new Map();
+
+        options.forEach((option, index) => {
+            if (groupIndexByText.has(option)) {
+                groups[groupIndexByText.get(option)].indices.push(index);
+            } else {
+                groupIndexByText.set(option, groups.length);
+                groups.push({ option, indices: [index] });
+            }
+        });
+
+        return groups;
     }
 
     /**
@@ -702,12 +780,20 @@ window.MovesCore = (function() {
 
         // Add submoves if they exist (at the end)
         if (move.submoves && Array.isArray(move.submoves) && move.submoves.length > 0) {
+            const useTwoColumns = !!move.useTwoColumnsForSubmoves;
+            const submovesTarget = useTwoColumns ? document.createElement("div") : contentContainer;
+            if (useTwoColumns) {
+                submovesTarget.className = "submoves-grid";
+            }
             move.submoves.forEach((submove, index) => {
                 if (submove) {
                     const submoveElement = createSubmove(submove, move.id, index, urlParams);
-                    contentContainer.appendChild(submoveElement);
+                    submovesTarget.appendChild(submoveElement);
                 }
             });
+            if (useTwoColumns) {
+                contentContainer.appendChild(submovesTarget);
+            }
         }
         
         // Append content container to move div
