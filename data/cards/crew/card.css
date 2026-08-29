@@ -106,26 +106,34 @@
   box-shadow: 0 0 0 3px rgba(106, 90, 205, 0.1);
 }
 
-.stats-row {
+/* Add Member button + Armor/Damage, sharing one row below the members table */
+.members-footer-row {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
 }
 
-.stats-row .form-field {
-  flex: 1;
-  margin-bottom: 0;
+.crew-stats-inline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
 }
 
-.stats-row .form-field label {
-  display: block;
-  margin-bottom: 0.25rem;
-  font-weight: bold;
+.crew-card .form-field .crew-stats-inline label {
+  font-weight: 700;
+  color: #4B0082;
+  display: inline-block;
   min-width: auto;
+  margin-right: 0;
 }
 
-.stats-row .form-field input {
-  width: 100%;
+.crew-stats-inline input[type="number"],
+.crew-stats-inline input[type="text"] {
+  width: 55px;
   box-sizing: border-box;
 }
 
@@ -153,38 +161,23 @@
   box-shadow: 0 2px 4px rgba(75, 0, 130, 0.3);
 }
 
-/* === 2-COLUMN LAYOUT FOR VETERAN CREW / HEROES TO THE LAST === */
-.vet-hero-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 15px;
+/* Keep the Tags input and its help icon on one line, overriding the
+   app-wide `.card input[type="text"] { width: 100% }` rule via flex-basis */
+.tags-input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.vet-hero-grid .form-field {
-  margin-bottom: 0;
-}
-
-@media (max-width: 768px) {
-  .vet-hero-grid {
-    grid-template-columns: 1fr;
-    gap: 15px 0;
-  }
-
-  .vet-hero-grid .form-field {
-    margin-bottom: 15px;
-  }
+.tags-input-row input[type="text"] {
+  flex: 1;
+  min-width: 0;
 }
 
 .crew-card strong {
   display: block;
   margin-bottom: 0.25rem;
   color: #4B0082;
-}
-
-.crew-card hr {
-  border: none;
-  border-top: 2px solid #9370DB;
-  margin: 1rem 0;
 }
 
 /* Checkbox styling */
@@ -198,9 +191,24 @@
   transform: scale(1.1);
 }
 
-/* Make text inputs in the crew members table fill their cell (traits, etc.) */
-.crew-members-table td input[type="text"] {
+/* Make the members table fill the card, with Traits taking the leftover space */
+.crew-members-table {
   width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.crew-members-table .col-name  { width: 110px; }
+.crew-members-table .col-tag   { width: 90px; }
+.crew-members-table .col-hp    { width: 70px; }
+.crew-members-table .col-maxhp { width: 60px; }
+.crew-members-table .col-del   { width: 30px; }
+/* col-traits has no explicit width, so table-layout: fixed gives it all
+   remaining space automatically */
+
+.crew-members-table td input[type="text"],
+.crew-members-table td input[type="number"] {
+  width: 100% !important;
   box-sizing: border-box;
 }
 
@@ -313,16 +321,6 @@
     padding-bottom: 8px;
   }
   
-  /* Make stats row stack vertically on narrow screens */
-  .stats-row {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  .stats-row .form-field {
-    margin-bottom: 10px;
-  }
-  
   /* Simplify member row grid for narrow screens */
   .member-row {
     display: block;
@@ -356,10 +354,6 @@
     padding: 6px 12px;
     font-size: 13px;
     margin-bottom: 8px;
-  }
-  
-  .crew-card hr {
-    margin: 0.75rem 0;
   }
   
   .crew-card .card-title {

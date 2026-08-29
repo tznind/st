@@ -60,6 +60,14 @@
     'whittler'
   ];
 
+  // Veteran Crew (ms015) and Heroes to the Last (ms018) pick checkboxes,
+  // rendered elsewhere on the page by moves-core.js as move_<id>_p<pickIndex+1>
+  // - indices must match each move's "pick" array in data/moves/marshal.json
+  const VET_DMG_MOVE_ID = 'move_ms015_p2';    // "Increase their damage die from d6 to d8"
+  const VET_HP_MOVE_ID = 'move_ms015_p3';     // "Increase their max HP by 2 each"
+  const HEROES_HP_MOVE_ID = 'move_ms018_p3';  // "Increase their max HP by 4 each"
+  const HEROES_DMG_MOVE_ID = 'move_ms018_p4'; // "Increase their damage die one size (max d10)"
+
   function initializeCrew(container, suffix) {
     console.log('Initializing crew...', { container, suffix });
 
@@ -88,13 +96,13 @@
     function calculateHP() {
       let baseHP = 6;
 
-      // Check Veteran Crew +2 HP checkbox
-      if (helpers.isChecked('cr_vet3')) {
+      // Check Veteran Crew "+2 HP each" pick (tracked from the move itself)
+      if (document.getElementById(VET_HP_MOVE_ID)?.checked) {
         baseHP += 2;
       }
 
-      // Check Heroes to the Last +4 HP checkbox
-      if (helpers.isChecked('cr_her3')) {
+      // Check Heroes to the Last "+4 HP each" pick (tracked from the move itself)
+      if (document.getElementById(HEROES_HP_MOVE_ID)?.checked) {
         baseHP += 4;
       }
 
@@ -107,13 +115,13 @@
     function calculateDamage() {
       let damage = 'd6'; // Base damage
 
-      // Check Veteran Crew damage increase to d8
-      if (helpers.isChecked('cr_vet2')) {
+      // Check Veteran Crew "damage die to d8" pick (tracked from the move itself)
+      if (document.getElementById(VET_DMG_MOVE_ID)?.checked) {
         damage = 'd8';
       }
 
-      // Check Heroes to the Last damage increase (max d10)
-      if (helpers.isChecked('cr_her4')) {
+      // Check Heroes to the Last damage increase (max d10), tracked from the move itself
+      if (document.getElementById(HEROES_DMG_MOVE_ID)?.checked) {
         if (damage === 'd6') {
           damage = 'd8';
         } else if (damage === 'd8') {
@@ -147,10 +155,13 @@
       console.log('Updated calculated fields - HP:', hp, 'Damage:', damage);
     }
 
-    // Add checkbox event listeners for auto-calculation
-    const checkboxes = ['cr_vet2', 'cr_vet3', 'cr_her3', 'cr_her4'];
-    checkboxes.forEach(checkboxId => {
-      helpers.addEventListener(checkboxId, 'change', updateCalculatedFields);
+    // Listen for changes to the Veteran Crew / Heroes to the Last move picks
+    // (rendered outside this card, elsewhere in the Marshal's move list)
+    [VET_DMG_MOVE_ID, VET_HP_MOVE_ID, HEROES_HP_MOVE_ID, HEROES_DMG_MOVE_ID].forEach(moveElId => {
+      const moveEl = document.getElementById(moveElId);
+      if (moveEl) {
+        moveEl.addEventListener('change', updateCalculatedFields);
+      }
     });
 
     /**
@@ -215,6 +226,16 @@
 
     helpers.addEventListener('cr_wizard_btn', 'click', handleCreateCrew);
     helpers.addEventListener('cr_tg', 'input', updateWizardButtonVisibility);
+
+    // Populate the Tags help icon with the full core tag list
+    const tagsHelpBtn = helpers.getElement('cr_tags_help_btn');
+    if (tagsHelpBtn) {
+      const tagList = ['group', ...CREW_TAGS].map(tag => `- ${tag}`).join('\n');
+      tagsHelpBtn.setAttribute(
+        'data-help-text',
+        `Your crew starts with **group**, a tag granted by your background, plus 2 more of your choice:\n\n${tagList}`
+      );
+    }
 
     /**
      * "+ Add Member" - prompts for a name, then a wizard for tag & traits
