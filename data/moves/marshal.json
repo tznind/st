@@ -100,9 +100,19 @@
   {
     "id": "ms003",
     "title": "Crew",
-    "description": "You've got a crew of stalwarts, six or so residents of Stonetop with some steel to them. See the Crew insert for details.",
+    "description": "You've got a crew of stalwarts, six or so residents of Stonetop with some steel to them.",
     "grantsCard": "crew",
-    "weight": -1
+    "weight": -1,
+    "submoves": [
+      {
+        "title": "Order Followers",
+        "description": "When you *direct them to make a move and they do so*, roll +1 instead of +STAT if any of their tags apply (or +2 if they're also *exceptional*). If no tags apply, roll +0. If any of their tags would get in the way, roll with disadvantage.\n\nWhen they **are without orders** or they **act on their own initiative**, the GM says what they do and how it goes."
+      },
+      {
+        "title": "Strengthen Your Bond",
+        "description": "When you *pay their cost* and you haven't done so recently, they hold +1 Loyalty (max 3).\n\nSpend their Loyalty 1-for-1 to have them:\n\n- Overcome their fear to do as you say\n\n- Resist acting on their instinct/tags/traits\n\n- Do something they don't want to do (as long as it's not aborrent or suicidal)"
+      }
+    ]
   },
   {
     "id": "ms004",

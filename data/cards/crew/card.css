@@ -129,36 +129,50 @@
   box-sizing: border-box;
 }
 
-.instinct-grid {
-  display: flex;
-  gap: 1rem;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+/* === Create Crew wizard button === */
+.crew-wizard-field {
+  text-align: center;
 }
 
-.instinct-column {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+.crew-wizard-btn {
+  background: #4B0082;
+  color: white;
+  border: 2px solid #6A5ACD;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.2s ease;
 }
 
-.instinct-column label {
-  display: block;
-  margin-bottom: 0.25rem;
-  min-width: auto;
-  font-weight: normal;
+.crew-wizard-btn:hover {
+  background: #6A5ACD;
+  border-color: #9370DB;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(75, 0, 130, 0.3);
 }
 
-.instinct-other {
-  margin-top: 0.5rem;
+/* === 2-COLUMN LAYOUT FOR VETERAN CREW / HEROES TO THE LAST === */
+.vet-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 15px;
 }
 
-.instinct-other label {
-  display: inline-block;
-  margin-right: 0.5rem;
-  min-width: auto;
-  font-weight: normal;
+.vet-hero-grid .form-field {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .vet-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 15px 0;
+  }
+
+  .vet-hero-grid .form-field {
+    margin-bottom: 15px;
+  }
 }
 
 .crew-card strong {
@@ -182,6 +196,12 @@
 .crew-card input[type="radio"] {
   margin-right: 6px;
   transform: scale(1.1);
+}
+
+/* Make text inputs in the crew members table fill their cell (traits, etc.) */
+.crew-members-table td input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Crew member rows */
@@ -301,12 +321,6 @@
   
   .stats-row .form-field {
     margin-bottom: 10px;
-  }
-  
-  /* Stack instinct grid vertically */
-  .instinct-grid {
-    flex-direction: column;
-    gap: 0.5rem;
   }
   
   /* Simplify member row grid for narrow screens */

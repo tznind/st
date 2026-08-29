@@ -17,11 +17,15 @@
     <label for="cr_tg">Tags:</label>
     <input type="text" id="cr_tg" placeholder="e.g., warriors, scouts, devoted">
   </div>
-  
+
+  <div class="form-field crew-wizard-field" id="cr_wizard_field">
+    <button type="button" id="cr_wizard_btn" class="crew-wizard-btn">🧙 Create Your Crew (Tags, Instinct &amp; Cost)</button>
+  </div>
+
   <!-- Crew Members -->
   <div class="form-field">
     <strong>Crew Members:</strong>
-    <table id="cr_members" data-dynamic-table data-table-max="10">
+    <table id="cr_members" class="crew-members-table" data-dynamic-table data-table-max="10">
       <thead>
         <tr>
           <th data-field="name">Name</th>
@@ -34,7 +38,7 @@
       </thead>
       <tbody></tbody>
     </table>
-    <button type="button" data-table-add="cr_members" class="add-member">+ Add Member</button>
+    <button type="button" id="cr_add_member_btn" class="add-member">+ Add Member</button>
   </div>
   
   <!-- Stats -->
@@ -50,57 +54,38 @@
     </div>
   </div>
   
-  <!-- Instinct (radio buttons) -->
+  <!-- Instinct -->
   <div class="form-field">
-    <strong>Instinct:</strong>
-    <div class="instinct-grid">
-      <div class="instinct-column">
-        <label><input type="radio" name="cr_in" id="cr_i1" value="bicker"> To bicker, infight, and hold grudges</label>
-        <label><input type="radio" name="cr_in" id="cr_i2" value="tradition"> To hew to tradition and superstition</label>
-        <label><input type="radio" name="cr_in" id="cr_i3" value="indulge"> To indulge their baser instincts</label>
-      </div>
-      <div class="instinct-column">
-        <label><input type="radio" name="cr_in" id="cr_i4" value="lord"> To lord over others</label>
-        <label><input type="radio" name="cr_in" id="cr_i5" value="risks"> To take needless risks</label>
-        <label><input type="radio" name="cr_in" id="cr_i6" value="too_far"> To take things too far</label>
-      </div>
-    </div>
-    <div class="instinct-other">
-      <label><input type="radio" name="cr_in" id="cr_i7" value="other"> Other:</label>
-      <input type="text" id="cr_io" placeholder="Custom instinct..." style="margin-left: 5px;">
-    </div>
+    <label for="cr_in">Instinct:</label>
+    <input type="text" id="cr_in" placeholder="e.g., To bicker, infight, and hold grudges">
   </div>
-  
-  <!-- Cost (radio buttons) -->
+
+  <!-- Cost -->
   <div class="form-field">
-    <strong>Cost:</strong><br>
-    <label><input type="radio" name="cr_co" id="cr_c1" value="merry_making"> Merry-making, as a group</label><br>
-    <label><input type="radio" name="cr_co" id="cr_c2" value="recognition"> Public recognition and respect, honor</label><br>
-    <label><input type="radio" name="cr_co" id="cr_c3" value="risks"> Risks taken, by you, to help them</label><br>
-    <label><input type="radio" name="cr_co" id="cr_c4" value="victories"> Victories won against worthy foes</label><br>
-    <label><input type="radio" name="cr_co" id="cr_c5" value="wealth"> Wealth gained for themselves or Stonetop</label><br>
-    <label><input type="radio" name="cr_co" id="cr_c6" value="other"> Other:</label>
-    <input type="text" id="cr_co_o" placeholder="Custom cost..." style="margin-left: 5px;">
+    <label for="cr_co">Cost:</label>
+    <input type="text" id="cr_co" placeholder="e.g., Victories won against worthy foes">
   </div>
-  
+
   <!-- HR Separator -->
   <hr style="margin: 1rem 0;">
-  
-  <!-- Veteran Crew -->
-  <div class="form-field">
-    <strong>Veteran Crew:</strong><br>
-    <label><input type="checkbox" id="cr_vet1"> 2 additional tags</label><br>
-    <label><input type="checkbox" id="cr_vet2"> Damage increased to d8</label><br>
-    <label><input type="checkbox" id="cr_vet3"> +2 HP each</label><br>
-    <label><input type="checkbox" id="cr_vet4"> Change Instinct and Cost</label>
-  </div>
-  
-  <!-- Heroes to the Last -->
-  <div class="form-field">
-    <strong>Heroes to the Last:</strong><br>
-    <label><input type="checkbox" id="cr_her1"> They are exceptional (+2 instead of +1)</label><br>
-    <label><input type="checkbox" id="cr_her2"> Inured to terror & horror</label><br>
-    <label><input type="checkbox" id="cr_her3"> +4 HP each</label><br>
-    <label><input type="checkbox" id="cr_her4"> Damage increased one size (max d10)</label>
+
+  <div class="vet-hero-grid">
+    <!-- Veteran Crew -->
+    <div class="form-field">
+      <strong>Veteran Crew:</strong><br>
+      <label><input type="checkbox" id="cr_vet1"> 2 additional tags</label><br>
+      <label><input type="checkbox" id="cr_vet2"> Damage increased to d8</label><br>
+      <label><input type="checkbox" id="cr_vet3"> +2 HP each</label><br>
+      <label><input type="checkbox" id="cr_vet4"> Change Instinct and Cost</label>
+    </div>
+
+    <!-- Heroes to the Last -->
+    <div class="form-field">
+      <strong>Heroes to the Last:</strong><br>
+      <label><input type="checkbox" id="cr_her1"> They are exceptional (+2 instead of +1)</label><br>
+      <label><input type="checkbox" id="cr_her2"> Inured to terror & horror</label><br>
+      <label><input type="checkbox" id="cr_her3"> +4 HP each</label><br>
+      <label><input type="checkbox" id="cr_her4"> Damage increased one size (max d10)</label>
+    </div>
   </div>
 </div>
