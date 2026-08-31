@@ -139,6 +139,17 @@
                 trackDisplay.remove();
             });
 
+            // Stats (hex boxes and their condition tracks, e.g. the M/L markers)
+            // aren't covered by the track-counter cleanup above - they use their
+            // own markup (.stat-track-counter / .track-shapes) - and
+            // layoutApplication()'s renderStats() reuses the existing #stats-container
+            // content whenever it's non-empty, so without this it never gets
+            // rebuilt from the just-cleared URL and stays visually stale.
+            const statsContainer = document.querySelector('#stats-container');
+            if (statsContainer) {
+                statsContainer.innerHTML = '';
+            }
+
             // Then refresh the entire layout
             if (window.Layout) {
                 window.Layout.layoutApplication();
