@@ -319,6 +319,16 @@ window.Layout = (function() {
                             window.Cards.restoreCollapseState(cardCollapseState);
                         }
 
+                        // Re-init takeFrom sections so instances beyond the first
+                        // (shown/hidden via checked checkbox count) reflect the
+                        // restored persistence state instead of staying at their
+                        // default "hidden" state from re-creation above.
+                        if (window.TakeFrom) {
+                            setTimeout(() => {
+                                window.TakeFrom.initializeTakeFromSections();
+                            }, 100);
+                        }
+
                         // Restore scroll position
                         setTimeout(() => window.scrollTo(0, scrollY), 25);
                     }
